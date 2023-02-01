@@ -34,63 +34,63 @@ require 'header.php';
                 <p>Desde $ 3,999.00</p>
             </div>
           
-          <center>
-              <!-- Modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trackerModal"> 
-              <i class="fa fa-pencil"></i> Formulario
-          </button>
+            <div class="col-md-6">
+        <div class="container" id="login">
+			<div class="row main">
+				<div class="main-login main-center">
+				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Registrate</h2>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label"><b>Nombre*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name"id="name"  placeholder="Ingresa tu nombre"required />
+								</div>
+							</div>
+						</div>
 
-          <div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="formulario" aria-hidden="true">
-            <div class="modal-dialog" style="min-width: 75%;">
-              <!--Con el min-width manejo el ancho del modal -->
-              <div class="modal-content">
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo"required />
+								</div>
+							</div>
+						</div>
 
-                <div class="modal-header">
-                  <h2 class="modal-title" id="formulario" ><font color="black" face="Comic Sans MS,arial">Formulario</font></h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span>&times;</span>
-                          </button>
-                </div>
-                    <div class="modal-body">
-                      <div class="container-fluid">
-                        <form>
-                          <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="nombre" id="fortext">Nombre</label>
-                              <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="correo" class="formulario" id="fortext">Correo</label>
-                              <input type="email" class="form-control" id="correo" placeholder="Correo" required>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="celular" class="formulario" id="fortext">Celular</label>
-                              <input type="text" class="form-control" id="Celular"placeholder="Celular">
-                            </div>
-                            <div class="form-group col-md-3">
-                              <span>
-                              <h3><font color="black" face="Comic Sans MS,arial">Producto</font></h3>
-                              <h5><font color="blue" face="Comic Sans MS,arial">JD TAE</font></h5>
-                              </span>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <a href="./shop.php" class="compras" >
-                    <button class="btn btn-light">Adquirir</button>
-              </a>
-              </center>
+						<div class="form-group">
+							<label for="pwd" class="cols-sm-2 control-label"><b>Contraseña*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Ingresa tu contraseña" required/>
+								</div>
+							</div>
+						</div>
+
+                        <div class="form-group">
+							<label for="pwd" class="cols-sm-2 control-label"><b>Confirma tu Contraseña*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Confirma tu contraseña"/>
+								</div>
+							</div>
+						</div>
+				
+						<div class="form-group btnregistro"> 
+							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Registrate</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+
+        </div>
               </div>
       </div>
     </div>
@@ -194,7 +194,7 @@ require 'header.php';
                     Maneja los estados de cuenta por cada cliente y administra cada productos que vendes sencillamente.
                     </div>
                   </div>
-        </div>
+                </div>
         <div class="col-md-6">
         <div class="container" id="login">
 			<div class="row main">
@@ -250,9 +250,8 @@ require 'header.php';
 				</div>
 			</div>
 		</div>
-
-        </div>
-      </div>
+  </div>
+</div>
 </div>
 <br>
 <br>
