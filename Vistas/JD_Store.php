@@ -98,7 +98,7 @@ require 'header.php';
 
 
 <!--OPCIONES-->
-<div class="bloques">
+<div class="bloques padingbottom">
 <div class="row align-items-md-stretch">
       <div class="col-md-4">
         <div class="color h-80 p-5 rounded-3">
@@ -155,13 +155,11 @@ require 'header.php';
 </div>
 </div>
 
-<!--TPOS LIC--> 
-
 <!--TIPOS DE LICENCIA-->
-<div class="lip">
-              <div class="row">
-              <h1>TIPOS DE LICENCIAS</h1>
-                <div class="col-xs-12 ">
+<div class="lip padingbottom">
+              <div class="row mb-2">
+              <h3>TIPOS DE LICENCIAS</h3>
+                <div class="col-md-6 ">
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-servidor-tab" data-toggle="tab" href="#nav-servidor" role="tab" aria-controls="nav-servidor" aria-selected="true">Store Servidor</a>
@@ -200,12 +198,69 @@ require 'header.php';
                 </div>
               </div>
         </div>
+        <div class="col-md-6">
+        <div class="container" id="login">
+			<div class="row main">
+				<div class="main-login main-center">
+				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Registrate</h2>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label"><b>Nombre*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name"id="name"  placeholder="Ingresa tu nombre"required />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo"required />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="pwd" class="cols-sm-2 control-label"><b>Contraseña*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Ingresa tu contraseña" required/>
+								</div>
+							</div>
+						</div>
+
+                        <div class="form-group">
+							<label for="pwd" class="cols-sm-2 control-label"><b>Confirma tu Contraseña*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Confirma tu contraseña"/>
+								</div>
+							</div>
+						</div>
+				
+						<div class="form-group btnregistro"> 
+							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Registrate</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+
+        </div>
       </div>
 </div>
 <br>
 <br>
 <!--PARTE DE PREGUNTAS-->
-<div class="lip col-12">
+<div class="lip col-12 padingbottom">
     <div class="row">
       <div class="col-12 col-md-6 tac2 blb">
         <h2 class="titjd2 tac">Tutoriales</h2>
@@ -214,7 +269,7 @@ require 'header.php';
         </p>
         <center>
         <a href="https://www.youtube.com/watch?v=q1NM5De1JIM&list=PLCHufcZLZMIwcksYnpPP5zEN2TswT9JKz" target="_blank">
-          <button class="btn imgservicio paddbot btnmasinfo btn-primary">Videotutoriales</button>
+          <button class="btn btn-primary" style="background-color:#29A8B0;">Videotutoriales</button>
         </a>
         </center>
       </div>
