@@ -194,6 +194,7 @@ require 'header.php';
                     Maneja los estados de cuenta por cada cliente y administra cada productos que vendes sencillamente.
                     </div>
                   </div>
+        </div>
         <div class="col-md-6">
         <div class="container" id="login">
 			<div class="row main">
