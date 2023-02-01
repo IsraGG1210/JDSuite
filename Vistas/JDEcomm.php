@@ -10,12 +10,15 @@ require 'header.php'?>
 
 <br>
 
- <!--Seccion caracteristicas-->
 
-<div class="row d-flex justify-content-center col-sm-12">
+<!--===============-->
+<div class="display-inline">
+<!--Seccion caracteristicas-->
+
+<div class="row d-flex  col-sm-12">
 
   <!-- Column -->
-  <div class="col-md-4 mb-4 d-flex align-items-stretch">
+  <div class="col-md-4 mb-4 d-flex " style="height:925px;">
 
     <!--Card-->
     <div class="card">
@@ -30,7 +33,7 @@ require 'header.php'?>
       </div>
 
       <!--Card content-->
-      <div class="card-body">
+      <div class="card-body" >
         <!--Title-->
         <h3 class="card-title">¿Que es JD Ecomm?</h3>
         <!--Text-->
@@ -48,7 +51,7 @@ require 'header.php'?>
  
 
   <!-- Column -->
-  <div class="col-md-4 mb-4 d-flex align-items-stretch">
+  <div class="col-md-4 mb-4 d-flex ">
 
     <!--Card-->
     <div class="card">
@@ -85,15 +88,9 @@ require 'header.php'?>
 
   </div>
   <!-- Column -->
-
-</div>
-
- 
-
-<!--Seccion cotizar Ecomm-->
-<div class="container col-md-6" id="cotizacion">
-			<div class="row main">
-				<div class="main-login main-center">
+  <div class="container col-md-4 col-sm-12"  id="cotizacion">
+			<div class="row main" style="margin: 0px;">
+				<div class="main-login main-center" >
 					<center>
 				<img src="../public/imagenes/lecomm.png" alt=""class="imgEcomm col-sm-12" style="background-color:white;border-radius: 50px;">
 				</center>	
@@ -149,6 +146,15 @@ require 'header.php'?>
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label for="giroempresa" class="cols-sm-2 control-label"><b>Formas de pago</b></label>
+							<div class="cols-sm-10">
+								<label for=""><input type="checkbox" name="" id="">Transferencia/Deposito Bancario</label> <br>
+								<label for=""><input type="checkbox">PayPal</label> <br>
+								<label for=""><input type="checkbox">Tarjeta Credito/Debito (Mercado Pago)</label>
+							</div>
+						</div>
+
                         <div class="form-group">
 							<label for="giroempresa" class="cols-sm-2 control-label"><b>Giro de la empresa</b></label>
 							<div class="cols-sm-10">
@@ -168,7 +174,19 @@ require 'header.php'?>
 					</form>
 				</div>
 			</div>
-		</div>
+</div>
+</div>
+
+ <br>
+
+<!--Seccion cotizar Ecomm-->
+
+
+</div>
+
+
+<!--===============-->
+ 
 
 
 

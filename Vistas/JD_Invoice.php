@@ -122,12 +122,12 @@ require 'header.php';
                 </div>
                 <div class="center">
                     <h3>Funciona para cualquier giro</h3>
-                    <p>
+                    <p style="font-size: x-large;">
                     Podrás emitir facturas, notas de crédito, cartas porte, recibos de honorarios y ahora también con un mismo paquete emite tus complementos de pago.
                     Almacena tus facturas sin costo extra sin importar el tiempo, nuestra potente nube te ayuda a resguardar tu información de forma segura.
                     Descarga las características.
                     </p>
-                    <button class="paddbot2">Características</button>
+                    <button class="btn btn-primary">Características</button>
                 </div>
             </div>
         </div>
@@ -301,7 +301,7 @@ require 'header.php';
             <div class="row mb-2">
                 <div class="col-md-3">
                 <h4>Tutoriales</h4>
-                <p>
+                <p style="font-size: x-large;">
                 Generamos una serie de videos para facilitarte el uso de tu Facturador Electrónico “JD Invoice”. Conoce lo sencillo y rápido que es facturar.
                 </p>
                 <a href="https://www.youtube.com/watch?v=XzBEF-WqgyY&embeds_euri=http%3A%2F%2Flocalhost%2F&feature=emb_imp_woyt">

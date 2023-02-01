@@ -65,8 +65,8 @@ require 'header.php';
             </div>
               <div class="sep">
               </div>
-                <div class="logo flex justify-between mb-3 text-sm">
-                  <span><h3>Precio<h3><br></span>
+                <div class="centradoprecio flex justify-between mb-3 text-sm">
+                  <span class="spanpr"><h3>Precio<h3><br></span>
                   <span><h3 class="precio">$789.00<h3></span>
               </div>
                 <div class="flex justify-between font-bold pt-2 mt-2 mb-2 border-t border-gray-500">
@@ -89,7 +89,7 @@ require 'header.php';
                     </a>
                   </p>
                     <div class="centrado">
-                      <button data-testid="button-component" style="background-color:#29A8B0;"class="paddbot2  w-50 h-12 border font-bold transition py-3 rounded" onclick="redirect()"><i class="fas fa-shopping-bag"></i> Comprar</button>
+                      <button data-testid="button-component" style="background-color: #a6d0fc;border-color: #a6d0fc;" class="btn btn-primary text-dark w-50 h-12 border font-bold transition py-3 rounded" onclick="redirect()"><i class="fas fa-shopping-bag"></i> Comprar</button>
                       <script type="text/javascript">
                         function redirect(){
                           window.location.href="verif_Tienda.php";
@@ -184,13 +184,13 @@ require 'header.php';
               <div class="box p-4">
               <form action="">
                       <div class="parse text-pform mb-2">
-                        <input class="entradatexto" type="text" name="nombre" id="nombre" onblur="checkf();"  placeholder="Nombre" required/>
+                        <input class="form-control entradatexto" type="text" name="nombre" id="nombre" onblur="checkf();"  placeholder="Nombre" required/>
                       </div>
                       <div class="parse text-pform mb-2">
-                        <textarea name="" id="" cols="30" rows="2"placeholder="Mensaje" required></textarea>
+                        <textarea class="form-control"name="" id="" cols="30" rows="2"placeholder="Mensaje" required></textarea>
                       </div>
                       <div class="col-12 centrado">
-                        <button style="background-color: #a6d0fc;border-color: #a6d0fc;" class=" btnmasinfo" id="enviarc" type="submit" >Enviar</button>
+                        <button style="background-color: #a6d0fc;border-color: #a6d0fc;" class="btn btn-primary text-dark" id="enviarc" type="submit" >Enviar</button>
                       </div>
               </form>
               </div>

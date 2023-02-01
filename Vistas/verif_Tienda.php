@@ -22,9 +22,9 @@ require 'header.php';
     <div class="col-12">
       <div class="row mb-2">
         <div class="col-md-8">
-          <div class="box">
+          <div class="lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <form method="post" action="updatecarrito">
-              <h1>Carrito de Compra</h1>
+              <h1>CARRITO DE COMPRAS</h1>
               <p class="text-muted">Tienes 1 articulo(s) en tu carrito.</p>
               <div class="table-responsive">
                 <table class="table">
