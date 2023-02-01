@@ -158,7 +158,7 @@ require 'header.php';
 <!--TPOS LIC--> 
 
 <!--TIPOS DE LICENCIA-->
-<div class="container">
+<div class="lip">
               <div class="row">
               <h1>TIPOS DE LICENCIAS</h1>
                 <div class="col-xs-12 ">
