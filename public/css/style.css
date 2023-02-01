@@ -651,6 +651,11 @@ border-radius: 0;
 }
 .sep{
 border-top: solid 1px #000000;
+margin: inherit;
+
+}
+.padingbottom{
+  padding-bottom: 5%;
 }
 .centrado{
 display: flex;
@@ -659,6 +664,10 @@ justify-content: center;
 .logo {
 float:left;
 text-align: right;
+padding: 5%;
+}
+.centradoprecio{
+  text-align: center;
 }
 .logo2 {
 float:right;
@@ -666,11 +675,10 @@ text-align:left;
 font-size:38px;
 color:#4385db;
 }
-.right{
+ .right{
   float:right;
   text-align:left;
-}
-.estrellasdis{
+}asdis{
 color:#ffff00;
 font-size:32px;
 }
