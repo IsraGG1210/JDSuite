@@ -1,6 +1,8 @@
 <?php
 require 'header.php'
+
 ?>
+
 
 <!-- Font Awesome -->
 <link
@@ -92,7 +94,7 @@ require 'header.php'
       administrado de una manera segura. Para que tú solo te enfoques
       a donde abrirás tu próxima sucursal o de disfrutar tus vacaciones.<br>
       <center>
-      <button class="btn btn-primary"style="background-color:#29A8B0;">Mas Caracteristicas</button>
+      <button class="btn btn-primary"style="background-color:<?php echo $bg?>;">Mas Caracteristicas</button>
       </center>
       </div>
     </div>
@@ -140,12 +142,12 @@ require 'header.php'
 <div class="text-center">
     <h1>Paquetes JD Rest</h1>
 </div>
-<div class="carousel-inner" id="productosRest">
+<div class="carousel-inner" id="productosRest" >
     <div class="carousel-item active">
       <div class="row">
         <div class="col">
-          <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg" alt=""></a>
-              <div class="card-body">
+          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg" alt=""></a>
+              <div class="card-body" >
                 <h3 color-text="blue">JD REST LICENCIA TIPO SERVIDOR</h3>
                 <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
@@ -154,7 +156,7 @@ require 'header.php'
 
         </div>
         <div class="col">
-          <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg" alt=""></a>
+          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">JD REST LICENCIA TIPO TERMINAL</h3>
                   <h2>$749.00</h2>
@@ -163,7 +165,7 @@ require 'header.php'
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000009921550.peg" alt=""></a>
+          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB000009921550.peg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">POLIZA DE SOPORTE Y ASESORIA (12 MESES)</h3>
                   <h2>$1,499.00</h2>

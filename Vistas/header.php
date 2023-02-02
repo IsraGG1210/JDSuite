@@ -1,7 +1,11 @@
 <?php
 //ECHO $_SERVER['REQUEST_URI'];
-if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php') $bg = 'bg-blue';
-elseif($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php') $bg = 'bg-green';
+if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php') $bg = '#2B4B6B';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php') $bg = '#F46606';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Invoice.php') $bg = '#27A8AF';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDEcomm.php') $bg = '#29A8B0';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_tae.php') $bg = '#1F8187';
+else $bg = '#29A8B0'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +24,7 @@ elseif($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php') $bg = 'bg-green'
     <link href="../public/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-<div id="mainNavigation">
+<div id="mainNavigation" style="background-color:<?php echo $bg?>;">
     <nav role="navigation">
         <div class="lip">
             <div class="py-3 text-center border-bottom">

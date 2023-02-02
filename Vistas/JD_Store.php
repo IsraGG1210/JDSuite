@@ -1,6 +1,7 @@
 <?php
 require 'header.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@ require 'header.php';
 
 
 <!--OPCIONES-->
-<div class="bloques padingbottom">
+<div class="bloques padingbottom" id="bloques">
 <div class="row align-items-md-stretch">
       <div class="col-md-4">
         <div class="color h-80 p-5 rounded-3">

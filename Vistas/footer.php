@@ -1,12 +1,4 @@
-<?php
-//ECHO $_SERVER['REQUEST_URI'];
-if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php') $bg = '#2B4B6B';
-else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php') $bg = '#F46606';
-else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Invoice.php') $bg = '#27A8AF';
-else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDEcomm.php') $bg = '#29A8B0';
-else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_tae.php') $bg = '#1F8187';
-else $bg = '#29A8B0'; 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,17 +34,17 @@ else $bg = '#29A8B0';
 <!------ Include the above in your HEAD tag ---------->
 
 <!-- Footer -->
-	<section id="footer" <?php echo 'style="background: '.$bg.' "'; ?>>
+	<section id="footer" style="background-color:<?php echo $bg?>;">
 		<div class="container">
 			<div class="row text-center text-xs-center text-sm-left text-md-left">
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<h5>JD Suite</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
+						<li><a href="JD_Store.php"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
+						<li><a href="JDRest.php"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
+						<li><a href="JD_Invoice.php"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
+						<li><a href="JD_tae.php"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
+						<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3">
@@ -91,7 +83,7 @@ else $bg = '#29A8B0';
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 text-center">
 
-          <h3 style="color:white;">¿No tienes cuenta? <button class="btn btn-primary">Registrate</button></h3>
+          <h3 style="color:white;">¿No tienes cuenta? <button class="btn btn-primary rounded-pill">Registrate</button></h3>
           
       </div>	
 		</div>
