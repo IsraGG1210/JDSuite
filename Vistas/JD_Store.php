@@ -33,65 +33,7 @@ require 'header.php';
               <p>¡Adquierelo ahora mismo!</p>
                 <p>Desde $ 3,999.00</p>
             </div>
-          
-            <div class="col-md-6">
-        <div class="container" id="login">
-			<div class="row main">
-				<div class="main-login main-center">
-				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Registrate</h2>
-					<form class="" method="post" action="#">
-						
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label"><b>Nombre*</b></label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name"id="name"  placeholder="Ingresa tu nombre"required />
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo"required />
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="pwd" class="cols-sm-2 control-label"><b>Contraseña*</b></label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Ingresa tu contraseña" required/>
-								</div>
-							</div>
-						</div>
-
-                        <div class="form-group">
-							<label for="pwd" class="cols-sm-2 control-label"><b>Confirma tu Contraseña*</b></label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Confirma tu contraseña"/>
-								</div>
-							</div>
-						</div>
-				
-						<div class="form-group btnregistro"> 
-							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Registrate</a>
-						</div>
-						
-					</form>
-				</div>
-			</div>
-		</div>
-
-        </div>
-              </div>
+          </div>
       </div>
     </div>
   </div>
@@ -156,12 +98,12 @@ require 'header.php';
 </div>
 
 <!--TIPOS DE LICENCIA-->
-<div class="lip padingbottom">
+<div class="container-fluid padingbottom">
               <div class="row mb-2">
-              <h3>TIPOS DE LICENCIAS</h3>
+              <h3>Formulario</h3>
                 <div class="col-md-6 ">
                   <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size: 28px;">
                       <a class="nav-item nav-link active" id="nav-servidor-tab" data-toggle="tab" href="#nav-servidor" role="tab" aria-controls="nav-servidor" aria-selected="true">Store Servidor</a>
                       <a class="nav-item nav-link" id="nav-terminal-tab" data-toggle="tab" href="#nav-terminal" role="tab" aria-controls="nav-terminal" aria-selected="false">Store Terminal</a>
                       <a class="nav-item nav-link" id="nav-farmacia-tab" data-toggle="tab" href="#nav-farmacia" role="tab" aria-controls="nav-farmacia" aria-selected="false">Servidor Farmacia</a>
@@ -169,7 +111,7 @@ require 'header.php';
                       <a class="nav-item nav-link" id="nav-reparto-tab" data-toggle="tab" href="#nav-reparto" role="tab" aria-controls="nav-reparto" aria-selected="false">Servidor Rutas de Reparto</a>
                     </div>
                   </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent"  style="height: 42%; font-size: initial;">
                     <div class="tab-pane fade show active" id="nav-servidor" role="tabpanel" aria-labelledby="nav-servidor-tab">
                     La licencia ideal para tu negocio. JD Store tipo Servidor contiene todos los módulos de tu sistema de Punto de Venta, podrás llevar el control y registro total de tu negocio, de los artículos, clientes, proveedores y demás, al mismo tiempo que tendrás a tu disposición los Reportes adecuados para tomar las decisiones que harán crecer tu negocio.
                     </div>
@@ -189,7 +131,7 @@ require 'header.php';
                     Da de alta cabinas de atención y responsables de atender, para que el sistema asigne actividades a tu personal.
                     Gestiona anticipos de servicios y liquidaciones al realizarlos, esto te ayudará a asegurar la prestación del servicio.
                     </div>
-                    <div class="tab-pane fade" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab">
+                    <div class="tab-pane fade" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab" style="font-size: x-large;">
                     Si en tu empresa repartes a domicilio o generas rutas de entrega JD te ayuda a generar tus repartos de manera segura y sencilla.
                     Maneja los estados de cuenta por cada cliente y administra cada productos que vendes sencillamente.
                     </div>
@@ -198,7 +140,7 @@ require 'header.php';
         <div class="col-md-6">
         <div class="container" id="login">
 			<div class="row main">
-				<div class="main-login main-center">
+				<div class="main-login main-center" style="padding-top: 10%;">
 				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Registrate</h2>
 					<form class="" method="post" action="#">
 						
@@ -256,7 +198,7 @@ require 'header.php';
 <br>
 <br>
 <!--PARTE DE PREGUNTAS-->
-<div class="lip col-12 padingbottom">
+<div class="container-fluid col-12 padingbottom">
     <div class="row">
       <div class="col-12 col-md-6 tac2 blb">
         <h2 class="titjd2 tac">Tutoriales</h2>
