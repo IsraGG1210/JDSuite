@@ -83,7 +83,7 @@
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 text-center">
 
-          <h3 style="color:white;">¿No tienes cuenta? <button class="btn btn-primary rounded-pill">Registrate</button></h3>
+        <a href="registro.php">  <h3 style="color:white;">¿No tienes cuenta? <button class="btn btn-primary rounded-pill">Registrate</button></h3></a>
           
       </div>	
 		</div>

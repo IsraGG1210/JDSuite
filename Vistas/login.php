@@ -5,7 +5,7 @@ require 'header.php'
 
 <div class="container" id="login">
 			<div class="row main">
-				<div class="main-login main-center">
+				<div class="main-login main-center" style="height: auto;">
 				
 				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Inicia Sesión </h2>
 					<form class="iniciosesion" method="post" action="#">
