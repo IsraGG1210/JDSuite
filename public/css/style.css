@@ -905,9 +905,9 @@ section .section-title {
     margin-bottom: 50px;
     text-transform: uppercase;
 }
-#footer {
+/*#footer {
     background: #007b5e !important;
-}
+}*/
 #footer h5{
 	padding-left: 10px;
     border-left: 3px solid #eeeeee;
@@ -926,13 +926,13 @@ section .section-title {
 }
 #footer ul.social li a i {
     margin-right: 5px;
-	font-size:25px;
+	font-size:40px;
 	-webkit-transition: .5s all ease;
 	-moz-transition: .5s all ease;
 	transition: .5s all ease;
 }
 #footer ul.social li:hover a i {
-	font-size:30px;
+	font-size:50px;
 	margin-top:-10px;
 }
 #footer ul.social li a,

@@ -1,3 +1,12 @@
+<?php
+//ECHO $_SERVER['REQUEST_URI'];
+if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php') $bg = '#2B4B6B';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php') $bg = '#F46606';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Invoice.php') $bg = '#27A8AF';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDEcomm.php') $bg = '#29A8B0';
+else if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_tae.php') $bg = '#1F8187';
+else $bg = '#29A8B0'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +42,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <!-- Footer -->
-	<section id="footer">
+	<section id="footer" <?php echo 'style="background: '.$bg.' "'; ?>>
 		<div class="container">
 			<div class="row text-center text-xs-center text-sm-left text-md-left">
 				<div class="col-xs-12 col-sm-3 col-md-3">
@@ -72,17 +81,17 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
 					<ul class="list-unstyled list-inline social text-center">
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-youtube"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-twitter-square"></i></li>
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-instagram"></i></li>
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-facebook-square"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-youtube fa-xl"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-twitter-square fa-xl"></i></li>
+						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-instagram fa-xl"></i></li>
+						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-facebook-square fa-xl"></i></a></li>
 						</ul>
 				</div>
 				<hr>
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 text-center">
 
-          <h3 style="color:white;">¿No tienes cuenta? <button class="btn btn-secondary">Registrate</button></h3>
+          <h3 style="color:white;">¿No tienes cuenta? <button class="btn btn-primary">Registrate</button></h3>
           
       </div>	
 		</div>
