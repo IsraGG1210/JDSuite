@@ -88,7 +88,7 @@ require 'header.php'?>
 
   </div>
   <!-- Column -->
-  <div class="container col-md-4 col-sm-12"  id="cotizacion">
+  <div class="container col-md-4 col-sm-12 d-flex"  id="cotizacion">
 			<div class="row main" style="margin: 0px;">
 				<div class="main-login main-center" >
 					<center>
