@@ -98,11 +98,15 @@ require 'header.php';
 </div>
 
 <!--TIPOS DE LICENCIA-->
-<div class="display-inline">
-              <div class="row d-flex col-sm-12">
-              
-                <div class="col-md-6 ">
-                <h3>Tipos de licencia</h3>
+<!-- Container -->
+<!-- Container -->
+<div class="row">
+
+  <!-- Column -->
+  <div class="col-md-6 mb-6 d-flex align-items-stretch">
+
+  <div class="tab-content" id="nav-tabContent">
+  <h3>Tipos de licencia</h3>
                   <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-servidor-tab" data-toggle="tab" href="#nav-servidor" role="tab" aria-controls="nav-servidor" aria-selected="true">Store Servidor</a>
@@ -112,38 +116,50 @@ require 'header.php';
                       <a class="nav-item nav-link" id="nav-reparto-tab" data-toggle="tab" href="#nav-reparto" role="tab" aria-controls="nav-reparto" aria-selected="false">Servidor Rutas de Reparto</a>
                     </div>
                   </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="col tab-pane fade show active flex-1" id="nav-servidor" role="tabpanel" aria-labelledby="nav-servidor-tab">
+    <!--Card Primary-->
+    <div class="card indigo text-center z-depth-2">
+      <div class="card-body">
+      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active flex-1" id="nav-servidor" role="tabpanel" aria-labelledby="nav-servidor-tab">
                     La licencia ideal para tu negocio. JD Store tipo Servidor contiene todos los módulos de tu sistema de Punto de Venta, podrás llevar el control y registro total de tu negocio, de los artículos, clientes, proveedores y demás, al mismo tiempo que tendrás a tu disposición los Reportes adecuados para tomar las decisiones que harán crecer tu negocio.
                     </div>
-                    <div class="tab-pane fade flex-1" id="nav-terminal" role="tabpanel" aria-labelledby="nav-terminal-tab">
+      
+      <div class="tab-pane fade flex-1" id="nav-terminal" role="tabpanel" aria-labelledby="nav-terminal-tab">
                     Esta licencia es el complemento ideal para la tipo Servidor, ya que nos apoya a crecer nuestro negocio. Si cobrar en una caja ya no es suficiente es hora de que evoluciones y hagas crecer tu punto de venta.
                     Al adquirir esta licencia podrás conectar otro equipo a tu JD Store, podrás tener dos cajeros operando de manera simultánea y controlar en su totalidad el sistema.
                     *Requieres una licencia tipo Servidor para adquirir esta licencia
                     </div>
-                    <div class="tab-pane fade flex-1" id="nav-farmacia" role="tabpanel" aria-labelledby="nav-farmacia-tab">
+    
+    <div class="tab-pane fade flex-1" id="nav-farmacia" role="tabpanel" aria-labelledby="nav-farmacia-tab">
                     Si tu giro es una farmacia entonces esta es la solución, JD Store tiene un modulo de farmacia que te permitirá gestionar tu venta de antibióticos.
                     Si tienes un consultorio para potenciar tus ventas, JD Store tiene su modulo para registrar expedientes electrónicos de tus pacientes y emitir recetas desde el mismo sistema.
                     Rota tu inventario con ayuda de tu doctor y registra los servicios prestados para que cumplas con los requerimientos de la secretaría de salud solicita.
                     </div>
-                    <div class="tab-pane fade flex-1" id="nav-citas" role="tabpanel" aria-labelledby="nav-citas-tab">
+    <div class="tab-pane fade flex-1" id="nav-citas" role="tabpanel" aria-labelledby="nav-citas-tab">
                     Tu propio calendario de ventas en el sistema es posible.
                     Gestiona tus citas y clientes desde JD Store y dale seguimiento a una venta desde que se aparta y hasta que se vende.
                     Da de alta cabinas de atención y responsables de atender, para que el sistema asigne actividades a tu personal.
                     Gestiona anticipos de servicios y liquidaciones al realizarlos, esto te ayudará a asegurar la prestación del servicio.
                     </div>
-                    <div class="tab-pane fade flex-1" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab">
+    <div class="tab-pane fade flex-1" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab">
                     Si en tu empresa repartes a domicilio o generas rutas de entrega JD te ayuda a generar tus repartos de manera segura y sencilla.
                     Maneja los estados de cuenta por cada cliente y administra cada productos que vendes sencillamente.
                     </div>
-                  </div>
-                </div>
-                
-        <div class="col-md-6">
-        <h3>¡Ya estamos ahí!</h3>
-        <div class="container" id="login">
+    <!--/.Card Primary-->
+    </div></div>
+  </div></div></div>
+  <!-- Column -->
+
+  <!-- Column -->
+  <div class="col-md-6 mb-6 d-flex align-items-stretch">
+
+    <!--Card Primary-->
+    <div class="col-12 card info-color text-center z-depth-2">
+      <div class="card-body">
+      <h3>¡Ya estamos ahí!</h3>
+        <div class="container" id="store">
 			<div class="row">
-				<div class="main-login main-center" style="height:auto;">
+				<div class="main-store main-center" style="height:100%;">
 				<h4 class="text-center"><i class="far fa-edit fa-sm"> &nbsp </i>Completa el formulario</h4>
 					<form class="" method="post" action="#">
 						
@@ -178,15 +194,20 @@ require 'header.php';
 						</div>
 				
 						<div class="form-group btnregistro"> 
-							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Registrate</a>
+							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block store-button">Registrate</a>
 						</div>
 						
 					</form>
 				</div>
 			</div>
 		</div>
+      </div>
+    </div>
+    <!--/.Card Primary-->
+    </div>
   </div>
-</div>
+  <!-- Column -->
+
 </div>
 <br>
 <br>

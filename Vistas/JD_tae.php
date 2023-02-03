@@ -43,11 +43,18 @@ require 'header.php';
 </div>
 
 <div class="container-fluid">
-<div class="girar">
-<center>
-<div class="col-12 cards-grid w-100%">
-      <div class="row mb-3">
-        <div class="col-md-4 ">
+ <!-- Container -->
+<!-- Container -->
+<div class="row">
+
+  <!-- Column -->
+  <div class="col-md-8 mb-8 d-flex align-items-stretch">
+
+    <!--Card Primary-->
+    <div class="card indigo text-center z-depth-2">
+      <div class="card-body">
+        <div class="row mb-2">
+        <div class="col-md-6 ">
         <div class="flip-card">
               <h3>¿Que es el TAE?</h3>
                 <div class="flip-card-inner">
@@ -64,7 +71,7 @@ require 'header.php';
             </div>    
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
         <div class="flip-card">
         <h3>Beneficios</h3>
                 <div class="flip-card-inner">
@@ -82,11 +89,23 @@ require 'header.php';
             </div>
 
         </div>
-        <div class="col-md-4">
-        <h3>¡Ya estamos ahí!</h3>
-        <div class="" id="login">
+        </div>
+
+      </div>
+  </div>
+</div>
+  <!-- Column -->
+
+  <!-- Column -->
+  <div class="col-md-4 mb-4 d-flex align-items-stretch">
+
+    <!--Card Primary-->
+    <div class="col-12 card info-color text-center z-depth-2">
+      <div class="card-body">
+      <h3>¡Ya estamos ahí!</h3>
+        <div class="container" id="store">
 			<div class="row">
-				<div class="main-login main-center" style="height: auto">
+				<div class="main-store main-center" style="height:100%;">
 				<h4 class="text-center"><i class="far fa-edit fa-sm"> &nbsp </i>Completa el formulario</h4>
 					<form class="" method="post" action="#">
 						
@@ -121,18 +140,20 @@ require 'header.php';
 						</div>
 				
 						<div class="form-group btnregistro"> 
-							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Registrate</a>
+							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block store-button">Registrate</a>
 						</div>
 						
 					</form>
 				</div>
 			</div>
 		</div>
-    <!--termina--> 
-        </div>
-     </div>
-</center>
- </div>
+      </div>
+    </div>
+    <!--/.Card Primary-->
+    </div>
+  </div>
+  <!-- Column -->
+
 </div>
 </div>
 <!--TUTORIALES/PREGUNTAS-->
