@@ -1,7 +1,6 @@
 <?php
 require 'header.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +40,7 @@ require 'header.php';
 
 
 <!--OPCIONES-->
-<div class="bloques padingbottom" id="bloques">
+<div class="bloques padingbottom">
 <div class="row align-items-md-stretch">
       <div class="col-md-4">
         <div class="color h-80 p-5 rounded-3">
@@ -101,10 +100,11 @@ require 'header.php';
 <!--TIPOS DE LICENCIA-->
 <div class="container-fluid padingbottom">
               <div class="row mb-2">
-              <h3>Formulario</h3>
+              
                 <div class="col-md-6 ">
+                <h3>Tipos de licencia</h3>
                   <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size: 28px;">
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                       <a class="nav-item nav-link active" id="nav-servidor-tab" data-toggle="tab" href="#nav-servidor" role="tab" aria-controls="nav-servidor" aria-selected="true">Store Servidor</a>
                       <a class="nav-item nav-link" id="nav-terminal-tab" data-toggle="tab" href="#nav-terminal" role="tab" aria-controls="nav-terminal" aria-selected="false">Store Terminal</a>
                       <a class="nav-item nav-link" id="nav-farmacia-tab" data-toggle="tab" href="#nav-farmacia" role="tab" aria-controls="nav-farmacia" aria-selected="false">Servidor Farmacia</a>
@@ -112,37 +112,39 @@ require 'header.php';
                       <a class="nav-item nav-link" id="nav-reparto-tab" data-toggle="tab" href="#nav-reparto" role="tab" aria-controls="nav-reparto" aria-selected="false">Servidor Rutas de Reparto</a>
                     </div>
                   </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent"  style="height: 42%; font-size: initial;">
-                    <div class="tab-pane fade show active" id="nav-servidor" role="tabpanel" aria-labelledby="nav-servidor-tab">
+                  <div class="tab-content d-flex align-items-stretch" id="nav-tabContent">
+                    <div class="col tab-pane fade show active flex-1" id="nav-servidor" role="tabpanel" aria-labelledby="nav-servidor-tab">
                     La licencia ideal para tu negocio. JD Store tipo Servidor contiene todos los módulos de tu sistema de Punto de Venta, podrás llevar el control y registro total de tu negocio, de los artículos, clientes, proveedores y demás, al mismo tiempo que tendrás a tu disposición los Reportes adecuados para tomar las decisiones que harán crecer tu negocio.
                     </div>
-                    <div class="tab-pane fade" id="nav-terminal" role="tabpanel" aria-labelledby="nav-terminal-tab">
+                    <div class="tab-pane fade flex-1" id="nav-terminal" role="tabpanel" aria-labelledby="nav-terminal-tab">
                     Esta licencia es el complemento ideal para la tipo Servidor, ya que nos apoya a crecer nuestro negocio. Si cobrar en una caja ya no es suficiente es hora de que evoluciones y hagas crecer tu punto de venta.
                     Al adquirir esta licencia podrás conectar otro equipo a tu JD Store, podrás tener dos cajeros operando de manera simultánea y controlar en su totalidad el sistema.
                     *Requieres una licencia tipo Servidor para adquirir esta licencia
                     </div>
-                    <div class="tab-pane fade" id="nav-farmacia" role="tabpanel" aria-labelledby="nav-farmacia-tab">
+                    <div class="tab-pane fade flex-1" id="nav-farmacia" role="tabpanel" aria-labelledby="nav-farmacia-tab">
                     Si tu giro es una farmacia entonces esta es la solución, JD Store tiene un modulo de farmacia que te permitirá gestionar tu venta de antibióticos.
                     Si tienes un consultorio para potenciar tus ventas, JD Store tiene su modulo para registrar expedientes electrónicos de tus pacientes y emitir recetas desde el mismo sistema.
                     Rota tu inventario con ayuda de tu doctor y registra los servicios prestados para que cumplas con los requerimientos de la secretaría de salud solicita.
                     </div>
-                    <div class="tab-pane fade" id="nav-citas" role="tabpanel" aria-labelledby="nav-citas-tab">
+                    <div class="tab-pane fade flex-1" id="nav-citas" role="tabpanel" aria-labelledby="nav-citas-tab">
                     Tu propio calendario de ventas en el sistema es posible.
                     Gestiona tus citas y clientes desde JD Store y dale seguimiento a una venta desde que se aparta y hasta que se vende.
                     Da de alta cabinas de atención y responsables de atender, para que el sistema asigne actividades a tu personal.
                     Gestiona anticipos de servicios y liquidaciones al realizarlos, esto te ayudará a asegurar la prestación del servicio.
                     </div>
-                    <div class="tab-pane fade" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab" style="font-size: x-large;">
+                    <div class="tab-pane fade flex-1" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab">
                     Si en tu empresa repartes a domicilio o generas rutas de entrega JD te ayuda a generar tus repartos de manera segura y sencilla.
                     Maneja los estados de cuenta por cada cliente y administra cada productos que vendes sencillamente.
                     </div>
                   </div>
                 </div>
+                
         <div class="col-md-6">
+        <h3>¡Ya estamos ahí!</h3>
         <div class="container" id="login">
-			<div class="row main">
-				<div class="main-login main-center" style="padding-top: 10%;">
-				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Registrate</h2>
+			<div class="row">
+				<div class="main-login main-center">
+				<h4 class="text-center"><i class="far fa-edit fa-sm"> &nbsp </i>Completa el formulario</h4>
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
@@ -166,21 +168,11 @@ require 'header.php';
 						</div>
 
 						<div class="form-group">
-							<label for="pwd" class="cols-sm-2 control-label"><b>Contraseña*</b></label>
+							<label for="pwd" class="cols-sm-2 control-label"><b>Celular*</b></label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Ingresa tu contraseña" required/>
-								</div>
-							</div>
-						</div>
-
-                        <div class="form-group">
-							<label for="pwd" class="cols-sm-2 control-label"><b>Confirma tu Contraseña*</b></label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="pwd" id="pwd"  placeholder="Confirma tu contraseña"/>
+									<input type="text" class="form-control" name="pwd" id="pwd"  placeholder="Ingresa tu contraseña" required/>
 								</div>
 							</div>
 						</div>

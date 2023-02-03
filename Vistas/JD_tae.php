@@ -37,74 +37,17 @@ require 'header.php';
                 ¡Adquierelo ahora mismo!
                 </h4>
                 </div>
-              <center>
-              <!-- Modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trackerModal"> 
-              <i class="fa fa-pencil"></i> Formulario
-          </button>
-
-          <div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="formulario" aria-hidden="true">
-            <div class="modal-dialog" style="min-width: 75%;">
-              <!--Con el min-width manejo el ancho del modal -->
-              <div class="modal-content">
-
-                <div class="modal-header">
-                  <h2 class="modal-title" id="formulario" ><font color="black" face="Comic Sans MS,arial">Formulario</font></h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span>&times;</span>
-                          </button>
-                </div>
-                    <div class="modal-body">
-                      <div class="container-fluid">
-                        <form>
-                          <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="nombre" id="fortext">Nombre</label>
-                              <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="correo" class="formulario" id="fortext">Correo</label>
-                              <input type="email" class="form-control" id="correo" placeholder="Correo" required>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="celular" class="formulario" id="fortext">Celular</label>
-                              <input type="text" class="form-control" id="Celular"placeholder="Celular">
-                            </div>
-                            <div class="form-group col-md-3">
-                              <span>
-                              <h3><font color="black" face="Comic Sans MS,arial">Producto</font></h3>
-                              <h5><font color="blue" face="Comic Sans MS,arial">JD TAE</font></h5>
-                              </span>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <a href="./shop.php" class="compras" >
-                    <button class="btn btn-light">Adquirir</button>
-              </a>
-              </center>
             </div>
         </div>
     </div>
 </div>
 
-<div class="lip">
+<div class="container-fluid">
 <div class="girar">
 <center>
 <div class="col-12 cards-grid w-100%">
-      <div class="row mb-2">
-        <div class="col-md-6 ">
+      <div class="row mb-3">
+        <div class="col-md-4 ">
         <div class="flip-card">
               <h3>¿Que es el TAE?</h3>
                 <div class="flip-card-inner">
@@ -121,7 +64,7 @@ require 'header.php';
             </div>    
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
         <div class="flip-card">
         <h3>Beneficios</h3>
                 <div class="flip-card-inner">
@@ -139,9 +82,54 @@ require 'header.php';
             </div>
 
         </div>
+        <div class="col-md-4">
+        <h3>¡Ya estamos ahí!</h3>
+        <div class="" id="login">
+			<div class="row">
+				<div class="main-login main-center">
+				<h4 class="text-center"><i class="far fa-edit fa-sm"> &nbsp </i>Completa el formulario</h4>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label"><b>Nombre*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name"id="name"  placeholder="Ingresa tu nombre"required />
+								</div>
+							</div>
+						</div>
 
-        
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo"required />
+								</div>
+							</div>
+						</div>
 
+						<div class="form-group">
+							<label for="pwd" class="cols-sm-2 control-label"><b>Celular*</b></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="pwd" id="pwd"  placeholder="Ingresa tu contraseña" required/>
+								</div>
+							</div>
+						</div>
+				
+						<div class="form-group btnregistro"> 
+							<a href="#" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Registrate</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+    <!--termina--> 
+        </div>
      </div>
 </center>
  </div>
@@ -166,7 +154,7 @@ require 'header.php';
                     <div class="col-mb-2">
                       <div class="lip">
                         <a href="https://www.youtube.com/watch?v=-3IsVznqozU&t=2s">
-                        <button class=" paddbot">Ver más videos</button>
+                        <button class="btn btn-primary paddbot">Ver más videos</button>
                         </a>
                       </div>
                     </div>  

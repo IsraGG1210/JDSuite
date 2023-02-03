@@ -27,21 +27,36 @@ else $bg = '#29A8B0';
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)"><img src="../public/imagenes/logoJD.png" alt=""></a>
+    <a class="navbar-brand" href="index.php"><img src="../public/imagenes/logoJD.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
+      <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="JD_Store.php">JD Store</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JDRest.php">JD Rest</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
+            </li>
+             <li class="nav-item">
+            <a class="nav-link" href="JD_tae.php">JD TAE</a>
+            </li>
+             <li class="nav-item">
+            <a class="nav-link" href="#">JD CEO</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="shop.php">Tienda</a>
+            </li>
+             <li class="nav-item">
+            <a class="nav-link" href="login.php">Iniciar Sesion</a>
+            </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="text" placeholder="Search">

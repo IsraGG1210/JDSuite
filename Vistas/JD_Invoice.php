@@ -37,71 +37,15 @@ require 'header.php';
                 Desde $225.00
                 </h4>
                 </div>
-                <center>
-              <!-- Modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trackerModal"> 
-              <i class="fa fa-pencil"></i> Formulario
-          </button>
-
-          <div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="formulario" aria-hidden="true">
-            <div class="modal-dialog" style="min-width: 75%;">
-              <!--Con el min-width manejo el ancho del modal -->
-              <div class="modal-content">
-
-                <div class="modal-header">
-                  <h2 class="modal-title" id="formulario" ><font color="black" face="Comic Sans MS,arial">Formulario</font></h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span>&times;</span>
-                          </button>
-                </div>
-                    <div class="modal-body">
-                      <div class="container-fluid">
-                        <form>
-                          <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="nombre" id="fortext">Nombre</label>
-                              <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="correo" class="formulario" id="fortext">Correo</label>
-                              <input type="email" class="form-control" id="correo" placeholder="Correo" required>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="celular" class="formulario" id="fortext">Celular</label>
-                              <input type="text" class="form-control" id="Celular"placeholder="Celular">
-                            </div>
-                            <div class="form-group col-md-3">
-                              <span>
-                              <h3><font color="black" face="Comic Sans MS,arial">Producto</font></h3>
-                              <h5><font color="blue" face="Comic Sans MS,arial">JD Invoice</font></h5>
-                              </span>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <a href="./shop.php" class="compras" >
-                    <button class="btn btn-light">Adquirir</button>
-              </a>
-              </center>
+                
             </div>
         </div>
     </div>
 </div>
-<div class="lip">
+<div class="container-fluid">
         <div class="col-12">
             <div class="row mb-2">
-            <div class="col-md-7 wid">
+            <div class="col-md-6 wid">
                 <div class="vid">
                     <iframe  width="100%" height="315"  src="https://www.youtube.com/embed/OMiGNTdC1y4" title="YouTube video player" 
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -114,7 +58,7 @@ require 'header.php';
                     </p>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="righ w-100">
                 <div class="">
                     <img src="../public/imagenes/invoice2.gif" width="65%"  alt="">
@@ -145,8 +89,8 @@ require 'header.php';
     <div class="carousel-item active">
       <div class="row">
         <div class="col">
-          <div class="py-4 text-center card"style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" alt=""></a>
-              <div class="card-body" >
+          <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" alt=""></a>
+              <div class="card-body">
                 <h3 color-text="blue">Productos 1</h3>
                 <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
@@ -155,7 +99,7 @@ require 'header.php';
 
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 2</h3>
                   <h2>$5,999.00</h2>
@@ -164,7 +108,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card"style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 3</h3>
                   <h2>$5,999.00</h2>
@@ -173,7 +117,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 4</h3>
                   <h2>$5,999.00</h2>
@@ -182,7 +126,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg" alt=""></a> 
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg" alt=""></a> 
                 <div class="card-body">
                   <h3 color-text="blue">Productos 5</h3>
                   <h2>$5,999.00</h2>
@@ -195,7 +139,7 @@ require 'header.php';
     <div class="carousel-item">
       <div class="row">
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 6</h3>
                   <h2>$5,999.00</h2>
@@ -204,7 +148,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg" alt=""></a>
                   <div class="card-body">
                     <h3 color-text="blue">Productos 7</h3>
                     <h2>$5,999.00</h2>
@@ -213,7 +157,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 8</h3>
                   <h2>$5,999.00</h2>
@@ -222,7 +166,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 9</h3>
                   <h2>$5,999.00</h2>
@@ -231,7 +175,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 10</h3>
                   <h2>$5,999.00</h2>
@@ -244,7 +188,7 @@ require 'header.php';
     <div class="carousel-item">
       <div class="row">
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 11</h3>
                   <h2>$5,999.00</h2>
@@ -253,7 +197,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 12</h3>
                   <h2>$5,999.00</h2>
@@ -262,7 +206,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 13</h3>
                   <h2>$5,999.00</h2>
@@ -271,7 +215,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB000013642452.webp" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000013642452.webp" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 14</h3>
                   <h2>$5,999.00</h2>
@@ -280,7 +224,7 @@ require 'header.php';
           </div>
         </div>
         <div class="col">
-          <div class="py-4 text-center card" style="box-shadow: 10px 10px 7px <?php echo $bg?>;"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp" alt=""></a>
+          <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp" alt=""></a>
                 <div class="card-body">
                   <h3 color-text="blue">Productos 15</h3>
                   <h2>$5,999.00</h2>
