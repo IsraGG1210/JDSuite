@@ -12,13 +12,13 @@ require 'header.php'?>
 
 
 <!--===============-->
-<div class="display-inline">
+<div class="display-inline " >
 <!--Seccion caracteristicas-->
 
-<div class="row d-flex  col-sm-12">
+<div class="row d-flex  col-sm-12" >
 
   <!-- Column -->
-  <div class="col-md-4 mb-4 d-flex " style="height:925px;">
+  <div class="col-md-4 mb-4 d-flex " >
 
     <!--Card-->
     <div class="card">
@@ -51,7 +51,7 @@ require 'header.php'?>
  
 
   <!-- Column -->
-  <div class="col-md-4 mb-4 d-flex ">
+  <div class="col-md-4 mb-4 d-flex " >
 
     <!--Card-->
     <div class="card">
@@ -89,7 +89,7 @@ require 'header.php'?>
   </div>
   <!-- Column -->
   <div class="container col-md-4 col-sm-12 d-flex"  id="cotizacion">
-			<div class="row main" style="margin: 0px;">
+			<div class="row main d-flex mb-4" style="margin: 0px;">
 				<div class="main-login main-center" >
 					<center>
 				<img src="../public/imagenes/lecomm.png" alt=""class="imgEcomm col-sm-12" style="background-color:white;border-radius: 50px;">

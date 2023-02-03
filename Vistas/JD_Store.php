@@ -44,7 +44,7 @@ require 'header.php';
 <div class="row align-items-md-stretch">
       <div class="col-md-4">
         <div class="color h-80 p-5 rounded-3">
-          <h2>¿Cómo vender en JD Store?</h2>
+          <h4>¿Cómo vender en JD Store?</h4>
           <p>JD Store es una herramienta muy potente que te da la oportunidad de administrar toda la información que tu empresa genera, si tu internet llega a fallar, no te preocupes, tu sistema JD Store sigue funcionando y puedes continuar con tus cobros.</p>
         </div>
       </div>
@@ -58,7 +58,7 @@ require 'header.php';
       </div>
       <div class="col-md-4">
         <div class="color h-80 p-5 rounded-3">
-        <h2>Funciona para cualquier giro</h2>
+        <h4>Funciona para cualquier giro</h4>
           <p>Es aplicable para una gran gama de giros, controla tus inventarios, ventas, compras y gestiona tus clientes y te apoya a detectar áreas de oportunidad para tu negocio, es fácil de usar y ofrece herramientas avanzadas de administración y operación, brinda información que simplifica la administración de tu negocio.
 
           Descarga las características de tu Punto de Venta.</p>
@@ -71,7 +71,7 @@ require 'header.php';
       </div>
       <div class="col-md-4 blo">
         <div class="color h-80 p-5 rounded-3">
-        <h2>Requisitos del sistema</h2>
+        <h4>Requisitos del sistema</h4>
           <p>Dependiendo de tu negocio y crecimiento tu equipo de cómputo debe ir mejorando, sin embargo, JD Store es ligero y se puede instalar en la mayoría de los equipos, por ello te mencionamos los requisitos mínimos que debe tener tu equipo, ya sea PC de escritorio o una laptop.</p>
         </div>
       </div>
@@ -82,13 +82,13 @@ require 'header.php';
       </div>
       <div class="col-md-6 ">
         <div class="">
-          <img src="../public/imagenes/cloud.png" class="d-block " height="20%" alt="...">
+          <img src="../public/imagenes/cloud.png" class="d-block " height="250" alt="...">
         </div>
       </div>
       <br>
       <div class="col-md-6 ">
         <div class="color h-80 p-5 rounded-3">
-        <h2>JD Cloud</h2>
+        <h4>JD Cloud</h4>
           <p>Actualiza y víncula todas tus sucursales sin importar la distancia ni cantidad, JD Cloud te permitirá revisar los reportes de tus ventas desde tu smartphone mientras disfrutas de tu tiempo libre o en viajes de placer.
 
         * Se requiere una poliza de soporte para contar con este servicio.</p>
@@ -98,8 +98,8 @@ require 'header.php';
 </div>
 
 <!--TIPOS DE LICENCIA-->
-<div class="container-fluid padingbottom">
-              <div class="row mb-2">
+<div class="display-inline">
+              <div class="row d-flex col-sm-12">
               
                 <div class="col-md-6 ">
                 <h3>Tipos de licencia</h3>
@@ -112,7 +112,7 @@ require 'header.php';
                       <a class="nav-item nav-link" id="nav-reparto-tab" data-toggle="tab" href="#nav-reparto" role="tab" aria-controls="nav-reparto" aria-selected="false">Servidor Rutas de Reparto</a>
                     </div>
                   </nav>
-                  <div class="tab-content d-flex align-items-stretch" id="nav-tabContent">
+                  <div class="tab-content" id="nav-tabContent">
                     <div class="col tab-pane fade show active flex-1" id="nav-servidor" role="tabpanel" aria-labelledby="nav-servidor-tab">
                     La licencia ideal para tu negocio. JD Store tipo Servidor contiene todos los módulos de tu sistema de Punto de Venta, podrás llevar el control y registro total de tu negocio, de los artículos, clientes, proveedores y demás, al mismo tiempo que tendrás a tu disposición los Reportes adecuados para tomar las decisiones que harán crecer tu negocio.
                     </div>
