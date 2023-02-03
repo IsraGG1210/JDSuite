@@ -35,14 +35,14 @@ else
 
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php"><img src="../public/imagenes/logoJD.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
-              <ul class="navbar-nav mx-auto ">
+              <ul class="navbar-nav">
                 <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="JD_Store.php">JD Store</a>
                 </li>
