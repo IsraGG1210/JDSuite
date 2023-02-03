@@ -143,7 +143,7 @@ require 'header.php';
         <h3>¡Ya estamos ahí!</h3>
         <div class="container" id="login">
 			<div class="row">
-				<div class="main-login main-center">
+				<div class="main-login main-center" style="height:auto;">
 				<h4 class="text-center"><i class="far fa-edit fa-sm"> &nbsp </i>Completa el formulario</h4>
 					<form class="" method="post" action="#">
 						
