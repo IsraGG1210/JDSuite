@@ -24,58 +24,33 @@ else $bg = '#29A8B0';
     <link href="../public/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-<div id="mainNavigation" style="background-color:<?php echo $bg?>;">
-    <nav role="navigation">
-        <div class="lip">
-            <div class="py-3 text-center border-bottom">
-            <a href="index.php"><img src="../public/imagenes/logoJD.png" alt="" class="invert"></a>
-            <div class="logo2">
-                <a href="#" class="nav-link" >
-                <i class="fas fa-shopping-cart logo2"></i> 0
-                </a>
-            </div>
-            </div>
-        </div>
-    </nav>
-    <div class="navbar-expand-md">
-        <div class="menu">
-            <div class="navbar-dark my-2">
-            <button class="navbar-toggler w-100 "style="color:#03727d;font-size:32px;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars" style="font-size:24px color:#03727d;"></i><span class="align-middle"> Menú</span>
-            </button>
-            </div>
-        </div>
-        <div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mx-auto ">
-            <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="JD_Store.php">JD Store</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="JDRest.php">JD Rest</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="JD_tae.php">JD TAE</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="#">JD CEO</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="shop.php">Tienda</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="login.php">Iniciar Sesion</a>
-            </li>
-        </ul>
-        </div>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)"><img src="../public/imagenes/logoJD.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Link</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+      </form>
     </div>
-    </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </div>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
