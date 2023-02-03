@@ -29,9 +29,9 @@ else
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="./index.html">
+  <nav class="navbar navbar-expand-lg " style="background-color:<?php echo $bg ?>;">
+    <div class="container-fluid" >
+      <a class="navbar-brand" href="./index.html" >
         <img src="../public/imagenes/logoJD.png" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

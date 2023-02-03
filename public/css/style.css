@@ -18,17 +18,8 @@
 
 
 /*Navbar*/
-
-#mainNavigation a {
-  font-family: 'Cabin', sans-serif;
-  font-size:18px;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  text-shadow:1px 1px rgba(0,0,0,0.4)
-}
-
-a.dropdown-item:hover {
-  color:#03727d !important
+.navbar-nav a{
+  color: #ffffff;
 }
 .nav-item a{
   color:#000000;
@@ -36,19 +27,7 @@ a.dropdown-item:hover {
 .nav-item a:hover {
   color:#fff
 }
-.nav-item{
-  min-width:12vw;
-}
-#mainNavigation {
-  top:0;
-  left:0;
-  width:100%;
-  padding-bottom:0px;
-/*background: -moz-linear-gradient(top,  #29A8B0 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-/*background: -webkit-linear-gradient(top,  #29A8B0 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-/*background: linear-gradient(to bottom,  #29A8B0 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-}
+
 #navbarNavDropdown.collapsing .navbar-nav,
 #navbarNavDropdown .navbar-nav{
   padding:20px;
