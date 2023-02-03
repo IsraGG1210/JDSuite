@@ -42,38 +42,40 @@ else
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav mx-auto ">
-            <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="JD_Store.php">JD Store</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="JDRest.php">JD Rest</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="JD_tae.php">JD TAE</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="#">JD CEO</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="shop.php">Tienda</a>
-            </li>
-             <li class="nav-item">
-            <a class="nav-link" href="login.php">Iniciar Sesion</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="shop.php">
-            <i class="fas fa-shopping-cart" style="font-size:38px; color:white;"></i> 0
-            </a>
-            </li>
-
-        </ul>
+              <ul class="navbar-nav mx-auto ">
+                <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="JD_Store.php">JD Store</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="JDRest.php">JD Rest</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="JD_tae.php">JD TAE</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">JD CEO</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="shop.php">Tienda</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">JD CEO</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="login.php">Iniciar Sesion</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="shop.php">
+                <i class="fas fa-shopping-cart" style="font-size:38px; color:white;"></i> 0
+                </a>
+                </li>
+              </ul>
             </div>
         </div>
     </nav>
