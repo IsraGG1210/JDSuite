@@ -59,7 +59,7 @@ else $bg = '#29A8B0';
             </li>
             <li class="nav-item">
             <a class="nav-link" href="login.php">
-            <i class="fas fa-shopping-cart" style="font-size:18px; color:white;"></i> 0
+            <i class="fas fa-shopping-cart" style="font-size:38px; color:white;"></i> 0
             </a>
             </li>
       </ul>
