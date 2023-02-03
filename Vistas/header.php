@@ -39,8 +39,8 @@ else
       </button>
       <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">JD Store</a>
-          <a class="nav-link" href="./JD_Store.php">JD Rest</a>
+          <a class="nav-link" href="./JD_Store.php">JD Store</a>
+          <a class="nav-link" href="./JD_Rest.php">JD Rest</a>
           <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
           <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
           <a class="nav-link" href="JD_tae.php">JD TAE</a>
