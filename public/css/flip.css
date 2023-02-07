@@ -64,6 +64,7 @@ p {
   padding: 5%;
   background-color: #1F8187;
   transform: rotateY(180deg);
+  color: #ffffff;
 }
 .flip-card:hover .flip-card-inner {
     transform: rotateY(-180deg);
