@@ -30,7 +30,7 @@ p {
 
 /* FLIP CARD */
 .flip-card {
-    /*padding: 5%;*/
+  padding: 5%;
   width: 320px;
   height: 504px;
   perspective: 2000px;
