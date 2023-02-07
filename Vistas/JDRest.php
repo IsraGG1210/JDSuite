@@ -159,7 +159,6 @@ require 'header.php'
 <br>
 <br>
 <br>
-
 <div class="carousel-wrapper">
   <div class="owl-carousel owl-theme">
     <div class="item">
@@ -339,9 +338,6 @@ require 'header.php'
         }
       })
     </script>
-<!--/Productos JD Rest-->
-
-
 <!--Licencias JD Rest-->
 <div class="accordion col-md-10 col-sm-12" id="accordionExampleY">
   <div class="accordion-item">

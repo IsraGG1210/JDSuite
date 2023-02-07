@@ -407,7 +407,7 @@ require 'header.php' ?>
 
   <!--Carousel OWL-->
   <div class="carousel-wrapper">
-  <div class="owl-carousel owl-theme">
+  <div id="owl1" class="owl-carousel owl-theme">
     <div class="item">
       <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
             alt=""></a>
@@ -566,7 +566,7 @@ require 'header.php' ?>
     <!--Carrusel de prductos-->
 
    <script>
-      $('.owl-carousel').owlCarousel({
+      $('#owl1').owlCarousel({
         stagePadding: 50,
         loop: true,
         autoplay: true,

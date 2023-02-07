@@ -445,10 +445,11 @@ margin-top: 5px;
 
 
 /*Carrusel de productos index*/
-#carousel img{
+/*#carousel img{
   width:200px;
   height: 200px;
-}
+}*/
+/*
 #carousel .card {
   box-shadow: 10px 10px 7px #29A8B0;
   border-radius: 15px;
@@ -458,7 +459,7 @@ margin-top: 5px;
 }
 #carousel {
   padding: 2%;
-}
+}*/
 
 
 /*JD REST*/

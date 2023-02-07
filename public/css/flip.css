@@ -52,12 +52,12 @@ p {
   backface-visibility: hidden;
 }
 .flip-card-front {
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .flip-card-back {
-  font-size: 18px;
+  font-size: 14px;
   text-align: center;
   display: grid;
   place-items: center;

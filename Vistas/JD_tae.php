@@ -42,20 +42,14 @@ require 'header.php';
     </div>
 </div>
 
-<div class="container-fluid">
- <!-- Container -->
-<!-- Container -->
-<div class="row">
-
-  <!-- Column -->
-  <div class="col-md-8 mb-8 d-flex align-items-stretch">
-
-    <!--Card Primary-->
-    <div class="card indigo text-center z-depth-2">
-      <div class="card-body">
-        <div class="row mb-2">
-        <div class="col-md-6">
-        <div class="flip-card">
+<div class="container col-12">
+  <div class="row mb-2">
+    <div class="col-md-8 border rounded overflow-hidden" style="margin-bottom: 10%;">
+      <div class="row">
+        <div class="col-12">
+          <div class="row mb-2">
+            <div class="col-sm"style="margin-bottom: 10%;">
+            <div class="flip-card">
               <h3>¿Que es el TAE?</h3>
                 <div class="flip-card-inner">
                     <div class="flip-card-front" 
@@ -68,12 +62,11 @@ require 'header.php';
                     </p>
                     </div>
                 </div>
-            </div>    
-
-        </div>
-        <div class="col-md-6">
-        <div class="flip-card">
-        <h3>Beneficios</h3>
+            </div>  
+            </div>
+            <div class="col-sm" style="margin-bottom: 10%;">
+            <div class="flip-card">
+              <h3>Beneficios</h3>
                 <div class="flip-card-inner">
                     <div class="flip-card-front" 
                       style="background-image: url('../public/imagenes/tae2.png');">
@@ -87,31 +80,23 @@ require 'header.php';
                     </div>
                 </div>
             </div>
-
+            </div>
+          </div>
         </div>
-        </div>
-
       </div>
-  </div>
-</div>
-  <!-- Column -->
-
-  <!-- Column -->
-  <div class="col-md-4 mb-4 d-flex align-items-stretch">
-
-    <!--Card Primary-->
-    <div class="col-12 card info-color text-center z-depth-2">
-      <div class="card-body">
-      <h3>¡Ya estamos ahí!</h3>
-        <div class="container" id="store">
+    </div>
+    <div class="col-md-4 border rounded overflow-hidden" style="margin-bottom: 10%;">
+      
+    <h3>¡Ya estamos ahí!</h3>
+    <div class="container" id="store">
 			<div class="row">
-				<div class="main-store main-center" style="height:100%;">
+				<div class="main-store main-center" style="height:505px;">
 				<h4 class="text-center"><i class="far fa-edit fa-sm"> &nbsp </i>Completa el formulario</h4>
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label"><b>Nombre*</b></label>
-							<div class="cols-sm-10">
+							<div class="cols-sm-11">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 									<input type="text" class="form-control" name="name"id="name"  placeholder="Ingresa tu nombre"required />
@@ -121,7 +106,7 @@ require 'header.php';
 
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
-							<div class="cols-sm-10">
+							<div class="cols-sm-11">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
 									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo"required />
@@ -147,14 +132,8 @@ require 'header.php';
 				</div>
 			</div>
 		</div>
-      </div>
-    </div>
-    <!--/.Card Primary-->
     </div>
   </div>
-  <!-- Column -->
-
-</div>
 </div>
 <!--TUTORIALES/PREGUNTAS-->
 <div class="lip">
