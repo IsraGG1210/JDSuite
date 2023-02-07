@@ -274,3 +274,13 @@ require 'nav_shop.php';
   <?php
   require 'footer.php'
   ?>
+
+
+
+
+
+pedidoscl
+pedidoscld
+Clientes
+articulosw
+articulos
