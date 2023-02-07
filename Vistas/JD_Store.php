@@ -39,7 +39,7 @@ require 'header.php';
       <img src="../public/imagenes/lstore.png" alt=""/>
       </div>
       <div class="col-md-4">
-        <div class=" form-servicioslS">
+        <div class=" form-servicioslS" style="background-color: #2B4B6B;">
             <div class="text-servicioslp">
               <i>Facturación Electrónica</i>
               <p>Con la nueva version 3.3 de CFDI</p>

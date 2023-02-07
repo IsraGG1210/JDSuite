@@ -52,9 +52,9 @@ p {
   backface-visibility: hidden;
 }
 .flip-card-front {
-  background-position: left;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
 }
 .flip-card-back {
   font-size: 14px;

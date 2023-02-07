@@ -25,7 +25,7 @@ require 'header.php';
 <div class="col-12 imgbgtae">
     <div class="row mb-2">
         <div class="col-md-8">
-          <img src="https://www.jdsuite.mx/images/ltae.png" alt="">
+          <img src="../public/imagenes/jd-tae.png" width="200px" height="150px" alt="">
         </div>
         <div class="col-md-4 ">
             <div class=" form-servicioslT">

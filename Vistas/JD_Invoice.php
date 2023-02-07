@@ -61,7 +61,7 @@ require 'header.php' ?>
         <div class="row mb-2">
           <div class="col">
             <div class="row mb-2">
-                <div class="col-md-3">
+                <div class="col-md-3" style="color: white;">
                 <h4>Tutoriales</h4>
                 <p style="font-size: x-large;">
                 Generamos una serie de videos para facilitarte el uso de tu Facturador Electrónico “JD Invoice”. Conoce lo sencillo y rápido que es facturar.
@@ -82,7 +82,7 @@ require 'header.php' ?>
     </div>
   </div>
   <div class="text-center">
-    <h1>Paquetes JD Inovice</h1>
+    <h1>Paquetes JD Invoice</h1>
 </div>
 <br>
 <br>
