@@ -38,7 +38,7 @@ require 'header.php' ?>
  <div class="col-12 imgbgst">
     <div class="row mb-2">
       <div class="col-md-8 ">
-      <img src="../public/imagenes/lstore.png" alt=""/>
+      <img src="../public/imagenes/jd-invoice.png" height="10px"width="20px" alt=""/>
       </div>
       <div class="col-md-4">
         <div class=" form-servicioslS">

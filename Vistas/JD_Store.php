@@ -41,9 +41,8 @@ require 'header.php';
       <div class="col-md-4">
         <div class=" form-servicioslS">
             <div class="text-servicioslp">
-              <i>La navaja suiza de los puntos de venta</i>
-              <p>¡Adquierelo ahora mismo!</p>
-                <p>Desde $ 3,999.00</p>
+              <i>Facturación Electrónica</i>
+              <p>Con la nueva version 3.3 de CFDI</p>
             </div>
           </div>
       </div>
