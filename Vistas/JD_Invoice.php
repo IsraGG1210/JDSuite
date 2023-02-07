@@ -34,6 +34,24 @@ require 'header.php' ?>
 
 <body>
 
+ <!--CONTENT VIDEO-->
+ <div class="col-12 imgbgst">
+    <div class="row mb-2">
+      <div class="col-md-8 ">
+      <img src="../public/imagenes/lstore.png" alt=""/>
+      </div>
+      <div class="col-md-4">
+        <div class=" form-servicioslS">
+            <div class="text-servicioslp">
+              <i>La navaja suiza de los puntos de venta</i>
+              <p>¡Adquierelo ahora mismo!</p>
+                <p>Desde $ 3,999.00</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
  <br>
 <!--=======================-->
   <!--TUTORIALES--> 
