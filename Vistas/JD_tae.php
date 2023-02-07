@@ -56,7 +56,7 @@ require 'header.php';
                       style="background-image: url('../public/imagenes/tae1.png');">
                     </div>
                     <div class="flip-card-back">
-                    <p>
+                    <p style="color:#ffffff;">
                     JD TAE es un sistema multiplataforma, no importa donde estés o que tecnología ocupes, podrás realizar recargas, pago de servicios y venta de tarjetas de regalo.
                     JD TAE quiere que crezcas y compitas con estas tiendas, comienza atrayendo gente a tu negocio ofertando pago de servicios, y lo mejor, con una comisión igual o menor que dichas tiendas.
                     </p>
@@ -72,7 +72,7 @@ require 'header.php';
                       style="background-image: url('../public/imagenes/tae2.png');">
                     </div>
                     <div class="flip-card-back">
-                    <p>
+                    <p style="color:#ffffff;">
                     ¡Obtén una comisión por cada recarga, haciendo dinero sin esforzarte!
                             Sabemos que las recargas de saldo en prepago es parte de nuestra vida cotidiana, por lo que JD TAE es una herramienta completamente portátil, lo podrás usar en tu PC, Móvil o Tablet.
                             El sistema de recargas electrónicas, obteniendo una comisión del 6% por cada recarga efectuada.
