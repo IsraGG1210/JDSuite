@@ -54,7 +54,7 @@ require 'header.php';
     <div class="card indigo text-center z-depth-2">
       <div class="card-body">
         <div class="row mb-2">
-        <div class="col-md-6 ">
+        <div class="col-md-6">
         <div class="flip-card">
               <h3>¿Que es el TAE?</h3>
                 <div class="flip-card-inner">
