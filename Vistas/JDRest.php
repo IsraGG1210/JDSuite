@@ -21,6 +21,18 @@ require 'header.php'
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+    integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+    integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!--===================================-->
 
@@ -46,7 +58,7 @@ require 'header.php'
       <!--Caption-->
       <div class="carousel-caption">
         <div class="animated fadeInUp">
-          <h2 class="h2-responsive">Sistema de Administración para Restaurantes y Bares</h2>
+          <h2 class="h2-responsive d-none d-sm-block">Sistema de Administración para Restaurantes y Bares</h2>
         </div>
       </div>
       <!--Caption-->
@@ -144,165 +156,189 @@ require 'header.php'
 <div class="text-center">
     <h1>Paquetes JD Rest</h1>
 </div>
-<div id="carousel" class="carousel slide" data-ride="carousel">
-            <div class="d-grid gap-2 	d-none d-sm-block d-md-block text-center">
-              <a class="btn text-white" style="background-color: #3b5998;" href="#carousel" data-slide="prev" role="button"><i class="fas fa-chevron-circle-left"></i></a>
-              <a class="btn text-white" style="background-color: #3b5998;" href="#carousel" data-slide="next" role="button"><i class="fas fa-chevron-circle-right"></i></a>
-            </div>
-            <br>
-  <div class="carousel-inner owl-carousel">
-    <div class="carousel-item active">
-      <div class="row">
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" alt=""></a>
+<br>
+<br>
+<br>
+
+<div class="carousel-wrapper">
+  <div class="owl-carousel owl-theme">
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 15</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000013642452.webp"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 14</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 11</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 12</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 13</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 1</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 2</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 3</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 4</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg"
+            alt=""></a>
+        <div class="card-body">
+          <h3 color-text="blue">Productos 5</h3>
+          <h2>$5,999.00</h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg"
+                  alt=""></a>
               <div class="card-body">
-                <h3 color-text="blue">Productos 1</h3>
+                <h3 color-text="blue">Productos 6</h3>
                 <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
               </div>
+            </div>
           </div>
-
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 2</h3>
-                  <h2>$5,999.00</h2>
+          <div class="item">
+            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg"
+                  alt=""></a>
+              <div class="card-body">
+                <h3 color-text="blue">Productos 7</h3>
+                <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
               </div>
+            </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 3</h3>
-                  <h2>$5,999.00</h2>
+          <div class="item">
+            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg"
+                  alt=""></a>
+              <div class="card-body">
+                <h3 color-text="blue">Productos 8</h3>
+                <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
               </div>
+            </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 4</h3>
-                  <h2>$5,999.00</h2>
+          <div class="item">
+            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg"
+                  alt=""></a>
+              <div class="card-body">
+                <h3 color-text="blue">Productos 9</h3>
+                <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
               </div>
+            </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg" alt=""></a> 
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 5</h3>
-                  <h2>$5,999.00</h2>
+          <div class="item">
+            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg"
+                  alt=""></a>
+              <div class="card-body">
+                <h3 color-text="blue">Productos 10</h3>
+                <h2>$5,999.00</h2>
                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
               </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 6</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg" alt=""></a>
-                  <div class="card-body">
-                    <h3 color-text="blue">Productos 7</h3>
-                    <h2>$5,999.00</h2>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                  </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 8</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 9</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 10</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 11</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 12</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 13</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB000013642452.webp" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 14</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="py-4 text-center card" <?php echo 'style="box-shadow:10px 10px 7px '.$bg.' "'; ?>><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp" alt=""></a>
-                <div class="card-body">
-                  <h3 color-text="blue">Productos 15</h3>
-                  <h2>$5,999.00</h2>
-                  <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-                </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-  
-</div>
-
+  <script>
+      $('.owl-carousel').owlCarousel({
+        stagePadding: 50,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        margin: 10,
+        nav: true,
+        navText:[
+        '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
+        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'],
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 3
+          },
+          1000: {
+            items: 5
+          }
+        }
+      })
+    </script>
 <!--/Productos JD Rest-->
 
 

@@ -225,6 +225,7 @@ require 'header.php' ?>
 
 
   <!--Carrusel de produtos-->
+  <!--
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <div class="d-grid gap-2 d-md-block text-center">
       <a class="btn text-white" style="background-color: #3b5998;" href="#carousel" data-slide="prev" role="button"><i
@@ -399,10 +400,13 @@ require 'header.php' ?>
       </div>
     </div>
 
-  </div>
+  </div>-->
   <br>
   <br>
 
+
+  <!--Carousel OWL-->
+  <div class="carousel-wrapper">
   <div class="owl-carousel owl-theme">
     <div class="item">
       <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
@@ -556,6 +560,9 @@ require 'header.php' ?>
             </div>
           </div>
     </div>
+  </div>
+  
+    
     <!--Carrusel de prductos-->
 
    <script>
@@ -563,8 +570,13 @@ require 'header.php' ?>
         stagePadding: 50,
         loop: true,
         autoplay: true,
+        autoplayTimeout: 2000,
         margin: 10,
-        nav: false,
+        nav: true,
+        dots: true,
+        navText:[
+        '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
+        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'],
         responsive: {
           0: {
             items: 1

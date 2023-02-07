@@ -1030,6 +1030,8 @@ section .section-title {
 }
 }
 
-
-
-
+/*OWL Carousel*/
+.owl-nav {
+  text-align: center;
+  justify-items: center;
+}
