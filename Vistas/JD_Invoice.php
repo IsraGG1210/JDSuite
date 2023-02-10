@@ -94,7 +94,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="center">
                     <h3>Funciona para cualquier giro</h3>
-                    <p style="font-size: x-large;">
+                    <p style="font-size: x-large; color:white;">
                     Podrás emitir facturas, notas de crédito, cartas porte, recibos de honorarios y ahora también con un mismo paquete emite tus complementos de pago.
                     Almacena tus facturas sin costo extra sin importar el tiempo, nuestra potente nube te ayuda a resguardar tu información de forma segura.
                     Descarga las características.
@@ -106,34 +106,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 
-<!--=======================-->
-  <!--TUTORIALES--> 
-  <div class="lip">
-    <div class="fondoInvoice border rounded overflow-hidden p-4 flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col-12">
-        <div class="row mb-2">
-          <div class="col">
-            <div class="row mb-2">
-                <div class="col-md-3" style="color: white;">
-                <h4>Tutoriales</h4>
-                <p style="font-size: x-large;">
-                Generamos una serie de videos para facilitarte el uso de tu Facturador Electrónico “JD Invoice”. Conoce lo sencillo y rápido que es facturar.
-                </p>
-                <a href="https://www.youtube.com/watch?v=XzBEF-WqgyY&embeds_euri=http%3A%2F%2Flocalhost%2F&feature=emb_imp_woyt">
-                <button class="btn btn-primary" >Ver mas videos</button>
-                </a>
-              </div>
-              <div class="col-md-9">
-              <center>
-              <iframe width="70%" height="315" src="https://www.youtube.com/embed/XzBEF-WqgyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </center>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <div class="text-center">
     <h1>Paquetes JD Invoice</h1>
 </div>
@@ -192,7 +165,34 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       }
     })
   </script>
-
+<!--=======================-->
+  <!--TUTORIALES--> 
+  <div class="lip">
+    <div class="fondoInvoice border rounded overflow-hidden p-4 flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col-12">
+        <div class="row mb-2">
+          <div class="col">
+            <div class="row mb-2">
+                <div class="col-md-3" style="color: white;">
+                <h4>Tutoriales</h4>
+                <p style="font-size: x-large;">
+                Generamos una serie de videos para facilitarte el uso de tu Facturador Electrónico “JD Invoice”. Conoce lo sencillo y rápido que es facturar.
+                </p>
+                <a href="https://www.youtube.com/watch?v=XzBEF-WqgyY&embeds_euri=http%3A%2F%2Flocalhost%2F&feature=emb_imp_woyt">
+                <button class="btn btn-primary" >Ver mas videos</button>
+                </a>
+              </div>
+              <div class="col-md-9">
+              <center>
+              <iframe width="70%" height="315" src="https://www.youtube.com/embed/XzBEF-WqgyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <!--PARTE DE WHATS-->
     <div class="msgwh">
       <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">

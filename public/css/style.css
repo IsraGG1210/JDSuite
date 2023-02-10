@@ -1046,4 +1046,5 @@ section .section-title {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  color: #000000;
 }
