@@ -1,5 +1,6 @@
 <?php
 require 'header.php';
+require 'Conexion/config.php';
 require 'Conexion/Database.php';
 
 $db = new Database();
@@ -10,6 +11,7 @@ from articulosw
 inner join imagenes on aw_cb = i_idproducto
 inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
 inner join articulos on a_cb = aw_cb
+where a_lineaneg = 5
 limit 30");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -105,14 +107,16 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <div class="owl-carousel owl-theme">
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href=""><img
-            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+      <div class="py-4 text-center justify-content-center card">
+      <a href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+          <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="">
         <div class="card-body">
           <h4 id="descpro">
             <?php echo $row['a_nmb']; ?>
           </h4>
+          </a>
           <h2>
-            <?php echo MONEDA. $row['ap_precio']; ?>
+            <?php echo MONEDA.number_format($row['ap_precio'],2,'.',','); ?>
           </h2>
           <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
         </div>

@@ -1,5 +1,6 @@
 <?php
 require 'header.php';
+require 'Conexion/config.php';
 require 'Conexion/Database.php';
 
 $db = new Database();
