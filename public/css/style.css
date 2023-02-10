@@ -1036,3 +1036,14 @@ section .section-title {
   text-align: center;
   justify-items: center;
 }
+.owl-carousel {
+  display: flex;
+}
+
+#descpro {
+  width: auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

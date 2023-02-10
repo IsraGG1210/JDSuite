@@ -1,5 +1,20 @@
 <?php
-require 'header.php' ?>
+require 'header.php';
+require 'Conexion/Database.php';
+
+$db = new Database();
+$con = $db->conectar();
+
+$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+from articulosw 
+inner join imagenes on aw_cb = i_idproducto
+inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+inner join articulos on a_cb = aw_cb
+limit 30");
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,57 +26,22 @@ require 'header.php' ?>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../public/css/owl.carousel.css">
+  <link rel="stylesheet" href="../public/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../public/css/owl.theme.default.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
     integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
-    integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
 </head>
 
 <body>
-
-  <!--Seccino video inicio-->
-  <!--<div class="col-12 imgindex">
-    <div class="row">
-      <div class="col-12 col-md-8 ">
-        <figure>
-          <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/LXg1Y7qGsiY">
-            <img class="videoind" src="../public/imagenes/playv.png" width="300px"/>
-          </a>
-          </figure>
-      </div>
-     <div class="col-12 col-md-4 pad">
-        <div class="col-12 inicio">
-          <div class="col-12">
-            <h1 class="inicio-text">Toda innovación nos lleva a un crecimiento y esté nos apoya a disfrutar.</h1>
-            <center>
-              <button  class="btnmasinfo paddbot" >Iniciar Sesion</button>
-            </center>
-          </div>
-          <div class=" col-12">
-            
-          </div>
-      </div>
-      </div>
-    </div>
-  </div> -->
-  <!--Seccion video inicio-->
-
-
 
   <div class="col-12 card" id="videoi">
     <div class="embed-responsive embed-responsive-16by9 mx-auto">
@@ -69,9 +49,6 @@ require 'header.php' ?>
         allowfullscreen></iframe>
     </div>
   </div>
-
-
-
 
 
   <!--Seccion de los logos de  los producto-->
@@ -224,379 +201,67 @@ require 'header.php' ?>
   </div>
 
 
-  <!--Carrusel de produtos-->
-  <!--
-  <div id="carousel" class="carousel slide" data-ride="carousel">
-    <div class="d-grid gap-2 d-md-block text-center">
-      <a class="btn text-white" style="background-color: #3b5998;" href="#carousel" data-slide="prev" role="button"><i
-          class="fas fa-chevron-circle-left"></i></a>
-      <a class="btn text-white" style="background-color: #3b5998;" href="#carousel" data-slide="next" role="button"><i
-          class="fas fa-chevron-circle-right"></i></a>
-    </div>
-    <br>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="row">
-          <div class="col">
-            <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 1</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 2</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 3</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 4</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 5</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 6</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 7</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 8</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 9</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 10</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 11</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 12</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 13</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img
-                  src="https://www.jdsuite.mx/productos/CB000013642452.webp" alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 14</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="py-4 text-center card"><a href=""><img
-                  src="https://www.jdsuite.mx/productos/CB000014732599.webp" alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 15</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>-->
   <br>
   <br>
 
 
   <!--Carousel OWL-->
-  <div class="carousel-wrapper">
-  <div id="owl1" class="owl-carousel owl-theme">
+  <div class="owl-carousel owl-theme">
+    <?php foreach ($resultado as $row) { ?>
     <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 15</h3>
-          <h2>$5,999.00</h2>
+      <div class="py-4 text-center justify-content-center card"><a href=""><img
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+        <div class="card-body" style="-webkit-line-clamp: 4;">
+          <h4 id="descpro">
+            <?php echo $row['a_nmb']; ?>
+          </h4>
+          <h2>
+            <?php echo MONEDA. $row['ap_precio']; ?>
+          </h2>
           <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
         </div>
       </div>
     </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000013642452.webp"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 14</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 11</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 12</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 13</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 1</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 2</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 3</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 4</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 5</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 6</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 7</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 8</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 9</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 10</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-    </div>
+    <?php } ?>
   </div>
-  
-    
-    <!--Carrusel de prductos-->
 
-   <script>
-      $('#owl1').owlCarousel({
-        stagePadding: 50,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 2000,
-        margin: 10,
-        nav: true,
-        dots: true,
-        navText:[
+
+
+  <!--Carrusel de prductos-->
+
+  <script>
+    $('.owl-carousel').owlCarousel({
+      stagePadding: 50,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 2000,
+      margin: 10,
+      nav: true,
+      dots: true,
+      navText: [
         '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
-        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'],
-        responsive: {
-          0: {
-            items: 1
-          },
-          600: {
-            items: 3
-          },
-          1000: {
-            items: 5
-          }
+        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
+      ],
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 5
         }
-      })
-    </script>
+      }
+    })
+  </script>
 
-    <!--PARTE DE WHATS-->
-    <div class="msgwh">
-      <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-        <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-      </a>
-    </div>
+  <!--PARTE DE WHATS-->
+  <div class="msgwh">
+    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
+      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+    </a>
+  </div>
 
 
 

@@ -1,5 +1,60 @@
+<?php
+require 'Conexion/config.php';
+require 'Conexion/Database.php';
 
-  <?php
+$db = new Database();
+$con = $db->conectar();
+
+$id= isset($_GET['a_cb']) ? $_GET['a_cb'] : '';
+$token= isset($_GET['token']) ? $_GET['token'] :'';
+
+if($id == '' || $token ==''){
+    echo ' Error al procesar la peticion';
+    exit;
+}else{
+    $token_tmp = hash_hmac('sha1',$id, KEY_TOKEN);
+
+    if($token == $token_tmp){
+        $sql = $con->prepare("SELECT COUNT(a_cb)
+        from articulosw
+        inner join imagenes on  aw_cb = i_idproducto
+        inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+        inner join articulos on a_cb = aw_cb WHERE a_cb=?");
+            $sql->execute([$id]);
+
+            if($sql->fetchColumn()>0){
+                $sql = $con->prepare("SELECT COUNT(a_cb),a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+                from articulosw
+                inner join imagenes on  aw_cb = i_idproducto
+                inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+                inner join articulos on a_cb = aw_cb WHERE a_cb=?");
+                $sql->execute([$id]);
+                $row = $sql->fetch(PDO::FETCH_ASSOC);
+
+                $nombre = $row['a_nmb'];
+                $imagen = $row['rutaimagen'];
+                $precio = $row['ap_precio'];
+                $detalles = $row['aw_detallesp'];
+                $detallesmc = $row['aw_detallesmc'];
+
+                
+            }
+    }else{
+        echo ' ERROR AL GENERAR LA PETICION';
+    exit;
+    }
+}
+        $sqlpr = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+        from articulosw 
+        inner join imagenes on aw_cb = aw_cb and aw_cb = i_idproducto
+        inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+        inner join articulos on a_cb = aw_cb
+        limit 10");
+                $sqlpr->execute();
+                $prod = $sqlpr->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+<?php
 require 'header.php';
 ?>
 <!DOCTYPE html>
@@ -29,11 +84,12 @@ require 'header.php';
                 <div class="carousel-item active">
                   <img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" class="d-block w-100" alt="...">
                 </div>
+                <!--<?php/* foreach($imagenes as $)*/?>-->
                 <div class="carousel-item">
-                  <img src="../public/imagenes/productos/CB0000001513.JPG" class="d-block w-100" alt="...">
+                  <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                  <img src="../public/imagenes/productos/CB000000063.jpg" class="d-block w-100" alt="...">
+                  <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="...">
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -52,7 +108,7 @@ require 'header.php';
         </div>
         <div class="col-md-7">
           <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <h5>KIT BÁSICO PARA TU PUNTO DE VENTA, ACTUALIZA TU NEGOCIO CON ESTE PAQUETE Y OBSERVA LOS BENEFICIOS.</h5>
+            <h3><?php echo $nombre; ?></h3>
             <br>
             <div class="logo">
             <div class="estrellas">
@@ -67,16 +123,12 @@ require 'header.php';
               </div>
                 <div class="centradoprecio flex justify-between mb-3 text-sm">
                   <span class="spanpr"><h3>Precio<h3><br></span>
-                  <span><h3 class="precio">$789.00<h3></span>
+                  <span><h3 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h3></span>
               </div>
                 <div class="flex justify-between font-bold pt-2 mt-2 mb-2 border-t border-gray-500">
                   <span">INCLUYE:</span>
                   <ul>
-                    <li>LECTOR DE CÓDIGO DE BARRAS</li>
-                    <li>1D/2D.</li>
-                    <li>IMPRESORA TÉRMICA DE TICKETS CON , USB 80MM, AUTO CORTE</li>
-                    <li>CAJÓN DE DINERO</li>
-                    <li>TODO CON 1 AÑO DE GARANTÍA</li>
+                    <li><?php echo $detallesmc ?></li>
                   </ul>
               </div>
                   <p>CANTIDAD:<br>
@@ -89,12 +141,9 @@ require 'header.php';
                     </a>
                   </p>
                     <div class="centrado">
-                      <button data-testid="button-component" style="background-color: #a6d0fc;border-color: #a6d0fc;" class="btn btn-primary text-dark w-50 h-12 border font-bold transition py-3 rounded" onclick="redirect()"><i class="fas fa-shopping-bag"></i> Comprar</button>
-                      <script type="text/javascript">
-                        function redirect(){
-                          window.location.href="verif_Tienda.php";
-                        }
-                      </script>
+                      <button class="btn btn-primary" type="button">Comprar ahora</button>
+                      <button class="btn btn-outline-primary" type="button" 
+                      onclick="addProducto(<?php echo $id;?>,'<?php echo $token_tmp;?>')">Agregar al carrito</button>
                     </div>
                   
             </div>
@@ -103,81 +152,65 @@ require 'header.php';
       </div>
     </div>
   </div>
+  <script>
+    function addProducto(id,token){
+      let url='clases/carrito.php'
+      let formData = new FormData();
+      formData.append('id',id)
+      formData.append('token',token)
+
+      fetch(url,{
+        method: 'POST',
+        body: formData,
+        mode: 'cros'
+      }).then(response => response.json())
+      .then(data => (
+        if(data.ok){
+          let elemento = documento.getElement
+        }
+      ))
+    }
+  </script>
 
   <!--COMENTARIOS-->
   <div class="bloques">
     <div class="col-12">
       <div class="row mb-2">
-        <div class="col-md-7">
+        <div class="col-md-8">
           <div class="box">
             <div class="row mb-5 estrellas p-4">
               <h4>Productos relacionados</h4>
-              <table>
-                <thead>
-                  <tr>
-                    <td>
-                      <div class="relative">
-                      <div class="prod-relac">
-                        <div class="img">
-                          <img src="../public/imagenes/productos/CB0000001513.jpg"width="50%" height="50%" alt="">
+              <div class="text-center">
+                <div class="row">
+                    <?php foreach($prod as $row){?>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                                -mdb-ripple-color="light">
+                                <a href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                                  <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />    
+                                  <div class="mask">
+                                    </div>
+                                    <div class="hover-overlay">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                    </div>
+                                    <div class="card-body">
+                                    <h5 class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
+                                    </div>
+                                </a>
+                                <h4><?php echo MONEDA.  number_format($row['ap_precio'],2,'.',','); ?></h4>
+                               
+                            </div>
+                            
                         </div>
-                        <div class="card-body">
-                            <h6>JD STORE LICENCIA TIPO TERMINAL</h6>
-                            <p>$  3,999.00 </p>
-                        </div>
-                      </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="relative">
-                      <div class="prod-relac">
-                        <div class="img">
-                          <img src="../public/imagenes/productos/CB0000001513.jpg"width="50%" height="50%" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h6>JD STORE LICENCIA TIPO SERVIDOR</h6>
-                            <p>$  3,999.00 </p>
-                        </div>
-                      </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="relative">
-                      <div class="prod-relac">
-                        <div class="img">
-                          <img src="../public/imagenes/productos/CB0000001513.jpg"width="50%" height="50%" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h6>KID STORE LICENCIA TIPO TERMINAL</h6>
-                            <p>$  3,999.00 </p>
-                        </div>
-                      </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="relative">
-                      <div class="prod-relac">
-                        <div class="img">
-                          <img src="../public/imagenes/productos/CB0000001513.jpg"width="50%" height="50%" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h6>KID STORE LICENCIA TIPO SERVIDOR</h6>
-                            <p>$  3,999.00 </p>
-                        </div>
-                      </div>
-                      </div>
-                    </td>
-                  </tr>
-                  
-                </thead>
-              </table>
-              
+                    </div>
+                    <?php }?>
+                </div>
+            </div>
             </div>
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <div class="row mb-2">
             <div class="col-mb-3">
               <span><h4>Opiniones</h4></span>

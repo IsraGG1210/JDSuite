@@ -1,5 +1,14 @@
 <?php
-require 'header.php' ?>
+require 'header.php';
+require 'Conexion/Database.php';
+
+$db = new Database();
+$con = $db->conectar();
+
+$sql = $con->prepare("SELECT a_nmb,a_unidad FROM articulos limit 25");
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,166 +98,31 @@ require 'header.php' ?>
 <br>
   <!--Carousel OWL-->
   <div class="carousel-wrapper">
-  <div id="owl1" class="owl-carousel owl-theme">
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 15</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000013642452.webp"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 14</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004237.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 11</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004540.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 12</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000004850.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 13</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB0000000158.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 1</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href="#"><img src="https://www.jdsuite.mx/productos/CB000000042.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 2</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000068.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 3</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000000106.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 4</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001412.jpg"
-            alt=""></a>
-        <div class="card-body">
-          <h3 color-text="blue">Productos 5</h3>
-          <h2>$5,999.00</h2>
-          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001513.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 6</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
+  <div class="owl-carousel owl-theme">
+    <?php foreach ($resultado as $row) { ?>
+      <div class="item">
+        <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
+              alt=""></a>
+          <div class="card-body">
+            <h5 color-text="blue">
+              <?php echo $row['a_nmb']; ?>
+            </h5>
+            <h2>$
+              <?php echo $row['a_unidad']; ?>
+            </h2>
+            <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
           </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001715.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 7</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001614.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 8</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000001816.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 9</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB0000002119.jpg"
-                  alt=""></a>
-              <div class="card-body">
-                <h3 color-text="blue">Productos 10</h3>
-                <h2>$5,999.00</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-    </div>
+        </div>
+      </div>
+    <?php } ?>
   </div>
+</div>
   
     
     <!--Carrusel de prductos-->
 
    <script>
-      $('#owl1').owlCarousel({
+      $('.owl-carousel').owlCarousel({
         stagePadding: 50,
         loop: true,
         autoplay: true,
@@ -315,4 +189,4 @@ require 'header.php' ?>
 </html>
 <?php
 require 'footer.php';
-?>
+?> 

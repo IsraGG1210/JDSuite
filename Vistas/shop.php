@@ -1,5 +1,21 @@
 <?php
-require 'nav_shop.php';
+require './Conexion/config.php';
+require './Conexion/Database.php';
+
+$db = new Database();
+$con = $db->conectar();
+
+$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+from articulosw 
+inner join imagenes on aw_cb = i_idproducto
+inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+inner join articulos on a_cb = aw_cb
+limit 30");
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
+<?php
+require'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,220 +35,38 @@ require 'nav_shop.php';
 <body>
 
     <!--SHOP-->
-< <section>
+<div class="container">
+<section>
   <div class="text-center">
     <div class="row">
-      
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-            data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="descrpro.php">
-              <div class="mask">
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Denim shirt</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Shirt</p>
-            </a>
-            <h6 class="mb-3 price">120$</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-            data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">  
-              <div class="mask">
-                
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Sweatshirt</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Sport wear</p>
-            </a>
-            <h6 class="mb-3 price">139$</h6>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-            data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">              
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Grey blouse</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Sport wear</p>
-            </a>
-            <h6 class="mb-3 price">99$</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">
-              <div class="mask">
-                <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge sale-badge ms-2">-10%</span></h5>
+        <?php foreach($resultado as $row){?>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                    -mdb-ripple-color="light">
+                    
+                    <a href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                    <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
+                        <div class="mask">
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </div>
+                        <div class="card-body">
+                        <h5 class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
+                        </div>
+                    </a>
+                    <h4><?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?></h4>
+                    
                 </div>
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Black jacket</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Outwear</p>
-            </a>
-            <h6 class="mb-3 price">
-              <s>199$</s><strong class="ms-2 sale">179$</strong>
-            </h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-            data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">              
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Sweatshirt</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Sport wear</p>
-            </a>
-            <h6 class="mb-3 price">139$</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-            data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">
-              <div class="mask">
                 
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Grey blouse</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Sport wear</p>
-            </a>
-            <h6 class="mb-3 price">99$</h6>
-          </div>
+            </div>
         </div>
-      </div>
-      
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">              
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Black jacket</h5>
-            </a>
-            <a href="" class="text-reset">
-              <p>Outwear</p>
-            </a>
-            <h6 class="mb-3 price">199$</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-            data-mdb-ripple-color="light">
-            <img src="../public/imagenes/productos/CB000000063.jpg"
-              class="w-100" />
-            <a href="#!">              
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </div>
-            </a>
-          </div>
-          <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-2">Denim shirt</h5>
-            </a>
-            <a href="" class="text-reset ">
-              <p>Shirt</p>
-            </a>
-            <h6 class="mb-3 price">120$</h6>
-          </div>
-        </div>
-      </div>
+        <?php }?>
     </div>
-  </div>
+ </div>
 </section>
+</div>
   
 <!-- Pagination -->
 <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
