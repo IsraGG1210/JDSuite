@@ -1,11 +1,17 @@
 <?php
 require 'header.php';
+require 'Conexion/config.php';
 require 'Conexion/Database.php';
 
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT a_nmb,a_unidad FROM articulos limit 25");
+$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+from articulosw 
+inner join imagenes on aw_cb = i_idproducto
+inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+inner join articulos on a_cb = aw_cb
+limit 30");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   ?>
@@ -169,15 +175,15 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       <div class="item">
         <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
               alt=""></a>
-          <div class="card-body">
-            <h5 color-text="blue">
-              <?php echo $row['a_nmb']; ?>
-            </h5>
-            <h2>$
-              <?php echo $row['a_unidad']; ?>
-            </h2>
-            <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-          </div>
+              <div class="card-body" style="-webkit-line-clamp: 4;">
+                <h4 id="descpro">
+                  <?php echo $row['a_nmb']; ?>
+                </h4>
+                <h2>
+                  <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
+                </h2>
+                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+              </div>
         </div>
       </div>
     <?php } ?>

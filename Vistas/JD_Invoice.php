@@ -5,7 +5,12 @@ require 'Conexion/Database.php';
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT a_nmb,a_unidad FROM articulos limit 25");
+$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+from articulosw 
+inner join imagenes on aw_cb = i_idproducto
+inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+inner join articulos on a_cb = aw_cb
+limit 30");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
  ?>
@@ -97,55 +102,55 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 <br>
 <br>
   <!--Carousel OWL-->
-  <div class="carousel-wrapper">
   <div class="owl-carousel owl-theme">
     <?php foreach ($resultado as $row) { ?>
-      <div class="item">
-        <div class="py-4 text-center card"><a href=""><img src="https://www.jdsuite.mx/productos/CB000014732599.webp"
-              alt=""></a>
-          <div class="card-body">
-            <h5 color-text="blue">
-              <?php echo $row['a_nmb']; ?>
-            </h5>
-            <h2>$
-              <?php echo $row['a_unidad']; ?>
-            </h2>
-            <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-          </div>
+    <div class="item">
+      <div class="py-4 text-center justify-content-center card"><a href=""><img
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+        <div class="card-body">
+          <h4 id="descpro">
+            <?php echo $row['a_nmb']; ?>
+          </h4>
+          <h2>
+            <?php echo MONEDA. $row['ap_precio']; ?>
+          </h2>
+          <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
         </div>
       </div>
+    </div>
     <?php } ?>
   </div>
-</div>
-  
-    
-    <!--Carrusel de prductos-->
 
-   <script>
-      $('.owl-carousel').owlCarousel({
-        stagePadding: 50,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 2000,
-        margin: 10,
-        nav: true,
-        dots: true,
-        navText:[
+
+
+  <!--Carrusel de prductos-->
+
+  <script>
+    $('.owl-carousel').owlCarousel({
+      stagePadding: 50,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 2000,
+      margin: 10,
+      nav: true,
+      dots: true,
+      navText: [
         '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
-        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'],
-        responsive: {
-          0: {
-            items: 1
-          },
-          600: {
-            items: 3
-          },
-          1000: {
-            items: 5
-          }
+        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
+      ],
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 5
         }
-      })
-    </script>
+      }
+    })
+  </script>
 
     <!--PARTE DE WHATS-->
     <div class="msgwh">

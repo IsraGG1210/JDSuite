@@ -211,7 +211,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href=""><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
-        <div class="card-body" style="-webkit-line-clamp: 4;">
+        <div class="card-body">
           <h4 id="descpro">
             <?php echo $row['a_nmb']; ?>
           </h4>
