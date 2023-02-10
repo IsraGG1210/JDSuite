@@ -69,6 +69,43 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   </div>
 
  <br>
+<!--INFORMACION-->
+<div class="container-fluid">
+        <div class="col-12">
+            <div class="row mb-2">
+            <div class="col-md-6 wid">
+                <div class="vid">
+                    <iframe  width="100%" height="315"  src="https://www.youtube.com/embed/OMiGNTdC1y4" title="YouTube video player" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="lip border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <h5>¿Que es JD Invoice?</h5>
+                    <p>
+                     JD Invoice es un software que cubre con todas las necesidades de Facturación Electrónica de manera fácil, rápida y segura.
+                     JD Invoice cuenta con el servicio de Impuestos locales y Addendas. Complementos para Notarios, INE, Coordinados, Comercio Exterior.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="righ w-100">
+                <div class="">
+                    <img src="../public/imagenes/invoice2.gif" width="65%"  alt="">
+                </div> 
+                </div>
+                <div class="center">
+                    <h3>Funciona para cualquier giro</h3>
+                    <p style="font-size: x-large;">
+                    Podrás emitir facturas, notas de crédito, cartas porte, recibos de honorarios y ahora también con un mismo paquete emite tus complementos de pago.
+                    Almacena tus facturas sin costo extra sin importar el tiempo, nuestra potente nube te ayuda a resguardar tu información de forma segura.
+                    Descarga las características.
+                    </p>
+                    <button class="btn btn-primary">Características</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--=======================-->
   <!--TUTORIALES--> 
   <div class="lip">

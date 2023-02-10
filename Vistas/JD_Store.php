@@ -56,7 +56,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <div class="col-12 imgbgst">
     <div class="row mb-2">
       <div class="col-md-8 ">
-        <img src="../public/imagenes/lstore.png" alt="" />
+        <img src="../public/imagenes/jd-store.png" style="width:200px; heidht=150px;" alt="" />
       </div>
       <div class="col-md-4">
         <div class=" form-servicioslS" style="background-color: #2B4B6B;">
