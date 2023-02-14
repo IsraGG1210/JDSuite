@@ -1,12 +1,29 @@
 <?php
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
+include('header.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD_Suite</title>
 
+    <link rel="stylesheet" href="../public/css/style.css">
+    
+    <link rel="shortcut icon" href="../public/imagenes/favicon.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<?php
 $db = new Database();
 $con = $db->conectar();
 
-$id= isset($_GET['a_cb']) ? $_GET['a_cb'] : '';
-$token= isset($_GET['token']) ? $_GET['token'] :'';
+$id= isset($_GET['a_cb']) ? $_GET['a_cb'] : NULL;
+$token= isset($_GET['token']) ? $_GET['token'] :NULL;
 
 if($id == '' || $token ==''){
     echo ' Error al procesar la peticion';
@@ -35,43 +52,23 @@ if($id == '' || $token ==''){
                 $imagen = $row['rutaimagen'];
                 $precio = $row['ap_precio'];
                 $detalles = $row['aw_detallesp'];
-                $detallesmc = $row['aw_detallesmc'];
-
-                
+                $detallesmc = $row['aw_detallesmc'];                
             }
     }else{
         echo ' ERROR AL GENERAR LA PETICION';
     exit;
     }
 }
-        $sqlpr = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-        from articulosw 
-        inner join imagenes on aw_cb = aw_cb and aw_cb = i_idproducto
-        inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-        inner join articulos on a_cb = aw_cb
-        limit 10");
-                $sqlpr->execute();
-                $prod = $sqlpr->fetchAll(PDO::FETCH_ASSOC);
-
+        $sqlpr = $con->prepare('SELECT a_cb,a_nmb, concat(i_nmb,".",i_ext)as rutaimagen , ap_precio
+                from articulosw 
+                inner join imagenes on aw_cb = aw_cb and aw_cb = i_idproducto
+                inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+                inner join articulos on a_cb = aw_cb
+                WHERE a_cb != "'.$id.'"
+                limit 10');
+        $sqlpr->execute();
+        $prod = $sqlpr->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?php
-require 'header.php';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JD_Suite</title>
-
-    <link rel="stylesheet" href="../public/css/style.css">
-    
-    <link rel="shortcut icon" href="../public/imagenes/favicon.png"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-</head>
 <body>
 <!--FORMULARIO/VERIFICACION-->
 <div class="bloques">
@@ -84,7 +81,6 @@ require 'header.php';
                 <div class="carousel-item active">
                   <img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" class="d-block w-100" alt="...">
                 </div>
-                <!--<?php/* foreach($imagenes as $)*/?>-->
                 <div class="carousel-item">
                   <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100" alt="...">
                 </div>
@@ -152,27 +148,8 @@ require 'header.php';
       </div>
     </div>
   </div>
-  <script>
-    function addProducto(id,token){
-      let url='clases/carrito.php'
-      let formData = new FormData();
-      formData.append('id',id)
-      formData.append('token',token)
 
-      fetch(url,{
-        method: 'POST',
-        body: formData,
-        mode: 'cros'
-      }).then(response => response.json())
-      .then(data => (
-        if(data.ok){
-          let elemento = documento.getElement
-        }
-      ))
-    }
-  </script>
-
-  <!--COMENTARIOS-->
+  <!--PRODUCTOS RELACIONADOS-->
   <div class="bloques">
     <div class="col-12">
       <div class="row mb-2">
@@ -210,6 +187,7 @@ require 'header.php';
             </div>
           </div>
         </div>
+        <!--OPINIONES-->
         <div class="col-md-4">
           <div class="row mb-2">
             <div class="col-mb-3">
@@ -246,7 +224,7 @@ require 'header.php';
   </div>
 
 
-  <!--PARTE DE WHATS-->
+  <!--PARTE DE WHATSAPP-->
   <div class="msgwh">
     <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
       <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
@@ -258,5 +236,5 @@ require 'header.php';
 </html>
     
 <?php
-require 'footer.php';
+include('footer.php');
 ?>

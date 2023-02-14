@@ -24,14 +24,7 @@
 </head>
 
 <body>
-
-
-
-
-	<!-- ======= Footer ======= -->
-
-	<!------ Include the above in your HEAD tag ---------->
-
+<!-- ======= Footer ======= -->
 	<!-- Footer -->
 	<section id="footer" style="background-color:<?php echo $bg ?>;">
 		<div class="container">

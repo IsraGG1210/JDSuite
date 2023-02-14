@@ -358,16 +358,16 @@ input::-webkit-input-placeholder {
 }
 
 .productos img {
-  filter: grayscale(100);
+  
   width: 130px;
   height: auto;
-  transition: all 0.4s ease-in-out;
+  
   display: inline-block;
   padding: 15px 0;
 }
 
 .productos img:hover {
-  filter: none;
+  
   transform: scale(1.2);
 }
 

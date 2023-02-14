@@ -1,18 +1,3 @@
-<?php
-//ECHO $_SERVER['REQUEST_URI'];
-if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php')
-    $bg = '#2B4B6B';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php')
-    $bg = '#F46606';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Invoice.php')
-    $bg = '#27A8AF';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDEcomm.php')
-    $bg = '#29A8B0';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_tae.php')
-    $bg = '#1F8187';
-else
-    $bg = '#29A8B0';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,39 +13,55 @@ else
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
 
-  <nav class="navbar navbar-expand-lg " style="background-color:<?php echo $bg ?>;">
+<?php
+    //ECHO $_SERVER['REQUEST_URI'];
+    if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php')
+        $bg = '#2B4B6B';
+    else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest.php')
+        $bg = '#F46606';
+    else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Invoice.php')
+        $bg = '#27A8AF';
+    else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDEcomm.php')
+        $bg = '#29A8B0';
+    else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_tae.php')
+        $bg = '#1F8187';
+    else
+        $bg = '#29A8B0';
+?>
+
+<body>
+<nav class="navbar navbar-expand-lg " style="background-color:<?php echo $bg ?>;">
   <div class="col-md-12">
     <div class="row mb-2">
         <div class="col-md-6">
             <a class="navbar-brand" href="./index.php" >
-            <img src="../public/imagenes/logoJD.png" alt="">
+                <img src="../public/imagenes/logoJD.png" alt="">
             </a>
             <center>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
+                <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
             </button>
             </center>
             
         </div>
-    <div class="col-md-6">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-          <a class="nav-link" href="JD_Store.php">JD Store</a>
-          <a class="nav-link" href="JDRest.php">JD Rest</a>
-          <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
-          <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
-          <a class="nav-link" href="JD_tae.php">JD TAE</a>
-          <a class="nav-link" href="">JD CEO</a>
-          <a class="nav-link" href="shop.php">Tienda</a>
-          <a class="nav-link" href="login.php">Iniciar sesion</a>
-          <a href="verif_Tienda.php" class="nav-link" >
-              <i class="fas fa-shopping-cart"></i> 0
-          </a>
-      </div>
-    </div>
-    </div>
+        <div class="col-md-6">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="JD_Store.php">JD Store</a>
+                    <a class="nav-link" href="JDRest.php">JD Rest</a>
+                    <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
+                    <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
+                    <a class="nav-link" href="JD_tae.php">JD TAE</a>
+                    <a class="nav-link" href="">JD CEO</a>
+                    <a class="nav-link" href="shop.php">Tienda</a>
+                    <a class="nav-link" href="login.php">Iniciar sesion</a>
+                    <a href="verif_Tienda.php" class="nav-link" >
+                        <i class="fas fa-shopping-cart"></i> 0
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 </nav>

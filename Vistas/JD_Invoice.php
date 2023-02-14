@@ -2,23 +2,9 @@
 require 'header.php';
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
-
-$db = new Database();
-$con = $db->conectar();
-
-$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-from articulosw 
-inner join imagenes on aw_cb = i_idproducto
-inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-inner join articulos on a_cb = aw_cb
-where a_lineaneg = 5
-limit 30");
-$sql->execute();
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,8 +16,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -44,9 +28,22 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
     integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
+
+<?php
+$db = new Database();
+$con = $db->conectar();
+
+  $sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+        from articulosw 
+        inner join imagenes on aw_cb = i_idproducto
+        inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+        inner join articulos on a_cb = aw_cb
+        where a_lineaneg = 5
+        limit 30");
+  $sql->execute();
+  $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <body>
 
@@ -69,7 +66,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   </div>
 
  <br>
-<!--INFORMACION-->
+<!--INFORMACION DE TARJETAS-->
 <div class="container-fluid">
         <div class="col-12">
             <div class="row mb-2">
@@ -138,7 +135,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
   <!--Carrusel de prductos-->
-
   <script>
     $('.owl-carousel').owlCarousel({
       stagePadding: 50,
@@ -165,7 +161,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       }
     })
   </script>
-<!--=======================-->
+
+
   <!--TUTORIALES--> 
   <div class="lip">
     <div class="fondoInvoice border rounded overflow-hidden p-4 flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -193,12 +190,13 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </div>
   </div>
-    <!--PARTE DE WHATS-->
-    <div class="msgwh">
+
+  <!--PARTE DE WHATS-->
+  <div class="msgwh">
       <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
         <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
       </a>
-    </div>
+  </div>
 
 
  <!--Preguntas--> 
@@ -234,5 +232,5 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 </html>
 <?php
-require 'footer.php';
+include('footer.php');
 ?> 

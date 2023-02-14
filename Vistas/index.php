@@ -1,20 +1,19 @@
 <?php
-require 'header.php';
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
+include('header.php');
 
 $db = new Database();
 $con = $db->conectar();
 
 $sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-from articulosw 
-inner join imagenes on aw_cb = i_idproducto
-inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-inner join articulos on a_cb = aw_cb
-limit 30");
+    from articulosw 
+    inner join imagenes on aw_cb = i_idproducto
+    inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+    inner join articulos on a_cb = aw_cb
+    limit 30");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +38,9 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
     integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 </head>
+
+
 
 <body>
 
@@ -54,10 +54,16 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
   <!--Seccion de los logos de  los producto-->
   <section id="productos" class="productos section-bg">
+    <div>
+      <h2>NUESTROS PRODUCTOS</h2>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
           <a href="JD_Store.php"><img src="https://www.jdsuite.mx/images/store.png" class="img-fluid" alt=""></a>
+          <div>
+            <h5>JD STORE</h5>
+          </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
@@ -217,7 +223,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             <?php echo $row['a_nmb']; ?>
           </h4>
           <h2>
-            <?php echo MONEDA. $row['ap_precio']; ?>
+            $<?php echo number_format($row['ap_precio'],2); ?>
           </h2>
           <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
         </div>
@@ -237,7 +243,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       autoplay: true,
       autoplayTimeout: 2000,
       margin: 10,
-      nav: true,
+      nav: false,
       dots: true,
       navText: [
         '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
@@ -248,10 +254,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
           items: 1
         },
         600: {
-          items: 3
+          items: 5
         },
         1000: {
-          items: 5
+          items: 6
         }
       }
     })
@@ -271,5 +277,5 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 </html>
 <?php
-require 'footer.php';
+include('footer.php');
 ?>

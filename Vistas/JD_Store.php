@@ -1,21 +1,7 @@
 <?php
-require 'header.php';
+include('header.php');
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
-
-$db = new Database();
-$con = $db->conectar();
-
-$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-from articulosw 
-inner join imagenes on aw_cb = i_idproducto
-inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-inner join articulos on a_cb = aw_cb
-where a_lineaneg = 6
-limit 30");
-$sql->execute();
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +36,20 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<?php
+  $db = new Database();
+  $con = $db->conectar();
 
+  $sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+      from articulosw 
+      inner join imagenes on aw_cb = i_idproducto
+      inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+      inner join articulos on a_cb = aw_cb
+      where a_lineaneg = 6
+      limit 30");
+  $sql->execute();
+  $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
 <body>
   <!--CONTENT VIDEO-->
   <div class="col-12 imgbgst">
@@ -70,7 +69,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   </div>
 
 
-  <!--OPCIONES-->
+  <!--OPCIONES DE TARJETAS-->
   <div class="bloques padingbottom">
     <div class="row align-items-md-stretch">
       <div class="col-md-4">
@@ -134,14 +133,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div>
     </div>
-  </div>
-  <!--CAROUSEL-->
-  <!--Productos JD Invoice-->
+  </div><br>
 
-  <br>
-  <!--=======================-->
-
- <!--Carousel OWL-->
   <!--Carousel OWL-->
   <div class="owl-carousel owl-theme">
     <?php foreach ($resultado as $row) { ?>
@@ -165,7 +158,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
   <!--Carrusel de prductos-->
-
   <script>
     $('.owl-carousel').owlCarousel({
       stagePadding: 50,
@@ -192,9 +184,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       }
     })
   </script>
+
   <!--TIPOS DE LICENCIA-->
-  <!-- Container -->
-  <!-- Container -->
   <div class="row">
 
     <!-- Column -->
@@ -323,10 +314,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
           </div>
         </div>
       </div>
-      <!--/.Card Primary-->
     </div>
   </div>
-  <!-- Column -->
 
   </div>
   <br>
@@ -405,5 +394,5 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 </html>
 
 <?php
-require 'footer.php'
-  ?>
+include ('footer.php');
+?>
