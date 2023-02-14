@@ -15,7 +15,7 @@ $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php
-require'header.php';
+require 'nav_shop.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@ require'header.php';
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </div>
                         <div class="card-body">
-                        <h5 class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
+                        <h5 id="descpro" class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
                         </div>
                     </a>
                     <h4><?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?></h4>

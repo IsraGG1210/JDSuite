@@ -93,7 +93,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </div> 
                 </div>
                 <div class="center">
-                    <h3>Funciona para cualquier giro</h3>
+                    <h3 style="font-size: x-large; color:white;">Funciona para cualquier giro</h3>
                     <p style="font-size: x-large; color:white;">
                     Podrás emitir facturas, notas de crédito, cartas porte, recibos de honorarios y ahora también con un mismo paquete emite tus complementos de pago.
                     Almacena tus facturas sin costo extra sin importar el tiempo, nuestra potente nube te ayuda a resguardar tu información de forma segura.

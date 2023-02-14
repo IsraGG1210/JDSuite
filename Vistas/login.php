@@ -29,7 +29,7 @@ require 'header.php'
 						</div>
                         <div class="registro d-flex justify-content-around">
                             <a href="registro.php" class="btnRegistro" style="color:white;">Registrate</a>
-                            <a href="#" class="btnRegistro" style="color:white;">¿Olvidaste tu contraseña?</a>
+                            <a href="#" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu contraseña?</a>
                         </div>
 					
 

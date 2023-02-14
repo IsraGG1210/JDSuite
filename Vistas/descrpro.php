@@ -140,11 +140,11 @@ require 'header.php';
                     <i class="fa fa-plus-circle compra" ></i>
                     </a>
                   </p>
-                    <div class="centrado">
-                      <button class="btn btn-primary" type="button">Comprar ahora</button>
-                      <button class="btn btn-outline-primary" type="button" 
+                      <button class="btn btn-primary" style="background-color: blue;" type="button">Comprar ahora</button><br>
+                      
+                      <button class="btn btn-outline-primary"style="background-color: blue;" type="button" 
                       onclick="addProducto(<?php echo $id;?>,'<?php echo $token_tmp;?>')">Agregar al carrito</button>
-                    </div>
+                 
                   
             </div>
           </div>
@@ -195,7 +195,7 @@ require 'header.php';
                                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                                     </div>
                                     <div class="card-body">
-                                    <h5 class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
+                                    <h5 id="descpro" class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
                                     </div>
                                 </a>
                                 <h4><?php echo MONEDA.  number_format($row['ap_precio'],2,'.',','); ?></h4>
