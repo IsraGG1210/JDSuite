@@ -2,18 +2,6 @@
 require './Conexion/config.php';
 require './Conexion/Database.php';
 include 'nav_shop.php';
-
-$db = new Database();
-$con = $db->conectar();
-
-$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-from articulosw 
-inner join imagenes on aw_cb = i_idproducto
-inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-inner join articulos on a_cb = aw_cb
-limit 30");
-$sql->execute();
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -31,10 +19,24 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
 </head>
+<?php
+
+  $db = new Database();
+  $con = $db->conectar();
+
+  $sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+      from articulosw 
+      inner join imagenes on aw_cb = i_idproducto
+      inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+      inner join articulos on a_cb = aw_cb
+      limit 30");
+  $sql->execute();
+  $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
 <body>
 
     <!--SHOP-->
-<div class="container">
+<div class="container-fluid">
 <section>
   <div class="text-center">
     <div class="row">
@@ -87,12 +89,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     </li>
   </ul>
 </nav>  
-<!-- Pagination -->  
-
-
-
-    
-
   <!--PARTE DE WHATS-->
   <div class="msgwh">
     <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
@@ -105,5 +101,5 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 </html>
     
   <?php
-  require 'footer.php'
+  include ('footer.php');
   ?>

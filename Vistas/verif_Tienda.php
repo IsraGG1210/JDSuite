@@ -1,5 +1,5 @@
 <?php
-require 'header.php';
+include ('header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,5 +112,5 @@ require 'header.php';
     
   
 <?php
-require 'footer.php';
+include ('footer.php');
 ?>

@@ -1,5 +1,5 @@
 <?php
-require 'header.php';
+include ('header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,58 +32,33 @@ require 'header.php';
       <div class="text-center mt-3 collapse navbar-collapse p-0" id="shop">
         <ul class="navbar-nav p-0 mx-auto ">
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">SEGURIDAD Y
-              VIGILANCIA</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">KIT DE CAMARAS DE SEGURIDAD</a></li>
-              <li><a class="dropdown-item" href="#">SERVICIO</a></li>
-              <li><a class="dropdown-item" href="#">CAMARAS Y VIDEOGRABADORES</a></li>
-              <li><a class="dropdown-item" href="#">CÁMARAS IP</a></li>
-              <li><a class="dropdown-item" href="#">CABLES Y CONECTORES</a></li>
-              <li><a class="dropdown-item" href="#">VER TODO</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">REDES</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">CABLES DE RED</a></li>
-              <li><a class="dropdown-item" href="#">RACKS Y GABINETES</a></li>
-              <li><a class="dropdown-item" href="#">VER TODO</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">ENERGIA</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">NO BREAKS Y UPS</a></li>
-              <li><a class="dropdown-item" href="#">VER TODO</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">SOFTWARE</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">PUNTOS DE VENTA</a></li>
-              <li><a class="dropdown-item" href="#">SISTEMAS CONTABLES</a></li>
-              <li><a class="dropdown-item" href="#">VER TODO</a></li>
+              <li><a class="dropdown-item" href="#">KIT DE CAMARAS DE SEGURIDAD</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">COMPUTACION</a>
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">EQUIPOS DE COMPUTO</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">PERIFÉRICOS PARA POS</a></li>
-              <li><a class="dropdown-item" href="#">EQUIPOS DE CÓMPUTO</a></li>
-              <li><a class="dropdown-item" href="#">VER TODO</a></li>
+              <li><a class="dropdown-item" href="#">CABLES DE RED</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">ELECTRONICA</a>
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">CONSUMIBLES</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">STREAMING</a></li>
-              <li><a class="dropdown-item" href="#">VER TODO</a></li>
+              <li><a class="dropdown-item" href="#">NO BREAKS Y UPS</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">FACTURACION ELECTRONICA</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">ECOMM</a></li>
+              <li><a class="dropdown-item" href="#">CEO</a></li>
             </ul>
           </li>
           <li class="nav-item">
             <form role="search">
-              <input class="form-control inpse" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control inpse" type="Buscar" placeholder="Buscar" aria-label="Buscar">
               <button class="btn" type="">
                 <i class="fa fa-search"></i>
               </button>
@@ -94,9 +69,5 @@ require 'header.php';
     </div>
   </div>
 </body>
-<!--Categoriaw -- tabla en la que salen los submenus
-Concepto  -- 
-Departamentosw -- categorias principales.
--->
 
 </html>

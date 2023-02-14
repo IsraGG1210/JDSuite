@@ -2,18 +2,6 @@
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
 include('header.php');
-
-$db = new Database();
-$con = $db->conectar();
-
-$sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-    from articulosw 
-    inner join imagenes on aw_cb = i_idproducto
-    inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-    inner join articulos on a_cb = aw_cb
-    limit 30");
-$sql->execute();
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +10,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>JD_Suite</title>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -40,6 +28,19 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
+<?php
+  $db = new Database();
+  $con = $db->conectar();
+
+  $sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
+      from articulosw 
+      inner join imagenes on aw_cb = i_idproducto
+      inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+      inner join articulos on a_cb = aw_cb
+      limit 30");
+  $sql->execute();
+  $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 
 <body>
@@ -59,31 +60,47 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
           <a href="JD_Store.php"><img src="https://www.jdsuite.mx/images/store.png" class="img-fluid" alt=""></a>
           <div>
-            <h5>JD STORE</h5>
+            <h5>JD Store</h5>
           </div>
         </div>
 
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+
+        <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
           <a href="JDRest.php"><img src="https://www.jdsuite.mx/images/rest.png" class="img-fluid" alt=""></a>
+          <div>
+            <h5>JD Rest</h5>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
           <a href="JD_Invoice.php"> <img src="https://www.jdsuite.mx/images/invoice.png" class="img-fluid" alt=""></a>
+          <div>
+            <h5>JD Invoice</h5>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6 align-items-center justify-content-center">
           <a href="JDEcomm.php"> <img src="https://www.jdsuite.mx/images/ecomm.png" class="img-fluid" alt=""></a>
+          <div>
+            <h5>JD Ecomm</h5>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6 align-items-center justify-content-center">
           <a href="JD_tae.php"> <img src="https://www.jdsuite.mx/images/tae.png" class="img-fluid" alt=""></a>
+          <div>
+            <h5>JD TAE</h5>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
           <img src="https://www.jdsuite.mx/images/ceo.png" class="img-fluid" alt="">
+          <div>
+            <h5>JD CEO</h5>
+          </div>
         </div>
       </div>
 
@@ -219,9 +236,9 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       <div class="py-4 text-center justify-content-center card"><a href=""><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
         <div class="card-body">
-          <h4 id="descpro">
+          <span id="descpro">
             <?php echo $row['a_nmb']; ?>
-          </h4>
+          </span>
           <h2>
             $<?php echo number_format($row['ap_precio'],2); ?>
           </h2>
@@ -269,9 +286,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
     </a>
   </div>
-
-
-
 
 </body>
 

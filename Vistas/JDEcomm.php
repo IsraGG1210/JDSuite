@@ -1,29 +1,26 @@
 <?php
-require 'header.php'?>
+include ('header.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD_Ecomm</title>
 
  <!--CONTENT VIDEO-->
  <div class="col-12 card" id="videoi">
   <div class="embed-responsive embed-responsive-16by9 mx-auto">
     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-ogV7BTkobA?autoplay=1&mute=1" allowfullscreen></iframe>
   </div>
-</div> 
-
-<br>
+</div> <br>
 
 
-<!--===============-->
 <div class="display-inline " >
-<!--Seccion caracteristicas-->
-
 <div class="row d-flex  col-sm-12" >
-
-  <!-- Column -->
   <div class="col-md-4 mb-4 d-flex " >
-
-    <!--Card-->
     <div class="card">
-
-      <!--Card image-->
       <div class="view col-auto d-none d-lg-block">
         <img src="../public/imagenes/ecomm1.png" class="card-img-top"
           alt="">
@@ -32,31 +29,20 @@ require 'header.php'?>
         </a>
       </div>
 
-      <!--Card content-->
       <div class="card-body" >
-        <!--Title-->
         <h3 class="card-title">¿Que es JD Ecomm?</h3>
-        <!--Text-->
         <p class="card-text text-justify">JD Ecomm es una Página WEB personalizada con la imagen de tu empresa, donde podrás vender 
 		tus productos o artículos a cualquier parte del País.Al mismo tiempo es un punto de venta por internet, donde
 		 tus clientes te compraran de forma rápida, fácil y segura.</p>
       </div>
 
     </div>
-    <!--/.Card-->
-
   </div>
-  <!-- Column -->
 
- 
-
-  <!-- Column -->
   <div class="col-md-4 mb-4 d-flex " >
+    <
 
-    <!--Card-->
-    <div class="card">
-
-      <!--Card image-->
+<body>div class="card">
       <div class="view col-auto d-none d-lg-block">
         <img src="../public/imagenes/ecomm2.gif" class="card-img-top"
           alt="">
@@ -64,12 +50,8 @@ require 'header.php'?>
           <div class="mask rgba-white-slight"></div>
         </a>
       </div>
-
-      <!--Card content-->
       <div class="card-body">
-        <!--Title-->
         <h3 class="card-title">Funciona para cualquier giro</h3>
-        <!--Text-->
         <p class="card-text text-justify">¡Mientras tú disfrutas de tu familia y tu tiempo,
 			 “JD Ecomm” vende por ti, nunca fue tan fácil vender! No importa el
 			  tamaño de tu empresa JD Ecomm es la herramienta para incrementar tus ventas.
@@ -82,12 +64,8 @@ require 'header.php'?>
 			<button class="btn" style="background-color: #29A8B0; color: white;">Caracteristicas</button>
 			</center>
       </div>
-
     </div>
-    <!--/.Card-->
-
   </div>
-  <!-- Column -->
   <div class="container col-md-4 col-sm-12 d-flex"  id="cotizacion">
 			<div class="row main d-flex mb-4" style="margin: 0px;">
 				<div class="main-login main-center" >
@@ -175,27 +153,12 @@ require 'header.php'?>
 				</div>
 			</div>
 </div>
+</div><br>
 </div>
-
- <br>
-
-<!--Seccion cotizar Ecomm-->
-
-
-</div>
-
-
-<!--===============-->
- 
-
-
-
-
-
-
-
-
 
 <?php
-require 'footer.php'
-?>
+include ('footer.php');
+?></boduy	</body>
+
+</html>
+				  
