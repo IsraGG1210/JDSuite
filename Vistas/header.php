@@ -31,7 +31,7 @@
 ?>
 
 <body>
-<nav class="navbar navbar-expand-lg " style="background-color:<?php echo $bg ?>;">
+<nav class="navbar navbar-expand-sm" style="background-color:<?php echo $bg ?>;">
   <div class="col-md-12">
     <div class="row mb-2">
         <div class="col-md-6">

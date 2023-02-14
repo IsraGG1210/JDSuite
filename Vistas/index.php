@@ -237,12 +237,15 @@ include('header.php');
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
         <div class="card-body">
           <span id="descpro">
-            <?php echo $row['a_nmb']; ?>
+            <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
           </span>
           <h2>
-            $<?php echo number_format($row['ap_precio'],2); ?>
+          <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
           </h2>
+          <div>
+            <br>
           <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+          </div>
         </div>
       </div>
     </div>
@@ -271,7 +274,7 @@ include('header.php');
           items: 1
         },
         600: {
-          items: 5
+          items: 3
         },
         1000: {
           items: 6

@@ -13,7 +13,9 @@ require 'Conexion/Database.php';
   <title>JD_Suite</title>
 
   <link rel="stylesheet" href="../public/css/style.css">
-
+  <link rel="stylesheet" href="../public/css/owl.carousel.css">
+  <link rel="stylesheet" href="../public/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../public/css/owl.theme.default.css">
   <link rel="shortcut icon" href="../public/imagenes/favicon.png" />
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -50,6 +52,7 @@ require 'Conexion/Database.php';
   $sql->execute();
   $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <body>
   <!--CONTENT VIDEO-->
   <div class="col-12 imgbgst">
@@ -141,10 +144,10 @@ require 'Conexion/Database.php';
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href=""><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
-        <div class="card-body" style="-webkit-line-clamp: 4;">
-          <h4 id="descpro">
-            <?php echo $row['a_nmb']; ?>
-          </h4>
+        <div class="card-body">
+          <span id="descpro">
+            <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
+          </span>
           <h2>
             <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
           </h2>
@@ -158,6 +161,7 @@ require 'Conexion/Database.php';
 
 
   <!--Carrusel de prductos-->
+
   <script>
     $('.owl-carousel').owlCarousel({
       stagePadding: 50,
@@ -165,7 +169,7 @@ require 'Conexion/Database.php';
       autoplay: true,
       autoplayTimeout: 2000,
       margin: 10,
-      nav: true,
+      nav: false,
       dots: true,
       navText: [
         '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
@@ -176,10 +180,10 @@ require 'Conexion/Database.php';
           items: 1
         },
         600: {
-          items: 3
+          items: 5
         },
         1000: {
-          items: 5
+          items: 6
         }
       }
     })
@@ -387,8 +391,8 @@ require 'Conexion/Database.php';
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>

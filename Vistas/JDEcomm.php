@@ -40,9 +40,9 @@ include ('header.php');
   </div>
 
   <div class="col-md-4 mb-4 d-flex " >
-    <
+    
 
-<body>div class="card">
+<body><div class="card">
       <div class="view col-auto d-none d-lg-block">
         <img src="../public/imagenes/ecomm2.gif" class="card-img-top"
           alt="">

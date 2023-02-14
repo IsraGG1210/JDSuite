@@ -24,29 +24,29 @@ include 'nav_shop.php';
   $db = new Database();
   $con = $db->conectar();
 
-  $sql = $con->prepare("SELECT a_cb,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio
-      from articulosw 
-      inner join imagenes on aw_cb = i_idproducto
-      inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-      inner join articulos on a_cb = aw_cb
-      limit 30");
+  $sql = $con->prepare('SELECT (a_cb)AS p , a_nmb, concat(i_nmb,".",i_ext)AS rutaimagen , ap_precio
+  FROM articulosw 
+  INNER JOIN imagenes ON aw_cb = i_idproducto
+  INNER JOIN articulos_precios ON aw_id = ap_articulo AND ap_esquema = 1
+  INNER JOIN articulos ON a_cb = aw_cb
+  LIMIT 24;');
   $sql->execute();
   $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <body>
 
     <!--SHOP-->
-<div class="container-fluid">
+<div class="col-12">
 <section>
   <div class="text-center">
     <div class="row">
         <?php foreach($resultado as $row){?>
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-6 mb-4">
             <div class="card">
                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                     -mdb-ripple-color="light">
                     
-                    <a href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                    <a href="descrpro.php?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
                     <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
                         <div class="mask">
                         </div>
@@ -54,10 +54,10 @@ include 'nav_shop.php';
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </div>
                         <div class="card-body">
-                        <h5 id="descpro" class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
+                        <h6 id="descpro" class="card-title mb-2" style="color:grey;"><?php echo $row['a_nmb']; ?></h6>   
                         </div>
                     </a>
-                    <h4><?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?></h4>
+                    <h6><?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?></h6>
                     
                 </div>
                 
