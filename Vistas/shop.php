@@ -1,6 +1,7 @@
 <?php
 require './Conexion/config.php';
 require './Conexion/Database.php';
+include 'nav_shop.php';
 
 $db = new Database();
 $con = $db->conectar();
@@ -14,9 +15,7 @@ limit 30");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<?php
-require 'nav_shop.php'
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
