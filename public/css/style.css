@@ -133,6 +133,8 @@ input::-webkit-input-placeholder {
 }
 
 
+
+
 /*Navbar*/
 
 
@@ -804,7 +806,7 @@ ul.pagination {
 .logo {
   float: left;
   text-align: right;
-  padding: 5%;
+  padding: 2%;
 }
 
 .centradoprecio {

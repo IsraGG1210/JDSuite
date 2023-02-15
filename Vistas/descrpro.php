@@ -22,8 +22,9 @@ include('header.php');
 $db = new Database();
 $con = $db->conectar();
 
-$id= isset($_GET['a_cb']) ? $_GET['a_cb'] : NULL;
+$id= isset($_GET['p']) ? $_GET['p'] : NULL;
 $token= isset($_GET['token']) ? $_GET['token'] :NULL;
+
 
 if($id == '' || $token ==''){
     echo ' Error al procesar la peticion';
@@ -32,19 +33,19 @@ if($id == '' || $token ==''){
     $token_tmp = hash_hmac('sha1',$id, KEY_TOKEN);
 
     if($token == $token_tmp){
-        $sql = $con->prepare("SELECT COUNT(a_cb)
-        from articulosw
-        inner join imagenes on  aw_cb = i_idproducto
-        inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-        inner join articulos on a_cb = aw_cb WHERE a_cb=?");
+            $sql = $con->prepare("SELECT COUNT(a_cb)
+              FROM articulosw
+              INNER JOIN imagenes on  aw_cb = i_idproducto
+              INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+              INNER JOIN articulos on a_cb = aw_cb WHERE a_cb=?");
             $sql->execute([$id]);
 
             if($sql->fetchColumn()>0){
                 $sql = $con->prepare("SELECT COUNT(a_cb),a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-                from articulosw
-                inner join imagenes on  aw_cb = i_idproducto
-                inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-                inner join articulos on a_cb = aw_cb WHERE a_cb=?");
+                    FROM articulosw
+                    INNER JOIN imagenes on  aw_cb = i_idproducto
+                    INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+                    INNER JOIN articulos on a_cb = aw_cb WHERE a_cb=?");
                 $sql->execute([$id]);
                 $row = $sql->fetch(PDO::FETCH_ASSOC);
 
@@ -60,10 +61,10 @@ if($id == '' || $token ==''){
     }
 }
         $sqlpr = $con->prepare('SELECT a_cb,a_nmb, concat(i_nmb,".",i_ext)as rutaimagen , ap_precio
-                from articulosw 
-                inner join imagenes on aw_cb = aw_cb and aw_cb = i_idproducto
-                inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-                inner join articulos on a_cb = aw_cb
+                FROM articulosw 
+                INNER JOIN imagenes on aw_cb = aw_cb and aw_cb = i_idproducto
+                INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1
+                INNER JOIN articulos on a_cb = aw_cb
                 WHERE a_cb != "'.$id.'"
                 limit 10');
         $sqlpr->execute();
@@ -71,9 +72,9 @@ if($id == '' || $token ==''){
 ?>
 <body>
 <!--FORMULARIO/VERIFICACION-->
-<div class="bloques">
+<div class="bloques" style="background: white; border-radius: 5px;">
     <div class="col-12">
-      <div class="row mb-2">
+      <div class="row">
         <div class="col-md-5">
           <div class="box">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -104,8 +105,8 @@ if($id == '' || $token ==''){
         </div>
         <div class="col-md-7">
           <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <h3><?php echo $nombre; ?></h3>
-            <br>
+            <h5><?php echo $nombre; ?></h5>
+            
             <div class="logo">
             <div class="estrellas">
               <i class="fa fa-star estrellasdis"  ></i>
@@ -115,11 +116,8 @@ if($id == '' || $token ==''){
               <i class="fa fa-star-half-full estrellasdis"  ></i>
             </div>
             </div>
-              <div class="sep">
-              </div>
                 <div class="centradoprecio flex justify-between mb-3 text-sm">
-                  <span class="spanpr"><h3>Precio<h3><br></span>
-                  <span><h3 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h3></span>
+                  <span><h5 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h5></span>
               </div>
                 <div class="flex justify-between font-bold pt-2 mt-2 mb-2 border-t border-gray-500">
                   <span">INCLUYE:</span>
@@ -127,19 +125,22 @@ if($id == '' || $token ==''){
                     <li><?php echo $detallesmc ?></li>
                   </ul>
               </div>
-                  <p>CANTIDAD:<br>
-                    <a href=""  class="btn btn-default" onlcick=subc();>
-                    <i class="fa fa-minus-circle compra"></i>
-                    </a>
-                    <input type="number" min="1" value="1"  class="btn btn-default incant w-10">
-                    <a href=""  class="btn btn-default" onlcick=subc();>
-                    <i class="fa fa-plus-circle compra" ></i>
-                    </a>
+                 <div class="centrado">
+                 <p>CANTIDAD:<br>
+                    <a class="btn btn-default" onclick="subc();"><i class="fa fa-minus compra"></i></a>
+                    <input type="number" name="cantidad" id="cantidad" min="1" value="1" class="btn btn-default" onchange="changecant();" style="width: 25%;">
+                    <a class="btn btn-default" onclick="addc();"><i class="fa fa-plus compra"></i></a>
+                    
                   </p>
-                      <button class="btn btn-primary" style="background-color: blue;" type="button">Comprar ahora</button><br>
+                 </div>
+                      <div class="estrellas centrado">
+                        <button class="btn btn-success" style="background-color: green;" type="button">
+                        <i class="fa-light fa-dollar"></i>Comprar</button><br>
+                        <div></div>
+                        <button class="btn btn-primary"style="background-color: blue;" type="button" 
+                        ><i class="fa fa-shopping-cart"></i> Agregar al carrito</button>
+                      </div>
                       
-                      <button class="btn btn-outline-primary"style="background-color: blue;" type="button" 
-                      onclick="addProducto(<?php echo $id;?>,'<?php echo $token_tmp;?>')">Agregar al carrito</button>
                  
                   
             </div>
@@ -149,7 +150,23 @@ if($id == '' || $token ==''){
     </div>
   </div>
 
-  <!--PRODUCTOS RELACIONADOS-->
+
+  <script>
+    function addc(){
+  var cantidad = $("#cantidad").val();
+  cantidad++;
+  $("#cantidad").val(cantidad);
+}
+function subc(){
+  var cantidad = $("#cantidad").val();
+  if(cantidad > 1)
+    cantidad--;
+  $("#cantidad").val(cantidad);
+}
+  
+  </script>
+
+  <!--COMENTARIOS-->
   <div class="bloques">
     <div class="col-12">
       <div class="row mb-2">
@@ -187,7 +204,7 @@ if($id == '' || $token ==''){
             </div>
           </div>
         </div>
-        <!--OPINIONES-->
+        <!--PRODUDCTOS RELACIONADOS -->
         <div class="col-md-4">
           <div class="row mb-2">
             <div class="col-mb-3">
@@ -209,7 +226,7 @@ if($id == '' || $token ==''){
             <div class="col-mb-2 p-2">
               <div class="row mb-2">
                   <div class="col-mb-3 centrado ">
-                    <img src="../public/imagenes/perfil.png" width="15%" height="40%" alt="">
+                    <img src="#" width="15%" height="40%" alt="">
                   </div>
                   <div class="col-mb-4">
                     <h6>Ana Karen</h6>
@@ -230,11 +247,17 @@ if($id == '' || $token ==''){
       <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
     </a>
   </div>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>
     
 <?php
-include('footer.php');
+require 'footer.php';
 ?>

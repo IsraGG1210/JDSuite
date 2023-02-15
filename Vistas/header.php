@@ -31,7 +31,8 @@
 ?>
 
 <body>
-<nav class="navbar navbar-expand-sm" style="background-color:<?php echo $bg ?>;">
+    
+<nav class="navbar navbar-expand-sm " style="background-color:<?php echo $bg ?>;">
   <div class="col-md-12">
     <div class="row mb-2">
         <div class="col-md-6">
@@ -45,7 +46,7 @@
             </center>
             
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 " style="white-space: nowrap;">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="JD_Store.php">JD Store</a>
