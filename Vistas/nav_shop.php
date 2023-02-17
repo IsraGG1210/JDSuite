@@ -56,6 +56,7 @@ include ('header.php');
               <li><a class="dropdown-item" href="#">CEO</a></li>
             </ul>
           </li>
+          
           <li class="nav-item">
             <form role="search">
               <input class="form-control inpse" type="Buscar" placeholder="Buscar" aria-label="Buscar">

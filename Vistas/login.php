@@ -1,5 +1,25 @@
 <?php
+
+require 'Conexion/funciones.php';
 include ('header.php');
+$mensaje="";
+session_start();
+
+if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
+	$correo = $_POST['email'];
+	$contrasena = $_POST['contrasena'];
+	$sql ="SELECT COUNT(*) AS contar, c_nmb FROM clientes WHERE c_mail = '$correo' && c_password =PASSWORD('$contrasena')";
+	$resultado = setq($sql);
+	$array = mysqli_fetch_array($resultado);
+if($array['contar'] != '0'){
+	$_SESSION['username'] = $correo;
+	header ("location: index.php");
+	$mensaje ="Ingreso exitoso, bienvenido " .$array['c_nmb'];
+} else {
+	$mensaje ="Algun dato esta mal";
+}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +39,18 @@ include ('header.php');
 
 <body>
 	<br>
+	<?php if(!empty($mensaje)):?>
+
+	window.confirm(".<?php echo $mensaje ?>.");
+
+	<?php endif;?>
 	<div class="container" id="login">
 		<div class="row main">
 			<div class="main-login main-center" style="height: auto;">
 
 				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Inicia Sesión </h2>
-				<form class="iniciosesion" method="post" action="#">
-					<div class="form-group">
+				<form class="iniciosesion" method="POST" action="login.php">
+					<div class="form-group"> 
 						<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
 						<div class="cols-sm-10">
 							<div class="input-group">
@@ -41,7 +66,7 @@ include ('header.php');
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fas fa-key" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="pwd" id="pswd"
+								<input type="password" class="form-control" name="contrasena" n id="contrasena"
 									placeholder="Ingresa tu contraseña" required />
 							</div>
 						</div>
@@ -54,8 +79,8 @@ include ('header.php');
 
 
 					<div class="form-group btningresar">
-						<a href="#" target="_blank" type="button" id="button"
-							class="btn btn-primary btn-lg btn-block login-button">Ingresar</a>
+						<button class="btn btn-primary btn-lg btn-block login-button" name="button" id="button"
+							type="submit">Ingresar</button>
 					</div>
 
 				</form>

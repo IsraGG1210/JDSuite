@@ -22,15 +22,15 @@ include('header.php');
 $db = new Database();
 $con = $db->conectar();
 
-$id= isset($_GET['p']) ? $_GET['p'] : NULL;
+$idp= isset($_GET['p']) ? $_GET['p'] : NULL;
 $token= isset($_GET['token']) ? $_GET['token'] :NULL;
 
 
-if($id == '' || $token ==''){
+if($idp == '' || $token ==''){
     echo ' Error al procesar la peticion';
     exit;
 }else{
-    $token_tmp = hash_hmac('sha1',$id, KEY_TOKEN);
+    $token_tmp = hash_hmac('sha1',$idp, KEY_TOKEN);
 
     if($token == $token_tmp){
             $sql = $con->prepare("SELECT COUNT(a_cb)
@@ -38,7 +38,7 @@ if($id == '' || $token ==''){
               INNER JOIN imagenes on  aw_cb = i_idproducto
               INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
               INNER JOIN articulos on a_cb = aw_cb WHERE a_cb=?");
-            $sql->execute([$id]);
+            $sql->execute([$idp]);
 
             if($sql->fetchColumn()>0){
                 $sql = $con->prepare("SELECT COUNT(a_cb),a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
@@ -46,7 +46,7 @@ if($id == '' || $token ==''){
                     INNER JOIN imagenes on  aw_cb = i_idproducto
                     INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
                     INNER JOIN articulos on a_cb = aw_cb WHERE a_cb=?");
-                $sql->execute([$id]);
+                $sql->execute([$idp]);
                 $row = $sql->fetch(PDO::FETCH_ASSOC);
 
                 $nombre = $row['a_nmb'];
@@ -65,10 +65,11 @@ if($id == '' || $token ==''){
                 INNER JOIN imagenes on aw_cb = aw_cb and aw_cb = i_idproducto
                 INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1
                 INNER JOIN articulos on a_cb = aw_cb
-                WHERE a_cb != "'.$id.'"
+                WHERE a_cb != "'.$idp.'"
                 limit 10');
         $sqlpr->execute();
         $prod = $sqlpr->fetchAll(PDO::FETCH_ASSOC);
+        
 ?>
 <body>
 <!--FORMULARIO/VERIFICACION-->
@@ -106,6 +107,7 @@ if($id == '' || $token ==''){
         <div class="col-md-7">
           <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <h5><?php echo $nombre; ?></h5>
+            <input type="hidden" id="nombre" value="<?php echo ($nombre);?>">
             
             <div class="logo">
             <div class="estrellas">
@@ -118,6 +120,11 @@ if($id == '' || $token ==''){
             </div>
                 <div class="centradoprecio flex justify-between mb-3 text-sm">
                   <span><h5 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h5></span>
+                  <input type="hidden" id="precio" value="<?php echo ($precio); ?>"/>
+                  <input type="hidden" id="descuento" value="0"/>
+                  <p>Modelo:<?php echo ($idp);?> </p>
+                  <input type="hidden" id="id" value="<?php echo ($idp);?>">
+                 
               </div>
                 <div class="flex justify-between font-bold pt-2 mt-2 mb-2 border-t border-gray-500">
                   <span">INCLUYE:</span>
@@ -133,12 +140,40 @@ if($id == '' || $token ==''){
                     
                   </p>
                  </div>
-                      <div class="estrellas centrado">
-                        <button class="btn btn-success" style="background-color: green;" type="button">
-                        <i class="fa-light fa-dollar"></i>Comprar</button><br>
-                        <div></div>
-                        <button class="btn btn-primary"style="background-color: blue;" type="button" 
-                        ><i class="fa fa-shopping-cart"></i> Agregar al carrito</button>
+                  <div class="centrado">
+                    <p class="text-center buttons ">
+                      <a  class="btn btn-success" style="color:white;"><i class="fa fa-shopping-cart"></i> Comprar</a>
+                      <a id="cart" class="btn btn-primary" style="color:white;"><i class="fa fa-shopping-cart"></i> Añadir a carrito</a>
+                    </p>
+                  </div>
+                     
+                        <script >
+                           function addToCart(idp){
+                            document.getElementById("cart").disabled = true;
+                            precio = $("#precio").val();
+                            descuento = $("#descuento").val();
+                            talla = 0;
+                            color = 0;
+                            cantidad = $("#cantidad").val();
+                            producto = idp;
+                            //alert(precio+" "+talla+" "+color+" "+cantidad+" "+producto);
+                            $.post("query/Cart.php",{
+                              precio: precio,
+                              descuento: descuento,
+                              talla: talla,
+                              colorsel: color,
+                              cantidad: cantidad,
+                              p: producto
+                            },function(htmle){
+                              $("#cart").html(htmle);
+                              document.getElementById('cart');
+                              $.post("query/infocart.php",{},function(htmlec){
+                                $("#cantcart").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
+                                //alert ("Cantidad" + htmlec);
+                              });
+                            });
+                          }
+                        </script>
                       </div>
                       
                  

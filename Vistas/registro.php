@@ -1,41 +1,24 @@
 <?php
-require 'Conexion/Database.php';
-include ('header.php');
 
+require 'Conexion/funciones.php';
+include ('header.php');
+  
 $mensaje='';
-$db = new Database();
-$con = $db->conectar();
-/*if(!empty($_POST['email']) && !empty($_POST['contrasena']) && !empty($_POST['nombre'] && !empty($_POST['c_contrasena']))){
-	$correo = $_POST['email'];
-	$revisar = $con->prepare("SELECT COUNT(*) FROM clientes WHERE c_mail = '$correo'");
-	if($revisar > 0){
-		$mensaje ="Correo existente";
-	}else{
-		if($_POST['contrasena'] == $_POST['c_contrasena']){
-			$nombre = $_POST['nombre'];
-			$email = $_POST['email'];
-			$contrasena = $_POST['contrasena'];
-		  $sql = $con->prepare("INSERT INTO clientes (c_nmb,c_mail,c_password) VALUES('$nombre', '$email', PASSWORD('$contrasena'))");
-		 
-		  
-		   if($sql->execute()){
-			  $mensaje = "Nuevo Usuario Creado";
-		   } else {
-			  $mensaje = "Ocurrio Un Error En La Crecion Del Usuario";
-		   }
-		} else {
-			$mensaje = "La contraseña no coincide";
-		}
-	}  
-}*/
 
 if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contrasena']) && !empty($_POST['c_contrasena'])){
 	if($_POST['contrasena'] == $_POST['c_contrasena']){
-		$verif = $con->prepare("SELECT COUNT(*) FROM clientes WHERE c_mail = '$_POST['email']'");
-		if($verif == 0){
-			$sql = $con->prepare("INSERT INTO clientes(c_nmb,c_mail,c_password) VALUES('$_POST['nombre']', '$_POST['email']', PASSWORD('$_POST['contrasena']'))");
-			if($sql->execute()){
+		$email = $_POST['email'];
+		$sql2 = "SELECT COUNT(*) as contar FROM clientes WHERE c_mail = '$email'";
+		$resultado = setq($sql2);
+		$array = mysqli_fetch_array($resultado);
+		if($array['contar'] == '0' ){
+			$nombre=$_POST['nombre'];
+			$correo=$_POST['email'];
+			$contra=$_POST['contrasena'];
+			$sql  ="INSERT INTO clientes(c_nmb,c_mail,c_password) VALUES('$nombre', '$email', PASSWORD('$contra'))";
+			if(setq($sql)){
 				$mensaje="Usuario Nuevo Creado";
+				header ("location: login.php");
 			}else{
 				$mensaje ="Ocurrio Un problemas en la creacion";
 			}
@@ -45,8 +28,6 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 	}else{
 		$mensaje="Contraseñas no coinciden";
 	}
-}else{
-	$mensaje ="Algun Campo Esta vacio";
 }
 
 ?>
@@ -64,16 +45,16 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	
 </head>
 
 <body>
 	<br>
-	
+
 	<?php if(!empty($mensaje)):?>
-	<p>
-		<?php echo $mensaje ?>
-	</p>
+	<?php echo $mensaje ?>
 	<?php endif;?>
+
 
 	<div class="container" id="login">
 		<div class="row main">

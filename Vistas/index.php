@@ -2,6 +2,17 @@
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
 include('header.php');
+
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+    $correo = $_SESSION['username'];
+} 
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
