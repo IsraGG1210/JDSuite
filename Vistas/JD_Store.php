@@ -2,6 +2,7 @@
 include('header.php');
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -3,7 +3,7 @@
 require 'Conexion/funciones.php';
 include ('header.php');
 $mensaje="";
-session_start();
+//session_start();
 
 if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 	$correo = $_POST['email'];
@@ -13,8 +13,9 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 	$array = mysqli_fetch_array($resultado);
 if($array['contar'] != '0'){
 	$_SESSION['username'] = $correo;
-	header ("location: index.php");
 	$mensaje ="Ingreso exitoso, bienvenido " .$array['c_nmb'];
+	header ("location: index.php");
+	
 } else {
 	$mensaje ="Algun dato esta mal";
 }
@@ -40,17 +41,27 @@ if($array['contar'] != '0'){
 <body>
 	<br>
 	<?php if(!empty($mensaje)):?>
-
-	window.confirm(".<?php echo $mensaje ?>.");
+	<dialog id="myForm">
+		<center>
+	<i class="fas fa-exclamation-triangle"></i>&nbsp<?php echo $mensaje ?> <br>
+		<button class="btn btn-primary" onclick="closeForm()"> Cerrar </button>
+		<script>
+		function closeForm() {
+			document.getElementById("myForm").style.display = "none";
+		}
+	</script>
+	</dialog>
+	</center>
 
 	<?php endif;?>
+	
 	<div class="container" id="login">
 		<div class="row main">
 			<div class="main-login main-center" style="height: auto;">
 
 				<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Inicia Sesión </h2>
 				<form class="iniciosesion" method="POST" action="login.php">
-					<div class="form-group"> 
+					<div class="form-group">
 						<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
 						<div class="cols-sm-10">
 							<div class="input-group">
@@ -87,6 +98,8 @@ if($array['contar'] != '0'){
 			</div>
 		</div>
 	</div>
+
+
 </body>
 
 </html>

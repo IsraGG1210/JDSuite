@@ -20,18 +20,40 @@ include 'nav_shop.php';
 
 </head>
 <?php
+    function setq($sql,$die = false){ 
+        $dbuser = "root"; // El usuario
+        $dbpass = "wptye2014"; // El Pass
 
-  $db = new Database();
-  $con = $db->conectar();
+        $dbhost = "192.168.100.240"; // El host
+        $db = "tyesolutions_jdceo"; // Nombre de la base
+        $mysqli = new mysqli($dbhost, $dbuser,$dbpass, $db);
+        $mysqli->query("SET CHARACTER SET utf8");
+        $mysqli->query("SET NAMES utf8");
 
-  $sql = $con->prepare('SELECT (a_cb)AS p , a_nmb, concat(i_nmb,".",i_ext)AS rutaimagen , ap_precio
-  FROM articulosw 
-  INNER JOIN imagenes ON aw_cb = i_idproducto
-  INNER JOIN articulos_precios ON aw_id = ap_articulo AND ap_esquema = 1
-  INNER JOIN articulos ON a_cb = aw_cb
-  LIMIT 24;');
-  $sql->execute();
-  $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+        if($die) die($sql);
+                    $result = $mysqli->query($sql);
+                    $mysqli->close();
+                  
+                    return($result);
+    }
+
+      $items_per_page = 24; 
+      $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Página actual
+      
+      
+      $offset = ($current_page - 1) * $items_per_page; // Cálculo del desplazamiento (offset)
+      
+    $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb 
+      LIMIT $items_per_page OFFSET $offset";
+    $total_items = 100;
+    $total_pages = ceil($total_items / $items_per_page);
+
+    
+    $resultado = setq($sql);             
 ?>
 <body>
 
@@ -40,7 +62,7 @@ include 'nav_shop.php';
 <section>
   <div class="text-center">
     <div class="row">
-        <?php foreach($resultado as $row){?>
+        <?php while($row = $resultado->fetch_array()){?>
         <div class="col-lg-2 col-md-6 mb-4">
             <div class="card">
                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -71,24 +93,16 @@ include 'nav_shop.php';
   
 <!-- Pagination -->
 <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+  <div class="pagination">
+    <?php for ($i = 1; $i <= $total_pages; $i++) {?>
+      <ul>
+      <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      </ul>
+    <?php } ?>
+  
+    </div>
 </nav>  
+
   <!--PARTE DE WHATS-->
   <div class="msgwh">
     <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">

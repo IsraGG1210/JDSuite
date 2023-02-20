@@ -42,29 +42,29 @@
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<h5>Blog y Comunidad</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Blog
+						<li><a href="#"><i class="fa fa-angle-double-right"></i>Blog
 								JD</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li><a href="#"><i
 									class="fa fa-angle-double-right"></i>JDShop.mx</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<h5>Tienda</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Kits
+						<li><a href="#"><i class="fa fa-angle-double-right"></i>Kits
 								Equipos</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li><a href="#"><i
 									class="fa fa-angle-double-right"></i>Impresoras</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Cajon
+						<li><a href="#"><i class="fa fa-angle-double-right"></i>Cajon
 								Dinero</a></li>
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li><a href="#"><i
 									class="fa fa-angle-double-right"></i>Lectores</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<h5>Soporte</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li><a href="#"><i
 									class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para levantar una solicitud
 								de soporte</a></li>
 					</ul>
@@ -73,13 +73,13 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
 					<ul class="list-unstyled list-inline social text-center">
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li class="list-inline-item"><a href="#"><i
 									class="fab fa-youtube fa-xl"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li class="list-inline-item"><a href="#"><i
 									class="fab fa-twitter-square fa-xl"></i></li>
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li class="list-inline-item"><a href="#"><i
 									class="fab fa-instagram fa-xl"></i></li>
-						<li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
+						<li class="list-inline-item"><a href="#"><i
 									class="fab fa-facebook-square fa-xl"></i></a></li>
 					</ul>
 				</div>

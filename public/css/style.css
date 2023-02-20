@@ -134,56 +134,6 @@ input::-webkit-input-placeholder {
 
 
 
-
-/*Navbar*/
-
-
-/*.navbar-brand{
-    width: 40%;
-}
-.navbar-light .navbar-collapse .navbar-nav .nav-link{
-    color:#FFFFFF;
-    font-family:"Kalinga";
-    font-size:20px;
-    width:max-content;
-    padding:14px;
-    line-height: 32px;
-  }
-.videoind {
-    width: 15%;
-    margin: 30%;
-}
-
-.pad{
-    padding: 10% 0% 0% 10%;
-}
-.inicio {
-    padding: 10% 2% 10% 2%;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 15px;
-    color: #FFFFFF;
-    height: 80%;
-}
-.inicio-text {
-    text-align: center;
-    color: #000000;
-    font-size: 20px;
-    padding: 0 0% 1% 0;
-    opacity: 1;
-    font-weight: bold;
-}
-.paddbot {
-    position: absolute;
-    text-align: center;
-    background-color: #a6d0fc;
-    border-color: #a6d0fc;
-}
-.paddbot2 {
-    text-align: center;
-    background-color: #a6d0fc;
-    border-color: #a6d0fc;
-}
-*/
 .imgindex {
   width: 100%;
   padding: 0;
@@ -488,22 +438,7 @@ input::-webkit-input-placeholder {
 }
 
 
-/*Carrusel de productos index*/
-/*#carousel img{
-  width:200px;
-  height: 200px;
-}*/
-/*
-#carousel .card {
-  box-shadow: 10px 10px 7px #29A8B0;
-  border-radius: 15px;
-}
-#carousel h3{
-  color: #327dce;
-}
-#carousel {
-  padding: 2%;
-}*/
+
 
 
 /*JD REST*/
@@ -783,7 +718,7 @@ input.inpse {
 }
 
 ul.pagination {
-  margin: 20px 0;
+  margin: 15px 0;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   border-radius: 0;
 }
@@ -1081,9 +1016,7 @@ section .section-title {
   text-transform: uppercase;
 }
 
-/*#footer {
-    background: #007b5e !important;
-}*/
+
 #footer h5 {
   padding-left: 10px;
   border-left: 3px solid #eeeeee;

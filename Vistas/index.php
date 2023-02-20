@@ -130,9 +130,9 @@ if(!isset($_SESSION))
               <h6 class="mb-0">¡Con JD Store obtienes lo que tú negocio necesita para crecer!</h6>
               <p class="card-text mb-auto">¡Tú Punto de Venta! Administra tus Ventas, inventarios y mucho más de manera
                 rápida, fácil y segura.</p>
-              <a href="JDStore.php" class="stretched-link">
+              <a href="JD_Store.php" class="stretched-link">
                 <center>
-                  <button class="btnmasinfo paddbot2">Conocer más</button>
+                  <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
               </a>
             </div>
@@ -149,7 +149,7 @@ if(!isset($_SESSION))
               <p class="card-text mb-auto">¡Con JD Rest agiliza y mejora la atención de tus clientes! Y no solo eso.</p>
               <a href="JDRest.php" class="stretched-link">
                 <center>
-                  <button class="btnmasinfo paddbot2">Conocer más</button>
+                  <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
               </a>
             </div>
@@ -165,9 +165,9 @@ if(!isset($_SESSION))
               <h6 class="mb-0">¡Con JD Invoice gana clientes al emitir Facturas!</h6>
               <p class="card-text mb-auto">¡Tú facturador electrónico! Comienza a facturar con nuestros paquetes de
                 folios digitales.</p>
-              <a href="JDInvoice.php" class="stretched-link">
+              <a href="JD_Invoice.php" class="stretched-link">
                 <center>
-                  <button class="btnmasinfo paddbot2">Conocer más</button>
+                  <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
               </a>
             </div>
@@ -185,7 +185,7 @@ if(!isset($_SESSION))
                 mientras tu disfrutas de tu tiempo libre.</p>
               <a href="JDEcomm.php" class="stretched-link">
                 <center>
-                  <button class="btnmasinfo paddbot2">Conocer más</button>
+                  <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
               </a>
             </div>
@@ -201,9 +201,9 @@ if(!isset($_SESSION))
               <h6 class="mb-0">¡JD TAE venta de tiempo aire y pago de servicios!</h6>
               <p class="card-text mb-auto">Gana dinero sin esfuerzo, vende recargas de tiempo aire y pago de servicios
                 desde tu celular, no importa donde te encuentres..</p>
-              <a href="JDTae.php" class="stretched-link">
+              <a href="JD_tae.php" class="stretched-link">
                 <center>
-                  <button class="btnmasinfo paddbot2">Conocer más</button>
+                  <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
               </a>
             </div>
@@ -221,7 +221,7 @@ if(!isset($_SESSION))
                 operaciones de tu empresa.</p>
               <a href="JDCeo.php" class="stretched-link">
                 <center>
-                  <button class="btnmasinfo paddbot2">Conocer más</button>
+                  <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
               </a>
             </div>

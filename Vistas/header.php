@@ -1,3 +1,7 @@
+<?php 
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +70,6 @@
                             <a class="nav-link" href="">JD CEO</a>
                             <a class="nav-link" href="shop.php">Tienda</a>
                             <?php if(!isset($_SESSION['username'])){?>
-                           
                             <a class="nav-link" href="login.php">Iniciar sesion</a>
                             <?php } else {?>
                                 <a class="nav-link" href="logout.php">Cerrar sesion</a>

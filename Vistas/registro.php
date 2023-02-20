@@ -20,7 +20,7 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 				$mensaje="Usuario Nuevo Creado";
 				header ("location: login.php");
 			}else{
-				$mensaje ="Ocurrio Un problemas en la creacion";
+				$mensaje ="Ocurrio Un problema en la creacion";
 			}
 		} else{
 			$mensaje ="Correo existente";
@@ -52,7 +52,18 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 	<br>
 
 	<?php if(!empty($mensaje)):?>
-	<?php echo $mensaje ?>
+	<dialog id="myForm">
+		<center>
+	<i class="fas fa-exclamation-triangle"></i>&nbsp<?php echo $mensaje ?> <br>
+		<button class="btn btn-primary" onclick="closeForm()"> Cerrar </button>
+		<script>
+		function closeForm() {
+			document.getElementById("myForm").style.display = "none";
+		}
+	</script>
+	</dialog>
+	</center>
+
 	<?php endif;?>
 
 
