@@ -30,7 +30,7 @@ $con = $db->conectar();
             <div class="text-servicioslp">
               <i>La navaja suiza de los puntos de venta</i>
               <p>¡Adquierelo ahora mismo!</p>
-                <p>Desde $ 3,999.00</p>
+                <p style="color:white;">Desde $ 3,999.00</p>
             </div>
           </div>
       </div>
@@ -171,34 +171,50 @@ $con = $db->conectar();
 
 
  <!--Preguntas--> 
- <div class="lip">
+ <div class="centrado">
+ <div class="accordion col-md-8 col-sm-12" id="accordionExamP">
     <center>
-    <div class="col-md-8 ">
+    <div class="accordion-item ">
       <h2>Preguntas frecuentes</h2>
       <div class="lip">
-        <a class="btn btn-primary w-100" data-toggle="collapse" href="#collapseim" role="button" aria-expanded="false" aria-controls="collapseim">
-        <i class="fa fa-sort-desc" style="font-size:24px"></i>¿Como implemento Invoice?
-        </a>
-        <div class="collapse" id="collapseim">
-            <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
+      <h2 class="accordion-header" id="headingOneY">
+        <a class="btn btn-primary" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOneY"
+          aria-expanded="false" aria-controls="collapseOneY">
+          <h3>¿Como implemento JD Invoice?</h3>
+          <i class="fa fa-sort-desc" style="font-size:24px"></i>
+              </a>
+      </h2>
+      <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
+        data-mdb-parent="#accordionExampleY">
+        <div class="accordion-body text-justify">
+          Un potente Punto de Venta para tu negocio de alimentos, gestiona fácilmente tus ventas y sin
+          importar el tamaño de tu negocio, te apoya a simplificar tus órdenes a través de una interfaz
+          intuitiva y diseñada para optimizar tiempos.
         </div>
       </div>
+      </div>
       <div class="lip">
-        <a class="btn btn-primary  w-100" data-toggle="collapse" href="#collapseben" role="button" aria-expanded="false" aria-controls="collapseben">
-        <i class="fa fa-sort-desc" style="font-size:24px"></i>¿Qué beneficios tengo con TAE?
-        </a>
-        <div class="collapse" id="collapseben">
-            <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
+      <h2 class="accordion-header" id="headingOneY">
+        <a class="btn btn-primary" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne"
+          aria-expanded="false" aria-controls="collapseOne">
+          <h5>¿Que beneficios tengo con JD Invoice?</h5>
+          <i class="fa fa-sort-desc" style="font-size:24px"></i>
+              </a>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+        data-mdb-parent="#accordionExampleY">
+        <div class="accordion-body text-justify">
+          Un potente Punto de Venta para tu negocio de alimentos, gestiona fácilmente tus ventas y sin
+          importar el tamaño de tu negocio, te apoya a simplificar tus órdenes a través de una interfaz
+          intuitiva y diseñada para optimizar tiempos.
         </div>
+      </div>
       </div>
     </div>
     </center>
   </div>
 
+ </div>
 
 <?php
 include('footer.php');

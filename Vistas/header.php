@@ -26,13 +26,17 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JD_Suite</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
+        integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="shortcut icon" href="../public/imagenes/favicon.png" />
-    <link rel="stylesheet" href="../public/css/owl.carousel.css">
-    <link rel="stylesheet" href="../public/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../public/css/owl.theme.default.css">
+
     <link rel="stylesheet" href="../public/css/flip.css">
     <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -83,14 +87,14 @@ else
 
 
                             <a href="verif_Tienda.php" class="nav-link">
-                            <span id="cantcart">
-                                <?php
+                                <span id="cantcart">
+                                    <?php
                                 $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "63f4e63b33e"';
                                 $result = setq($sql);
                                 list($total) = $result->fetch_array();
                                 ?>
-                                <i class="fas fa-shopping-cart"></i> <?php echo number_format($total); ?>
-                            </span>
+                                    <i class="fas fa-shopping-cart"></i> <?php echo number_format($total); ?>
+                                </span>
                             </a>
                         </div>
                     </div>

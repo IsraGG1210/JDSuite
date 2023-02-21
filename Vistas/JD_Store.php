@@ -27,7 +27,7 @@ require 'Conexion/Database.php';
         <div class=" form-servicioslS" style="background-color: #2B4B6B;">
           <div class="text-servicioslp">
             <i>Facturación Electrónica</i>
-            <p>Con la nueva version 3.3 de CFDI</p>
+            <p style="color:white;">Con la nueva version 3.3 de CFDI</p>
           </div>
         </div>
       </div>
@@ -125,33 +125,10 @@ require 'Conexion/Database.php';
 
   <!--Carrusel de prductos-->
 
-  <script>
-    $('.owl-carousel').owlCarousel({
-      stagePadding: 50,
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 2000,
-      margin: 10,
-      nav: false,
-      dots: true,
-      navText: [
-        '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
-        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
-      ],
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 5
-        },
-        1000: {
-          items: 6
-        }
-      }
-    })
-  </script>
+  
 
+  <!--TIPOS DE LICENCIA-->
+ 
   <!--TIPOS DE LICENCIA-->
   <div class="row">
 
@@ -221,8 +198,7 @@ require 'Conexion/Database.php';
           </div>
         </div>
       </div>
-    </div>
-    <!-- Column -->
+    </div>    <!-- Column -->
 
     <!-- Column -->
     <div class="col-md-6 mb-6 d-flex align-items-stretch">
@@ -357,3 +333,29 @@ require 'Conexion/Database.php';
 <?php
 include ('footer.php');
 ?>
+<script>
+    $('.owl-carousel').owlCarousel({
+      stagePadding: 50,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 2000,
+      margin: 10,
+      nav: false,
+      dots: true,
+      navText: [
+        '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
+        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
+      ],
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 5
+        },
+        1000: {
+          items: 6
+        }
+      }
+    })
+  </script>

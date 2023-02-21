@@ -157,32 +157,7 @@ require 'Conexion/Database.php';
 
 <!--Carrusel de prductos-->
 
-<script>
-  $('.owl-carousel').owlCarousel({
-    stagePadding: 50,
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    margin: 10,
-    nav: false,
-    dots: true,
-    navText: [
-      '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
-      '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
-    ],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 3
-      },
-      1000: {
-        items: 6
-      }
-    }
-  })
-</script>
+
 <br>
 <br>
 <!--Licencias JD Rest--> 
@@ -277,3 +252,29 @@ require 'Conexion/Database.php';
 <?php
 require 'footer.php'
   ?>
+  <script>
+  $('.owl-carousel').owlCarousel({
+    stagePadding: 50,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    margin: 10,
+    nav: false,
+    dots: true,
+    navText: [
+      '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
+      '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
+    ],
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 6
+      }
+    }
+  })
+</script>

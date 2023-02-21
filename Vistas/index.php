@@ -222,23 +222,34 @@ if(!isset($_SESSION))
             <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
           </span>
           <h2>
-          <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
+            <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
           </h2>
-          <div>
-            <br>
           <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
-          </div>
         </div>
       </div>
     </div>
     <?php } ?>
   </div>
 
-
-
   <!--Carrusel de prductos-->
+<br>
+ 
+  
+  
 
-  <script>
+
+  <!--PARTE DE WHATS-->
+  <div class="msgwh">
+    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
+      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+    </a>
+  </div>
+
+
+<?php
+include('footer.php');
+?>
+ <script>
     $('.owl-carousel').owlCarousel({
       stagePadding: 50,
       loop: true,
@@ -256,7 +267,7 @@ if(!isset($_SESSION))
           items: 1
         },
         600: {
-          items: 3
+          items: 5
         },
         1000: {
           items: 6
@@ -264,15 +275,3 @@ if(!isset($_SESSION))
       }
     })
   </script>
-
-  <!--PARTE DE WHATS-->
-  <div class="msgwh">
-    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-    </a>
-  </div>
-
-
-<?php
-include('footer.php');
-?>
