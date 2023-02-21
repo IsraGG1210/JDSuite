@@ -151,7 +151,7 @@ require 'Conexion/Database.php';
             aria-controls="nav-reparto" aria-selected="false">Servidor Rutas de Reparto</a>
         </div>
       </nav>
-      <!--Card Primary-->
+       <!--Card Primary-->
        <div class="card indigo text-center z-depth-2">
         <div class="card-body">
           <div class="tab-content" id="nav-tabContent">
@@ -260,7 +260,6 @@ require 'Conexion/Database.php';
   </div>
 </div>
 
-</div>
 <br>
 <br>
 <!--PARTE DE PREGUNTAS-->
