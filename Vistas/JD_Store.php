@@ -260,6 +260,7 @@ require 'Conexion/Database.php';
   </div>
 </div>
 
+</div>
 <br>
 <br>
 <!--PARTE DE PREGUNTAS-->
