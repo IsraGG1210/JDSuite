@@ -106,32 +106,7 @@ $con = $db->conectar();
 
   <!--Carrusel de prductos-->
 
-  <script>
-    $('.owl-carousel').owlCarousel({
-      stagePadding: 50,
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 2000,
-      margin: 10,
-      nav: false,
-      dots: true,
-      navText: [
-        '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
-        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
-      ],
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 3
-        },
-        1000: {
-          items: 6
-        }
-      }
-    })
-  </script>
+  
 
 
   <!--TUTORIALES--> 
@@ -178,7 +153,7 @@ $con = $db->conectar();
       <h2>Preguntas frecuentes</h2>
       <div class="lip">
       <h2 class="accordion-header" id="headingOneY">
-        <a class="btn btn-primary" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOneY"
+        <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOneY"
           aria-expanded="false" aria-controls="collapseOneY">
           <h3>¿Como implemento JD Invoice?</h3>
           <i class="fa fa-sort-desc" style="font-size:24px"></i>
@@ -195,9 +170,9 @@ $con = $db->conectar();
       </div>
       <div class="lip">
       <h2 class="accordion-header" id="headingOneY">
-        <a class="btn btn-primary" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne"
+        <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne"
           aria-expanded="false" aria-controls="collapseOne">
-          <h5>¿Que beneficios tengo con JD Invoice?</h5>
+          <h4>¿Que beneficios tengo con JD Invoice?</h4>
           <i class="fa fa-sort-desc" style="font-size:24px"></i>
               </a>
       </h2>
@@ -219,3 +194,29 @@ $con = $db->conectar();
 <?php
 include('footer.php');
 ?> 
+<script>
+    $('.owl-carousel').owlCarousel({
+      stagePadding: 50,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 2000,
+      margin: 10,
+      nav: false,
+      dots: true,
+      navText: [
+        '<br><i class="fas fa-chevron-circle-left fa-2xl" style="font-size:32px;" aria-hidden="true"></i>',
+        '<br><i class="fas fa-chevron-circle-right fa-2xl" style="font-size:32px;" aria-hidden="true"></i>'
+      ],
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 6
+        }
+      }
+    })
+  </script>

@@ -147,25 +147,37 @@ include('header.php');
         <div class="col-md-5 border rounded overflow-hidden p-4 flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <h3>Preguntas frecuentes</h3>
         <div class="lip">
-          <a class="btn btn-primary w-100" data-toggle="collapse" href="#collapseim" role="button" aria-expanded="false" aria-controls="collapseim">
-          <i class="fa fa-sort-desc" style="font-size:24px"></i>¿Como implemento TAE?
-          </a>
-          <div class="collapse" id="collapseim">
-              <div class="card card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-              </div>
-          </div>
+        <h2 class="accordion-header" id="headingOneY">
+          <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOneY"
+            aria-expanded="true" aria-controls="collapseOneY">
+            <i class="fa fa-sort-desc" style="font-size:24px"><h5>¿Como implemento JD TAE?</h5></i>
+            </a>
+        </h2>
+      <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
+        data-mdb-parent="#accordionExampleY">
+        <div class="accordion-body text-justify">
+          Un potente Punto de Venta para tu negocio de alimentos, gestiona fácilmente tus ventas y sin
+          importar el tamaño de tu negocio, te apoya a simplificar tus órdenes a través de una interfaz
+          intuitiva y diseñada para optimizar tiempos.
         </div>
-        <div class="lip">
-          <a class="btn btn-primary  w-100" data-toggle="collapse" href="#collapseben" role="button" aria-expanded="false" aria-controls="collapseben">
-          <i class="fa fa-sort-desc" style="font-size:24px"></i>¿Qué beneficios tengo con TAE?
-          </a>
-          <div class="collapse" id="collapseben">
-              <div class="card card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-              </div>
-          </div>
-        </div>                
+      </div>
+      </div>
+      <div class="lip">
+      <h2 class="accordion-header" id="headingOneY">
+        <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne"
+          aria-expanded="false" aria-controls="collapseOne">
+          <i class="fa fa-sort-desc" style="font-size:24px"><h6>¿Que beneficios tengo con JD TAE?</h6></i>
+                      </a>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+        data-mdb-parent="#accordionExampleY">
+        <div class="accordion-body text-justify">
+          Un potente Punto de Venta para tu negocio de alimentos, gestiona fácilmente tus ventas y sin
+          importar el tamaño de tu negocio, te apoya a simplificar tus órdenes a través de una interfaz
+          intuitiva y diseñada para optimizar tiempos.
+        </div>
+      </div>
+      </div>            
     </div>
   </div>
  </div>
