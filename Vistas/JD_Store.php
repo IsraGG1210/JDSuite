@@ -276,58 +276,58 @@ require 'Conexion/Database.php';
         <a href="https://www.youtube.com/watch?v=q1NM5De1JIM&list=PLCHufcZLZMIwcksYnpPP5zEN2TswT9JKz" target="_blank">
           <button class="btn btn-primary" style="background-color:#29A8B0;">Videotutoriales</button>
         </a>
-      </center>
-    </div>
-    <div class="col-12 col-md-6  tac2 blb">
-      <h2 class="titjd2 tac">FAQ's</h2>
-      <div class="dsuitefaq">
-        <!-- FAQs Acordein-->
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#">
-                  ¿Cómo entregarán mi paquete?
-                </a>
-              </h4>
-            </div>
-            <div id="faq1" class="panel-collapse collapse">
-              <div class="panel-body">
+        </center>
+      </div>
+      <div class="col-12 col-md-6  tac2 blb" id="accordionExamP">
+          <div class="accordion-item ">
+              <h2 >Preguntas frecuentes</h2>
+              <div class="lip">
+              <h2 class="accordion-header" id="headingOneY">
+                <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOneY"
+                  aria-expanded="false" aria-controls="collapseOneY">
+                  ¿Como entregaran mi paquete?
+                  <i class="fa fa-sort-desc" style="font-size:24px"></i>
+                      </a>
+              </h2>
+              <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
+                data-mdb-parent="#accordionExampleY">
+                <div class="accordion-body text-justify">
                 Recibirás un correo por parte de nuestros especialistas para concretar una cita, de este modo ellos se
-                encargarán de instalar tu sistema JD y configurarlo para tu primero uso.<br />
-                Es importante que te mantengas atento a sus indicaciones. </div>
-            </div>
-          </div>
-          <!-- /.panel -->
-        </div>
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#">
-                  ¿Puedo pagar con tarjeta de crédito a meses sin intereses?ACTUAL
-                </a>
-              </h4>
-            </div>
-            <div id="faq2" class="panel-collapse collapse">
-              <div class="panel-body">
+                  encargarán de instalar tu sistema JD y configurarlo para tu primero uso.<br />
+                  Es importante que te mantengas atento a sus indicaciones.
+                </div>
+              </div>
+              </div>
+              <div class="lip">
+              <h2 class="accordion-header" id="headingOneY">
+                <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne"
+                  aria-expanded="false" aria-controls="collapseOne">
+                  ¿Puedo pagar con tarjeta de credito a meses sin intereses?
+                  <i class="fa fa-sort-desc" style="font-size:24px"></i>
+                      </a>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-mdb-parent="#accordionExampleY">
+                <div class="accordion-body text-justify">
                 Claro que si, en tu carrito de compra elije la opción Pago con tarjeta de crédito y con la seguridad
-                de <b>Mercado Pago</b> podrás procesar tu pago diferido </div>
-            </div>
-          </div>
-        </div>
+                  de <b>Mercado Pago</b> podrás procesar tu pago diferidoClaro que si, en tu carrito de compra elije la opción Pago con tarjeta de crédito y con la seguridad
+                  de <b>Mercado Pago</b> podrás procesar tu pago diferido
+                </div>
+              </div>
+              </div>
+           </div>
+
       </div>
     </div>
   </div>
-</div>
 
-<!--PARTE DE WHATS-->
-<div class="msgwh">
-  <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-    <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-  </a>
-</div>
-
+  <!--PARTE DE WHATS-->
+  <div class="msgwh">
+    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
+      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+    </a>
+  </div>
+  
 
 
 <?php
