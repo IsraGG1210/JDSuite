@@ -305,7 +305,7 @@ require 'Conexion/Database.php';
             <div class="panel-heading">
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#">
-                  ¿Puedo pagar con tarjeta de crédito a meses sin intereses?
+                  ¿Puedo pagar con tarjeta de crédito a meses sin intereses?ACTUAL
                 </a>
               </h4>
             </div>
