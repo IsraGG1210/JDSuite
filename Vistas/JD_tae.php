@@ -153,7 +153,7 @@ include('header.php');
             <i class="fa fa-sort-desc" style="font-size:24px"><h5>¿Como implemento JD TAE?</h5></i>
             </a>
         </h2>
-      <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
+      <div id="collapseOneY" class="accordion-collapse collapse " aria-labelledby="headingOneY"
         data-mdb-parent="#accordionExampleY">
         <div class="accordion-body text-justify">
           Un potente Punto de Venta para tu negocio de alimentos, gestiona fácilmente tus ventas y sin
@@ -169,7 +169,7 @@ include('header.php');
           <i class="fa fa-sort-desc" style="font-size:24px"><h6>¿Que beneficios tengo con JD TAE?</h6></i>
                       </a>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
         data-mdb-parent="#accordionExampleY">
         <div class="accordion-body text-justify">
           Un potente Punto de Venta para tu negocio de alimentos, gestiona fácilmente tus ventas y sin

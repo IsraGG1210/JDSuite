@@ -284,12 +284,12 @@ require 'Conexion/Database.php';
               <div class="lip">
               <h2 class="accordion-header" id="headingOneY">
                 <a  type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOneY"
-                  aria-expanded="false" aria-controls="collapseOneY">
+                  aria-expanded="true" aria-controls="collapseOneY">
                   ¿Como entregaran mi paquete?
                   <i class="fa fa-sort-desc" style="font-size:24px"></i>
                       </a>
               </h2>
-              <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
+              <div id="collapseOneY" class="accordion-collapse collapse" aria-labelledby="headingOneY"
                 data-mdb-parent="#accordionExampleY">
                 <div class="accordion-body text-justify">
                 Recibirás un correo por parte de nuestros especialistas para concretar una cita, de este modo ellos se
@@ -306,7 +306,7 @@ require 'Conexion/Database.php';
                   <i class="fa fa-sort-desc" style="font-size:24px"></i>
                       </a>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                 data-mdb-parent="#accordionExampleY">
                 <div class="accordion-body text-justify">
                 Claro que si, en tu carrito de compra elije la opción Pago con tarjeta de crédito y con la seguridad
