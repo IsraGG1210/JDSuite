@@ -2,23 +2,7 @@
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
 include('header.php');
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JD_Suite</title>
 
-    <link rel="stylesheet" href="../public/css/style.css">
-    
-    <link rel="shortcut icon" href="../public/imagenes/favicon.png"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-</head>
-<?php
 $db = new Database();
 $con = $db->conectar();
 
@@ -71,84 +55,93 @@ if($idp == '' || $token ==''){
         $prod = $sqlpr->fetchAll(PDO::FETCH_ASSOC);
         
 ?>
-<body>
+
+
 <!--FORMULARIO/VERIFICACION-->
 <div class="bloques" style="background: white; border-radius: 5px;">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="box">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="box">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="...">
-                </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" class="d-block w-100" alt="...">
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden" >Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden" >Next</span>
-              </button>
+              <div class="carousel-item">
+                <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100"
+                  alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <a href="" class="centrado">
+          <i class="fa fa-bookmark" style="color: #a6d0fc; font-size:24px;"> </i> <span>Se encuentra en: </span> <span>
+            JD REST</span>
+        </a>
+      </div>
+      <div class="col-md-7">
+        <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h5><?php echo $nombre; ?></h5>
+          <input type="hidden" id="nombre" value="<?php echo ($nombre);?>">
+
+          <div class="logo">
+            <div class="estrellas">
+              <i class="fa fa-star estrellasdis"></i>
+              <i class="fa fa-star estrellasdis"></i>
+              <i class="fa fa-star estrellasdis"></i>
+              <i class="fa fa-star estrellasdis"></i>
+              <i class="fa fa-star-half-full estrellasdis"></i>
             </div>
           </div>
-              <a href="" class="centrado">
-                <i class="fa fa-bookmark" style="color: #a6d0fc; font-size:24px;"> </i> <span>Se encuentra en: </span> <span> JD REST</span>
-              </a> 
-        </div>
-        <div class="col-md-7">
-          <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <h5><?php echo $nombre; ?></h5>
-            <input type="hidden" id="nombre" value="<?php echo ($nombre);?>">
-            
-            <div class="logo">
-            <div class="estrellas">
-              <i class="fa fa-star estrellasdis"  ></i>
-              <i class="fa fa-star estrellasdis"  ></i>
-              <i class="fa fa-star estrellasdis"  ></i>
-              <i class="fa fa-star estrellasdis"  ></i>
-              <i class="fa fa-star-half-full estrellasdis"  ></i>
-            </div>
-            </div>
-                <div class="centradoprecio flex justify-between mb-3 text-sm">
-                  <span><h5 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h5></span>
-                  <input type="hidden" id="precio" value="<?php echo ($precio); ?>"/>
-                  <input type="hidden" id="descuento" value="0"/>
-                  <p>Modelo:<?php echo ($idp);?> </p>
-                  <input type="hidden" id="id" value="<?php echo ($idp);?>">
-                 
-              </div>
-                <div class="flex justify-between font-bold pt-2 mt-2 mb-2 border-t border-gray-500">
-                  <span">INCLUYE:</span>
-                  <ul>
-                    <li><?php echo $detallesmc ?></li>
-                  </ul>
-              </div>
-                 <div class="centrado">
-                 <p>CANTIDAD:<br>
-                    <a class="btn btn-default" onclick="subc();"><i class="fa fa-minus compra"></i></a>
-                    <input type="number" name="cantidad" id="cantidad" min="1" value="1" class="btn btn-default" onchange="changecant();" style="width: 25%;">
-                    <a class="btn btn-default" onclick="addc();"><i class="fa fa-plus compra"></i></a>
-                    
-                  </p>
-                 </div>
-                  <div class="centrado">
-                    <p class="text-center buttons ">
-                      <a  class="btn btn-success" style="color:white;"><i class="fa fa-shopping-cart"></i> Comprar</a>
-                      <a id="cart" class="btn btn-primary" style="color:white;"><i class="fa fa-shopping-cart"></i> Añadir a carrito</a>
-                    </p>
-                  </div>
-                     
-                        <script >
-                           function addToCart(idp){
+          <div class="centradoprecio flex justify-between mb-3 text-sm">
+            <span>
+              <h5 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h5>
+            </span>
+            <input type="hidden" id="precio" value="<?php echo ($precio); ?>" />
+            <input type="hidden" id="descuento" value="0" />
+            <p>Modelo:<?php echo ($idp);?> </p>
+            <input type="hidden" id="id" value="<?php echo ($idp);?>">
+
+          </div>
+          <div class="flex justify-between font-bold pt-2 mt-2 mb-2 border-t border-gray-500">
+            <span">INCLUYE:</span>
+              <ul>
+                <li><?php echo $detallesmc ?></li>
+              </ul>
+          </div>
+          <div class="centrado">
+            <p>CANTIDAD:<br>
+              <a class="btn btn-default" onclick="subc();"><i class="fa fa-minus compra"></i></a>
+              <input type="number" name="cantidad" id="cantidad" min="1" value="1" class="btn btn-default"
+                onchange="changecant();" style="width: 25%;">
+              <a class="btn btn-default" onclick="addc();"><i class="fa fa-plus compra"></i></a>
+
+            </p>
+          </div>
+          <div class="centrado">
+            <p class="text-center buttons ">
+              <a class="btn btn-success" style="color:white;"><i class="fa fa-shopping-cart"></i> Comprar</a>
+              <a id="cart" class="btn btn-primary" style="color:white;"><i class="fa fa-shopping-cart"></i> Añadir a
+                carrito</a>
+            </p>
+          </div>
+
+          <script>
+            function addToCart(idp){
                             document.getElementById("cart").disabled = true;
                             precio = $("#precio").val();
                             descuento = $("#descuento").val();
@@ -165,108 +158,112 @@ if($idp == '' || $token ==''){
                               cantidad: cantidad,
                               p: producto
                             },function(htmle){
-                              $("#cart").html(htmle);
+                              //$("#cart").html(htmle);
                               document.getElementById('cart');
+                              //$("#cantcart").load();
+                              //$('#cantcart').load('header.php');
                               $.post("query/infocart.php",{},function(htmlec){
                                 $("#cantcart").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
                                 //alert ("Cantidad" + htmlec);
                               });
                             });
                           }
-                        </script>
-                      </div>
-                      
-                 
-                  
-            </div>
-          </div>
+          </script>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 
 
-  <script>
-    function addc(){
-  var cantidad = $("#cantidad").val();
-  cantidad++;
-  $("#cantidad").val(cantidad);
-}
-function subc(){
-  var cantidad = $("#cantidad").val();
-  if(cantidad > 1)
-    cantidad--;
-  $("#cantidad").val(cantidad);
-}
-  
-  </script>
+<script>
+  function addc() {
+    var cantidad = $("#cantidad").val();
+    cantidad++;
+    $("#cantidad").val(cantidad);
+  }
 
-  <!--COMENTARIOS-->
-  <div class="bloques">
-    <div class="col-12">
-      <div class="row mb-2">
-        <div class="col-md-8">
-          <div class="box">
-            <div class="row mb-5 estrellas p-4">
-              <h4>Productos relacionados</h4>
-              <div class="text-center">
-                <div class="row">
-                    <?php foreach($prod as $row){?>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                                -mdb-ripple-color="light">
-                                <a href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
-                                  <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />    
-                                  <div class="mask">
-                                    </div>
-                                    <div class="hover-overlay">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                    </div>
-                                    <div class="card-body">
-                                    <h5 id="descpro" class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>   
-                                    </div>
-                                </a>
-                                <h4><?php echo MONEDA.  number_format($row['ap_precio'],2,'.',','); ?></h4>
-                               
-                            </div>
-                            
+  function subc() {
+    var cantidad = $("#cantidad").val();
+    if (cantidad > 1)
+      cantidad--;
+    $("#cantidad").val(cantidad);
+  }
+</script>
+
+<!--COMENTARIOS-->
+<div class="bloques">
+  <div class="col-12">
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <div class="box">
+          <div class="row mb-5 estrellas p-4">
+            <h4>Productos relacionados</h4>
+            <div class="text-center">
+              <div class="row">
+                <?php foreach($prod as $row){?>
+                <div class="col-lg-3 col-md-6 mb-4">
+                  <div class="card">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                      -mdb-ripple-color="light">
+                      <a
+                        href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                        <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
+                        <div class="mask">
                         </div>
+                        <div class="hover-overlay">
+                          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </div>
+                        <div class="card-body">
+                          <h5 id="descpro" class="card-title mb-2"><?php echo $row['a_nmb']; ?></h5>
+                        </div>
+                      </a>
+                      <h4><?php echo MONEDA.  number_format($row['ap_precio'],2,'.',','); ?></h4>
                     </div>
-                    <?php }?>
+                  </div>
                 </div>
-            </div>
+                <?php }?>
+              </div>
             </div>
           </div>
         </div>
-        <!--PRODUDCTOS RELACIONADOS -->
-        <div class="col-md-4">
-          <div class="row mb-2">
-            <div class="col-mb-3">
-              <span><h4>Opiniones</h4></span>
-              <div class="box p-4">
+      </div>
+      <!--PRODUDCTOS RELACIONADOS -->
+      <div class="col-md-4">
+        <div class="row mb-2">
+          <div class="col-mb-3">
+            <span>
+              <h4>Opiniones</h4>
+            </span>
+            <div class="box p-4">
               <form action="">
-                      <div class="parse text-pform mb-2">
-                        <input class="form-control entradatexto" type="text" name="nombre" id="nombre" onblur="checkf();"  placeholder="Nombre" required/>
-                      </div>
-                      <div class="parse text-pform mb-2">
-                        <textarea class="form-control"name="" id="" cols="30" rows="2"placeholder="Mensaje" required></textarea>
-                      </div>
-                      <div class="col-12 centrado">
-                        <button style="background-color: #a6d0fc;border-color: #a6d0fc;" class="btn btn-primary text-dark" id="enviarc" type="submit" >Enviar</button>
-                      </div>
+                <div class="parse text-pform mb-2">
+                  <input class="form-control entradatexto" type="text" name="nombre" id="nombre" onblur="checkf();"
+                    placeholder="Nombre" required />
+                </div>
+                <div class="parse text-pform mb-2">
+                  <textarea class="form-control" name="" id="" cols="30" rows="2" placeholder="Mensaje"
+                    required></textarea>
+                </div>
+                <div class="col-12 centrado">
+                  <button style="background-color: #a6d0fc;border-color: #a6d0fc;" class="btn btn-primary text-dark"
+                    id="enviarc" type="submit">Enviar</button>
+                </div>
               </form>
-              </div>
             </div>
-            <div class="col-mb-2 p-2">
-              <div class="row mb-2">
-                  <div class="col-mb-3 centrado ">
-                    <img src="#" width="15%" height="40%" alt="">
-                  </div>
-                  <div class="col-mb-4">
-                    <h6>Ana Karen</h6>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem dolores suscipit hic non nobis necessitatibus doloribus veniam nihil maxime numquam quisquam eligendi aliquid saepe atque exercitationem totam esse, vel ipsa.</p>
-                  </div>
+          </div>
+          <div class="col-mb-2 p-2">
+            <div class="row mb-2">
+              <div class="col-mb-3 centrado ">
+                <img src="#" width="15%" height="40%" alt="">
+              </div>
+              <div class="col-mb-4">
+                <h6>Ana Karen</h6>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem dolores suscipit hic non nobis
+                  necessitatibus doloribus veniam nihil maxime numquam quisquam eligendi aliquid saepe atque
+                  exercitationem totam esse, vel ipsa.</p>
               </div>
             </div>
           </div>
@@ -274,25 +271,18 @@ function subc(){
       </div>
     </div>
   </div>
+</div>
 
 
-  <!--PARTE DE WHATSAPP-->
-  <div class="msgwh">
-    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
-    </a>
-  </div>
-  
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-  </script>
-</body>
+<!--PARTE DE WHATSAPP-->
+<div class="msgwh">
+  <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
+    <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+  </a>
+</div>
 
-</html>
-    
+
+
 <?php
 require 'footer.php';
 ?>

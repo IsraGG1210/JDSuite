@@ -1,111 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-	<title></title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
-
-
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-
-
-	<!-- Template Main CSS File -->
-	<link href="../public/css/style.css" rel="stylesheet">
-
-
-</head>
-
-<body>
 <!-- ======= Footer ======= -->
-	<!-- Footer -->
-	<section id="footer" style="background-color:<?php echo $bg ?>;">
-		<div class="container">
-			<div class="row text-center text-xs-center text-sm-left text-md-left">
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<h5>JD Suite</h5>
-					<ul class="list-unstyled quick-links">
-						<li><a href="JD_Store.php"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
-						<li><a href="JDRest.php"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
-						<li><a href="JD_Invoice.php"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
-						<li><a href="JD_tae.php"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
-						<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<h5>Blog y Comunidad</h5>
-					<ul class="list-unstyled quick-links">
-						<li><a href="#"><i class="fa fa-angle-double-right"></i>Blog
-								JD</a></li>
-						<li><a href="#"><i
-									class="fa fa-angle-double-right"></i>JDShop.mx</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<h5>Tienda</h5>
-					<ul class="list-unstyled quick-links">
-						<li><a href="#"><i class="fa fa-angle-double-right"></i>Kits
-								Equipos</a></li>
-						<li><a href="#"><i
-									class="fa fa-angle-double-right"></i>Impresoras</a></li>
-						<li><a href="#"><i class="fa fa-angle-double-right"></i>Cajon
-								Dinero</a></li>
-						<li><a href="#"><i
-									class="fa fa-angle-double-right"></i>Lectores</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<h5>Soporte</h5>
-					<ul class="list-unstyled quick-links">
-						<li><a href="#"><i
-									class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para levantar una solicitud
-								de soporte</a></li>
-					</ul>
-				</div>
+<!-- Footer -->
+<section id="footer" style="background-color:<?php echo $bg ?>;">
+	<div class="container">
+		<div class="row text-center text-xs-center text-sm-left text-md-left">
+			<div class="col-xs-12 col-sm-3 col-md-3">
+				<h5>JD Suite</h5>
+				<ul class="list-unstyled quick-links">
+					<li><a href="JD_Store.php"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
+					<li><a href="JDRest.php"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
+					<li><a href="JD_Invoice.php"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
+					<li><a href="JD_tae.php"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
+					<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
+				</ul>
 			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-					<ul class="list-unstyled list-inline social text-center">
-						<li class="list-inline-item"><a href="#"><i
-									class="fab fa-youtube fa-xl"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i
-									class="fab fa-twitter-square fa-xl"></i></li>
-						<li class="list-inline-item"><a href="#"><i
-									class="fab fa-instagram fa-xl"></i></li>
-						<li class="list-inline-item"><a href="#"><i
-									class="fab fa-facebook-square fa-xl"></i></a></li>
-					</ul>
-				</div>
-				<hr>
+			<div class="col-xs-12 col-sm-3 col-md-3">
+				<h5>Blog y Comunidad</h5>
+				<ul class="list-unstyled quick-links">
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Blog
+							JD</a></li>
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>JDShop.mx</a></li>
+				</ul>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 text-center">
-
-				<a href="registro.php">
-					<h3 style="color:white;">¿No tienes cuenta? <button
-							class="btn btn-primary rounded-pill">Registrate</button></h3>
-				</a>
-
+			<div class="col-xs-12 col-sm-3 col-md-3">
+				<h5>Tienda</h5>
+				<ul class="list-unstyled quick-links">
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Kits
+							Equipos</a></li>
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Impresoras</a></li>
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Cajon
+							Dinero</a></li>
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-3 col-md-3">
+				<h5>Soporte</h5>
+				<ul class="list-unstyled quick-links">
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para levantar una
+							solicitud
+							de soporte</a></li>
+				</ul>
 			</div>
 		</div>
-	</section>
-	<!-- ./Footer -->
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+				<ul class="list-unstyled list-inline social text-center">
+					<li class="list-inline-item"><a href="#"><i class="fab fa-youtube fa-xl"></i></a></li>
+					<li class="list-inline-item"><a href="#"><i class="fab fa-twitter-square fa-xl"></i></li>
+					<li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-xl"></i></li>
+					<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-square fa-xl"></i></a></li>
+				</ul>
+			</div>
+			<hr>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 text-center">
 
-	<!-- End Footer -->
+			<a href="registro.php">
+				<h3 style="color:white;">¿No tienes cuenta? <button
+						class="btn btn-primary rounded-pill">Registrate</button></h3>
+			</a>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="../assets/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="../assets/js/popper.min.js"></script>
-	<script type="text/javascript" src="../assets/js/mdb.min.js"></script>
-	
+		</div>
+	</div>
+</section>
+<!-- ./Footer -->
+
+<!-- End Footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+	integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--Esta libreria da problemas con el dropdown-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"
+	integrity="sha512-eHx4nbBTkIr2i0m9SANm/cczPESd0DUEcfl84JpIuutE6oDxPhXvskMR08Wmvmfx5wUpVjlWdi82G5YLvqqJdA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+	integrity="sha512-oFBfx20Vuw8reYrngBlvcrgBmDcEAPE0Vv7Rb9b7JYZNHmDFdxZhiOTGm0CePa7ouSwfty9qwHQck1aVGWK5tA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+	integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+	integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
+	integrity="sha512-6UofPqm0QupIL0kzS/UIzekR73/luZdC6i/kXDbWnLOJoqwklBK6519iUnShaYceJ0y4FaiPtX/hRnV/X/xlUQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 </body>
 

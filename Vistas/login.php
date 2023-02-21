@@ -22,23 +22,6 @@ if($array['contar'] != '0'){
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JD_Suite</title>
-	<link rel="stylesheet" href="../public/css/style.css">
-	<link rel="shortcut icon" href="../public/imagenes/favicon.png" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
-
-<body>
 	<br>
 	<?php if(!empty($mensaje)):?>
 	<dialog id="myForm">
@@ -100,9 +83,7 @@ if($array['contar'] != '0'){
 	</div>
 
 
-</body>
 
-</html>
 
 <?php
 include 'footer.php';

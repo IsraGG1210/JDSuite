@@ -11,35 +11,6 @@ if(!isset($_SESSION))
 } 
 
 
-
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JD_Suite</title>
-
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../public/css/owl.carousel.css">
-  <link rel="stylesheet" href="../public/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="../public/css/owl.theme.default.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
-    integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
-
-<?php
   $db = new Database();
   $con = $db->conectar();
 
@@ -54,11 +25,11 @@ if(!isset($_SESSION))
 ?>
 
 
-<body>
+
 
   <div class="col-12 card" id="videoi">
-    <div class="embed-responsive embed-responsive-16by9 mx-auto">
-      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LXg1Y7qGsiY?autoplay=1&mute=1"
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/LXg1Y7qGsiY?autoplay=1&mute=1"
         allowfullscreen></iframe>
     </div>
   </div>
@@ -301,9 +272,7 @@ if(!isset($_SESSION))
     </a>
   </div>
 
-</body>
 
-</html>
 <?php
 include('footer.php');
 ?>

@@ -1,18 +1,12 @@
 <?php
 include ('header.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JD_Ecomm</title>
 
+ 
  <!--CONTENT VIDEO-->
  <div class="col-12 card" id="videoi">
-  <div class="embed-responsive embed-responsive-16by9 mx-auto">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-ogV7BTkobA?autoplay=1&mute=1" allowfullscreen></iframe>
+  <div class="ratio ratio-16x9">
+    <iframe  src="https://www.youtube.com/embed/-ogV7BTkobA?autoplay=1&mute=1" allowfullscreen></iframe>
   </div>
 </div> <br>
 
@@ -42,7 +36,7 @@ include ('header.php');
   <div class="col-md-4 mb-4 d-flex " >
     
 
-<body><div class="card">
+<div class="card">
       <div class="view col-auto d-none d-lg-block">
         <img src="../public/imagenes/ecomm2.gif" class="card-img-top"
           alt="">
@@ -158,7 +152,5 @@ include ('header.php');
 
 <?php
 include ('footer.php');
-?></boduy	</body>
-
-</html>
+?>
 				  

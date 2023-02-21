@@ -1,26 +1,8 @@
 <?php
 include ('header.php');
-/* Select cw_nmb AS Cateogria, c_nmb as Concepto FROM categoriasw inner JOIN concepto_categoria on cw_categoria = cc_categoria INNER JOIN conceptos on c_id = cc_concepto */
+/*Select dw_nmb AS Cateogria, c_nmb as Concepto FROM departamentosw inner JOIN departamento_concepto on dw_id = dc_departamento INNER JOIN conceptos on c_id = dc_concepto */
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JD_Suite</title>
-  <link rel="stylesheet" href="../public/css/style.css">
-  <link rel="shortcut icon" href="../public/imagenes/favicon.png" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.min.js" integrity="sha512-eHx4nbBTkIr2i0m9SANm/cczPESd0DUEcfl84JpIuutE6oDxPhXvskMR08Wmvmfx5wUpVjlWdi82G5YLvqqJdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-</head>
-
-<body>
   
 
   <div id="nav">
@@ -86,7 +68,4 @@ include ('header.php');
 
   
     
-  
-</body>
-
-</html>
+ 
