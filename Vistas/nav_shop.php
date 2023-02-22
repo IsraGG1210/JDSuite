@@ -12,7 +12,7 @@ $resultado = setq($sql);
 ?>
 
 
-<nav class="navbar navbar-expand-sm " style="background-color:#E5E5E5;">
+<nav class="navbar navbar-expand-sm navbar-light bg-light" id="navshop">
   <div class="container-fluid">
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">

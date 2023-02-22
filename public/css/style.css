@@ -1107,3 +1107,6 @@ section .section-title {
   color: #000000;
 }
 
+#navshop a:hover{
+  color: #29A8B0;
+}
