@@ -498,6 +498,7 @@ input::-webkit-input-placeholder {
 
 #login .form-control {
   height: auto !important;
+  
   padding: 8px 12px !important;
 }
 
@@ -532,6 +533,7 @@ input::-webkit-input-placeholder {
   color: rgb(255, 255, 255);
   text-shadow: none;
   border-radius: 15px;
+  width: 70%;
 }
 
 #login span {

@@ -30,13 +30,15 @@ $resultado = setq($sql);
              $sql2 ='SELECT * FROM conceptos INNER JOIN departamento_concepto ON c_id = dc_concepto WHERE dc_departamento = "'.$row['dw_id'].'"';
             $resultado2 = setq($sql2);
             while($row2 = $resultado2->fetch_array()){?>
-            <li><a class="dropdown-item" href="#"><?php echo $row2['c_nmb']?></a></li>
+            <li><a class="dropdown-item" href="shop.php?con=<?php echo $row2['c_id']?>"><?php echo $row2['c_nmb']?></a></li>
             <?php }?>
-            <li><a class="dropdown-item" href="#">VER TODO</a></li>
+            <li><a class="dropdown-item" href="shop.php?dep=<?php echo $row['dw_id']?>">VER TODO</a></li>
           </ul>
         </li>
         <?php }?>
-        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="shop.php">TODOS LOS PRODUCTOS</a>
+        </li>
        
       </ul>
       <form class="d-flex">

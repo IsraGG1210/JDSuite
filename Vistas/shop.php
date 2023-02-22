@@ -22,7 +22,32 @@ include 'nav_shop.php';
     $total_pages = ceil($total_items / $items_per_page);
 
     
-    $resultado = setq($sql);             
+    $resultado = setq($sql);   
+    if(isset($_GET['con'])){
+      $concepto = $_GET['con'];
+      $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb 
+      WHERE aw_concepto = $concepto
+      LIMIT $items_per_page OFFSET $offset";
+    $total_items = 100;
+    $total_pages = ceil($total_items / $items_per_page);
+    $resultado = setq($sql);   
+    }else if(isset($_GET['dep'])){
+      $concepto = $_GET['dep'];
+      $sql = "SELECT DISTINCT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb 
+      WHERE aw_departamento = $concepto
+      LIMIT $items_per_page OFFSET $offset";
+    $total_items = 100;
+    $total_pages = ceil($total_items / $items_per_page);
+    $resultado = setq($sql); 
+    } 
 ?>
 
 
