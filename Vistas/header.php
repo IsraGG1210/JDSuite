@@ -1,7 +1,10 @@
 <?php 
 require_once './Conexion/funciones.php';
 session_start();
-
+if (!isset($_SESSION['id'])) {
+    $_SESSION['id'] = uniqid();
+}
+$sesion = $_SESSION['id'];
   //ECHO $_SERVER['REQUEST_URI'];
   if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store.php')
   $bg = '#2B4B6B';
@@ -89,10 +92,10 @@ else
                             <a href="verif_Tienda.php" class="nav-link">
                                 <span id="cantcart">
                                     <?php
-                                $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "63f4e63b33e"';
-                                $result = setq($sql);
-                                list($total) = $result->fetch_array();
-                                ?>
+                                        $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
+                                        $result = setq($sql);
+                                        list($total) = $result->fetch_array();
+                                    ?>
                                     <i class="fas fa-shopping-cart"></i> <?php echo number_format($total); ?>
                                 </span>
                             </a>

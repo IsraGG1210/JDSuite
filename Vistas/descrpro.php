@@ -135,7 +135,7 @@ if($idp == '' || $token ==''){
           <div class="centrado">
             <p class="text-center buttons ">
               <a class="btn btn-success" style="color:white;"><i class="fa fa-shopping-cart"></i> Comprar</a>
-              <a id="cart" class="btn btn-primary" style="color:white;"><i class="fa fa-shopping-cart"></i> Añadir a
+              <a id="cart" class="btn btn-primary" style="color:white;" onclick="addToCart('<?php echo ($idp);?>')"><i class="fa fa-shopping-cart"></i> Añadir a
                 carrito</a>
             </p>
           </div>

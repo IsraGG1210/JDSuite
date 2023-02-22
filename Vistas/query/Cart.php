@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once '../Conexion/funciones.php';
 session_start();
 if (!isset($_SESSION['id'])) {
@@ -14,7 +14,7 @@ $cantidad = $_POST['cantidad'];
 $producto = $_POST['p'];
 
 
-               $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="63f4e63b33e" AND pd_producto="'.$producto.'"';
+               $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$sesion.'" AND pd_producto="'.$producto.'"';
                $result = setq($sql);
             
             if ($result->num_rows > 0) {

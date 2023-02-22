@@ -135,23 +135,59 @@ require 'Conexion/Database.php';
 
 <!--Carousel OWL-->
 <div class="owl-carousel owl-theme">
-  <?php foreach ($resultado as $row) { ?>
-  <div class="item">
-    <div class="py-4 text-center justify-content-center card"><a href=""><img
-          src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
-      <div class="card-body">
-        <span id="descpro">
-          <?php echo $row['a_nmb']; ?>
-        </span>
-        <h2>
-          <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
-        </h2>
-        <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
+    <?php foreach ($resultado as $row) { ?>
+    <div class="item">
+      <div class="py-4 text-center justify-content-center card"><a href=""><img
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+        <div class="card-body">
+          <span id="descpro">
+            <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
+          </span>
+          <input type="hidden" id="nombre" value="<?php echo $row['a_nmb']; ?>" />
+          <?php echo $row['a_cb'];?>
+          <input type="hidden" id="idp" value="<?php echo $row['a_cb']; ?>" />
+          <h4>
+            <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>
+          </h4>
+          <input type="hidden" id="precio<?php echo $row['a_cb']; ?>" value="<?php echo $row['ap_precio']; ?>" />
+          <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['a_cb'];?>')"><i class="fas fa-shopping-cart"></i>Agregar</a>
+        </div>
       </div>
     </div>
+    <?php } ?>
   </div>
-  <?php } ?>
-</div>
+
+  <!--Carrusel de prductos-->
+<br>
+<script>
+    function addToCartCarousel(idp){
+      document.getElementById("cart").disabled = true;
+      precio = $("#precio"+idp).val();
+      descuento = 0;
+      talla = 0;
+      color = 0;
+      cantidad = 1;
+      producto = idp;
+      alert(precio+" "+talla+" "+color+" "+cantidad+" "+producto);
+      $.post("query/Cart.php",{
+      precio: precio,
+      descuento: descuento,
+      talla: talla,
+      colorsel: color,
+      cantidad: cantidad,
+      p: producto
+      },function(htmle){
+      //$("#cart").html(htmle);
+      document.getElementById('cart');
+      //$("#cantcart").load();
+      //$('#cantcart').load('header.php');
+      $.post("query/infocart.php",{},function(htmlec){
+      $("#cantcart").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
+      //alert ("Cantidad" + htmlec);
+      });
+      });
+    }
+  </script>
 
 
 
