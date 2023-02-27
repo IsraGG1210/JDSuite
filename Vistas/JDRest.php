@@ -11,7 +11,7 @@ require 'Conexion/Database.php';
       inner join imagenes on aw_cb = i_idproducto
       inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
       inner join articulos on a_cb = aw_cb
-      where a_lineaneg = 12
+      where a_lineaneg = 12 GROUP BY a_cb
       limit 30");
   $sql->execute();
   $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);

@@ -104,8 +104,9 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 					</div>
 				</div>
 				<center>
-					<div class="form-group btnregistro">
-						<input type="submit" value="Registrate" style="width:50%; font-size: 20px;">
+					<div class="form-group btnregistro ">
+						<!-- <input class ="btn btn-primary" type="submit" value="Registrate" > -->
+						<button class="btn btn-secondary btn-lg " type="submit">Registrate</button>
 					</div>
 				</center>
 			</form>

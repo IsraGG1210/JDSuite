@@ -21,7 +21,7 @@ $sesion = $_SESSION['id'];
       from articulosw 
       inner join imagenes on aw_cb = i_idproducto
       inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-      inner join articulos on a_cb = aw_cb
+      inner join articulos on a_cb = aw_cb GROUP BY a_cb
       limit 30");
   $sql->execute();
   $row = $sql->fetch(PDO::FETCH_ASSOC);

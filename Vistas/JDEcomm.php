@@ -11,7 +11,7 @@ include ('header.php');
 </div> <br>
 
 
-<div class="display-inline ">
+<div class="display-inline container">
 	<div class="row d-flex  col-sm-12">
 		<div class="col-md-4 mb-4 d-flex ">
 			<div class="card">

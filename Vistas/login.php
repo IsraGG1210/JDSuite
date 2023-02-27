@@ -83,7 +83,7 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 					<div class="form-group btningresar">
 						<!-- <button class="btn btn-primary btn-lg btn-block login-button" name="button" id="button"
 							type="submit">Ingresar</button> -->
-						<input type="submit" value="Ingresar" style="width:50%; font-size: 20px;">
+							<button class="btn btn-secondary btn-lg" type="submit">Ingresar</button>
 					</div>
 				</center>
 			</form>
