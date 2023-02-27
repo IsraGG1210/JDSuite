@@ -81,8 +81,7 @@ include ('nav_shop.php');
         <div class="col-lg-2 col-md-6 mb-4">
           <div class="card">
             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" -mdb-ripple-color="light">
-              <a
-                href="descrpro.php?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
+              <a href="descrpro.php?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
                 <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
                 <div class="mask">
                 </div>
@@ -91,12 +90,15 @@ include ('nav_shop.php');
                 </div>
                 <div class="card-body">
                   <h6 id="descpro" class="card-title mb-2" style="color:grey;"><?php echo $row['a_nmb']; ?></h6>
+                  <input type="hidden" id="idp" value="<?php echo $row['p']; ?>" />
+                  <h6 id="descpro" class="card-title mb-2" style="color:grey;"><?php echo MONEDA.number_format($row['ap_precio'],2,'.',','); ?></h6>
                 </div>
               </a>
-              <h6><?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?></h6>
-              
-              <a id="cart" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Agregar</a>
             </div>
+              <input type="hidden" id="precio<?php echo $row['p']; ?>" value="<?php echo $row['ap_precio']; ?>" />
+              <div class="centrado p-4">
+              <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['p'];?>')"><i class="fas fa-shopping-cart"></i>Agregar</a>
+              </div>
           </div>
         </div>
         <?php }?>
@@ -104,7 +106,35 @@ include ('nav_shop.php');
     </div>
   </section>
 </div>
-
+<script>
+    function addToCartCarousel(idp){
+      document.getElementById("cart").disabled = true;
+      precio = $("#precio"+idp).val();
+      descuento = 0;
+      talla = 0;
+      color = 0;
+      cantidad = 1;
+      producto = idp;
+      alert(precio+" "+talla+" "+color+" "+cantidad+" "+producto);
+      $.post("query/Cart.php",{
+      precio: precio,
+      descuento: descuento,
+      talla: talla,
+      colorsel: color,
+      cantidad: cantidad,
+      p: producto
+      },function(htmle){
+      //$("#cart").html(htmle);
+      document.getElementById('cart');
+      //$("#cantcart").load();
+      //$('#cantcart').load('header.php');
+      $.post("query/infocart.php",{},function(htmlec){
+      $("#cantcart").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
+      //alert ("Cantidad" + htmlec);
+      });
+      });
+    }
+  </script>
 <!-- Pagination -->
 <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
   <div class="pagination">

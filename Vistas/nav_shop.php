@@ -41,9 +41,9 @@ $resultado = setq($sql);
         </li>
        
       </ul>
-      <form class="d-flex" method="POST" action="shop.php" id="buscador">
-        <input name="busqueda" id="busqueda"  class="form-control me-2" type="text" placeholder="Buscar">
-        <input type="" name="page" value="<?php echo $_REQUEST['page']?>">
+      <form class="d-flex" method="GET" action="shop.php" id="buscador">
+        <input name="busqueda" id="busqueda"  class="form-control me-2" type="text" placeholder="Buscar" >
+        <input type="hidden" name="page" value="<?php echo $_REQUEST['page']?>">
         <button class="btn btn-primary"  type="submit"><i class="fas fa-search"></i></button>
       </form>
     </div>

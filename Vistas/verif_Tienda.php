@@ -1,5 +1,7 @@
 <?php
 include ('header.php');
+require('query/mostrarcart.php');
+require './Conexion/config.php';
 ?>
 
 <!--FORMULARIO/VERIFICACION-->
@@ -10,42 +12,97 @@ include ('header.php');
           <div class="lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <form method="post" action="updatecarrito">
               <h1>CARRITO DE COMPRAS</h1>
-              <p class="text-muted">Tienes 1 articulo(s) en tu carrito.</p>
+              <p class="text-muted">Tienes 
+                <span id="cantcart">
+                <?php
+                   $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
+                   $result = setq($sql);
+                   list($total) = $result->fetch_array();
+                ?>
+                <?php echo number_format($total); ?>
+                </span> articulo(s) en tu carrito.</p>
               <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="tblistado">
                   <thead>
                     <tr>
-                      <th colspan="2">Producto</th>
+                      <th></th>
+                      <th>Producto</th>
                       <th>Cantidad</th>
                       <th>Precio</th>
                       <th>Descuento</th>
-                      <th colspan="2">Total</th>
+                      <th>Subtotal</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
+                    <?php if($datos == null){
+                      echo '<tr>
+                      <td colspan=6 class="text-center">
+                        <b>Lista vacía</b>
+                      </td>
+                    </tr>';                    
+                    }else{
+                      $total=0;
+                      foreach($datos as $producto){
+                        $ruta = $producto['rutaimagen'];
+                        $id = $producto['a_cb'];
+                        $nombre = $producto['a_nmb'];
+                        $cantidad = $producto['pd_cantidad'];
+                        $precio = $producto['pd_precio'];
+                        $descuento = $producto['pd_descuento'];
+                        $subtotal = $cantidad * $precio;
+                        $total += $subtotal;
+                      ?>  
                     <tr>
                       <td>
-                      <a href="#">
-                      <img src="../public/imagenes/productos/CB0000001513.jpg"  width="80%" height="80%"alt="#">
-                      </a>
+                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
                       </td>
                       <td>
-                      <a href="#">Rest Terminal</a>
+                        <?php echo $nombre;?>
+                        <input type="hidden" id="producto" value="<?php echo ($id); ?>"/>
+                      </td>
+                      <td nowrap>
+                        <a class="btn btn-default" onclick="subc();"><i class="fa fa-minus compra"></i></a>
+                        <input type="number" name="cantidad" id="cantidad<?php echo $id;?>" min="1" min="1" value="<?php echo number_format($cantidad) ?>" class="btn btn-default"
+                          onchange="" style="width:100px;">
+                        <a class="btn btn-default" onclick="addc();"><i class="fa fa-plus compra"></i></a>     
                       </td>
                       <td>
-                      <input type="number" name="cant1" value="1" min="1" max="999999" class="form-control" onchange="changecl();" style="width:80%;">
+                        <?php echo MONEDA. number_format($precio,2,'.',',');?>
+                        <input type="hidden" id="precio<?php echo $id;?>" value="<?php echo ($precio); ?>"/>
                       </td>
-                      <td>$5,252.00</td>
-                      <td>$0.00</td>
-                      <td>$5,252.00</td>
                       <td>
-                        <a onclick="confdel(0,1,'#');"><i class="fas fa-trash-alt" style="cursor: pointer;"></i></a>
+                        <?php echo MONEDA. number_format($descuento,2,'.',',');?>
+                        <input type="hidden" id="descuento" value="<?php echo ($descuento); ?>"/>
+                      </td>
+                      <td><?php echo MONEDA. number_format($subtotal,2,'.',',');?></td>
+                      <td>
+                        <a href="" id="eliminar"  data-bs-id="<?php echo $id;?>"
+                          data-bs-toogle="modal" data-bs-target="eliminarModal">
+                          <i class="fa fa-trash"></i>
+                        </a>
                       </td>
                     </tr>
+                    <?php } ?>
                   </tbody>
+                  <?php } ?>
                 </table>
               </div>
+              <script>
+               
+                function addc() {
+                  var cantidad = $("#cantidad").val();
+                  cantidad++;
+                  $("#cantidad").val(cantidad);
+                }
 
+                function subc() {
+                  var cantidad = $("#cantidad").val();
+                  if (cantidad > 1)
+                    cantidad--;
+                  $("#cantidad").val(cantidad);
+                }
+              </script>
               <div class="box-footer row">
                 <div class="col-12 col-md-8 tal desk">
                   <a href="./shop.php" class="btn btn-default"><i class="fas fa-chevron-left"></i> Seguir Comprando</a>
@@ -60,23 +117,120 @@ include ('header.php');
               <div class="sep">
               </div>
                 <div class="flex justify-between mb-3 text-sm">
-                  <span >Subtotal</span>
-                  <span >$789.00</span>
-              </div>
-                <div class="sep">
+                <div class="row">
+                  <div class="col-9">
+                    <span >Subtotal</span>
+                    <span id="cantcart">(
+                      <?php
+                        $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
+                        $result = setq($sql);
+                        list($totalcantidad) = $result->fetch_array();
+                        echo number_format($totalcantidad); ?>)
+                    </span>
+                    <span >productos</span>
+                  </div>
+                  <div class="col-3">
+                    <h5><?php echo MONEDA. number_format($total,2,'.',',');?></h5>
+                  </div>
                 </div>
-                <div class="flex justify-between font-bold pt-4 mt-5 mb-5 border-t border-gray-500">
-                  <span">Total a pagar</span>
-                  <span>$1,489.00</span>
+                <div class="flex justify-between mb-3 text-sm">
+                <div class="row">
+                  <div class="col-9">
+                    <span >Envio</span>
+                  </div>
+                  <div class="col-3">
+                    <h5>
+                      <?php 
+                      $envio = 17;
+                      echo MONEDA.$envio;?>
+                    </h5>
+                  </div>
+                </div>
+              
               </div>
-              <button data-testid="button-component" class=" centrado paddbot2  w-100 h-12 border font-bold transition py-3 rounded" style="background-color:#29A8B0;" ><i class="fas fa-chevron-right"></i>Comprar</button>
+              <div class="relative flex items-center" id="datosControl" style="display:none">
+              <div class="sep">  
+              <div class="row" id="cupondescuento">
+                  <div class="col-9 text-success">
+                    Monto a descontar por cupon
+                  </div>
+                  <div class="col-3 text-success">
+                    <h5 id="textocupon"  name="textocupon"  class="text-sucess"></h5>
+                  </div>
+                </div>
+                <div class="sep"></div>
+              </div>
+                </div>
+                <div class="flex justify-between font-bold pt-4  border-t border-gray-500"id="totaldespues">
+                <div class="row">
+                  <div class="col-9">
+                    <span ><h4 id="totalf"><b>Total a pagar por el momento</b></h4></span>
+                  </div>
+                  <div class="col-3">
+                  <?php $totalen = $total+$envio;?>
+                    <span>
+                      <h5 id="idtotalFinal" data-total="<?php echo $totalen;?>"><b>
+                      <?php 
+                      echo MONEDA. number_format($totalen,2,'.',',');?>
+                    </b></h5></span>
+                  </div>
+                </div>
+                    </div>
+              </div>
+              <button data-testid="button-component" class=" centrado paddbot2  w-100 h-12 border font-bold transition py-3 rounded" style="background-color:#29A8B0;" >
+                <i class="fa fa-shopping-bag"></i>Comprar
+              </button>
                   
                   </div>
-                  <div class="centrado">
-                  <button class="paddbot2"  style="background-color:#29A8B0;">
+                  <div class="centrado" id="div1" style="display:">
+                  <button class="paddbot2" onclick="ver()" style="background-color:#29A8B0;">
                     <i class="fa fa-plus-circle"> Agregar cupón de descuento </i>
                   </button>
                   </div>
+                    <div class="col-md-12 centrado" id="div2" style="display:none">
+                        <div class="relative flex items-center estrellas" id="formControl">
+                        <p>Cupón de descuento</p><br>
+                          <input id="c_code" nombre="c_code" type="text" class="form-control" placeholder="Inserta tu código" aria-label="Inserta tu código" aria-describedby="button-addon2" style="width:70%;">
+                          <button  onclick="aplicar()" id="button-addon2" type="button" data-testid="button-component" class=" centrado paddbot2  w-30 h-12 border font-bold transition py-3 rounded" style="background-color:#29A8B0;" >
+                            Aplicar
+                          </button>
+                        </div>
+                      <!--</form>-->
+                    </div>
+                    <h2 id="error" class="centrado" name="error" style="display:none" class="text-danger">Cupon no valido</h2>
+                  <script>
+                    function ver(){
+                      document.getElementById('div1').style.display = 'none';
+                      document.getElementById('div2').style.display = '';
+                    }
+                    function aplicar(){
+                      document.getElementById('cupondescuento').style.display = '';
+                      codigo = $("#c_code").val();
+                      $.post("query/cupones.php",{
+                        codigo : codigo
+                      }).done(function(respuesta){
+                        //alert(respuesta);
+                        if(respuesta.trim() === "Error" || respuesta.trim() === "Codigo no valido"){
+                          $("#error").show();
+                        }else{
+                          var arreglo = JSON.parse(respuesta);
+                          $("#formControl").hide();
+                          $("#datosControl").show();
+                          $("#textocupon").text("$" + arreglo.monto);
+                          $('#montocupon').show();
+                          
+                          var total = parseFloat($('#idtotalFinal').data('total'))-arreglo.monto;
+                          
+                          $('#idtotalFinal').text("$"+total.toFixed(2,'.',','));
+                          $('#totalf').text("Total final");
+                        }
+                      });
+                      $("#c_code").keyup(function(){
+                        $("#error").hide();
+                      });
+                    }
+                    
+                  </script>
           </div>
         </div>
       </div>
@@ -90,9 +244,10 @@ include ('header.php');
       <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
     </a>
   </div>
-  
+
 
   
 <?php
 include ('footer.php');
 ?>
+<!--<script type="text/javascript" src="query/mostrar.js"></script>-->
