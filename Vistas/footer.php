@@ -11,6 +11,7 @@
 					<li><a href="JD_Invoice.php"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
 					<li><a href="JD_tae.php"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
 					<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
+					<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">
@@ -24,20 +25,24 @@
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>Tienda</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="#"><i class="fa fa-angle-double-right"></i>Kits
-							Equipos</a></li>
-					<li><a href="#"><i class="fa fa-angle-double-right"></i>Impresoras</a></li>
-					<li><a href="#"><i class="fa fa-angle-double-right"></i>Cajon
-							Dinero</a></li>
-					<li><a href="#"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
+					<li><a href="shop.php?busqueda=kit"><i class="fa fa-angle-double-right"></i>Kits Equipos</a></li>
+					<li><a href="shop.php?busqueda=impresora"><i class="fa fa-angle-double-right"></i>Impresoras</a>
+					</li>
+					<li><a href="shop.php?busqueda=cajon"><i class="fa fa-angle-double-right"></i>Cajon Dinero</a></li>
+					<li><a href="shop.php?busqueda=lector"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>Soporte</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="#"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para levantar una
-							solicitud
-							de soporte</a></li>
+					<?php if(!isset($_SESSION['username'])){ ?>
+					<li><a href="login.php"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para levantar una
+							solicitud de soporte</a> </li>
+					<?php }else {?>
+					<li><a href="#"><i class="fa fa-angle-double-right"></i>Contacta con soporte tecnico</a> </li>
+					<?php }?>
+
+				
 				</ul>
 			</div>
 		</div>
@@ -61,7 +66,7 @@
 
 		</div>
 	</div>
-</section> 
+</section>
 <!-- ./Footer -->
 
 <!-- End Footer -->
@@ -71,10 +76,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"
 	integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!--Esta libreria da problemas con el dropdown-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"
-	integrity="sha512-eHx4nbBTkIr2i0m9SANm/cczPESd0DUEcfl84JpIuutE6oDxPhXvskMR08Wmvmfx5wUpVjlWdi82G5YLvqqJdA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
 </script>
@@ -87,7 +89,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
 	integrity="sha512-6UofPqm0QupIL0kzS/UIzekR73/luZdC6i/kXDbWnLOJoqwklBK6519iUnShaYceJ0y4FaiPtX/hRnV/X/xlUQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	
+
 </body>
 
 </html>

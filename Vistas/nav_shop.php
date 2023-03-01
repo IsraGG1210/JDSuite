@@ -37,14 +37,14 @@ $resultado = setq($sql);
         </li>
         <?php }?>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="shop.php">TODOS LOS PRODUCTOS</a>
+          <a class="nav-link dropdown-toggle" href="shop.php?page=1">TODOS LOS PRODUCTOS</a>
         </li>
        
       </ul>
-      <form class="d-flex" method="GET" action="shop.php" id="buscador">
-        <input name="busqueda" id="busqueda"  class="form-control me-2" type="text" placeholder="Buscar" >
-        <input type="hidden" name="page" value="<?php echo $_REQUEST['page']?>">
-        <button class="btn btn-primary"  type="submit"><i class="fas fa-search"></i></button>
+      <form class="d-flex" method="GET" action="shop.php?page=1" id="buscador">
+        <input name="busqueda" id="busqueda"  class="form-control me-2" type="text" placeholder="Buscar">
+        
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search" ></i></button>
       </form>
     </div>
   </div>

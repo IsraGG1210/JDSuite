@@ -19,9 +19,11 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 			if(setq($sql)){
 				$mensaje="Usuario Nuevo Creado";
 				?>
-<script>
-	window.location.href = "login.php";
-</script>
+			<script>
+				
+				window.location.href = "login.php";
+				swal("Usuario nuevo creado",{icon:"success"});
+			</script>
 <?php
 			}else{
 				$mensaje ="Ocurrio Un problema en la creacion";
@@ -39,17 +41,9 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 <br>
 
 <?php if(!empty($mensaje)):?>
-<dialog id="myForm">
-	<center>
-		<i class="fas fa-exclamation-triangle"></i>&nbsp<?php echo $mensaje ?> <br>
-		<button class="btn btn-primary" onclick="closeForm()"> Cerrar </button>
-		<script>
-			function closeForm() {
-				document.getElementById("myForm").style.display = "none";
-			}
-		</script>
-</dialog>
-</center>
+<script>
+	swal("Error","<?php echo $mensaje?>","warning");
+</script>
 
 <?php endif;?>
 

@@ -62,23 +62,36 @@ require './Conexion/config.php';
                         <input type="hidden" id="producto" value="<?php echo ($id); ?>"/>
                       </td>
                       <td nowrap>
-                        <a class="btn btn-default" onclick="subc();"><i class="fa fa-minus compra"></i></a>
-                        <input type="number" name="cantidad" id="cantidad<?php echo $id;?>" min="1" min="1" value="<?php echo number_format($cantidad) ?>" class="btn btn-default"
-                          onchange="" style="width:100px;">
-                        <a class="btn btn-default" onclick="addc();"><i class="fa fa-plus compra"></i></a>     
+                        <div nowrap class="input-group mb-5" >
+                          <!-- <div class="input-group-prepend">
+                            <a class="btn btn-default btnincrementar" >&minus;</a>
+                          </div> -->
+                          <input type="number" min="1" value="<?php echo number_format($cantidad) ?>" 
+                            class="for-control text-center txtCantidad" data-precio="<?php echo $precio; ?>" data-id="<?php echo $id; ?>"
+                            style="width:100px;">
+                          <!-- <div class="input-group-prepend">
+                            <a class="btn btn-default btnincrementar" >&plus;</a>
+                          </div> -->
+                        </div>
                       </td>
                       <td>
-                        <?php echo MONEDA. number_format($precio,2,'.',',');?>
+                        <?php 
+                        echo MONEDA. number_format($precio,2,'.',',');?>
                         <input type="hidden" id="precio<?php echo $id;?>" value="<?php echo ($precio); ?>"/>
                       </td>
                       <td>
                         <?php echo MONEDA. number_format($descuento,2,'.',',');?>
                         <input type="hidden" id="descuento" value="<?php echo ($descuento); ?>"/>
                       </td>
-                      <td><?php echo MONEDA. number_format($subtotal,2,'.',',');?></td>
+                      <td class="cant<?php echo $id;?>">
+                        <?php 
+                        $precioC = $precio * $cantidad;
+                        echo MONEDA. number_format($precioC,2,'.',',');?>
+                        <input type="hidden" id="precio<?php echo $id;?>" value="<?php echo ($precio); ?>"/>
+                      </td>
                       <td>
-                        <a href="" id="eliminar"  data-bs-id="<?php echo $id;?>"
-                          data-bs-toogle="modal" data-bs-target="eliminarModal">
+                        <a class="btnEliminar" id="eliminar"  data-id="<?php echo $id;?>"
+                          data-bs-toggle="modal" data-bs-target="#eliminaModal">
                           <i class="fa fa-trash"></i>
                         </a>
                       </td>
@@ -88,21 +101,6 @@ require './Conexion/config.php';
                   <?php } ?>
                 </table>
               </div>
-              <script>
-               
-                function addc() {
-                  var cantidad = $("#cantidad").val();
-                  cantidad++;
-                  $("#cantidad").val(cantidad);
-                }
-
-                function subc() {
-                  var cantidad = $("#cantidad").val();
-                  if (cantidad > 1)
-                    cantidad--;
-                  $("#cantidad").val(cantidad);
-                }
-              </script>
               <div class="box-footer row">
                 <div class="col-12 col-md-8 tal desk">
                   <a href="./shop.php" class="btn btn-default"><i class="fas fa-chevron-left"></i> Seguir Comprando</a>
@@ -141,8 +139,16 @@ require './Conexion/config.php';
                   <div class="col-3">
                     <h5>
                       <?php 
-                      $envio = 17;
-                      echo MONEDA.$envio;?>
+                      $envio = 0;
+                      if($total>5000){
+                        echo MONEDA.$envio;
+                      } elseif($total==0){
+                        echo MONEDA.$envio;
+                      }else{
+                        $envio = 150;
+                        echo MONEDA.$envio;
+                      }
+                      ?>
                     </h5>
                   </div>
                 </div>
@@ -199,6 +205,18 @@ require './Conexion/config.php';
                     </div>
                     <h2 id="error" class="centrado" name="error" style="display:none" class="text-danger">Cupon no valido</h2>
                   <script>
+                    function addc() {
+                      var cantidad = $("#cantidad").val();
+                      cantidad++;
+                      $("#cantidad").val(cantidad);
+                    }
+
+                    function subc() {
+                      var cantidad = $("#cantidad").val();
+                      if (cantidad > 1)
+                        cantidad--;
+                      $("#cantidad").val(cantidad);
+                    }
                     function ver(){
                       document.getElementById('div1').style.display = 'none';
                       document.getElementById('div2').style.display = '';
@@ -221,7 +239,7 @@ require './Conexion/config.php';
                           
                           var total = parseFloat($('#idtotalFinal').data('total'))-arreglo.monto;
                           
-                          $('#idtotalFinal').text("$"+total.toFixed(2,'.',','));
+                          $('#idtotalFinal').text("$"+total.toFixed(2));
                           $('#totalf').text("Total final");
                         }
                       });
@@ -229,14 +247,32 @@ require './Conexion/config.php';
                         $("#error").hide();
                       });
                     }
-                    
+                     
                   </script>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  <!--MODAL ELIMINAR PRODUCTO-->
+  <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarModalLabel">Eliminar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Desea eliminar el producto del carrito de compras?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button id="eliminaModal" type="submit" class="btn btn-danger eliminar" data-bs-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!--PARTE DE WHATS-->
   <div class="msgwh">
@@ -250,4 +286,52 @@ require './Conexion/config.php';
 <?php
 include ('footer.php');
 ?>
+<script>
+$(document).ready(function(){
+  var idEliminar = -1;
+  var fila;
+    $(".btnEliminar").click(function(){
+      idEliminar = ($(this).data('id'));
+      fila=($(this).parent('td').parent('tr'));
+    });
+    $(".eliminar").click(function(){
+      $.ajax({
+        url: "query/actualizarcart.php",
+        method: 'POST',
+        data:{
+          id:idEliminar
+        }
+      }).done(function(res){
+        location.reload();
+      })
+    });
+    $(".txtCantidad").change(function(){
+      var cantidad =$(this).val();
+      var precio = $(this).data('precio');
+      var producto = $(this).data('id');
+      incrementar(cantidad, producto);
+    });
+    /* $(".btnincrementar").click(function(){
+      var precio =$(this).parent('div').parent('div').find('input').data('precio');
+      var producto =$(this).parent('div').parent('div').find('input').data('id');
+      var cantidad =$(this).parent('div').parent('div').find('input').val();
+      incrementar(cantidad, precio, producto);
+    }); */
+    function incrementar(cantidad, producto){
+      /* var mult = parseFloat(cantidad)*parseFloat(precio);
+      $(".cant" + id).text("$"+mult); */
+      $.ajax({
+        url: "query/cantidad.php",
+        method: 'POST',
+        data:{
+        cantidad:cantidad,
+        producto:producto
+        } 
+      }).done(function(resc){
+        //alert(resc);
+        location.reload();
+      })
+    }
+  });
+</script>
 <!--<script type="text/javascript" src="query/mostrar.js"></script>-->

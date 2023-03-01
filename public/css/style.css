@@ -115,8 +115,10 @@ input::-webkit-input-placeholder {
 
 #navbarNavDropdown.collapsing .navbar-nav,
 #navbarNavDropdown .navbar-nav {
-  padding: 20px;
+  padding: 0px;
 }
+
+
 
 .menu {
   float: right;
@@ -1110,3 +1112,5 @@ section .section-title {
 #navshop a:hover{
   color: #29A8B0;
 }
+
+

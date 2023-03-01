@@ -15,8 +15,9 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 		?>
 		
 			<script>
+				swal("Bienvenido",{ icon: "success"});
 				window.location.href = "index.php";
-				window.alert("Bienvenido");
+				
 			</script>
 		<?php
 			$_SESSION['username'] = $correo;
@@ -24,28 +25,15 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 		} else {
 			?>
 			<script>
-				window.alert("Datos Incorrectos");
+				swal("Error","Datos incorrectos","error");
 			</script>
 			<?php
 		}
 }
-
+ 
 ?>
 <br>
-<?php if(!empty($mensaje)):?>
-<dialog id="myForm">
-	<center>
-		<i class="fas fa-exclamation-triangle"></i>&nbsp<?php echo $mensaje ?> <br>
-		<button class="btn btn-primary" onclick="closeForm()"> Cerrar </button>
-		<script>
-			function closeForm() {
-				document.getElementById("myForm").style.display = "none";
-			}
-		</script>
-</dialog>
-</center>
 
-<?php endif;?>
 
 <div class="container" id="login">
 	<div class="row main">

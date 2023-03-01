@@ -1,6 +1,6 @@
 <?php
 class Database{
-private $hostname = "192.168.100.240";
+private $hostname = "192.168.100.165";
 private $database = "tyesolutions_jdceo";
 private $username = "root";
 private $password = "wptye2014";

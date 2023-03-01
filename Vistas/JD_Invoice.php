@@ -94,7 +94,7 @@ $con = $db->conectar();
             <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
           </span>
           <input type="hidden" id="nombre" value="<?php echo $row['a_nmb']; ?>" />
-          <?php echo $row['a_cb'];?>
+          
           <input type="hidden" id="idp" value="<?php echo $row['a_cb']; ?>" />
           <h4>
             <?php echo MONEDA. number_format($row['ap_precio'],2,'.',','); ?>

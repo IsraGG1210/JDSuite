@@ -49,59 +49,64 @@ else
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet">
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
 
 <body>
 
-    <nav class="navbar navbar-expand-sm " style="background-color:<?php echo $bg ?>;">
-        <div class="col-md-12">
-            <div class="row mb-2">
-                <div class="col-md-6">
+    <nav class="navbar navbar-expand-sm" id="navbar" style="background-color:<?php echo $bg ?>;">
+        <div class="container-fluid">
+            <div class="col-md-12 mb-2" style="display: flex; justify-content: space-between;">
+                <div>
+                <div>
                     <a class="navbar-brand" href="./index.php">
                         <img src="../public/imagenes/logoJD.png" alt="">
                     </a>
-                    <center>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
-                        </button>
-                    </center>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
+                    </button>
 
                 </div>
-                <div class="col-md-6 " style="white-space: nowrap;">
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link" href="JD_Store.php">JD Store</a>
-                            <a class="nav-link" href="JDRest.php">JD Rest</a>
-                            <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
-                            <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
-                            <a class="nav-link" href="JD_tae.php">JD TAE</a>
-                            <a class="nav-link" href="">JD CEO</a>
-                            <a class="nav-link" href="shop.php">Tienda</a>
-                            <?php if(!isset($_SESSION['username'])){?>
-                            <a class="nav-link" href="login.php">Iniciar sesion</a>
-                            <?php } else {?>
-                            <a class="nav-link" href="logout.php">Cerrar sesion</a>
-                            <?php }?>
+            </div>
+
+            <div class="" id="tiendas" style="white-space: nowrap; display: flex;">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav container flex-end">
+                        <a class="nav-link" href="JD_Store.php">JD Store</a>
+                        <a class="nav-link" href="JDRest.php">JD Rest</a>
+                        <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
+                        <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
+                        <a class="nav-link" href="JD_tae.php">JD TAE</a>
+                        <a class="nav-link" href="">JD CEO</a>
+                        <a class="nav-link" href="shop.php?page=1">Tienda</a>
+                        <?php if(!isset($_SESSION['username'])){?>
+                        <a class="nav-link" href="login.php">Iniciar sesion</a>
+                        <?php } else {?>
+                        <a class="nav-link" href="logout.php">Cerrar sesion</a>
+                        <?php }?>
 
 
-                            <a href="verif_Tienda.php" class="nav-link">
-                                <span id="cantcart">
-                                    <?php
+                        <a href="verif_Tienda.php" class="nav-link">
+                            <span id="cantcart">
+                                <?php
                                         $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
                                         $result = setq($sql);
                                         list($total) = $result->fetch_array();
                                     ?>
-                                    <i class="fas fa-shopping-cart"></i> <?php echo number_format($total); ?>
-                                </span>
-                            </a>
-                        </div>
+                                <i class="fas fa-shopping-cart"></i> <?php echo number_format($total); ?>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
+
+
+
+
+        </div>
         </div>
     </nav>

@@ -30,24 +30,36 @@ include ('nav_shop.php');
       INNER JOIN articulos on a_cb = aw_cb  
       WHERE aw_concepto = $concepto GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
-    $total_items = 100;
+      $sql2 = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb  
+      WHERE aw_concepto = $concepto GROUP BY p";
+    $total_items = mysqli_num_rows(setq($sql2));
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql);   
     }else if(isset($_GET['dep'])){
       $concepto = $_GET['dep'];
-      $sql = "SELECT DISTINCT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      $sql = "SELECT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
       INNER JOIN imagenes on  aw_cb = i_idproducto
       INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
       INNER JOIN articulos on a_cb = aw_cb 
       WHERE aw_departamento = $concepto GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
-    $total_items = 100;
+      $sql2 = "SELECT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb 
+      WHERE aw_departamento = $concepto GROUP BY p";
+    $total_items = mysqli_num_rows(setq($sql2));
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql); 
     } 
-    if(!empty($_POST['busqueda'])){
-      $buscar = $_POST['busqueda'];
+    if(!empty($_GET['busqueda'])){
+      $buscar = $_GET['busqueda'];
       //$page = $_REQUEST['page'];
       $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
@@ -56,15 +68,22 @@ include ('nav_shop.php');
       INNER JOIN articulos on a_cb = aw_cb  
       WHERE a_nmb LIKE '%$buscar%' GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
-    $total_items = 100;
+      $sql2 = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb  
+      WHERE a_nmb LIKE '%$buscar%' GROUP BY p";
+    $total_items = mysqli_num_rows(setq($sql2));
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql);
     $array = mysqli_num_rows($resultado);
     if($array == "0" || $array == null){
       ?>
 <script>
+  
   window.alert("No se encontraron articulos relacionados a su busqueda");
-  window.location.href = "shop.php";
+  window.location.href = "shop.php?page=1";
 </script>
 <?php
     }
@@ -140,17 +159,23 @@ include ('nav_shop.php');
   <div class="pagination">
     <?php for ($i = 1; $i <= $total_pages; $i++) {?>
     <ul>
-      <a onclick="busca()" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <?php 
+      if(!empty($_REQUEST['busqueda'])){?>
+       <a  href="?busqueda=<?php echo $_REQUEST['busqueda']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <?php
+      }else if(!empty($_REQUEST['con'])){?>
+       <a  href="?con=<?php echo $_REQUEST['con']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <?php } else if(!empty($_REQUEST['dep'])){?>
+        <a  href="?dep=<?php echo $_REQUEST['dep']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php }else {?>
+          <a  href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+          <?php }?>
     </ul>
     <?php } ?>
 
   </div>
 </nav>
-<script>
-  function busca(){
-    document.getElementById("buscador").submit();
-  }
-</script>
+
 
 <!--PARTE DE WHATS-->
 <div class="msgwh">
