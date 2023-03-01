@@ -30,12 +30,9 @@ include ('nav_shop.php');
       INNER JOIN articulos on a_cb = aw_cb  
       WHERE aw_concepto = $concepto GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
-      $sql2 = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      $sql2 = "SELECT COUNT(aw_cb)
       FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb  
-      WHERE aw_concepto = $concepto GROUP BY p";
+      WHERE aw_concepto = $concepto";
     $total_items = mysqli_num_rows(setq($sql2));
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql);   
@@ -48,12 +45,9 @@ include ('nav_shop.php');
       INNER JOIN articulos on a_cb = aw_cb 
       WHERE aw_departamento = $concepto GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
-      $sql2 = "SELECT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-      FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb 
-      WHERE aw_departamento = $concepto GROUP BY p";
+      $sql2 = "SELECT COUNT(aw_cb) 
+      FROM articulosw 
+      WHERE aw_departamento = $concepto";
     $total_items = mysqli_num_rows(setq($sql2));
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql); 
