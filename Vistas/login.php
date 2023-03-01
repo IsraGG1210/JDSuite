@@ -31,6 +31,13 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 		}
 }
  
+if(isset($_SESSION['username'])){
+	?>
+	<script>
+		window.location.href = "index.php"
+	</script>
+	<?php
+}
 ?>
 <br>
 

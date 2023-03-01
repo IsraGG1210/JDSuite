@@ -35,7 +35,13 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 		$mensaje="Contraseñas no coinciden";
 	}
 }
-
+if(isset($_SESSION['username'])){
+	?>
+	<script>
+		window.location.href = "index.php"
+	</script>
+	<?php
+}
 ?>
 
 <br>
