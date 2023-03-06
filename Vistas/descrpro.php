@@ -137,44 +137,6 @@ if($idp == '' || $token ==''){
                 carrito</a>
             </p>
           </div>
-
-          <script>
-            function addc() {
-              var cantidad = $("#cantidad").val();
-              cantidad++;
-              $("#cantidad").val(cantidad);
-            }
-
-            function subc() {
-              var cantidad = $("#cantidad").val();
-              if (cantidad > 1)
-                cantidad--;
-              $("#cantidad").val(cantidad);
-            }
-            function addToCart(idp){
-              document.getElementById("cart").disabled = true;
-              precio = $("#precio").val();
-              descuento = $("#descuento").val();
-              talla = 0;
-              color = 0;
-              cantidad = $("#cantidad").val();
-              p = idp;
-              $.post("query/cookieadd.php",{
-                precio: precio,
-                descuento: descuento,
-                talla: talla,
-                colorsel: color,
-                cantidad: cantidad,
-                p: p
-                },function(htmle){
-                  $.post("query/cantidadCart.php",{},
-                  function(htmlec){
-                  $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
-                  alert ("Cantidad" + htmlec);
-              });
-              }); 
-            }
-          </script>
         </div>
       </div>
     </div>
@@ -210,6 +172,7 @@ if($idp == '' || $token ==''){
                         </div>
                       </a>
                       <h4><?php echo MONEDA.  number_format($row['ap_precio'],2,'.',','); ?></h4>
+                      <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['a_cb'];?>')"><i class="fas fa-shopping-cart"></i>Agregar</a>
                     </div>
                   </div>
                 </div>
@@ -261,7 +224,66 @@ if($idp == '' || $token ==''){
     </div>
   </div>
 </div>
+  <script>
+function addc() {
+  var cantidad = $("#cantidad").val();
+  cantidad++;
+  $("#cantidad").val(cantidad);
+  }
 
+function subc() {
+  var cantidad = $("#cantidad").val();
+  if (cantidad > 1)
+  cantidad--;
+  $("#cantidad").val(cantidad);
+  }
+function addToCart(idp){
+  document.getElementById("cart").disabled = true;
+  precio = $("#precio").val();
+  descuento = $("#descuento").val();
+  talla = 0;
+  color = 0;
+  cantidad = $("#cantidad").val();
+  p = idp;
+  $.post("query/cookieadd.php",{
+  precio: precio,
+  descuento: descuento,
+  talla: talla,
+  colorsel: color,
+  cantidad: cantidad,
+  p: p
+  },function(htmle){
+  $.post("query/cantidadCart.php",{},
+  function(htmlec){
+  $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
+  //alert ("Cantidad" + htmlec);
+  });
+  }); 
+}
+    function addToCartCarousel(idp){
+      document.getElementById("cart").disabled = true;
+      precio = $("#precio").val();
+      descuento =0;
+      talla = 0;
+      color = 0;
+      cantidad = 1;
+      p = idp;
+      $.post("query/cookieadd.php",{
+      precio: precio,
+      descuento: descuento,
+      talla: talla,
+      colorsel: color,
+      cantidad: cantidad,
+      p: p
+      },function(htmle){
+      $.post("query/cantidadCart.php",{},
+      function(htmlec){
+      $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
+      //alert ("Cantidad" + htmlec);
+      });
+      }); 
+    }
+</Script>
 
 <!--PARTE DE WHATSAPP-->
 <div class="msgwh">
