@@ -260,10 +260,10 @@ function addToCart(idp){
   });
   }); 
 }
-    function addToCartCarousel(idp){
+function addToCartCarousel(idp){
       document.getElementById("cart").disabled = true;
-      precio = $("#precio").val();
-      descuento =0;
+      precio = $("#precio"+idp).val();
+      descuento = 0;
       talla = 0;
       color = 0;
       cantidad = 1;
@@ -282,7 +282,7 @@ function addToCart(idp){
       //alert ("Cantidad" + htmlec);
       });
       }); 
-    }
+      }
 </Script>
 
 <!--PARTE DE WHATSAPP-->

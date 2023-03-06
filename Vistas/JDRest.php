@@ -162,10 +162,10 @@ require 'Conexion/Database.php';
   <!--Carrusel de prductos-->
 <br>
 <script>
-   function addToCartCarousel(idp){
+    function addToCartCarousel(idp){
       document.getElementById("cart").disabled = true;
-      precio = $("#precio").val();
-      descuento =0;
+      precio = $("#precio"+idp).val();
+      descuento = 0;
       talla = 0;
       color = 0;
       cantidad = 1;
@@ -184,7 +184,7 @@ require 'Conexion/Database.php';
       //alert ("Cantidad" + htmlec);
       });
       }); 
-    }
+      }
   </script>
 
 
