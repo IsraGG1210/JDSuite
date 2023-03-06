@@ -1,6 +1,5 @@
 <?php
 include ('header.php');
-require('query/listacart.php');
 require './Conexion/config.php';
 ?>
 
@@ -42,6 +41,7 @@ require './Conexion/config.php';
                   </thead>
                   <tbody>
                     <?php require_once './Conexion/funciones.php';
+                    $total=0;
 
                   if(isset($_COOKIE['cart'])){
                       /* echo "<table>";
@@ -55,19 +55,19 @@ require './Conexion/config.php';
                           $descuento = $item[5];
 
                           //imagen
-                          $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,a_nmb
-                              FROM pedidoscld
-                              INNER JOIN articulos ON a_cb = "'.$id.'"
-                              INNER JOIN imagenes ON a_cb = "'.$id.'"';
-                          $result = setq($sql);
+                          $sql ="SELECT CONCAT(i_nmb,'.',i_ext) AS rutaimagen, a_nmb
+                                  from pedidoscld
+                                  INNER JOIN articulos ON a_cb = '$id'
+                                  INNER JOIN imagenes ON i_idproducto = '$id'";
+                      $result = setq($sql);
                           if ($result) {
-                              $producto = mysqli_fetch_assoc($result);
-                              $ruta = $producto['rutaimagen'];
-                              $nombre = $producto['a_nmb'];
+                            $producto = mysqli_fetch_assoc($result);
+                            $ruta = $producto['rutaimagen'];
+                            $nombre = $producto['a_nmb'];
                           } else {
                               echo "Error al hacer la consulta a MySQL";
                           }
-                          $total=0;
+                          
                           $subtotal = $cantidad * $precio;
                           $total += $subtotal;
                       ?>  
