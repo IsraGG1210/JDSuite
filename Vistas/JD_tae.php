@@ -3,7 +3,7 @@ include('header.php');
 ?>
 
 <div class="col-12 imgbgtae">
-    <div class="row mb-2">
+    <div class="row mb-2 container-fluid">
         <div class="col-md-8">
           <img src="../public/imagenes/jd-tae.png" width="200px" height="150px" alt="">
         </div>

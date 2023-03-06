@@ -36,8 +36,7 @@
 				<h5>Soporte</h5>
 				<ul class="list-unstyled quick-links">
 					<?php if(!isset($_SESSION['username'])){ ?>
-					<li><a href="login.php"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para levantar una
-							solicitud de soporte</a> </li>
+					<li><a href="login.php"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para contactar con soporte</a> </li>
 					<?php }else {?>
 					<li><a href="#"><i class="fa fa-angle-double-right"></i>Contacta con soporte tecnico</a> </li>
 					<?php }?>

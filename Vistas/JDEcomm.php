@@ -53,7 +53,7 @@ include ('header.php');
 		</div>
 		<div class="container col-md-4 col-sm-12 d-flex" id="cotizacion">
 			<div class="row main d-flex mb-4" style="margin: 0px;">
-				<div class="main-login main-center">
+				<div class="main-login main-center" style="height: auto;">
 					<center>
 						<img src="../public/imagenes/lecomm.png" alt="" class="imgEcomm col-sm-12"
 							style="background-color:white;border-radius: 50px;">

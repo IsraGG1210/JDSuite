@@ -6,7 +6,7 @@ require './Conexion/config.php';
 
 <!--FORMULARIO/VERIFICACION-->
 <div class="bloques">
-    <div class="col-12">
+    <div class="col-12 container-fluid">
       <div class="row mb-2">
         <div class="col-md-8">
           <div class="lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -190,7 +190,7 @@ require './Conexion/config.php';
                   </div>
                   <div class="centrado" id="div1" style="display:">
                   <button class="paddbot2" onclick="ver()" style="background-color:#29A8B0;">
-                    <i class="fa fa-plus-circle"> Agregar cupón de descuento </i>
+                    <i class="fa fa-plus-circle"> Agregar cupon de descuento </i>
                   </button>
                   </div>
                     <div class="col-md-12 centrado" id="div2" style="display:none">

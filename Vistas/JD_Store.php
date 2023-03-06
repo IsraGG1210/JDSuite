@@ -19,7 +19,7 @@ require 'Conexion/Database.php';
 
 <!--CONTENT VIDEO-->
 <div class="col-12 imgbgst">
-  <div class="row mb-2">
+  <div class="row mb-2 container">
     <div class="col-md-8 ">
       <img src="../public/imagenes/jd-store.png" style="width:200px; heidht=150px;" alt="" />
     </div>
@@ -82,7 +82,7 @@ require 'Conexion/Database.php';
         <img src="../public/imagenes/store2.gif" width="100%" alt="">
       </div>
     </div>
-    <div class="col-md-6 ">
+    <div class="col-md-6 " >
       <div class="">
         <img src="../public/imagenes/cloud.png" class="d-block " height="250" alt="...">
       </div>
@@ -102,10 +102,10 @@ require 'Conexion/Database.php';
 </div><br>
 
 <!--Carousel OWL-->
-<div class="owl-carousel owl-theme">
+<div class="owl-carousel owl-theme" >
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href=""><img
+      <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
         <div class="card-body">
           <span id="descpro">
@@ -165,32 +165,32 @@ require 'Conexion/Database.php';
 <!--TIPOS DE LICENCIA-->
 
 <!--TIPOS DE LICENCIA-->
-<div class="row">
+<div class="row container" style="margin:auto;" >
 
   <!-- Column -->
-  <div class="col-md-6 mb-6 d-flex align-items-stretch">
+  <div class="col-md-6 mb-6 d-flex align-items-stretch container">
 
-    <div class="tab-content" id="nav-tabContent">
+    <div class="tab-content nav-tabs" id="nav-tabContent">
       <h3>Tipos de licencia</h3>
       <nav>
         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-servidor-tab" data-toggle="tab" href="#nav-servidor" role="tab"
+          <a class="nav-item nav-link active" id="nav-servidor-tab" data-bs-toggle="tab" href="#nav-servidor" 
             aria-controls="nav-servidor" aria-selected="true">Store Servidor</a>
-          <a class="nav-item nav-link" id="nav-terminal-tab" data-toggle="tab" href="#nav-terminal" role="tab"
+          <a class="nav-item nav-link" id="nav-terminal-tab" data-bs-toggle="tab" href="#nav-terminal" 
             aria-controls="nav-terminal" aria-selected="false">Store Terminal</a>
-          <a class="nav-item nav-link" id="nav-farmacia-tab" data-toggle="tab" href="#nav-farmacia" role="tab"
+          <a class="nav-item nav-link" id="nav-farmacia-tab" data-bs-toggle="tab" href="#nav-farmacia" 
             aria-controls="nav-farmacia" aria-selected="false">Servidor Farmacia</a>
-          <a class="nav-item nav-link" id="nav-citas-tab" data-toggle="tab" href="#nav-citas" role="tab"
+          <a class="nav-item nav-link" id="nav-citas-tab" data-bs-toggle="tab" href="#nav-citas" 
             aria-controls="nav-citas" aria-selected="false">Servidor Citas</a>
-          <a class="nav-item nav-link" id="nav-reparto-tab" data-toggle="tab" href="#nav-reparto" role="tab"
+          <a class="nav-item nav-link" id="nav-reparto-tab" data-bs-toggle="tab" href="#nav-reparto" 
             aria-controls="nav-reparto" aria-selected="false">Servidor Rutas de Reparto</a>
         </div>
       </nav>
-       <!--Card Primary-->
+       <!--Card Primary--> 
        <div class="card indigo text-center z-depth-2">
         <div class="card-body">
           <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active flex-1" id="nav-servidor" role="tabpanel"
+            <div class="tab-pane fade show active flex-1" id="nav-servidor" 
               aria-labelledby="nav-servidor-tab">
               La licencia ideal para tu negocio. JD Store tipo Servidor contiene todos los módulos de tu sistema de
               Punto de Venta, podrás llevar el control y registro total de tu negocio, de los artículos, clientes,
@@ -198,7 +198,7 @@ require 'Conexion/Database.php';
               decisiones que harán crecer tu negocio.
             </div>
 
-            <div class="tab-pane fade flex-1" id="nav-terminal" role="tabpanel" aria-labelledby="nav-terminal-tab">
+            <div class="tab-pane fade flex-1" id="nav-terminal"  aria-labelledby="nav-terminal-tab">
               Esta licencia es el complemento ideal para la tipo Servidor, ya que nos apoya a crecer nuestro negocio.
               Si cobrar en una caja ya no es suficiente es hora de que evoluciones y hagas crecer tu punto de venta.
               Al adquirir esta licencia podrás conectar otro equipo a tu JD Store, podrás tener dos cajeros operando
@@ -206,7 +206,7 @@ require 'Conexion/Database.php';
               *Requieres una licencia tipo Servidor para adquirir esta licencia
             </div>
 
-            <div class="tab-pane fade flex-1" id="nav-farmacia" role="tabpanel" aria-labelledby="nav-farmacia-tab">
+            <div class="tab-pane fade flex-1" id="nav-farmacia"  aria-labelledby="nav-farmacia-tab">
               Si tu giro es una farmacia entonces esta es la solución, JD Store tiene un modulo de farmacia que te
               permitirá gestionar tu venta de antibióticos.
               Si tienes un consultorio para potenciar tus ventas, JD Store tiene su modulo para registrar expedientes
@@ -214,7 +214,7 @@ require 'Conexion/Database.php';
               Rota tu inventario con ayuda de tu doctor y registra los servicios prestados para que cumplas con los
               requerimientos de la secretaría de salud solicita.
             </div>
-            <div class="tab-pane fade flex-1" id="nav-citas" role="tabpanel" aria-labelledby="nav-citas-tab">
+            <div class="tab-pane fade flex-1" id="nav-citas"  aria-labelledby="nav-citas-tab">
               Tu propio calendario de ventas en el sistema es posible.
               Gestiona tus citas y clientes desde JD Store y dale seguimiento a una venta desde que se aparta y hasta
               que se vende.
@@ -223,7 +223,7 @@ require 'Conexion/Database.php';
               Gestiona anticipos de servicios y liquidaciones al realizarlos, esto te ayudará a asegurar la prestación
               del servicio.
             </div>
-            <div class="tab-pane fade flex-1" id="nav-reparto" role="tabpanel" aria-labelledby="nav-reparto-tab">
+            <div class="tab-pane fade flex-1" id="nav-reparto"  aria-labelledby="nav-reparto-tab">
               Si en tu empresa repartes a domicilio o generas rutas de entrega JD te ayuda a generar tus repartos de
               manera segura y sencilla.
               Maneja los estados de cuenta por cada cliente y administra cada productos que vendes sencillamente.
@@ -236,7 +236,7 @@ require 'Conexion/Database.php';
   </div> <!-- Column -->
 
   <!-- Column -->
-  <div class="col-md-6 mb-6 d-flex align-items-stretch">
+  <div class="col-md-6 mb-6 d-flex align-items-stretch ">
 
     <!--Card Primary-->
     <div class="col-12 card info-color text-center z-depth-2">
@@ -299,7 +299,7 @@ require 'Conexion/Database.php';
 <br>
 <br>
 <!--PARTE DE PREGUNTAS-->
-<div class="container-fluid col-12 padingbottom">
+<div class="container-fluid col-12 padingbottom container">
   <div class="row">
     <div class="col-12 col-md-6 tac2 blb">
       <h2 class="titjd2 tac">Tutoriales</h2>
@@ -383,10 +383,11 @@ include ('footer.php');
     ],
     responsive: {
       0: {
-        items: 1
+        items: 1,
+        dots: false
       },
       600: {
-        items: 5
+        items: 4
       },
       1000: {
         items: 6

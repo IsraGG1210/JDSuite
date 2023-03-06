@@ -65,10 +65,8 @@ if($idp == '' || $token ==''){
         <div class="box">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
+              
               <div class="carousel-item active">
-                <img src="https://www.jdsuite.mx/productos/CB0000000158.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
                 <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100"
                   alt="...">
               </div>
@@ -141,33 +139,41 @@ if($idp == '' || $token ==''){
           </div>
 
           <script>
+            function addc() {
+              var cantidad = $("#cantidad").val();
+              cantidad++;
+              $("#cantidad").val(cantidad);
+            }
+
+            function subc() {
+              var cantidad = $("#cantidad").val();
+              if (cantidad > 1)
+                cantidad--;
+              $("#cantidad").val(cantidad);
+            }
             function addToCart(idp){
-                            document.getElementById("cart").disabled = true;
-                            precio = $("#precio").val();
-                            descuento = $("#descuento").val();
-                            talla = 0;
-                            color = 0;
-                            cantidad = $("#cantidad").val();
-                            producto = idp;
-                            //alert(precio+" "+talla+" "+color+" "+cantidad+" "+producto);
-                            $.post("query/Cart.php",{
-                              precio: precio,
-                              descuento: descuento,
-                              talla: talla,
-                              colorsel: color,
-                              cantidad: cantidad,
-                              p: producto
-                            },function(htmle){
-                              //$("#cart").html(htmle);
-                              document.getElementById('cart');
-                              //$("#cantcart").load();
-                              //$('#cantcart').load('header.php');
-                              $.post("query/infocart.php",{},function(htmlec){
-                                $("#cantcart").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
-                                //alert ("Cantidad" + htmlec);
-                              });
-                            });
-                          }
+              document.getElementById("cart").disabled = true;
+              precio = $("#precio").val();
+              descuento = $("#descuento").val();
+              talla = 0;
+              color = 0;
+              cantidad = $("#cantidad").val();
+              p = idp;
+              $.post("query/cookieadd.php",{
+                precio: precio,
+                descuento: descuento,
+                talla: talla,
+                colorsel: color,
+                cantidad: cantidad,
+                p: p
+                },function(htmle){
+                  $.post("query/cantidadCart.php",{},
+                  function(htmlec){
+                  $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
+                  alert ("Cantidad" + htmlec);
+              });
+              }); 
+            }
           </script>
         </div>
       </div>
@@ -176,23 +182,6 @@ if($idp == '' || $token ==''){
 </div>
 </div>
 </div>
-
-
-<script>
-  function addc() {
-    var cantidad = $("#cantidad").val();
-    cantidad++;
-    $("#cantidad").val(cantidad);
-  }
-
-  function subc() {
-    var cantidad = $("#cantidad").val();
-    if (cantidad > 1)
-      cantidad--;
-    $("#cantidad").val(cantidad);
-  }
-</script>
-
 <!--COMENTARIOS-->
 <div class="bloques">
   <div class="col-12">
@@ -209,7 +198,7 @@ if($idp == '' || $token ==''){
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       -mdb-ripple-color="light">
                       <a
-                        href="descrpro.php?a_cb=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                        href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
                         <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
                         <div class="mask">
                         </div>

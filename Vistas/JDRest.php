@@ -87,7 +87,9 @@ require 'Conexion/Database.php';
           administrado de una manera segura. Para que tú solo te enfoques
           a donde abrirás tu próxima sucursal o de disfrutar tus vacaciones.<br>
           <center>
-            <button class="btn btn-primary" style="background-color:<?php echo $bg ?>;">Mas Caracteristicas</button>
+            <a href="https://www.jdsuite.mx/docs/JDRest.pdf" target="_blank">
+            <button class="btn btn-primary"  style="background-color:<?php echo $bg ?>;">Mas Caracteristicas</button>
+            </a>
           </center>
         </div>
       </div>
@@ -137,7 +139,7 @@ require 'Conexion/Database.php';
 <div class="owl-carousel owl-theme">
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href=""><img
+      <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
         <div class="card-body">
           <span id="descpro">
@@ -271,7 +273,7 @@ require 'Conexion/Database.php';
         Conoce lo sencillo y rápido que es.
         <br>
         <center>
-          <a href="#"><button class="btn btn-primary" style="background-color:#29A8B0;">Videotutoriales</button></a>
+        <button class="btn btn-primary" style="background-color:<?php echo $bg ?>;">VIDEOTUTORIALES</button>
         </center>
 
       </div>
@@ -303,7 +305,8 @@ require 'footer.php'
     ],
     responsive: {
       0: {
-        items: 1
+        items: 1,
+        dots: false
       },
       600: {
         items: 3

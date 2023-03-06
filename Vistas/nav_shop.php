@@ -12,16 +12,16 @@ $resultado = setq($sql);
 ?>
 
 
-<nav class="navbar navbar-expand-sm navbar-light bg-light" id="navshop">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navshop">
   <div class="container-fluid">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" >
+      <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         
-
+ 
       <?php while($row=$resultado->fetch_array()){?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $row['dw_nmb']?></a>

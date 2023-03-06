@@ -1,11 +1,10 @@
 <?php
 require ('../Conexion/funciones.php');
 
-/* if(isset($_POST['codigo'])){
-   $codigo = $_POST['codigo']; */
+if(isset($_POST['codigo'])){
+   $codigo = $_POST['codigo'];
    $fechaActual = date('Y-m-d');
 //echo $fechaActual;
-$codigo = 'promostore50';
    $sql = 'SELECT * FROM cupones WHERE c_codigo="'.$codigo.'" AND c_caducidad>="'.$fechaActual.'" 
          AND c_usados<c_limite';
    $result = setq($sql);
@@ -28,11 +27,12 @@ $codigo = 'promostore50';
       $sqlup= 'UPDATE cupones SET c_usados=+c_usados+1 WHERE c_codigo="'.$codigo.'"';
       $resultup = setq($sqlup);
       echo json_encode($arreglo);
-      //echo $monto;
    }
-/* }else{
+}else{
    echo "Error";
-} */
+}else{
+   echo "No puedes aplicar aun el cupon";
+}
 
 ?>
 

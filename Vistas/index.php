@@ -237,7 +237,7 @@ $sesion = $_SESSION['id'];
     foreach ($resultado as $row) {
     ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href=""><img
+      <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
         <div class="card-body">
           <span id="descpro">
@@ -319,10 +319,11 @@ include('footer.php');
       ],
       responsive: {
         0: {
-          items: 1
+          items: 1,
+          dots: false
         },
         600: {
-          items: 5
+          items: 4
         },
         1000: {
           items: 6

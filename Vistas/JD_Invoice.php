@@ -21,7 +21,7 @@ $con = $db->conectar();
 
  <!--CONTENT VIDEO-->
  <div class="col-12 imgbgst">
-    <div class="row mb-2">
+    <div class="row mb-2 container">
       <div class="col-md-8 ">
       <img src="../public/imagenes/jd-invoice.png" height="150px"width="200px" alt=""/>
       </div>
@@ -87,7 +87,7 @@ $con = $db->conectar();
   <?php foreach ($resultado as $row) {
     ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href=""><img
+      <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
         <div class="card-body">
           <span id="descpro">
@@ -244,7 +244,8 @@ include('footer.php');
       ],
       responsive: {
         0: {
-          items: 1
+          items: 1,
+          dots:false
         },
         600: {
           items: 3

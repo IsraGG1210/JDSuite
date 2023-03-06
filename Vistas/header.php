@@ -50,63 +50,68 @@ else
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet">
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+  
 </head>
 
 
 <body>
 
-    <nav class="navbar navbar-expand-sm" id="navbar" style="background-color:<?php echo $bg ?>;">
+    <nav class="navbar navbar-expand-lg" id="navbar" style="background-color:<?php echo $bg ?>;">
         <div class="container-fluid">
-            <div class="col-md-12 mb-2" style="display: flex; justify-content: space-between;">
-                <div>
-                <div>
-                    <a class="navbar-brand" href="./index.php">
-                        <img src="../public/imagenes/logoJD.png" alt="">
-                    </a>
+            <a class="navbar-brand" href="./index.php">
+                <img src="../public/imagenes/logoJD.png" alt="">
+            </a>
+            <div class=" mb-2" style="display: flex; justify-content: space-between;">
+
+                <div class="" id="tiendas" style="white-space: nowrap; display: flex;">
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
                     </button>
 
+
                 </div>
+
+
             </div>
+          
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav" style="margin-left: auto;">
+                            <a class="nav-link" href="JD_Store.php">JD Store</a>
+                            <a class="nav-link" href="JDRest.php">JD Rest</a>
+                            <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
+                            <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
+                            <a class="nav-link" href="JD_tae.php">JD TAE</a>
+                            <a class="nav-link" href="">JD CEO</a>
+                            <a class="nav-link" href="shop.php?page=1">Tienda</a>
+                            <?php if(!isset($_SESSION['username'])){?>
+                            <a class="nav-link" href="login.php">Iniciar sesion</a>
+                            <?php } else {?>
+                            <a class="nav-link" href="logout.php">Cerrar sesion</a>
+                            <?php }?>
 
-            <div class="" id="tiendas" style="white-space: nowrap; display: flex;">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav container flex-end">
-                        <a class="nav-link" href="JD_Store.php">JD Store</a>
-                        <a class="nav-link" href="JDRest.php">JD Rest</a>
-                        <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
-                        <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
-                        <a class="nav-link" href="JD_tae.php">JD TAE</a>
-                        <a class="nav-link" href="">JD CEO</a>
-                        <a class="nav-link" href="shop.php?page=1">Tienda</a>
-                        <?php if(!isset($_SESSION['username'])){?>
-                        <a class="nav-link" href="login.php">Iniciar sesion</a>
-                        <?php } else {?>
-                        <a class="nav-link" href="logout.php">Cerrar sesion</a>
-                        <?php }?>
 
-
-                        <a href="verif_Tienda.php" class="nav-link">
-                            <span id="cantcart">
+                            <a href="verif_Tienda.php" class="nav-link">
+                            <div id="carrito-cantidad">
+                                <i class="fas fa-shopping-cart"></i>
                                 <?php
-                                        $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
-                                        $result = setq($sql);
-                                        list($total) = $result->fetch_array();
-                                    ?>
-                                <i class="fas fa-shopping-cart"></i> <?php echo number_format($total); ?>
-                            </span>
-                        </a>
+                                $newitem = 0;
+                                $cantidad_total = 0;
+                                
+                                if(isset($_COOKIE['cart'])) {
+                                    
+                                    foreach($_COOKIE['cart'] as $clave=>$item) {
+                                        $cantidad_total += $item[1];
+                                    }
+                                    echo $cantidad_total;
+                                }
+                                ?>
+                            </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-
-
-
-        </div>
+               
         </div>
     </nav>
