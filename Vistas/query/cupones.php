@@ -2,9 +2,6 @@
 require ('../Conexion/funciones.php');
 
 session_start();
-$sesion = $_SESSION['id'];
-$sqlp ='SELECT * FROM pedidoscld WHERE pd_pedido="'.$sesion.'"';
-$resltp = setq($sqlp);
 
 if(isset($_COOKIE['cart'])){
    if(isset($_POST['codigo'])){
