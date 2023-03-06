@@ -36,7 +36,7 @@ require 'Conexion/Database.php';
 
 
 <!--OPCIONES DE TARJETAS-->
-<div class="bloques padingbottom">
+<div class="bloques padingbottom container-fluid">
   <div class="row align-items-md-stretch">
     <div class="col-md-4">
       <div class="color h-80 p-5 rounded-3">

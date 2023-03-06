@@ -1,12 +1,12 @@
 <?php
 include ('header.php');
-require('query/mostrarcart.php');
+require('query/listacart.php');
 require './Conexion/config.php';
 ?>
 
 <!--FORMULARIO/VERIFICACION-->
 <div class="bloques">
-    <div class="col-12 container-fluid">
+    <div class="col-12">
       <div class="row mb-2">
         <div class="col-md-8">
           <div class="lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -15,11 +15,17 @@ require './Conexion/config.php';
               <p class="text-muted">Tienes 
                 <span id="cantcart">
                 <?php
-                   $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
-                   $result = setq($sql);
-                   list($total) = $result->fetch_array();
+                   $newitem = 0;
+                   $cantidad_total = 0;
+                   
+                   if(isset($_COOKIE['cart'])) {
+                       
+                       foreach($_COOKIE['cart'] as $clave=>$item) {
+                           $cantidad_total += $item[1];
+                       }
+                       echo $cantidad_total;
+                   }
                 ?>
-                <?php echo number_format($total); ?>
                 </span> articulo(s) en tu carrito.</p>
               <div class="table-responsive">
                 <table class="table" id="tblistado">
@@ -35,23 +41,35 @@ require './Conexion/config.php';
                     </tr>
                   </thead>
                   <tbody>
-                    <?php if($datos == null){
-                      echo '<tr>
-                      <td colspan=6 class="text-center">
-                        <b>Lista vacía</b>
-                      </td>
-                    </tr>';                    
-                    }else{
-                      $total=0;
-                      foreach($datos as $producto){
-                        $ruta = $producto['rutaimagen'];
-                        $id = $producto['a_cb'];
-                        $nombre = $producto['a_nmb'];
-                        $cantidad = $producto['pd_cantidad'];
-                        $precio = $producto['pd_precio'];
-                        $descuento = $producto['pd_descuento'];
-                        $subtotal = $cantidad * $precio;
-                        $total += $subtotal;
+                    <?php require_once './Conexion/funciones.php';
+
+                  if(isset($_COOKIE['cart'])){
+                      /* echo "<table>";
+                      echo "<tr><th>ID</th><th>Cantidad</th><th>Talla</th><th>Color</th><th>Precio</th><th>Descuento</th></tr>"; */
+                      foreach($_COOKIE['cart'] as $clave=>$item) {
+                          $id = $item[0];
+                          $cantidad = $item[1];
+                          $talla = $item[2];
+                          $color = $item[3];
+                          $precio = $item[4];
+                          $descuento = $item[5];
+
+                          //imagen
+                          $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,a_nmb
+                              FROM pedidoscld
+                              INNER JOIN articulos ON a_cb = "'.$id.'"
+                              INNER JOIN imagenes ON a_cb = "'.$id.'"';
+                          $result = setq($sql);
+                          if ($result) {
+                              $producto = mysqli_fetch_assoc($result);
+                              $ruta = $producto['rutaimagen'];
+                              $nombre = $producto['a_nmb'];
+                          } else {
+                              echo "Error al hacer la consulta a MySQL";
+                          }
+                          $total=0;
+                          $subtotal = $cantidad * $precio;
+                          $total += $subtotal;
                       ?>  
                     <tr>
                       <td>
@@ -120,15 +138,21 @@ require './Conexion/config.php';
                     <span >Subtotal</span>
                     <span id="cantcart">(
                       <?php
-                        $sql = 'SELECT SUM(pd_cantidad) FROM pedidoscld WHERE pd_pedido = "'.$sesion.'"';
-                        $result = setq($sql);
-                        list($totalcantidad) = $result->fetch_array();
-                        echo number_format($totalcantidad); ?>)
+                        $newitem = 0;
+                        $cantidad_total = 0;
+                        
+                        if(isset($_COOKIE['cart'])) {
+                            
+                            foreach($_COOKIE['cart'] as $clave=>$item) {
+                                $cantidad_total += $item[1];
+                            }
+                            echo $cantidad_total;
+                        } ?>)
                     </span>
                     <span >productos</span>
                   </div>
                   <div class="col-3">
-                    <h5><?php echo MONEDA. number_format($total,2,'.',',');?></h5>
+                    <h5><?php  echo MONEDA. number_format($total,2,'.',',');?></h5>
                   </div>
                 </div>
                 <div class="flex justify-between mb-3 text-sm">
@@ -190,7 +214,7 @@ require './Conexion/config.php';
                   </div>
                   <div class="centrado" id="div1" style="display:">
                   <button class="paddbot2" onclick="ver()" style="background-color:#29A8B0;">
-                    <i class="fa fa-plus-circle"> Agregar cupon de descuento </i>
+                    <i class="fa fa-plus-circle"> Agregar cupón de descuento </i>
                   </button>
                   </div>
                     <div class="col-md-12 centrado" id="div2" style="display:none">
@@ -204,6 +228,7 @@ require './Conexion/config.php';
                       <!--</form>-->
                     </div>
                     <h2 id="error" class="centrado" name="error" style="display:none" class="text-danger">Cupon no valido</h2>
+                    <h2 id="errorp" class="centrado" name="error" style="display:none" class="text-danger">No puedes aplicar aún el cupon. No tienes productos en el carrito!</h2>
                   <script>
                     function addc() {
                       var cantidad = $("#cantidad").val();
@@ -228,8 +253,12 @@ require './Conexion/config.php';
                         codigo : codigo
                       }).done(function(respuesta){
                         //alert(respuesta);
-                        if(respuesta.trim() === "Error" || respuesta.trim() === "Codigo no valido"){
-                          $("#error").show();
+                        if(respuesta.trim() === "Error" || respuesta.trim() === "Codigo no valido" || respuesta.trim() === "No puedes aplicar aun el cupon"){
+                          if(respuesta.trim() === "Error" || respuesta.trim() === "Codigo no valido"){
+                            $("#error").show();
+                          }else{
+                            $("#errorp").show();
+                          }
                         }else{
                           var arreglo = JSON.parse(respuesta);
                           $("#formControl").hide();
@@ -245,6 +274,7 @@ require './Conexion/config.php';
                       });
                       $("#c_code").keyup(function(){
                         $("#error").hide();
+                        $("#errorp").hide();
                       });
                     }
                      
