@@ -49,14 +49,15 @@ else
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet">
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </head>
 
 
 <body>
 
-    <nav class="navbar navbar-expand-lg" id="navbar" style="background-color:<?php echo $bg ?>;">
+    <nav class="navbar navbar-expand-xl" id="navbar" style="background-color:<?php echo $bg ?>;">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.php">
                 <img src="../public/imagenes/logoJD.png" alt="">
@@ -76,27 +77,59 @@ else
 
 
             </div>
-          
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav" style="margin-left: auto;">
-                            <a class="nav-link" href="JD_Store.php">JD Store</a>
-                            <a class="nav-link" href="JDRest.php">JD Rest</a>
-                            <a class="nav-link" href="JD_Invoice.php">JD Invoice</a>
-                            <a class="nav-link" href="JDEcomm.php">JD Ecomm</a>
-                            <a class="nav-link" href="JD_tae.php">JD TAE</a>
-                            <a class="nav-link" href="">JD CEO</a>
-                            <a class="nav-link" href="shop.php?page=1">Tienda</a>
-                            <?php if(!isset($_SESSION['username'])){?>
-                            <a class="nav-link" href="login.php">Iniciar sesion</a>
-                            <?php } else {?>
-                            <a class="nav-link" href="logout.php">Cerrar sesion</a>
-                            <?php }?>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav" style="margin-left: auto;">
+                    <button class="btn btn-link" onclick="window.location.href='JD_Store.php'" class="white-space: pre;" id="linksnb">
+                        JD Store
+                    </button>
+                    <button class="btn btn-link" onclick="window.location.href='JDRest.php'" id="linksnb">
+                        JD Rest
+                    </button>
+                    <button class="btn btn-link" onclick="window.location.href='JD_Invoice.php'" id="linksnb">
+                        JD Invoice
+                    </button>
+                    <button class="btn btn-link" onclick="window.location.href='JDEcomm.php'" id="linksnb">
+                        JD Ecomm
+                    </button>
+                    <button class="btn btn-link" onclick="window.location.href='JD_tae.php'" id="linksnb">
+                        JD TAE
+                    </button>
+                    <button class="btn btn-link" onclick="window.location.href='#'" id="linksnb">
+                        JD CEO
+                    </button>
+                    <button class="btn btn-link" onclick="window.location.href='shop.php'" id="linksnb">
+                        Tienda
+                    </button>
+                   
 
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-link dropdown-toggle" id="linksnb"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle fa-2xl"></i>
+                        </button>
 
-                            <a href="verif_Tienda.php" class="nav-link">
-                            <div id="carrito-cantidad">
-                                <i class="fas fa-shopping-cart"></i>
-                                <?php
+                        <ul class="dropdown-menu dropdown-menu" >
+                            <?php 
+                                    if (!isset($_SESSION['username'])) {
+                                        ?>
+                            <li><a class="dropdown-item" href="login.php">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="registro.php">Registrarse</a></li>
+                            <?php
+                                    } else {
+                                        ?>
+                            <li><a class="dropdown-item" href="verperfil.php">Ver Perfil</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Cerrar Sesion</a></li>
+                            <?php
+                                    }
+                                    ?>
+
+                        </ul>
+                    </li>
+                    <button class="btn btn-link" onclick="window.location.href='verif_Tienda.php'" id="linksnb">
+                    
+                        <div id="carrito-cantidad">
+                            <i class="fas fa-shopping-cart fa-xl"></i>
+                            <?php
                                 $newitem = 0;
                                 $cantidad_total = 0;
                                 
@@ -108,10 +141,12 @@ else
                                     echo $cantidad_total;
                                 }
                                 ?>
-                            </div>
-                            </a>
                         </div>
-                    </div>
-               
+                    
+                    </button>
+                    
+                </div>
+            </div>
+
         </div>
     </nav>

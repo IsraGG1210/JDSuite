@@ -1,23 +1,25 @@
 <?php 
-require_once '../Conexion/funciones.php';
-session_start();
-if (!isset($_SESSION['id'])) {
-    $_SESSION['id'] = uniqid();
-}
-$sesion = $_SESSION['id'];
+$id = $_POST["producto"]; // ID del producto
+$cantidad = $_POST["cantidad"]; // Nueva cantidad del producto
 
-$cantidad = $_POST['cantidad'];
-$producto = $_POST['producto'];
+if(isset($_SESSION['username'])){
+    $sesion = $_SESSION['username'];
 
-    $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$sesion.'" AND pd_producto="'.$producto.'"';
-    $result = setq($sql);
-    $row = $result->fetch_array();
-    //$nueva_cantidad = $cantidad+$row['pd_cantidad'];
-                
-    if($cantidad>0 ||$cantidad>null){
-        $sql1 = 'UPDATE pedidoscld SET pd_cantidad = "'.$cantidad.'" WHERE pd_producto = "'.$producto.'"';
-        setq($sql1);
-    }else{
-        echo "INGRESE UNA CANTIDAD ACEPTABLE";
+   $sql1 = 'UPDATE pedidoscld SET pd_cantidad = "'.$cantidad.'" 
+           WHERE pd_producto = "'.$id.'" AND pd_pedido = "'.$sesion'"';
+   setq($sql1);
+
+}else{
+    if(isset($_COOKIE["cart"])){
+        foreach($_COOKIE["cart"] as $clave=>$item){
+            if($item[0] == $id){
+                setcookie("cart[$clave][1]", $cantidad, time()+24*60*60, "/");
+                break;
+            }
+        }
     }
+}
+
 ?>
+
+

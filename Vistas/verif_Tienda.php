@@ -40,12 +40,77 @@ require './Conexion/config.php';
                     </tr>
                   </thead>
                   <tbody>
-                    <?php require_once './Conexion/funciones.php';
-                    $total=0;
+                    <?php 
+                    require_once './Conexion/funciones.php';
 
+                    if(isset($_SESSION['username'])){
+                        // Consulta para obtener los datos del pedido del usuario logueado
+                        $sesion = $_SESSION['username'];
+                        $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                            FROM pedidoscld
+                            INNER JOIN articulos ON a_cb = pd_producto
+                            INNER JOIN imagenes ON a_cb = i_idproducto
+                            WHERE pd_pedido="'.$sesion.'"';
+                        $result = setq($sql);
+                    
+                        $datos = Array();
+                        while($row = mysqli_fetch_array($result)){
+                            $datos[]=$row;
+                        }
+                          $total=0;
+                          foreach($datos as $producto){
+                            $ruta = $producto['rutaimagen'];
+                            $id = $producto['a_cb'];
+                            $nombre = $producto['a_nmb'];
+                            $cantidad = $producto['pd_cantidad'];
+                            $precio = $producto['pd_precio'];
+                            $descuento = $producto['pd_descuento'];
+                            $subtotal = $cantidad * $precio;
+                            $total += $subtotal;
+                      ?>  
+                    <tr>
+                      <td>
+                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
+                      </td>
+                      <td>
+                        <?php echo $nombre;?>
+                        <input type="hidden" id="producto" value="<?php echo ($id); ?>"/>
+                      </td>
+                      <td nowrap>
+                        <div nowrap class="input-group mb-5" >
+                          <input type="number" min="1" value="<?php echo number_format($cantidad) ?>" 
+                            class="for-control text-center txtCantidad" data-precio="<?php echo $precio; ?>" data-id="<?php echo $id; ?>"
+                            style="width:100px;">
+                        </div>
+                      </td>
+                      <td>
+                        <?php 
+                        echo MONEDA. number_format($precio,2,'.',',');?>
+                        <input type="hidden" id="precio<?php echo $id;?>" value="<?php echo ($precio); ?>"/>
+                      </td>
+                      <td>
+                        <?php echo MONEDA. number_format($descuento,2,'.',',');?>
+                        <input type="hidden" id="descuento" value="<?php echo ($descuento); ?>"/>
+                      </td>
+                      <td class="cant<?php echo $id;?>">
+                        <?php 
+                        $precioC = $precio * $cantidad;
+                        echo MONEDA. number_format($precioC,2,'.',',');?>
+                        <input type="hidden" id="precio<?php echo $id;?>" value="<?php echo ($precio); ?>"/>
+                      </td>
+                      <td>
+                        <a class="btnEliminar" id="eliminar"  data-id="<?php echo $id;?>"
+                          data-bs-toggle="modal" data-bs-target="#eliminaModal">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <?php 
+                    }}else {
+                       
+                    $total=0;
                   if(isset($_COOKIE['cart'])){
-                      /* echo "<table>";
-                      echo "<tr><th>ID</th><th>Cantidad</th><th>Talla</th><th>Color</th><th>Precio</th><th>Descuento</th></tr>"; */
+                  
                       foreach($_COOKIE['cart'] as $clave=>$item) {
                           $id = $item[0];
                           $cantidad = $item[1];
@@ -53,12 +118,13 @@ require './Conexion/config.php';
                           $color = $item[3];
                           $precio = $item[4];
                           $descuento = $item[5];
-
+                          
                           //imagen
                           $sql ="SELECT CONCAT(i_nmb,'.',i_ext) AS rutaimagen, a_nmb
-                                  from pedidoscld
-                                  INNER JOIN articulos ON a_cb = '$id'
-                                  INNER JOIN imagenes ON i_idproducto = '$id'";
+                                  from articulos
+                                  INNER JOIN imagenes ON i_idproducto = '$id'
+                                  WHERE a_cb = '$id'";
+                                 
                       $result = setq($sql);
                           if ($result) {
                             $producto = mysqli_fetch_assoc($result);
@@ -81,15 +147,9 @@ require './Conexion/config.php';
                       </td>
                       <td nowrap>
                         <div nowrap class="input-group mb-5" >
-                          <!-- <div class="input-group-prepend">
-                            <a class="btn btn-default btnincrementar" >&minus;</a>
-                          </div> -->
                           <input type="number" min="1" value="<?php echo number_format($cantidad) ?>" 
                             class="for-control text-center txtCantidad" data-precio="<?php echo $precio; ?>" data-id="<?php echo $id; ?>"
                             style="width:100px;">
-                          <!-- <div class="input-group-prepend">
-                            <a class="btn btn-default btnincrementar" >&plus;</a>
-                          </div> -->
                         </div>
                       </td>
                       <td>
@@ -115,8 +175,8 @@ require './Conexion/config.php';
                       </td>
                     </tr>
                     <?php } ?>
+                    <?php }}?>
                   </tbody>
-                  <?php } ?>
                 </table>
               </div>
               <div class="box-footer row">
@@ -207,8 +267,18 @@ require './Conexion/config.php';
                 </div>
                     </div>
               </div>
-              <button data-testid="button-component" class=" centrado paddbot2  w-100 h-12 border font-bold transition py-3 rounded" style="background-color:#29A8B0;" >
+              <?php
+              if(isset($_SESSION['username'])){
+                $accion = 'onclick="comprar()"';
+              }else{
+                $accion = 'href="login.php"';
+              }
+              ?>
+              <button>
+              <a data-testid="button-component" class=" centrado paddbot2  w-100 h-12 border font-bold transition py-3 rounded"
+              style="background-color:#29A8B0;" <?php echo $accion; ?>>
                 <i class="fa fa-shopping-bag"></i>Comprar
+              </a>
               </button>
                   
                   </div>
@@ -229,7 +299,36 @@ require './Conexion/config.php';
                     </div>
                     <h2 id="error" class="centrado" name="error" style="display:none" class="text-danger">Cupon no valido</h2>
                     <h2 id="errorp" class="centrado" name="error" style="display:none" class="text-danger">No puedes aplicar aún el cupon. No tienes productos en el carrito!</h2>
+                   
+                  <!--MODAL COMPRAS SIN SESION PRODUCTO-->
+                  <div class="modal fade" id="modalIniciarSesion" tabindex="-1" aria-labelledby="modalIniciarSesioneliminarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modalIniciarSesionModalLabel">Inicia sesion</h5><!-- 
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close">
+                          </button> -->
+                        </div>
+                        <div class="modal-body">
+                          <p>Debe iniciar sesión para realizar la compra.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button data-testid="button-component" class="border font-bold transition py-3 rounded"
+                          style="background-color:#29A8B0;" onclick="redireccionar()">Iniciar sesión</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 
                   <script>
+                    function redireccionar() {
+                    window.location.href = "login.php";
+                  }
+                  function comprar() {
+                        $.post("query/comprar.php", {}, function(data) {
+                            // Manejar la respuesta de la acción de compra
+                        });
+                    }
                     function addc() {
                       var cantidad = $("#cantidad").val();
                       cantidad++;
@@ -326,7 +425,7 @@ $(document).ready(function(){
     });
     $(".eliminar").click(function(){
       $.ajax({
-        url: "query/actualizarcart.php",
+        url: "query/eliminarcart.php",
         method: 'POST',
         data:{
           id:idEliminar
@@ -341,15 +440,7 @@ $(document).ready(function(){
       var producto = $(this).data('id');
       incrementar(cantidad, producto);
     });
-    /* $(".btnincrementar").click(function(){
-      var precio =$(this).parent('div').parent('div').find('input').data('precio');
-      var producto =$(this).parent('div').parent('div').find('input').data('id');
-      var cantidad =$(this).parent('div').parent('div').find('input').val();
-      incrementar(cantidad, precio, producto);
-    }); */
     function incrementar(cantidad, producto){
-      /* var mult = parseFloat(cantidad)*parseFloat(precio);
-      $(".cant" + id).text("$"+mult); */
       $.ajax({
         url: "query/cantidad.php",
         method: 'POST',

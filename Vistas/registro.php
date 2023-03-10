@@ -18,11 +18,16 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 			$sql  ="INSERT INTO clientes(c_nmb,c_mail,c_password) VALUES('$nombre', '$email', PASSWORD('$contra'))";
 			if(setq($sql)){
 				$mensaje="Usuario Nuevo Creado";
+				$sql="UPDATE clientes SET c_falta = NOW() WHERE c_mail= '$correo'";
+				setq($sql);
 				?>
 			<script>
-				
+				Swal.fire({
+					title: 'Usuario Nuevo Creado',
+					icon: 'success'
+				});
 				window.location.href = "login.php";
-				swal("Usuario nuevo creado",{icon:"success"});
+				/* swal("Usuario nuevo creado",{icon:"success"}); */
 			</script>
 <?php
 			}else{
@@ -48,7 +53,7 @@ if(isset($_SESSION['username'])){
 
 <?php if(!empty($mensaje)):?>
 <script>
-	swal("Error","<?php echo $mensaje?>","warning");
+	Swal.fire("Error","<?php echo $mensaje?>","warning");
 </script>
 
 <?php endif;?>

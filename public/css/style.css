@@ -110,7 +110,7 @@ input::-webkit-input-placeholder {
 }
 
 .nav-item a:hover {
-  color: #fff
+  color: #000000
 }
 
 #navbarNavDropdown.collapsing .navbar-nav,
@@ -437,10 +437,6 @@ input::-webkit-input-placeholder {
   text-align: center;
 }
 
-
-
-
-
 /*JD REST*/
 #accordionExampleY {
   font-size: 20px;
@@ -498,7 +494,6 @@ input::-webkit-input-placeholder {
 
 #login .form-control {
   height: auto !important;
-  
   padding: 8px 12px !important;
 }
 
@@ -771,9 +766,6 @@ asdis {
   color: #055e81;
   font-size: 32px;
 }
-
-
-
 
 #nav a {
   font-family: 'Cabin', sans-serif;
@@ -1113,4 +1105,10 @@ section .section-title {
   color: #29A8B0;
 }
 
-
+#linksnb{
+  color:white;
+  --mdb-btn-hover-bg: #9fa6b29c;
+  display: inherit;
+  text-transform: math-auto;
+  font-size: 15px;    
+}

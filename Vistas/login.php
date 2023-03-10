@@ -8,35 +8,41 @@ $mensaje="";
 if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 	$correo = $_POST['email'];
 	$contrasena = $_POST['contrasena'];
-	$sql ="SELECT COUNT(*) AS contar, c_nmb FROM clientes WHERE c_mail = '$correo' && c_password =PASSWORD('$contrasena')";
+	$sql ="SELECT COUNT(*) AS contar, c_nmb FROM clientes WHERE c_mail = '$correo' AND c_password =PASSWORD('$contrasena') OR c_rstpass = PASSWORD('$contrasena')";
 	$resultado = setq($sql);
 	$array = mysqli_fetch_array($resultado);
 		if($array['contar'] != '0'){
+		$sql = "UPDATE clientes SET c_flogin = NOW() WHERE c_mail = '$correo'";
+		setq($sql);
 		?>
-		
-			<script>
-				swal("Bienvenido",{ icon: "success"});
-				window.location.href = "index.php";
-				
-			</script>
-		<?php
+
+<script>
+	Swal.fire({
+		title: 'Bienvenido',
+		timer: 1500,
+		timerProgressBar: true,
+		icon: 'success'
+	});
+	window.location.href = "index.php";
+</script>
+<?php
 			$_SESSION['username'] = $correo;
 			
 		} else {
 			?>
-			<script>
-				swal("Error","Datos incorrectos","error");
-			</script>
-			<?php
+<script>
+	Swal.fire("Error", "Datos incorrectos", "error");
+</script>
+<?php
 		}
 }
  
 if(isset($_SESSION['username'])){
 	?>
-	<script>
-		window.location.href = "index.php"
-	</script>
-	<?php
+<script>
+	window.location.href = "index.php"
+</script>
+<?php
 }
 ?>
 <br>
@@ -70,15 +76,17 @@ if(isset($_SESSION['username'])){
 				</div>
 				<div class="registro d-flex justify-content-around">
 					<a href="registro.php" class="btnRegistro" style="color:white;">Registrate</a>
-					<a href="#" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu
+					<a href="recuperarcontra.php" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu
 						contraseña?</a>
 				</div>
+
+
 
 				<center>
 					<div class="form-group btningresar">
 						<!-- <button class="btn btn-primary btn-lg btn-block login-button" name="button" id="button"
 							type="submit">Ingresar</button> -->
-							<button class="btn btn-secondary btn-lg" type="submit">Ingresar</button>
+						<button class="btn btn-secondary btn-lg" type="submit">Ingresar</button>
 					</div>
 				</center>
 			</form>
