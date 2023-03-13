@@ -36,7 +36,7 @@ if(isset($_POST['editar'])){
                 swal("Datos Actualizados", {
                     icon: "success"
                 });
-                window.location.href = "verperfil.php"
+                window.location.href = "verperfil.php";
             </script>
             <?php
         } else {
@@ -147,7 +147,7 @@ if (isset($_POST['cancelar'])) {
                     <div class="input-group">
                         <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                             maxlength="10" value="<?php echo $result['c_telefono']?>" class="form-control" name="telefono"
-                            id="telefono" placeholder="Numero de telefono" required /> <br>
+                            id="telefono" placeholder="Numero de telefono"  /> <br>
                     </div>
                 </div>
             </div>

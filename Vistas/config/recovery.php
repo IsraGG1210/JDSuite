@@ -1,7 +1,6 @@
 <?php
 
 require '../Conexion/funciones.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -20,13 +19,10 @@ function generate_string($input, $strength = 16) {
     return $random_string;
 }
 
-$correo=$_REQUEST ['email'];
-$sql ="SELECT COUNT(*) AS contar,c_mail FROM clientes WHERE c_mail = '$correo'";
-setq($sql);
-
+$correo= $_POST['email'];
+$sql ="SELECT * FROM clientes WHERE c_mail = '$correo'";
 $resultado = setq($sql);
-    $array = mysqli_fetch_array($resultado);
-
+$array = mysqli_num_rows($resultado);
 if($array != '0'){
     $mail = new PHPMailer(true);
 
@@ -34,28 +30,36 @@ try {
     //Server settings
     
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp-mail.outlook.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'p02297280@gmail.com';                     //SMTP username
-    $mail->Password   = '123321pr.1';                               //SMTP password
+    $mail->Username   = 'prueba1_789@outlook.com';  /* prueba1_789@outlook.com  */        //SMTP username
+    $mail->Password   = 'prueba1.123';  /*Outlook: prueba1.123 */                             //SMTP password
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('p02297280@gmail.com', 'Mailer');
-    $mail->addAddress('israe10gar12@gmail.com');              //Name is optional
+    $mail->setFrom('prueba1_789@outlook.com');
+    $mail->addAddress($correo);              //Name is optional
 
     
-
+    $contrasenan =  generate_string($permitted_chars,10);
+    $sql="UPDATE clientes SET c_rstpass = PASSWORD('$contrasenan') WHERE c_mail = '$correo'";
+        setq($sql); 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Recuperacion de Contraseña';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Body    = 'Tu nueva contraseña es: '.$contrasenan;
+
+   
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients' ;
 
     $mail->send();
-    echo 'Message has been sent';
+    header("Location: ../login.php");
+    /* echo 'Message has been sent'; */
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+} else {
+    echo "correo no encontrado";
+
 }
 ?>

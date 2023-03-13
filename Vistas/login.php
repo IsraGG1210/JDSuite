@@ -10,10 +10,42 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 	$contrasena = $_POST['contrasena'];
 	$sql ="SELECT COUNT(*) AS contar, c_nmb FROM clientes WHERE c_mail = '$correo' AND c_password =PASSWORD('$contrasena') OR c_rstpass = PASSWORD('$contrasena')";
 	$resultado = setq($sql);
+	die($resultado);
 	$array = mysqli_fetch_array($resultado);
 		if($array['contar'] != '0'){
 		$sql = "UPDATE clientes SET c_flogin = NOW() WHERE c_mail = '$correo'";
 		setq($sql);
+
+		$_SESSION['username'] = $correo;
+			$pd = $_SESSION['username'];
+			if(isset($_COOKIE["cart"])){
+				$sqls ="SELECT*FROM pedidoscld WHERE pd_pedido='$pd'";
+					$resultados = setq($sqls);
+				if(mysqli_num_rows($resultados) == 0){
+					$cart = $_COOKIE["cart"];
+    
+					// Insertar los datos en la base de datos
+					foreach ($cart as $item) {
+						$id = $item[0];
+						$cantidad = $item[1];
+						$talla = $item[2];
+						$color = $item[3];
+						$precio = $item[4];
+						$descuento = $item[5];
+						
+						$sql = 'INSERT INTO pedidoscld SET
+						pd_producto = "'.$id.'",
+						pd_pedido = "'.$pd.'",
+						pd_cantidad = "'.$cantidad.'",
+						pd_talla = "'.$talla.'",
+						pd_color = "'.$color.'",
+						pd_precio = "'.$precio.'",
+						pd_descuento = "'.$descuento.'"';
+						//mysqli_query($conn, $sql);
+						setq($sql);  
+					}
+				}
+			}
 		?>
 
 <script>

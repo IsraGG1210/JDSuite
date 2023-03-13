@@ -1,6 +1,6 @@
 <?php 
 include ('header.php');
-$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+/* $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function generate_string($input, $strength = 16) {
     $input_length = strlen($input);
     $random_string = '';
@@ -10,18 +10,18 @@ function generate_string($input, $strength = 16) {
     }
     return $random_string;
 }
-
-if (!empty($_POST['email'])) {
+ */
+/* if (!empty($_POST['email'])) {
     $correo=$_POST['email'];
     $sql ="SELECT COUNT(*) AS contar,c_mail FROM clientes WHERE c_mail = '$correo'";
-   /*  die($sql); */
+ 
     $resultado = setq($sql);
     $array = mysqli_fetch_array($resultado);
 
     if($array['contar'] !='0'){
         $contrasenan = generate_string($permitted_chars,10);
         $sql="UPDATE clientes SET c_rstpass = PASSWORD('$contrasenan') WHERE c_mail = '$correo'";
-        setq($sql);
+        setq($sql); 
         $destinatario ="$correo";
         $titulo = "Recuperacion de contraseña";
         $mensaje = "Tu nueva contraseña es $contrasenan";
@@ -35,7 +35,7 @@ if (!empty($_POST['email'])) {
     }else {
         echo "Correo inexistente";
     }
-}    
+}   */  
 
 if(isset($_SESSION['username'])){
 	?>

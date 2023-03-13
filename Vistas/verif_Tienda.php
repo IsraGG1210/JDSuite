@@ -449,7 +449,7 @@ $(document).ready(function(){
         producto:producto
         } 
       }).done(function(resc){
-        //alert(resc);
+        alert(resc);
         location.reload();
       })
     }
