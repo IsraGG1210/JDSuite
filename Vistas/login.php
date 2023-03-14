@@ -10,7 +10,6 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 	$contrasena = $_POST['contrasena'];
 	$sql ="SELECT COUNT(*) AS contar, c_nmb FROM clientes WHERE c_mail = '$correo' AND c_password =PASSWORD('$contrasena') OR c_rstpass = PASSWORD('$contrasena')";
 	$resultado = setq($sql);
-	die($resultado);
 	$array = mysqli_fetch_array($resultado);
 		if($array['contar'] != '0'){
 		$sql = "UPDATE clientes SET c_flogin = NOW() WHERE c_mail = '$correo'";

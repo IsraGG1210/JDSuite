@@ -2,24 +2,6 @@
 require 'Conexion/funciones.php';
 include 'header.php';
 
-?>
-<script>
-    function confirmacion() {
-        Swal.fire({
-            title: '¿Seguro que deseas actualizar tus datos?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirmar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.perfil.php.submit();
-            }
-        })
-    }
-</script>
-<?php
 if(empty($_SESSION['username'])){
 	?>
 <script>
@@ -34,100 +16,27 @@ $sql="SELECT * FROM clientes WHERE c_mail = '$usuario'";
 $consutla= setq($sql);
 $result = mysqli_fetch_array($consutla);
 
-
-
-if(isset($_POST['editar'])){
-    if ( $_POST['password'] == $result['c_password'] ) {
-        $nombre = $_POST['name'];
-        $apellido = $_POST['apellidos'];
-        $telefono = $_POST['telefono'];
-        $rfc = $_POST['rfc'];
-        $razonsoc = $_POST['razonsocial'];
-        $regimen = $_POST['regimen'];
-        $calle = $_POST['calle'];
-        $colonia = $_POST['colonia'];
-        $numeroe = $_POST['numeroe'];
-        $numeroi = $_POST['numeroi'];
-        $municipio = $_POST['municipio'];
-        $cp = $_POST['codigop'];
-        $estado = $_POST['estado'];
-        $pais = $_POST['pais'];
-        $sql ="UPDATE clientes SET c_nmb = TRIM('$nombre'), c_apellidos =TRIM('$apellido'), c_telefono=TRIM('$telefono'), c_rfc = TRIM('$rfc')
-        , c_razon = TRIM('$razonsoc'), c_regimenfis = TRIM('$regimen'), c_calle = TRIM('$calle'), c_colonia = TRIM('$colonia'), c_nume = TRIM('$numeroe')
-        , c_numi = TRIM('$numeroi'), c_municipio = TRIM('$municipio'), c_cp = TRIM('$cp'), c_estado = TRIM('$estado'), c_pais = TRIM('$pais'),
-        c_fmod = NOW() 
-        WHERE c_mail = '$usuario'";
-        if (setq($sql)) {
-            ?>
-<script>
-    Swal.fire({
-        title: 'Datos Actualizados',
-        timer: 1500,
-        timerProgressBar: true,
-        icon: 'success'
-    });
-    window.location.href = "verperfil.php";
-</script>
-<?php
-        } else {
-            echo "Hubo Un Error En La Actualizacion";
-        }
-    }  else if( $_POST['password'] != $result['c_password']){
-        $nombre = $_POST['name'];
-        $apellido = $_POST['apellidos'];
-        $telefono = $_POST['telefono'];
-        $rfc = $_POST['rfc'];
-        $razonsoc = $_POST['razonsocial'];
-        $regimen = $_POST['regimen'];
-        $calle = $_POST['calle'];
-        $colonia = $_POST['colonia'];
-        $numeroe = $_POST['numeroe'];
-        $numeroi = $_POST['numeroi'];
-        $municipio = $_POST['municipio'];
-        $cp = $_POST['codigop'];
-        $estado = $_POST['estado'];
-        $pais = $_POST['pais'];
-        $contrasena = $_POST['password'];
-        $sql ="UPDATE clientes SET c_nmb = TRIM('$nombre'), c_apellidos =TRIM('$apellido'), c_telefono=TRIM('$telefono'), c_rfc = TRIM('$rfc')
-        , c_razon = TRIM('$razonsoc'), c_regimenfis = TRIM('$regimen'), c_calle = TRIM('$calle'), c_colonia = TRIM('$colonia'), c_nume = TRIM('$numeroe')
-        , c_numi = TRIM('$numeroi'), c_municipio = TRIM('$municipio'), c_cp = TRIM('$cp'), c_estado = TRIM('$estado'), c_pais = TRIM('$pais') ,
-        c_password = PASSWORD('$contrasena') 
-        WHERE c_mail = '$usuario'";
-        if (setq($sql)) {
-            ?>
-<script>
-    Swal.fire({
-        title: 'Datos Actualizados',
-        timer: 1500,
-        timerProgressBar: true,
-        icon: 'success'
-    });
-
-    window.location.href = "verperfil.php";
-</script>
-<?php
-        } else {
-            echo "Hubo Un Error En La Actualizacion";
-        }
-}
-}
-
-
-if (isset($_POST['cancelar'])) {
-    $sql="SELECT * FROM clientes WHERE c_mail = '$usuario'";
-    $consutla= setq($sql);
-    $result = mysqli_fetch_array($consutla);
-    ?>
-<script>
-    window.location.href = "verperfil.php";
-</script>
-<?php
-   
-} 
-
-
 ?>
 
+<script>
+    function confirmacion() {
+        Swal.fire({
+            title: '¿Seguro que deseas actualizar tus datos?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("perfile").submit();
+            }
+        })
+    }
+    function reload(){
+                location.reload();
+    }
+</script>
 <br>
 <div class="container-fluid">
     <div class="row">
@@ -148,12 +57,10 @@ if (isset($_POST['cancelar'])) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarPerfil">
                     <div class="container">
-                    
                         <ul class="navbar-nav flex-column">
                         <!-- <li class="nav-item active d-none d-md-flex align-items-center">
                             <strong class="col-sm-12 col-md-12 d-none d-lg-block d-xl-block"><?php echo $nameuser;?></strong>
                         </li> -->
-
                         <li class="nav-item active d-flex align-items-center">
                             <a class="nav-link" href="#seccion1">
                                 <div class="row">
@@ -166,7 +73,6 @@ if (isset($_POST['cancelar'])) {
                                 </div>
                             </a>
                         </li>
-
                         <li class="nav-item active d-flex align-items-center">
                             <a class="nav-link" href="#seccion2">
                             <div class="row">
@@ -209,8 +115,9 @@ if (isset($_POST['cancelar'])) {
             </nav>
         </div>
         <div class="col-8">
-            <form action="" name="perfil" method="post">
-            <h2>Datos Personales</h2>
+            
+            <form action="perfil.php" name="perfile" id="perfile" method="post">
+            <h2 id="seccion1">Datos Personales</h2>
             <div class="row">
                 <div class="col-md-6">
                     <label for="name" class="cols-sm-10 control-label"><b>Nombre(s)</b></label>
@@ -250,7 +157,7 @@ if (isset($_POST['cancelar'])) {
                     </div>
                 </div>
                 <hr size="8px" color="#29A8B0" style="margin-top:20px;">
-                <h2>Datos Fiscales</h2>
+                <h2 id="seccion2">Datos Fiscales</h2>
                 <div class="col-md-6">
                     <label for="rfc" class="cols-sm-10 control-label"><b>RFC</b></label>
                     <div class="col-sm-10">
@@ -273,9 +180,7 @@ if (isset($_POST['cancelar'])) {
                     <label for="regimen" class="cols-sm-10 control-label"><b>Regimen Fiscal</b></label>
                     <div class="col-sm-10">
                         <div class="input-group">
-
                             <?php
-
                             $sql2="SELECT * FROM cfdi_regimenfiscal";
                             $resultado2 = setq($sql2);
                             ?>
@@ -290,12 +195,11 @@ if (isset($_POST['cancelar'])) {
             
                                     }?>
                             </select>
-
                         </div>
                     </div>
                 </div>
                 <hr width="50%" size="8px" color="#29A8B0" style="margin-top:20px;">
-                <h2>Datos Domiciliarios</h2>
+                <h2 id="seccion3">Datos Domiciliarios</h2>
                 <div class="col-md-6">
                     <label for="calle" class="cols-sm-10 control-label"><b>Calle</b></label>
                     <div class="col-sm-10">
@@ -372,21 +276,18 @@ if (isset($_POST['cancelar'])) {
                 </div>
             </div>
             <div style="text-align:center;"><br>
-                <button class="btn btn-success" name="editar" id="editar" type="submit" onclick="confirmacion()">
+                <button class="btn btn-success" name="editar" id="editar" type="button" onclick="confirmacion()">
                     Actualizar
                 </button>
-                <button class="btn btn-danger" name="cancelar" id="cancelar" type="submit">
-                    Cancelar cambios
+                <button class="btn btn-danger" name="cancelar" id="cancelar" type="button" onclick="reload()">
+                    Descartar cambios
                 </button>
             </div>
-
-
-
         </form>
+
+       
         </div>
-
     </div>
-
 </div>
 <br>
 <?php 
