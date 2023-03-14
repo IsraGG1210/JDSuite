@@ -221,21 +221,9 @@ $sesion = $_SESSION['id'];
   <br>
 
 
-  <!--Carousel  owl-carousel owl-theme-->
-  <div class="owl-carousel owl-theme">
-    <?php
-    /* require_once 'Conexion/funciones.php';
-    $sql = 'SELECT * from articulosw 
-    inner join imagenes on aw_cb = i_idproducto
-    inner join articulos_precios on aw_id = ap_articulo and ap_esquema = 1
-    inner join articulos on a_cb = aw_cb
-    limit 30';
-     $result = setq($sql);
-     while($row = $result->fetch_Array()){ */
-
-    
-    foreach ($resultado as $row) {
-    ?>
+ <!--Carousel OWL-->
+<div class="owl-carousel owl-theme">
+    <?php foreach ($resultado as $row) { ?>
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
@@ -260,7 +248,7 @@ $sesion = $_SESSION['id'];
   <!--Carrusel de prductos-->
 <br>
 <script>
-     function addToCartCarousel(idp){
+    function addToCartCarousel(idp){
       document.getElementById("cart").disabled = true;
       precio = $("#precio"+idp).val();
       descuento = 0;
@@ -282,8 +270,7 @@ $sesion = $_SESSION['id'];
       //alert ("Cantidad" + htmlec);
       });
       }); 
-      }); 
-    }
+      }
   </script>
 
   

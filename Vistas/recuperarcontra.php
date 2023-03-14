@@ -1,41 +1,6 @@
 <?php 
 include ('header.php');
-/* $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-function generate_string($input, $strength = 16) {
-    $input_length = strlen($input);
-    $random_string = '';
-    for($i = 0; $i < $strength; $i++) {
-        $random_character = $input[mt_rand(0, $input_length - 1)];
-        $random_string .= $random_character;
-    }
-    return $random_string;
-}
- */
-/* if (!empty($_POST['email'])) {
-    $correo=$_POST['email'];
-    $sql ="SELECT COUNT(*) AS contar,c_mail FROM clientes WHERE c_mail = '$correo'";
- 
-    $resultado = setq($sql);
-    $array = mysqli_fetch_array($resultado);
 
-    if($array['contar'] !='0'){
-        $contrasenan = generate_string($permitted_chars,10);
-        $sql="UPDATE clientes SET c_rstpass = PASSWORD('$contrasenan') WHERE c_mail = '$correo'";
-        setq($sql); 
-        $destinatario ="$correo";
-        $titulo = "Recuperacion de contraseña";
-        $mensaje = "Tu nueva contraseña es $contrasenan";
-        $remitente = "From: p02297280@gmail.com";
-        if(mail($destinatario,$titulo,$mensaje,$remitente)){
-            $sql ="UPDATE clientes SET c_fmod = NOW() WHERE c_mail='$correo'";
-           echo "Contraseña nueva enviada"; 
-        }else {
-            echo "Hubo un error";
-        }
-    }else {
-        echo "Correo inexistente";
-    }
-}   */  
 
 if(isset($_SESSION['username'])){
 	?>

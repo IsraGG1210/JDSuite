@@ -1,6 +1,7 @@
 <?php
 
 require '../Conexion/funciones.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -59,7 +60,13 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 } else {
-    echo "correo no encontrado";
+   ?>
+   <script>
 
+    window.location.href = "../recuperarcontra.php";
+    window.alert("correo no encontrado");
+   </script>
+   
+   <?php
 }
 ?>

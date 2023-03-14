@@ -113,6 +113,7 @@ if(isset($_SESSION['username'])){
 						<!-- <input class ="btn btn-primary" type="submit" value="Registrate" > -->
 						<button class="btn btn-secondary btn-lg " type="submit">Registrate</button>
 					</div>
+					<a href="login.php" style="color: white;">¿Ya tienes cuenta? Inicia sesion</a>
 				</center>
 			</form>
 		</div>
