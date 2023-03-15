@@ -29,20 +29,52 @@ if ($_POST['password']==$result['c_password']) {
 if (setq($sql)) {
         ?>
         <script>
+            
     Swal.fire({
             title: 'Datos Actualizados',
-            timer: 1500,
+            timer: 900,
             timerProgressBar: true,
             icon: 'success'
         }
     );
-    window.location.href = "verperfil.php";
+    /* Swal.fire({
+  title: 'Datos Actualizados',
+  icon: 'success',
+  timer: 900,
+  target: '#custom-target',
+  customClass: {
+    container: 'position-absolute'
+  },
+  toast: true,
+  position: 'top-right'
+
+}) */
+setTimeout(function () {
+   window.location.href = "verperfil.php";
+}, 900);
+
         </script>
 <?php
     }
 
     else {
-        echo "Hubo Un Error En La Actualizacion";
+        ?>
+        <script>
+            
+        Swal.fire({
+                title: 'Hubo un error en la actualizacion de los datos',
+                timer: 900,
+                timerProgressBar: true,
+                icon: 'eror'
+            }
+        );
+       
+    setTimeout(function () {
+       window.location.href = "verperfil.php";
+    }, 900);
+    
+            </script>
+            <?php
     }
 }
 
@@ -71,22 +103,38 @@ else if($_POST['password'] !=$result['c_password']) {
 if (setq($sql)) {
         ?>
         <script>
-    window.location.href = "verperfil.php";
-
     Swal.fire({
             title: 'Datos Actualizados',
-            timer: 1500,
+            timer: 900,
             timerProgressBar: true,
             icon: 'success'
         }
-
     );
+    setTimeout(function () {
+   window.location.href = "verperfil.php";
+}, 900);
         </script>
 <?php
     }
 
     else {
-        echo "Hubo Un Error En La Actualizacion";
+        ?>
+        <script>
+            
+        Swal.fire({
+                title: 'Hubo un error en la actualizacion de los datos',
+                timer: 900,
+                timerProgressBar: true,
+                icon: 'eror'
+            }
+        );
+       
+    setTimeout(function () {
+       window.location.href = "verperfil.php";
+    }, 900);
+    
+            </script>
+            <?php
     }
 }
 ?>

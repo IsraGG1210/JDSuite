@@ -186,7 +186,7 @@ if(isset($_POST['submit-btn'])){
                                         <i class="fa-brands fa-shopify" style="font-size:34px"></i>
                                     </div>
                                     <div class="col-md-8 col-sm-0 d-none d-md-block d-sm-block">
-                                        Compras
+                                     Compras
                                     </div>
                                 </div>
                             </a>
