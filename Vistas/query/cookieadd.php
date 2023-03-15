@@ -12,7 +12,7 @@ $cart = array();
 
 if(isset($_SESSION['username'])){
 $sesion = $_SESSION['username'];
-  $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$sesion.'" AND pd_producto="'.$id.'"';
+  $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$sesion.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
   $result = setq($sql);
 
 if ($result->num_rows > 0) {
@@ -20,7 +20,7 @@ if ($result->num_rows > 0) {
    $nueva_cantidad = $cantidad+$row['pd_cantidad'];
    $sql1 = 'UPDATE pedidoscld SET 
            pd_cantidad = "'.$nueva_cantidad.'" 
-           WHERE pd_producto = "'.$producto.'"';
+           WHERE pd_producto = "'.$id.'" AND pd_conf = 0';
    setq($sql1);
 
 }else{

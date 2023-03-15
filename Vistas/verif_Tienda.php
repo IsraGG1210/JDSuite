@@ -1,6 +1,7 @@
 <?php
 include ('header.php');
 require './Conexion/config.php';
+require_once './Conexion/funciones.php';
 ?>
 
 <!--FORMULARIO/VERIFICACION-->
@@ -14,17 +15,31 @@ require './Conexion/config.php';
               <p class="text-muted">Tienes 
                 <span id="cantcart">
                 <?php
-                   $newitem = 0;
-                   $cantidad_total = 0;
-                   
-                   if(isset($_COOKIE['cart'])) {
-                       
-                       foreach($_COOKIE['cart'] as $clave=>$item) {
-                           $cantidad_total += $item[1];
-                       }
-                       echo $cantidad_total;
-                   }
-                ?>
+                          
+                          $newitem = 0;
+                          $cantidad_total = 7;
+
+                          if(isset($_SESSION['username'])){ 
+                              $sesion = $_SESSION['username'];
+                              //echo $sesion;
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              $result = setq($sql);
+                              $cantidad_tota = mysqli_fetch_assoc($result);
+                              $cantidad_total = $cantidad_tota['cantidad'];
+                          //echo $cantidad_total;
+                          
+
+                          }else{
+                              if(isset($_COOKIE['cart'])) {
+                              
+                                  foreach($_COOKIE['cart'] as $clave=>$item) {
+                                      $cantidad_total += $item[1];
+                                  }
+                                  //echo $cantidad_total;
+                              }
+                          } 
+                          echo $cantidad_total;
+                          ?>
                 </span> articulo(s) en tu carrito.</p>
               <div class="table-responsive">
                 <table class="table" id="tblistado">
@@ -41,7 +56,6 @@ require './Conexion/config.php';
                   </thead>
                   <tbody>
                     <?php 
-                    require_once './Conexion/funciones.php';
 
                     if(isset($_SESSION['username'])){
                         // Consulta para obtener los datos del pedido del usuario logueado
@@ -50,7 +64,7 @@ require './Conexion/config.php';
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$sesion.'"';
+                            WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
                         $result = setq($sql);
                     
                         $datos = Array();
@@ -198,16 +212,31 @@ require './Conexion/config.php';
                     <span >Subtotal</span>
                     <span id="cantcart">(
                       <?php
-                        $newitem = 0;
-                        $cantidad_total = 0;
-                        
-                        if(isset($_COOKIE['cart'])) {
-                            
-                            foreach($_COOKIE['cart'] as $clave=>$item) {
-                                $cantidad_total += $item[1];
-                            }
-                            echo $cantidad_total;
-                        } ?>)
+                          
+                          $newitem = 0;
+                          $cantidad_total = 0;
+
+                          if(isset($_SESSION['username'])){ 
+                              $sesion = $_SESSION['username'];
+                              //echo $sesion;
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              $result = setq($sql);
+                              $cantidad_tota = mysqli_fetch_assoc($result);
+                              $cantidad_total = $cantidad_tota['cantidad'];
+                          //echo $cantidad_total;
+                          
+
+                          }else{
+                              if(isset($_COOKIE['cart'])) {
+                              
+                                  foreach($_COOKIE['cart'] as $clave=>$item) {
+                                      $cantidad_total += $item[1];
+                                  }
+                                  //echo $cantidad_total;
+                              }
+                          } 
+                          echo $cantidad_total;
+                          ?>)
                     </span>
                     <span >productos</span>
                   </div>
@@ -276,7 +305,8 @@ require './Conexion/config.php';
               ?>
               <button>
               <a data-testid="button-component" class=" centrado paddbot2  w-100 h-12 border font-bold transition py-3 rounded"
-              style="background-color:#29A8B0;" <?php echo $accion; ?>>
+              style="background-color:#29A8B0;" id="compra"<?php echo $accion; ?> data-user="<?php echo $sesion;?>" 
+              data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>"> 
                 <i class="fa fa-shopping-bag"></i>Comprar
               </a>
               </button>
@@ -321,11 +351,20 @@ require './Conexion/config.php';
                   </div>
                  
                   <script>
-                    function redireccionar() {
-                    window.location.href = "login.php";
-                  }
                   function comprar() {
-                        $.post("query/comprar.php", {}, function(data) {
+                    var compra = document.getElementById('compra');
+
+                    var subtotal = compra.dataset.subtotal
+                    var total = compra.dataset.total
+                    var envio = compra.dataset.envio
+                    var user = compra.dataset.user
+
+                        $.post("query/comprar.php", {
+                          subtotal : subtotal,
+                          envio : envio,
+                          total : total,
+                          user : user
+                        }, function(data) {
                             // Manejar la respuesta de la acción de compra
                         });
                     }

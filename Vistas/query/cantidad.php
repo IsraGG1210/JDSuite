@@ -7,7 +7,7 @@ $cantidad = $_POST["cantidad"]; // Nueva cantidad del producto
 if(isset($_SESSION['username'])){
     $sesion = $_SESSION['username'];
     $sql1 = 'UPDATE pedidoscld SET pd_cantidad = "'.$cantidad.'" 
-            WHERE pd_producto = "'.$id.'" AND pd_pedido = "'.$sesion.'"';
+            WHERE pd_producto = "'.$id.'" AND pd_pedido = "'.$sesion.'" AND pd_conf = 0';
     setq($sql1);
 
 }else{
@@ -21,5 +21,8 @@ if(isset($_SESSION['username'])){
     }
 }
 ?>
+
+
+
 
 
