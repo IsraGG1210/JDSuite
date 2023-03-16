@@ -14,8 +14,11 @@ require_once './Conexion/funciones.php';
 </div>
 
 <div class="container-fluid">
-    sc
+    <div class="col-12">
+        fg
+    </div>
 </div>
+
 <div class="bloques">
     <div class="col-12">
       <div class="row mb-2">
