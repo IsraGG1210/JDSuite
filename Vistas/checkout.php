@@ -117,36 +117,7 @@ require_once './Conexion/funciones.php';
             <div class="col-md-4">
             <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <h1>RESUMEN</h1>
-            <?php 
-                    $total=0;
-                  if(isset($_COOKIE['cart'])){
-                  
-                      foreach($_COOKIE['cart'] as $clave=>$item) {
-                          $id = $item[0];
-                          $cantidad = $item[1];
-                          $talla = $item[2];
-                          $color = $item[3];
-                          $precio = $item[4];
-                          $descuento = $item[5];
-                          
-                          //imagen
-                          $sql ="SELECT CONCAT(i_nmb,'.',i_ext) AS rutaimagen, a_nmb
-                                  from articulos
-                                  INNER JOIN imagenes ON i_idproducto = '$id'
-                                  WHERE a_cb = '$id'";
-                                 
-                      $result = setq($sql);
-                          if ($result) {
-                            $producto = mysqli_fetch_assoc($result);
-                            $ruta = $producto['rutaimagen'];
-                            $nombre = $producto['a_nmb'];
-                          } else {
-                              echo "Error al hacer la consulta a MySQL";
-                          }
-                          
-                          $subtotal = $cantidad * $precio;
-                          $total += $subtotal;
-            ?> 
+            
               <div class="sep">
               </div>
               <div class="flex justify-between mb-3 text-sm">
@@ -155,7 +126,34 @@ require_once './Conexion/funciones.php';
                     <span >Subtotal</span>
                     <span id="cantcart">(
                       <?php
-                          
+                          $total=0;
+                        if(isset($_COOKIE['cart'])){
+                        
+                            foreach($_COOKIE['cart'] as $clave=>$item) {
+                                $id = $item[0];
+                                $cantidad = $item[1];
+                                $talla = $item[2];
+                                $color = $item[3];
+                                $precio = $item[4];
+                                $descuento = $item[5];
+                                
+                                //imagen
+                                $sql ="SELECT CONCAT(i_nmb,'.',i_ext) AS rutaimagen, a_nmb
+                                        from articulos
+                                        INNER JOIN imagenes ON i_idproducto = '$id'
+                                        WHERE a_cb = '$id'";
+                                       
+                            $result = setq($sql);
+                                if ($result) {
+                                  $producto = mysqli_fetch_assoc($result);
+                                  $ruta = $producto['rutaimagen'];
+                                  $nombre = $producto['a_nmb'];
+                                } else {
+                                    echo "Error al hacer la consulta a MySQL";
+                                }
+                                
+                                $subtotal = $cantidad * $precio;
+                                $total += $subtotal;
                           $newitem = 0;
                           $cantidad_total = 0;
 
