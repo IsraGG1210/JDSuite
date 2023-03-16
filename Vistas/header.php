@@ -47,10 +47,14 @@ else
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet">
+    <link href="../public/css/mdb.min.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=ATGR-tXUxqbd-_8HyqJlDUQs_hxZJvomdCoVlATwvbNAgypFw4ewkPyRAQN-3nJwlVQsGPbJkDrTsXgK&currency=MXN">
+    </script>
+    
 </head>
 
 
@@ -78,7 +82,8 @@ else
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <button class="btn btn-link" onclick="window.location.href='JD_Store.php'" class="white-space: pre;" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='JD_Store.php'" class="white-space: pre;"
+                        id="linksnb">
                         JD Store
                     </button>
                     <button class="btn btn-link" onclick="window.location.href='JDRest.php'" id="linksnb">
@@ -99,15 +104,15 @@ else
                     <button class="btn btn-link" onclick="window.location.href='shop.php'" id="linksnb">
                         Tienda
                     </button>
-                   
+
 
                     <li class="nav-item dropdown">
-                        <button class="btn btn-link dropdown-toggle" id="linksnb"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-link dropdown-toggle" id="linksnb" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-user-circle fa-2xl"></i>
                         </button>
 
-                        <ul class="dropdown-menu dropdown-menu" >
+                        <ul class="dropdown-menu dropdown-menu">
                             <?php 
                                     if (!isset($_SESSION['username'])) {
                                         ?>
@@ -125,7 +130,7 @@ else
                         </ul>
                     </li>
                     <button class="btn btn-link" onclick="window.location.href='verif_Tienda.php'" id="linksnb">
-                    
+
                         <div id="carrito-cantidad">
                             <i class="fas fa-shopping-cart fa-xl"></i>
                             <?php
@@ -154,9 +159,9 @@ else
                             echo $cantidad_total;
                             ?>
                         </div>
-                    
+
                     </button>
-                    
+
                 </div>
             </div>
 
