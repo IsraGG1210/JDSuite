@@ -117,7 +117,33 @@ require_once './Conexion/funciones.php';
             <div class="col-md-4">
             <div class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <h1>RESUMEN</h1>
-            
+            <?php 
+
+                    if(isset($_SESSION['username'])){
+                        // Consulta para obtener los datos del pedido del usuario logueado
+                        $sesion = $_SESSION['username'];
+                        $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                            FROM pedidoscld
+                            INNER JOIN articulos ON a_cb = pd_producto
+                            INNER JOIN imagenes ON a_cb = i_idproducto
+                            WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+                        $result = setq($sql);
+                    
+                        $datos = Array();
+                        while($row = mysqli_fetch_array($result)){
+                            $datos[]=$row;
+                        }
+                          $total=0;
+                          foreach($datos as $producto){
+                            $ruta = $producto['rutaimagen'];
+                            $id = $producto['a_cb'];
+                            $nombre = $producto['a_nmb'];
+                            $cantidad = $producto['pd_cantidad'];
+                            $precio = $producto['pd_precio'];
+                            $descuento = $producto['pd_descuento'];
+                            $subtotal = $cantidad * $precio;
+                            $total += $subtotal;
+                      ?>
               <div class="sep">
               </div>
               <div class="flex justify-between mb-3 text-sm">
@@ -126,34 +152,7 @@ require_once './Conexion/funciones.php';
                     <span >Subtotal</span>
                     <span id="cantcart">(
                       <?php
-                          $total=0;
-                        if(isset($_COOKIE['cart'])){
-                        
-                            foreach($_COOKIE['cart'] as $clave=>$item) {
-                                $id = $item[0];
-                                $cantidad = $item[1];
-                                $talla = $item[2];
-                                $color = $item[3];
-                                $precio = $item[4];
-                                $descuento = $item[5];
-                                
-                                //imagen
-                                $sql ="SELECT CONCAT(i_nmb,'.',i_ext) AS rutaimagen, a_nmb
-                                        from articulos
-                                        INNER JOIN imagenes ON i_idproducto = '$id'
-                                        WHERE a_cb = '$id'";
-                                       
-                            $result = setq($sql);
-                                if ($result) {
-                                  $producto = mysqli_fetch_assoc($result);
-                                  $ruta = $producto['rutaimagen'];
-                                  $nombre = $producto['a_nmb'];
-                                } else {
-                                    echo "Error al hacer la consulta a MySQL";
-                                }
-                                
-                                $subtotal = $cantidad * $precio;
-                                $total += $subtotal;
+                          
                           $newitem = 0;
                           $cantidad_total = 0;
 
@@ -219,25 +218,14 @@ require_once './Conexion/funciones.php';
                       echo MONEDA. number_format($totalen,2,'.',',');?>
                     </b></h5></span>
                   </div>
-                  <?php }}?>
+                  <?php 
+                    }}?>
                 </div>
           </div>
         </div>
             </div>
         </div>
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary me-md-2" type="button" href="datosenvio.php"
-            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
-            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
-            Atrás   
-            </a>
-            <a class="btn btn-primary me-md-2" type="button"
-            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
-            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
-            Siguiente   
-            </a>
-            </div>
 </div>
 
 <?php
