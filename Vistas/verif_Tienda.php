@@ -298,7 +298,7 @@ require_once './Conexion/funciones.php';
               </div>
               <?php
               if(isset($_SESSION['username'])){
-                $accion = 'onclick="comprar()"';
+                $accion = 'href="veriCompra.php"';
               }else{
                 $accion = 'href="login.php"';
               }

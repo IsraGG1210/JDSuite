@@ -180,13 +180,13 @@ if(isset($_POST['submit-btn'])){
                             </a>
                         </li>
                         <li class="nav-item active d-flex align-items-center">
-                            <a class="nav-link" href="misCompras.php">
+                            <a class="nav-link" href="#">
                             <div class="row">
                                     <div class="col-md-4 col-sm-12 col-xs-12">
                                         <i class="fa-brands fa-shopify" style="font-size:34px"></i>
                                     </div>
                                     <div class="col-md-8 col-sm-0 d-none d-md-block d-sm-block">
-                                        Mis Compras
+                                     Compras
                                     </div>
                                 </div>
                             </a>

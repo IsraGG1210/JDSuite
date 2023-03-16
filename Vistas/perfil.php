@@ -65,7 +65,7 @@ setTimeout(function () {
                 title: 'Hubo un error en la actualizacion de los datos',
                 timer: 900,
                 timerProgressBar: true,
-                icon: 'eror'
+                icon: 'error'
             }
         );
        
