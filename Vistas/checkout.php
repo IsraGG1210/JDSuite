@@ -152,6 +152,7 @@ require_once './Conexion/funciones.php';
                             $descuento = $producto['pd_descuento'];
                             $subtotal = $cantidad * $precio;
                             $total += $subtotal;
+                          }}
                       ?>
                     <div class="sep">
                     </div>
@@ -230,9 +231,7 @@ require_once './Conexion/funciones.php';
                       echo MONEDA. number_format($totalen,2,'.',',');?>
                                                 </b></h5>
                                         </span>
-                                    </div>
-                                    <?php 
-                    }}?></div></div>
+                                    </div></div></div>
                                 </div>
                             </div>
                         </div>
