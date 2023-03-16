@@ -12,10 +12,8 @@ require_once './Conexion/funciones.php';
         </div>
     </div>
 </div>
-<div class="bloques">
-    <div class="col-12">
-        <div class="row mb-2">
-            <div class="col-md-8">
+
+<div class="col-md-8">
                 <?php 
                     $total=0;
                   if(isset($_COOKIE['cart'])){
@@ -148,6 +146,7 @@ require_once './Conexion/funciones.php';
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div
                     class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -239,6 +238,11 @@ require_once './Conexion/funciones.php';
 
                 </div>
             </div>
+<div class="bloques">
+    <div class="col-12">
+        <div class="row mb-2">
+            
+            
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a class="btn btn-primary me-md-2" type="button" href="datosenvio.php" style="background-color:#29A8B0;"
                     id="siguiente" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
