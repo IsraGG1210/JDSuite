@@ -15,7 +15,14 @@ require_once './Conexion/funciones.php';
 
 <div class="container-fluid">
     <div class="col-12">
-        fg
+        <div class="row mb-2">
+            <div class="col-md-8">
+                priemra
+            </div>
+            <div class="col-md-4">
+                segunda
+            </div>
+        </div>
     </div>
 </div>
 
