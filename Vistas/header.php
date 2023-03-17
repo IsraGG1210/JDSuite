@@ -52,7 +52,7 @@ else
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <script
-        src="https://www.paypal.com/sdk/js?client-id=ATGR-tXUxqbd-_8HyqJlDUQs_hxZJvomdCoVlATwvbNAgypFw4ewkPyRAQN-3nJwlVQsGPbJkDrTsXgK&currency=MXN">
+        src="https://www.paypal.com/sdk/js?client-id=ATGR-tXUxqbd-_8HyqJlDUQs_hxZJvomdCoVlATwvbNAgypFw4ewkPyRAQN-3nJwlVQsGPbJkDrTsXgK&currency=MXN&locale=es_MX">
     </script>
     
 </head>

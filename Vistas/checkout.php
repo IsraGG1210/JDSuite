@@ -1,9 +1,39 @@
 <?php
 include 'header.php';
 require './Conexion/config.php';
-
 require_once './Conexion/funciones.php';
 
+$sesion = $_SESSION['username'];
+$sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+    FROM pedidoscld
+    INNER JOIN articulos ON a_cb = pd_producto
+    INNER JOIN imagenes ON a_cb = i_idproducto
+    WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+$result = setq($sql);
+$datos = Array();
+    while($row = mysqli_fetch_array($result)){
+        $datos[]=$row;
+    }
+    $total=0;
+    foreach($datos as $producto){
+        $ruta = $producto['rutaimagen'];
+        $id = $producto['a_cb'];
+        $nombre = $producto['a_nmb'];
+        $cantidad = $producto['pd_cantidad'];
+        $precio = $producto['pd_precio'];
+        $descuento = $producto['pd_descuento'];
+        $subtotal = $cantidad * $precio;
+        $total += $subtotal;
+    }
+    $envio = 0;
+    if($total>5000){
+      $envio;
+    } elseif($total==0){
+      $envio;
+    }else{
+      $envio = 150;
+      
+    }
 ?>
 <div class="container-fluid">
     <div class="row justify-content-md-center">
@@ -55,13 +85,26 @@ require_once './Conexion/funciones.php';
                             <div id="collapseTwoY" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
                                 data-mdb-parent="#accordionExampleY">
                                 <br>
-
+                                <script>
+                                    function enviar(){
+                                        document.getElementById("paypal").submit();
+                                        /* window.location.href = 'checkoutpaypal.php'; */
+                                    }
+                                </script>
+                                
+                                    <form action="query/comprar.php" name="paypal" id="paypal" method="post">
+                                        <input type="text" name="subtotal" value="<?php echo $total; ?>">
+                                        <input type="text" name="envio" value="<?php echo $envio; ?>">
+                                        <input type="text" name="total" value="<?php echo $totalen= $total+$envio; ?>">
+                                        <input type="text" name="user" value="<?php echo $_SESSION['username']; ?>">
+                                    
                                 <center>
-                                    <a href="checkoutpaypal.php"><button class="btn btn-primary rounded-pill">
+                                    <button type="button" onclick="enviar()"class="btn btn-primary rounded-pill">
                                             <i class="fa-brands fa-paypal fa-lg me-2 opacity-70"></i>Pagar Con PayPal
                                         </button>
-                                    </a>
+                                    
                                 </center>
+                                     </form>
                                 <br>
                             </div>
                         </div>
@@ -231,7 +274,7 @@ require_once './Conexion/funciones.php';
                       echo MONEDA. number_format($totalen,2,'.',',');?>
                                                 </b></h5>
                                         </span>
-                                    </div></div></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +282,9 @@ require_once './Conexion/funciones.php';
                 </div>
             </div>
         </div>
-    
-        <?php
+    </div>
+</div>
+
+<?php
 include 'footer.php'
 ?>

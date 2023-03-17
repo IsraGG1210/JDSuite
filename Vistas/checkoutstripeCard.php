@@ -44,67 +44,47 @@ if(isset($_SESSION['username'])){
     <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="col-12">
-        <div class="row">
-            <div class="d-flex justify-content-center">
-                    <div class="accordion col-md-8 col-sm-12" id="accordionExampleY">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwoY">
-                                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                                    style="color:black" data-mdb-target="#collapseTwo1" aria-expanded="false"
-                                    aria-controls="collapseTwo1">
-                                    <i class="fa-brands fa-stripe-s fa-lg me-2 opacity-70"></i>
-                                    <i class="fa-regular fa-credit-card"></i></i>
-                                    <h3>Pago con tarjeta</h3>
-                                </button>
-                            </h2>
-                            <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
-                                data-mdb-parent="#accordionExampleY">
-                                <br>
-
-                                <center>
-                                    <a href="checkoutstripeCard.php">
-                                        <button class="btn btn-primary rounded-pill" style="background-color:#29A8B0;">
-                                        <i class="fa-regular fa-credit-card"></i></i>Pagar Con tarjeta
-                                        </button>
-                                    </a>
-                                </center>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwoY">
-                                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                                    style="color:black" data-mdb-target="#collapseTwoY" aria-expanded="false"
-                                    aria-controls="collapseTwoY">
-                                    <i class="fa-brands fa-paypal fa-lg me-2 opacity-70"></i>
-                                    <i class="fa-solid fa-xmarks-lines"></i>
-                                    <h3>Pago en oxxo</h3>
-                                </button>
-                            </h2>
-                            <div id="collapseTwoY" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
-                                data-mdb-parent="#accordionExampleY">
-                                <br>
-
-                                <center>
-                                <form action="CreateChargeOxxo.php" method="post" id="payment-form">
-                                    <input type="hidden" name="subtotal" value="<?php echo $total;?>">
-                                    <input type="hidden" name="envio" value="<?php echo $envio;?>">
-                                    <input type="hidden" name="total" value="<?php echo $totalen;?>">
-                                    <button type="submit" id="submit" class="btn btn-primary float-right">
-                                      Pagar en OXXO <?php echo MONEDA. number_format($totalen,2,'.',',');?>
-                                    </button>
-                                </form>
-                                </center>
-                                <br>
-                            </div>
-                        </div>
-
-              </div>
+    <div class="container-fluid p-5">
+    <form action="CreateChargeCard.php" method="post" id="payment-form">
+    <input type="hidden" name="subtotal" value="<?php echo $total;?>">
+    <input type="hidden" name="envio" value="<?php echo $envio;?>">
+    <input type="hidden" name="total" value="<?php echo $totalen;?>">
+      <div class="form-row">
+        <h4 for="card-element">
+          Tarjeta de Credito o Debito
+        </h4>
+        <div id="card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+        <div class="mt-3">
+            <h4>Terminos y condiciones</h4>
+            <span>T&E</span>
+            <div class="form-check">
+                <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                    Acepto los terminos y condiciones
+                </label>
+            </div>
         </div>
       </div>
+      <div class="mt-3">
+        <button class="btn btn-warning">
+        <a class="btn btn-warning" href="#" role="button">
+            Ir a verificacion
+        </a>
+        </button>
+        <button type="submit" class="btn btn-primary float-right">
+        <a type="submit" class="btn btn-primary float-right" id="compraf" data-user="<?php echo $sesion;?>" 
+            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
+            Pagar <?php echo MONEDA. number_format($totalen,2,'.',',');?>
+        </a>
+        </button>
+       </div>
+    </form>
     </div>
+    
     <script>
       
 
