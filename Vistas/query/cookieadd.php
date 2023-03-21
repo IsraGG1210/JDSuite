@@ -14,10 +14,10 @@ $cart = array();
 $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
 $resultado = setq($sql1);
 $idusuario = mysqli_fetch_array($resultado);
-
+$idusu = $idusuario['c_id'];
 if(isset($_SESSION['username'])){
 $sesion = $_SESSION['username'];
-  $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$sesion.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
+  $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$idusu.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
   $result = setq($sql);
 
 if ($result->num_rows > 0) {

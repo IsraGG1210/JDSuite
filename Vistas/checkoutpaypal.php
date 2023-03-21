@@ -25,11 +25,17 @@ require_once './Conexion/funciones.php';
                         $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
                         $resultado = setq($sql1);
                         $idusuario = mysqli_fetch_array($resultado);
-                        $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                        $idusu = $idusuario['c_id'];
+                        /* $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
+                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0'; */
+                            $sql ="SELECT concat(i_nmb,'.',i_ext) AS rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                            FROM pedidoscld
+                            INNER JOIN articulos ON a_cb = pd_producto
+                            INNER JOIN imagenes ON a_cb = i_idproducto
+                            WHERE pd_pedido='$idusu' AND pd_conf = '0' GROUP BY a_cb ";
                         $result = setq($sql);
                     
                         $datos = Array();
@@ -49,8 +55,10 @@ require_once './Conexion/funciones.php';
                           }}
                       ?>
                 <div class="sep">
-                </div>
-                <div class="flex justify-between mb-3 text-sm">
+
+
+                    </div>
+                 <div class="flex justify-between mb-3 text-sm">
                     <div class="row">
                         <div class="col-9">
                             <span>Subtotal</span>
@@ -96,16 +104,28 @@ require_once './Conexion/funciones.php';
                             <div class="col-3">
                                 <h5>
                                     <?php 
-                      $envio = 0;
-                      if($total>5000){
-                        echo MONEDA.$envio;
-                      } elseif($total==0){
-                        echo MONEDA.$envio;
-                      }else{
-                        $envio = 150;
-                        echo MONEDA.$envio;
-                      }
-                      ?>
+                                $envio = 0;
+                                if($total>5000){
+                                    echo MONEDA.$envio;
+                                } elseif($total==0){
+                                    echo MONEDA.$envio;
+                                }else{
+                                    $envio = 150;
+                                    echo MONEDA.$envio;
+                                }
+                                ?>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9">
+                                <span>Comision PayPal</span>
+                            </div>
+                            <div class="col-3">
+                                <h5>
+                                   <?php
+                                   echo MONEDA. number_format($comision = $total * .0366+3.65,2,'.',',');
+                                   ?>
                                 </h5>
                             </div>
                         </div>
@@ -113,11 +133,11 @@ require_once './Conexion/funciones.php';
                             <div class="row">
                                 <div class="col-9">
                                     <span>
-                                        <h4 id="totalf"><b>Total a pagar por el momento</b></h4>
+                                        <h4 id="totalf"><b>Total a pagar</b></h4>
                                     </span>
                                 </div>
                                 <div class="col-3">
-                                    <?php $totalen = $total+$envio;?>
+                                    <?php $totalen = $total+$envio+ $comision;?>
                                     <span>
                                         <h5 id="idtotalFinal" data-total=""><b>
                                                 <?php 
@@ -132,6 +152,14 @@ require_once './Conexion/funciones.php';
             </div>
         </div>
     </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-primary me-md-2" type="button" href="veriCompra.php"
+            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
+            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
+            Atrás   
+            </a>
+            
+        </div>
 </div>
 
 

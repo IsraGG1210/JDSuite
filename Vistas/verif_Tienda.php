@@ -66,11 +66,17 @@ require_once './Conexion/funciones.php';
                         $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
 $resultado = setq($sql1);
 $idusuario = mysqli_fetch_array($resultado);
-                        $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+$idusu = $idusuario['c_id'];
+                       /*  $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
+                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0'; */
+                        $sql ="SELECT concat(i_nmb,'.',i_ext) AS rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                        FROM pedidoscld
+                        INNER JOIN articulos ON a_cb = pd_producto
+                        INNER JOIN imagenes ON a_cb = i_idproducto
+                        WHERE pd_pedido='$idusu' AND pd_conf = '0' GROUP BY a_cb ";
                         $result = setq($sql);
                     
                         $datos = Array();
