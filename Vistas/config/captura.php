@@ -1,7 +1,13 @@
 <?php
 require '../Conexion/config.php';
 require '../Conexion/funciones.php';
+session_start();
+$username= $_SESSION['username'];
 
+$sql = "SELECT c_id FROM clientes WHERE c_mail ='$username'";
+$idusuario=setq($sql);
+$resultado = mysqli_fetch_array($idusuario);
+$result = $resultado['c_id'];
 $json = file_get_contents('php://input');
 $datos = json_decode($json, true);
 
@@ -18,7 +24,16 @@ if(is_array($datos)){
     $id_cliente = $datos['detalles']['payer']['payer_id'];
     
 
-    $sql="";
+    $sql1="UPDATE pedidoscl SET p_estatus ='A' WHERE p_cliente = '$result' AND p_estatus='N' ";
+    
+    if(setq($sql1)){
+        $sql2= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$result.'"';
+    
+        setq($sql2); 
+    }
+    
+    
+    
 
 }
 ?>

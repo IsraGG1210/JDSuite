@@ -135,12 +135,15 @@ else
                             <i class="fas fa-shopping-cart fa-xl"></i>
                             <?php
                             $newitem = 0;
-                            $cantidad_total = 7;
+                            $cantidad_total = 0;
 
                             if(isset($_SESSION['username'])){ 
                                 $sesion = $_SESSION['username'];
                                 //echo $sesion;
-                                $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                                $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                                $resultado = setq($sql1);
+                                $idusuario = mysqli_fetch_array($resultado);
+                                $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
                                 $result = setq($sql);
                                 $cantidad_tota = mysqli_fetch_assoc($result);
                                 $cantidad_total = $cantidad_tota['cantidad'];

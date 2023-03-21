@@ -14,4 +14,5 @@ $sql = 'INSERT INTO pedidoscl SET
 setq($sql); 
 $sql1= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$user.'"';
 setq($sql1); 
+
 ?>

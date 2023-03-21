@@ -1,10 +1,16 @@
 <?php
 include 'header.php';
 require './Conexion/config.php';
+
 require_once './Conexion/funciones.php';
 
 $sesion = $_SESSION['username'];
-$sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+
+$sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+$resultado = setq($sql1);
+$idusuario = mysqli_fetch_array($resultado);
+
+/* $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
     FROM pedidoscld
     INNER JOIN articulos ON a_cb = pd_producto
     INNER JOIN imagenes ON a_cb = i_idproducto
@@ -33,11 +39,11 @@ $datos = Array();
     }else{
       $envio = 150;
       
-    }
+    } */
 ?>
 <div class="container-fluid">
     <div class="row justify-content-md-center">
-        <div class="lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="lip row g-0 border rounded overflow- flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <h2>Verifica tu pago</h2>
         </div>
     </div>
@@ -85,21 +91,52 @@ $datos = Array();
                             <div id="collapseTwoY" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
                                 data-mdb-parent="#accordionExampleY">
                                 <br>
-                                <script>
-                                    function enviar(){
-                                        document.getElementById("paypal").submit();
-                                        /* window.location.href = 'checkoutpaypal.php'; */
-                                    }
-                                </script>
+                                <?php
+                                 if(isset($_SESSION['username'])){
+                                    // Consulta para obtener los datos del pedido del usuario logueado
+                                    $sesion = $_SESSION['username'];
+                                    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                                    $resultado = setq($sql1);
+                                    $idusuario = mysqli_fetch_array($resultado);
+                                    $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                                        FROM pedidoscld
+                                        INNER JOIN articulos ON a_cb = pd_producto
+                                        INNER JOIN imagenes ON a_cb = i_idproducto
+                                        WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
+                                    $result = setq($sql);
                                 
-                                    <form action="query/comprar.php" name="paypal" id="paypal" method="post">
-                                        <input type="text" name="subtotal" value="<?php echo $total; ?>">
-                                        <input type="text" name="envio" value="<?php echo $envio; ?>">
-                                        <input type="text" name="total" value="<?php echo $totalen= $total+$envio; ?>">
-                                        <input type="text" name="user" value="<?php echo $_SESSION['username']; ?>">
-                                    
+                                    $datos = Array();
+                                    while($row = mysqli_fetch_array($result)){
+                                        $datos[]=$row;
+                                    }
+                                      $total=0;
+                                      foreach($datos as $producto){
+                                        $ruta = $producto['rutaimagen'];
+                                        $id = $producto['a_cb'];
+                                        $nombre = $producto['a_nmb'];
+                                        $cantidad = $producto['pd_cantidad'];
+                                        $precio = $producto['pd_precio'];
+                                        $descuento = $producto['pd_descuento'];
+                                        $subtotal = $cantidad * $precio;
+                                        $total += $subtotal;
+                                      }}?>
+                                <form action="query/comprapaypal.php" name="paypal" id="paypal" method="post">
+                                    <input type="text" value="<?php echo $total?>"name="subtotal" hidden >
+                                    <input type="text" value=" <?php 
+                                                                $envio = 0;
+                                                                if($total>5000){
+                                                                    echo $envio;
+                                                                } elseif($total==0){
+                                                                    echo $envio;
+                                                                }else{
+                                                                    $envio = 150;
+                                                                    echo $envio;
+                                                                }
+                                                                ?>" name="envio" hidden>
+                                    <input type="text" value="<?php echo $totale= $envio+$total;?>" name="total" hidden>
+                                    <input type="text" value="<?php echo $idusuario['c_id']?>" name="user" hidden>
                                 <center>
-                                    <button type="button" onclick="enviar()"class="btn btn-primary rounded-pill">
+                                    <button class="btn btn-primary rounded-pill" type="submit" >
                                             <i class="fa-brands fa-paypal fa-lg me-2 opacity-70"></i>Pagar Con PayPal
                                         </button>
                                     
@@ -113,7 +150,7 @@ $datos = Array();
                                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
                                     style="color:black" data-mdb-target="#collapseThreep" aria-expanded="false"
                                     aria-controls="collapseThreep">
-                                    <i class="fa-sharp fa-solid fa-list fa-lg me-2 opacity-70"></i>
+                                    <i class="fa-sharp fa-solid fa-building-columns fa-lg me-2 opacity-70"></i>
                                     <h3>Transferencias</h3>
                                 </button>
                             </h2>
@@ -121,44 +158,72 @@ $datos = Array();
                                 data-mdb-parent="#accordionExampleY">
                                 <div class="accordion-body text-justify">
                                     <br>
-
+                                    <form action="query/compratranfer.php" name="paypal" id="paypal" method="post">
+                                    <?php
+                                 if(isset($_SESSION['username'])){
+                                    // Consulta para obtener los datos del pedido del usuario logueado
+                                    $sesion = $_SESSION['username'];
+                                    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                                    $resultado = setq($sql1);
+                                    $idusuario = mysqli_fetch_array($resultado);
+                                    $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                                        FROM pedidoscld
+                                        INNER JOIN articulos ON a_cb = pd_producto
+                                        INNER JOIN imagenes ON a_cb = i_idproducto
+                                        WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
+                                    $result = setq($sql);
+                                
+                                    $datos = Array();
+                                    while($row = mysqli_fetch_array($result)){
+                                        $datos[]=$row;
+                                    }
+                                      $total=0;
+                                      foreach($datos as $producto){
+                                        $ruta = $producto['rutaimagen'];
+                                        $id = $producto['a_cb'];
+                                        $nombre = $producto['a_nmb'];
+                                        $cantidad = $producto['pd_cantidad'];
+                                        $precio = $producto['pd_precio'];
+                                        $descuento = $producto['pd_descuento'];
+                                        $subtotal = $cantidad * $precio;
+                                        $total += $subtotal;
+                                      }}?>
+                                <form action="query/comprapaypal.php" name="paypal" id="paypal" method="post">
+                                    <input type="text" value="<?php echo $total?>"name="subtotal" hidden>
+                                    <input type="text" value=" <?php 
+                                                                $envio = 0;
+                                                                if($total>5000){
+                                                                    echo $envio;
+                                                                } elseif($total==0){
+                                                                    echo $envio;
+                                                                }else{
+                                                                    $envio = 150;
+                                                                    echo $envio;
+                                                                }
+                                                                ?>" name="envio" hidden>
+                                    <input type="text" value="<?php echo $totale= $envio+$total;?>" name="total" hidden>
+                                    <input type="text" value="<?php echo $idusuario['c_id']?>" name="user" hidden>
+                                <center>
+                                    <button class="btn btn-primary rounded-pill" type="submit" >
+                                    <i class="fa-sharp fa-solid fa-building-columns fa-lg me-2 opacity-70"></i>Pagar
+                                                Con Transferencia
+                                        </button>
+                                    
+                                </center>
+                                     </form>
+<!-- 
                                     <center>
-                                        <a href="checkoutstripe.php"><button class="btn btn-primary rounded-pill">
-                                                <i
-                                                    class="fa-solid fa-money-bill-transfer fa-lg me-2 opacity-70"></i>Pagar
+                                        <a href="transferencia.php"><button class="btn btn-primary rounded-pill">
+                                            <i class="fa-sharp fa-solid fa-building-columns fa-lg me-2 opacity-70"></i>Pagar
                                                 Con Transferencia
                                             </button>
                                         </a>
-                                    </center>
+                                    </center> -->
                                     <br>
                                 </div>
                             </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThreeY">
-                                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                                    style="color:black" data-mdb-target="#collapseThreeY" aria-expanded="false"
-                                    aria-controls="collapseThreeY">
-                                    <i class="fa-sharp fa-solid fa-list fa-lg me-2 opacity-70"></i>
-                                    <h3>Efectivo</h3>
-                                </button>
-                            </h2>
-                            <div id="collapseThreeY" class="accordion-collapse collapse" aria-labelledby="headingThreeY"
-                                data-mdb-parent="#accordionExampleY">
-                                <div class="accordion-body text-justify">
-                                    <br>
-
-                                    <center>
-                                        <a href="checkoutstripe.php"><button class="btn btn-primary rounded-pill">
-                                                <i
-                                                    class="fa-solid fa-money-bill-transfer fa-lg me-2 opacity-70"></i>Pagar
-                                                Con Transferencia
-                                            </button>
-                                        </a>
-                                    </center>
-                                    <br>
-                                </div>
-                            </div>
+                        
+                        
                         </div>
                     </div>
                     <!--Carrusel de imagenes de caracteristicas-->
@@ -167,18 +232,21 @@ $datos = Array();
             </div>
             <div class="col-md-4">
                 <div
-                    class=" lip row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    class=" lip row g-0 border rounded overflow- flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <h1>RESUMEN</h1>
                     <?php 
 
                     if(isset($_SESSION['username'])){
                         // Consulta para obtener los datos del pedido del usuario logueado
                         $sesion = $_SESSION['username'];
+                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                        $resultado = setq($sql1);
+                        $idusuario = mysqli_fetch_array($resultado);
                         $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
                         $result = setq($sql);
                     
                         $datos = Array();
@@ -212,7 +280,7 @@ $datos = Array();
                           if(isset($_SESSION['username'])){ 
                               $sesion = $_SESSION['username'];
                               //echo $sesion;
-                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusuario['c_id'].'"AND pd_conf = 0';
                               $result = setq($sql);
                               $cantidad_tota = mysqli_fetch_assoc($result);
                               $cantidad_total = $cantidad_tota['cantidad'];
@@ -271,10 +339,10 @@ $datos = Array();
                                         <span>
                                             <h5 id="idtotalFinal" data-total=""><b>
                                                     <?php 
-                      echo MONEDA. number_format($totalen,2,'.',',');?>
+                                                echo MONEDA. number_format($totalen,2,'.',',');?>
                                                 </b></h5>
                                         </span>
-                                    </div>
+                                    </div></div></div>
                                 </div>
                             </div>
                         </div>
@@ -282,9 +350,7 @@ $datos = Array();
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<?php
+    
+        <?php
 include 'footer.php'
 ?>

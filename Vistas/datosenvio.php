@@ -112,14 +112,19 @@ $result = mysqli_fetch_array($consutla);
                         placeholder="Referencias para llegar a su domicilio" />
                 </div>
             </div>
-        </div>
-        <div style="text-align:end;"><br>
-            <button class="btn btn-success" name="editar" id="editar" type="button" style="background-color:#29A8B0;">
-                Atras
-            </button>
-            <button class="btn btn-danger" name="cancelar" id="cancelar" type="button" style="background-color:#29A8B0;" onclick="confirmar()">
-                Siguiente
-            </button>
+        </div></div><br>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-primary me-md-2" type="button" href="veriCompra.php"
+            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
+            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
+            Atrás   
+            </a>
+            <a class="btn btn-primary me-md-2" type="button" href="checkout.php"
+            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
+            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
+            Siguiente   
+            </a>
         </div>
     </div>
     </form>

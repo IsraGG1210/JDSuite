@@ -17,12 +17,15 @@ require_once './Conexion/funciones.php';
                 <?php
                           
                           $newitem = 0;
-                          $cantidad_total = 7;
+                          $cantidad_total = 0;
 
                           if(isset($_SESSION['username'])){ 
                               $sesion = $_SESSION['username'];
+                              $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                              $resultado = setq($sql1);
+                              $idusuario = mysqli_fetch_array($resultado);
                               //echo $sesion;
-                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusuario['c_id'].'"AND pd_conf = 0';
                               $result = setq($sql);
                               $cantidad_tota = mysqli_fetch_assoc($result);
                               $cantidad_total = $cantidad_tota['cantidad'];
@@ -60,11 +63,14 @@ require_once './Conexion/funciones.php';
                     if(isset($_SESSION['username'])){
                         // Consulta para obtener los datos del pedido del usuario logueado
                         $sesion = $_SESSION['username'];
+                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+$resultado = setq($sql1);
+$idusuario = mysqli_fetch_array($resultado);
                         $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
                         $result = setq($sql);
                     
                         $datos = Array();
@@ -218,8 +224,11 @@ require_once './Conexion/funciones.php';
 
                           if(isset($_SESSION['username'])){ 
                               $sesion = $_SESSION['username'];
+                              $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                              $resultado = setq($sql1);
+                              $idusuario = mysqli_fetch_array($resultado);
                               //echo $sesion;
-                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusuario['c_id'].'"AND pd_conf = 0';
                               $result = setq($sql);
                               $cantidad_tota = mysqli_fetch_assoc($result);
                               $cantidad_total = $cantidad_tota['cantidad'];

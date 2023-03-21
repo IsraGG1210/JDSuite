@@ -22,11 +22,14 @@ require_once './Conexion/funciones.php';
                     if(isset($_SESSION['username'])){
                         // Consulta para obtener los datos del pedido del usuario logueado
                         $sesion = $_SESSION['username'];
+                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                        $resultado = setq($sql1);
+                        $idusuario = mysqli_fetch_array($resultado);
                         $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0';
                         $result = setq($sql);
                     
                         $datos = Array();
@@ -150,7 +153,7 @@ require_once './Conexion/funciones.php';
             });
         },
         onApprove: function (data, actions) {
-            let URL = 'config/captura.php'
+            /* let URL = 'config/captura.php'
             actions.order.capture().then(function (detalles) {
                 console.log(detalles)
                 return fetch(URL,{
@@ -162,14 +165,15 @@ require_once './Conexion/funciones.php';
                         detalles: detalles
                     })
                 })
-                /* Swal.fire({
+                Swal.fire({
                     title: 'Pago procesado, gracias por su compra',
                     timer: 1500,
                     timerProgressBar: true,
                     icon: 'success'
-                }); */
-               /*  window.location.href= "index.php"; */
-            });
+                });
+                window.location.href= "index.php";
+            }); */
+            window.location.href ="query/verificapagopp.php";
         },
         onCancel: function (data) {
             alert("Pago Cancelado");

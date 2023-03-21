@@ -1,6 +1,7 @@
 <?php
 require_once '../Conexion/funciones.php';
 session_start();
+$usuario = $_SESSION['username'];
 $precio = $_POST["precio"];
 $descuento = $_POST["descuento"];
 $talla = $_POST["talla"];
@@ -9,6 +10,10 @@ $cantidad = $_POST["cantidad"];
 $id = $_POST["p"];
 
 $cart = array();
+
+$sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+$resultado = setq($sql1);
+$idusuario = mysqli_fetch_array($resultado);
 
 if(isset($_SESSION['username'])){
 $sesion = $_SESSION['username'];
@@ -26,7 +31,7 @@ if ($result->num_rows > 0) {
 }else{
   $sesion = $_SESSION['username'];
    $sql = 'INSERT INTO pedidoscld SET
-       pd_pedido = "'.$sesion.'",
+       pd_pedido = "'.$idusuario['c_id'].'",
        pd_producto = "'.$id.'",
        pd_cantidad = "'.$cantidad.'",
        pd_talla = "'.$talla.'",
