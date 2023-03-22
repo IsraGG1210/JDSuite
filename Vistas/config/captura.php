@@ -24,14 +24,7 @@ if(is_array($datos)){
     $id_cliente = $datos['detalles']['payer']['payer_id'];
     
 
-    $sql1="UPDATE pedidoscl SET p_estatus ='A' WHERE p_cliente = '$result' AND p_estatus='N' ";
-    
-    if(setq($sql1)){
-        $sql2= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$result.'"';
-    
-        setq($sql2); 
-    }
-    
+   
     
     
 

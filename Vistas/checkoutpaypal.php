@@ -125,6 +125,7 @@ require_once './Conexion/funciones.php';
                                 <h5>
                                    <?php
                                    echo MONEDA. number_format($comision = $total * .0366+3.65,2,'.',',');
+                                   
                                    ?>
                                 </h5>
                             </div>
@@ -137,11 +138,13 @@ require_once './Conexion/funciones.php';
                                     </span>
                                 </div>
                                 <div class="col-3">
-                                    <?php $totalen = $total+$envio+ $comision;?>
+                                   
                                     <span>
                                         <h5 id="idtotalFinal" data-total=""><b>
                                                 <?php 
-                      echo MONEDA. number_format($totalen,2,'.',',');?>
+                                                $totalen = $total+$envio+$comision;
+                                                
+                                         echo  MONEDA. number_format($totalen,2,',','.');?>
                                             </b></h5>
                                     </span>
                                 </div>
@@ -152,18 +155,14 @@ require_once './Conexion/funciones.php';
             </div>
         </div>
     </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary me-md-2" type="button" href="veriCompra.php"
-            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
-            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
-            Atrás   
-            </a>
-            
-        </div>
 </div>
 
 
 <br>
+
+<?php
+include 'footer.php';
+?>
 <script>
     paypal.Buttons({
         style: {
@@ -175,7 +174,7 @@ require_once './Conexion/funciones.php';
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: <?php echo $totalen; ?>
+                        value: <?php echo  bcdiv($totalen, '1', 2); ?>
                     }
                 }]
             });
@@ -209,6 +208,3 @@ require_once './Conexion/funciones.php';
         }
     }).render('#paypal-button-container');
 </script>
-<?php
-include 'footer.php';
-?>

@@ -6,9 +6,6 @@ $sql="SELECT * FROM clientes WHERE c_mail = '$usuario'";
 $consutla= setq($sql);
 $result = mysqli_fetch_array($consutla);
 
-
-
-
 ?>
 <script>
     function confirmar(){
