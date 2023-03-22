@@ -111,7 +111,7 @@ require_once './Conexion/funciones.php';
                                     echo MONEDA.$envio;
                                 }else{
                                     $envio = 150;
-                                    echo MONEDA.$envio;
+                                    echo MONEDA. number_format($envio,2,'.',',');
                                 }
                                 ?>
                                 </h5>

@@ -64,9 +64,9 @@ require_once './Conexion/funciones.php';
                         // Consulta para obtener los datos del pedido del usuario logueado
                         $sesion = $_SESSION['username'];
                         $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
-$resultado = setq($sql1);
-$idusuario = mysqli_fetch_array($resultado);
-$idusu = $idusuario['c_id'];
+                        $resultado = setq($sql1);
+                        $idusuario = mysqli_fetch_array($resultado);
+                        $idusu = $idusuario['c_id'];
                        /*  $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
