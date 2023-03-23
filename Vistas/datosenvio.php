@@ -18,7 +18,11 @@ $result = mysqli_fetch_array($consutla);
             confirmButtonText: 'Confirmar'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById("domicilio").submit();
+                document.getElementById("continuar").removeAttribute("type");
+                document.getElementById("continuar").removeAttribute("onclick");
+                document.getElementById("continuar").setAttribute("type", "submit");
+                document.getElementById("continuar").click();
+                /* document.getElementById("domicilio").submit(); */
             }
         })
     }
@@ -114,17 +118,13 @@ $result = mysqli_fetch_array($consutla);
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-primary me-md-2" type="button" href="veriCompra.php" style="background-color:#29A8B0;"
-                id="siguiente" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
+                id="continuar" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
                 data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
                 Atrás
             </a>
-            <!-- <a class="btn btn-primary me-md-2" type="button" href="checkout.php" onclick="confirmar()"
-            style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
-            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
-            Siguiente   
-            </a> -->
-            <button type="button" onclick="confirmar()" class="btn btn-primary me-md-2"
-                style="background-color:#29A8B0;">Siguiente</button>
+
+            <button class="btn btn-primary me-md-2" type="button" id="continuar" onclick="confirmar()"
+                style="background-color:#29A8B0;">continuar</button>
         </div>
 </div>
 </form>

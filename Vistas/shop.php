@@ -168,6 +168,113 @@ include ('nav_shop.php');
 </nav>
 
 
+  <?php 
+  if(!isset($_REQUEST['page'])){
+    $_REQUEST['page'] = 1;
+  }
+   if($_REQUEST['page'] == 0){
+      $hidden = 'style="pointer-events: none;
+      background: #70707026;
+      color: black;"';
+    }else $hidden = "";
+
+    echo '<div class="col-md-12 text-xs-center">
+      <div class="mb-3">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+                <span aria-hidden="true">&laquo; Ant</span>
+                <span class="sr-only">Anterior</span>
+              </a>
+            </li>';
+
+            echo '
+            <script>
+              function mandar(id){
+                
+                window.location.href="shop.php?page="+id;
+              }
+            </script>';
+  $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+  FROM articulosw
+  INNER JOIN imagenes on  aw_cb = i_idproducto
+  INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+  INNER JOIN articulos on a_cb = aw_cb  GROUP BY p ";
+  $total_items = mysqli_num_rows(setq($sql));
+  $total_pages = ceil($total_items / $items_per_page);
+
+  if($total_pages >=10){
+    if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
+    else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+    if($min <= 1) $min = 1;
+
+    if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+    else $max = $_REQUEST['page']+3;
+    if($max >= ($total_pages-1)) $max = ($total_pages-1);
+    if($_REQUEST['page']== 0 ) $active = "active";
+    else $active ="";
+    echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(0)">'.$nombre.'</a></li>';
+
+  }else if ($total_pages <=9){
+    $max = $total_pages;
+    $min = 0;
+  }
+  for($i=$min;$i<$max;$i++){
+    if($_REQUEST['page'] == $i) $active = "active";
+    else $active = "";
+    if($i == 0) $nombre = "Inicio";
+    else $nombre = $i;
+    echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
+  }
+  if($total_pages<=9){
+  }else{
+    if($_REQUEST['page'] == ($total_pages-5)) $nombre = ($total_pages-2);
+    else $nombre = '... '.($total_pages-2);
+    if($_REQUEST['page'] == $i) $active = "active";
+    else $active = "";
+    if($_REQUEST['page'] >= ($total_pages-4)) echo '';
+    else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
+    echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+  }
+  if($_REQUEST['page'] == ($total_pages-1) || $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+  background: #70707026;
+  color: black;"';
+  else $hidden2 = '';
+  echo '<li class="page-item">
+    <a class="page-link" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
+      <span aria-hidden="true">Sig &raquo;</span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </li>
+</ul>'
+  ?>
+  
+<style>
+.pagination {
+  display: inline-flex;
+}
+
+.pagination a {
+  color: black;
+  float: center;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+</style>
+
+
 <!--PARTE DE WHATS-->
 <div class="msgwh">
   <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">

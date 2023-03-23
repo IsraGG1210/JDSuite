@@ -88,7 +88,11 @@ if(isset($_POST['submit-btn'])){
             confirmButtonText: 'Confirmar'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById("perfile").submit();
+                document.getElementById("actualizar").removeAttribute("type");
+                document.getElementById("actualizar").removeAttribute("onclick");
+                document.getElementById("actualizar").setAttribute("type","submit");
+                document.getElementById("actualizar").click();
+                /* document.getElementById("perfile").submit(); */
             }
         })
     }
@@ -379,7 +383,7 @@ if(isset($_POST['submit-btn'])){
                     </div>
                 </div>
                 <div style="text-align:center;"><br>
-                    <button class="btn btn-success" name="editar" id="editar" type="button" onclick="confirmacion()">
+                    <button class="btn btn-success"  type="button" id="actualizar" onclick="confirmacion()">
                         Actualizar
                     </button>
                     <button class="btn btn-danger" name="cancelar" id="cancelar" type="button" onclick="reload()">
