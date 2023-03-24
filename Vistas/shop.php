@@ -16,7 +16,7 @@ include ('nav_shop.php');
       INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
       INNER JOIN articulos on a_cb = aw_cb  GROUP BY p 
       LIMIT $items_per_page OFFSET $offset";
-    $total_items = 100;
+    $total_items = 240;
     $total_pages = ceil($total_items / $items_per_page);
 
     
@@ -95,7 +95,8 @@ include ('nav_shop.php');
         <div class="col-lg-2 col-md-6 mb-4">
           <div class="card">
             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" -mdb-ripple-color="light">
-              <a href="descrpro.php?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
+              <a
+                href="descrpro.php?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
                 <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
                 <div class="mask">
                 </div>
@@ -105,14 +106,16 @@ include ('nav_shop.php');
                 <div class="card-body">
                   <h6 id="descpro" class="card-title mb-2" style="color:grey;"><?php echo $row['a_nmb']; ?></h6>
                   <input type="hidden" id="idp" value="<?php echo $row['p']; ?>" />
-                  <h6 id="descpro" class="card-title mb-2" style="color:grey;"><?php echo MONEDA.number_format($row['ap_precio'],2,'.',','); ?></h6>
+                  <h6 id="descpro" class="card-title mb-2" style="color:grey;">
+                    <?php echo MONEDA.number_format($row['ap_precio'],2,'.',','); ?></h6>
                 </div>
               </a>
             </div>
-              <input type="hidden" id="precio<?php echo $row['p']; ?>" value="<?php echo $row['ap_precio']; ?>" />
-              <div class="centrado p-4">
-              <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['p'];?>')"><i class="fas fa-shopping-cart"></i>Agregar</a>
-              </div>
+            <input type="hidden" id="precio<?php echo $row['p']; ?>" value="<?php echo $row['ap_precio']; ?>" />
+            <div class="centrado p-4">
+              <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['p'];?>')"><i
+                  class="fas fa-shopping-cart"></i>Agregar</a>
+            </div>
           </div>
         </div>
         <?php }?>
@@ -121,30 +124,30 @@ include ('nav_shop.php');
   </section>
 </div>
 <script>
-     function addToCartCarousel(idp){
-      document.getElementById("cart").disabled = true;
-      precio = $("#precio"+idp).val();
-      descuento = 0;
-      talla = 0;
-      color = 0;
-      cantidad = 1;
-      p = idp;
-      $.post("query/cookieadd.php",{
+  function addToCartCarousel(idp) {
+    document.getElementById("cart").disabled = true;
+    precio = $("#precio" + idp).val();
+    descuento = 0;
+    talla = 0;
+    color = 0;
+    cantidad = 1;
+    p = idp;
+    $.post("query/cookieadd.php", {
       precio: precio,
       descuento: descuento,
       talla: talla,
       colorsel: color,
       cantidad: cantidad,
       p: p
-      },function(htmle){
-      $.post("query/cantidadCart.php",{},
-      function(htmlec){
-      $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
-      //alert ("Cantidad" + htmlec);
-      });
-      }); 
-      }
-  </script>
+    }, function (htmle) {
+      $.post("query/cantidadCart.php", {},
+        function (htmlec) {
+          $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> ' + htmlec);
+          //alert ("Cantidad" + htmlec);
+        });
+    });
+  }
+</script>
 <!-- Pagination -->
 <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
   <div class="pagination">
@@ -152,15 +155,15 @@ include ('nav_shop.php');
     <ul>
       <?php 
       if(!empty($_REQUEST['busqueda'])){?>
-       <a  href="?busqueda=<?php echo $_REQUEST['busqueda']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <a href="?busqueda=<?php echo $_REQUEST['busqueda']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
       <?php
       }else if(!empty($_REQUEST['con'])){?>
-       <a  href="?con=<?php echo $_REQUEST['con']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <a href="?con=<?php echo $_REQUEST['con']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
       <?php } else if(!empty($_REQUEST['dep'])){?>
-        <a  href="?dep=<?php echo $_REQUEST['dep']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
-        <?php }else {?>
-          <a  href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-          <?php }?>
+      <a href="?dep=<?php echo $_REQUEST['dep']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <?php }else {?>
+      <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <?php }?>
     </ul>
     <?php } ?>
 
@@ -168,7 +171,7 @@ include ('nav_shop.php');
 </nav>
 
 
-  <?php 
+<?php 
   if(!isset($_REQUEST['page'])){
     $_REQUEST['page'] = 1;
   }
@@ -183,7 +186,7 @@ include ('nav_shop.php');
         <nav aria-label="Page navigation">
           <ul class="pagination">
             <li class="page-item">
-              <a class="page-link" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+              <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
                 <span aria-hidden="true">&laquo; Ant</span>
                 <span class="sr-only">Anterior</span>
               </a>
@@ -192,7 +195,6 @@ include ('nav_shop.php');
             echo '
             <script>
               function mandar(id){
-                
                 window.location.href="shop.php?page="+id;
               }
             </script>';
@@ -242,37 +244,16 @@ include ('nav_shop.php');
   color: black;"';
   else $hidden2 = '';
   echo '<li class="page-item">
-    <a class="page-link" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
+    <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
       <span aria-hidden="true">Sig &raquo;</span>
       <span class="sr-only">Siguiente</span>
     </a>
   </li>
-</ul>'
+</ul>
+</div>'
   ?>
-  
-<style>
-.pagination {
-  display: inline-flex;
-}
 
-.pagination a {
-  color: black;
-  float: center;
-  padding: 8px 16px;
-  text-decoration: none;
-}
 
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
-}
-
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
-  border-radius: 5px;
-}
-</style>
 
 
 <!--PARTE DE WHATS-->

@@ -22,6 +22,9 @@ $result = mysqli_fetch_array($consutla);
                 document.getElementById("continuar").removeAttribute("onclick");
                 document.getElementById("continuar").setAttribute("type", "submit");
                 document.getElementById("continuar").click();
+                document.getElementById("continuar").removeAttribute("type");
+                document.getElementById("continuar").setAttribute("type","button");
+                document.getElementById("continuar").setAttribute("onclick","confirmar()");
                 /* document.getElementById("domicilio").submit(); */
             }
         })
@@ -118,7 +121,7 @@ $result = mysqli_fetch_array($consutla);
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-primary me-md-2" type="button" href="veriCompra.php" style="background-color:#29A8B0;"
-                id="continuar" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
+                id="atras" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
                 data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
                 Atrás
             </a>

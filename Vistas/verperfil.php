@@ -92,6 +92,9 @@ if(isset($_POST['submit-btn'])){
                 document.getElementById("actualizar").removeAttribute("onclick");
                 document.getElementById("actualizar").setAttribute("type","submit");
                 document.getElementById("actualizar").click();
+                document.getElementById("actualizar").removeAttribute("type");
+                document.getElementById("actualizar").setAttribute("type","button");
+                document.getElementById("actualizar").setAttribute("onclick","confirmacion()");
                 /* document.getElementById("perfile").submit(); */
             }
         })
