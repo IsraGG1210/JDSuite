@@ -1,9 +1,14 @@
 <?php
 require './Conexion/config.php';
+
 require './Conexion/Database.php';
 require_once './Conexion/funciones.php';
 include ('nav_shop.php');
 
+/* $views = explode("/",$_REQUEST['page']); */
+/* echo var_dump($views); */
+/* $busca = explode("/",$_REQUEST['busqueda']); */
+echo $_REQUEST['page'];
       $items_per_page = 24; 
       $current_page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Página actual
       
@@ -18,8 +23,6 @@ include ('nav_shop.php');
       LIMIT $items_per_page OFFSET $offset";
     $total_items = 240;
     $total_pages = ceil($total_items / $items_per_page);
-
-    
     $resultado = setq($sql);   
     if(isset($_GET['con'])){
       $concepto = $_GET['con'];
@@ -50,12 +53,12 @@ include ('nav_shop.php');
       FROM articulosw 
       WHERE aw_departamento = $concepto";
     $total_items = mysqli_num_rows(setq($sql2));
-    /* die(var_dump($total_items)); */
+  
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql); 
     } 
-    if(!empty($_GET['busqueda'])){
-      $buscar = $_GET['busqueda'];
+    if(!empty($views[1])){
+      $buscar = $views[1];
       //$page = $_REQUEST['page'];
       $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
@@ -78,7 +81,7 @@ include ('nav_shop.php');
       ?>
 <script>
   window.alert("No se encontraron articulos relacionados a su busqueda");
-  window.location.href = "shop.php?page=1";
+  window.location.href = "<?php echo SERVERURL?>1";
 </script>
 <?php
     }
@@ -149,109 +152,337 @@ include ('nav_shop.php');
   }
 </script>
 <!-- Pagination -->
-<nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-  <div class="pagination">
-    <?php for ($i = 1; $i <= $total_pages; $i++) {?>
-    <ul>
-      <?php 
-      if(!empty($_REQUEST['busqueda'])){?>
-      <a href="?busqueda=<?php echo $_REQUEST['busqueda']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
-      <?php
-      }else if(!empty($_REQUEST['con'])){?>
-      <a href="?con=<?php echo $_REQUEST['con']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
-      <?php } else if(!empty($_REQUEST['dep'])){?>
-      <a href="?dep=<?php echo $_REQUEST['dep']?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
-      <?php }else {?>
-      <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-      <?php }?>
-    </ul>
-    <?php } ?>
 
-  </div>
-</nav>
 
 
 <?php 
+if(!empty($_GET['busqueda'])){
   if(!isset($_REQUEST['page'])){
     $_REQUEST['page'] = 1;
   }
-   if($_REQUEST['page'] == 0){
-      $hidden = 'style="pointer-events: none;
-      background: #70707026;
-      color: black;"';
-    }else $hidden = "";
+  if($_REQUEST['page'] == 1){
+    $hidden = 'style="pointer-events: none;
+    background: #70707026;
+    color: black;"';
+  }else $hidden = "";
 
-    echo '<div class="col-md-12 text-xs-center">
-      <div class="mb-3">
-        <nav aria-label="Page navigation">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
-                <span aria-hidden="true">&laquo; Ant</span>
-                <span class="sr-only">Anterior</span>
-              </a>
-            </li>';
+  echo '<div class="col-md-12 text-xs-center">
+    <div class="mb-3">
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+          <li class="page-item">
+            <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+              <span aria-hidden="true">&laquo; Ant</span>
+              <span class="sr-only">Anterior</span>
+            </a>
+          </li>';
 
-            echo '
-            <script>
-              function mandar(id){
-                window.location.href="shop.php?page="+id;
-              }
-            </script>';
-  $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-  FROM articulosw
-  INNER JOIN imagenes on  aw_cb = i_idproducto
-  INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-  INNER JOIN articulos on a_cb = aw_cb  GROUP BY p ";
-  $total_items = mysqli_num_rows(setq($sql));
-  $total_pages = ceil($total_items / $items_per_page);
+          echo '
+          <script>
+            function mandar(id){
+              window.location.href= "'.SERVERURL.'"+id ;
+            }
+          </script>';
+          $buscar = $views[1];
+          $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+          FROM articulosw
+          INNER JOIN imagenes on  aw_cb = i_idproducto
+          INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+          INNER JOIN articulos on a_cb = aw_cb  
+          WHERE a_nmb LIKE '%$buscar%' GROUP BY p";
+$total_items = mysqli_num_rows(setq($sql));
+$total_pages = ceil($total_items / $items_per_page);
 
-  if($total_pages >=10){
-    if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
-    else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
-    if($min <= 1) $min = 1;
+if($total_pages >=10){
+  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($min <= 1) $min = 1;
 
-    if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
-    else $max = $_REQUEST['page']+3;
-    if($max >= ($total_pages-1)) $max = ($total_pages-1);
-    if($_REQUEST['page']== 0 ) $active = "active";
-    else $active ="";
-    echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(0)">'.$nombre.'</a></li>';
+  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  else $max = $_REQUEST['page']+3;
+  if($max >= ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== 1 ) $active = "active";
+  else $active ="";
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
 
-  }else if ($total_pages <=9){
-    $max = $total_pages;
-    $min = 0;
-  }
-  for($i=$min;$i<$max;$i++){
-    if($_REQUEST['page'] == $i) $active = "active";
-    else $active = "";
-    if($i == 0) $nombre = "Inicio";
-    else $nombre = $i;
-    echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
-  }
-  if($total_pages<=9){
-  }else{
-    if($_REQUEST['page'] == ($total_pages-5)) $nombre = ($total_pages-2);
-    else $nombre = '... '.($total_pages-2);
-    if($_REQUEST['page'] == $i) $active = "active";
-    else $active = "";
-    if($_REQUEST['page'] >= ($total_pages-4)) echo '';
-    else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
-    echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
-  }
-  if($_REQUEST['page'] == ($total_pages-1) || $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
-  background: #70707026;
-  color: black;"';
-  else $hidden2 = '';
-  echo '<li class="page-item">
-    <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
-      <span aria-hidden="true">Sig &raquo;</span>
-      <span class="sr-only">Siguiente</span>
-    </a>
-  </li>
+}else if ($total_pages <=9){
+  $max = $total_pages;
+  $min = 0;
+}
+for($i=$min;$i<=$max;$i++){
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($i == 0) $nombre = "Inicio";
+  else $nombre = $i;
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
+}
+if($total_pages<=9){
+}else{
+  if($_REQUEST['page'] == ($total_pages-5)) $nombre = ($total_pages-2);
+  else $nombre = '... '.($total_pages-2);
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($_REQUEST['page'] >= ($total_pages-4)) echo '';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+}
+if($_REQUEST['page'] == $max  ||  $total_pages <= 1 ) $hidden2 = 'style="pointer-events: none;
+background: #70707026;
+color: black;"';
+else $hidden2 = '';
+echo '<li class="page-item">
+  <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
+    <span aria-hidden="true">Sig &raquo;</span>
+    <span class="sr-only">Siguiente</span>
+  </a>
+</li>
 </ul>
-</div>'
-  ?>
+</div>';
+}else if (!empty($_REQUEST['con'])){
+  if(!isset($_REQUEST['page'])){
+    $_REQUEST['page'] = 1;
+  }
+  if($_REQUEST['page'] == 1){
+    $hidden = 'style="pointer-events: none;
+    background: #70707026;
+    color: black;"';
+  }else $hidden = "";
+
+  echo '<div class="col-md-12 text-xs-center">
+    <div class="mb-3">
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+          <li class="page-item">
+            <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+              <span aria-hidden="true">&laquo; Ant</span>
+              <span class="sr-only">Anterior</span>
+            </a>
+          </li>';
+
+          echo '
+          <script>
+            function mandar(id){
+              window.location.href="shop.php?page="+id+"con='.$_REQUEST['con'].'";
+              
+            }
+          </script>';
+          $concepto = $_REQUEST['con'];
+          $sql = "SELECT aw_cb
+          FROM articulosw
+          WHERE aw_concepto = $concepto";
+$total_items = mysqli_num_rows(setq($sql));
+$total_pages = ceil($total_items / $items_per_page);
+
+if($total_pages >=10){
+  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($min <= 1) $min = 1;
+
+  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  else $max = $_REQUEST['page']+3;
+  if($max >= ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== 1 ) $active = "active";
+  else $active ="";
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+
+}else if ($total_pages <=9){
+  $max = $total_pages;
+  $min = 0;
+}
+for($i=$min;$i<=$max;$i++){
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($i == 0) $nombre = "Inicio";
+  else $nombre = $i;
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
+}
+if($total_pages<=9){
+}else{
+  if($_REQUEST['page'] == ($total_pages-5)) $nombre = ($total_pages-2);
+  else $nombre = '... '.($total_pages-2);
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($_REQUEST['page'] >= ($total_pages-4)) echo '';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+}
+if($_REQUEST['page'] == $max  ||  $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+background: #70707026;
+color: black;"';
+else $hidden2 = '';
+echo '<li class="page-item">
+  <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
+    <span aria-hidden="true">Sig &raquo;</span>
+    <span class="sr-only">Siguiente</span>
+  </a>
+</li>
+</ul>
+</div>';
+}else if (!empty($_REQUEST['dep'])){
+  if(!isset($_REQUEST['page'])){
+    $_REQUEST['page'] = 1;
+  }
+  if($_REQUEST['page'] == 1){
+    $hidden = 'style="pointer-events: none;
+    background: #70707026;
+    color: black;"';
+  }else $hidden = "";
+
+  echo '<div class="col-md-12 text-xs-center">
+    <div class="mb-3">
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+          <li class="page-item">
+            <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+              <span aria-hidden="true">&laquo; Ant</span>
+              <span class="sr-only">Anterior</span>
+            </a>
+          </li>';
+
+          echo '
+          <script>
+            function mandar(id){
+              window.location.href="shop.php?page="+id+"&dep='.$_REQUEST['dep'].'";
+            }
+          </script>';
+          $concepto = $_REQUEST['dep'];
+          $sql = "SELECT aw_cb 
+          FROM articulosw 
+          WHERE aw_departamento = $concepto";
+$total_items = mysqli_num_rows(setq($sql));
+$total_pages = ceil($total_items / $items_per_page);
+
+if($total_pages >=10){
+  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($min <= 1) $min = 1;
+
+  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  else $max = $_REQUEST['page']+3;
+  if($max >= ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== 0 ) $active = "active";
+  else $active ="";
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+
+}else if ($total_pages <=9){
+  $max = $total_pages;
+  $min = 0;
+}
+for($i=$min;$i<=$max;$i++){
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($i == 0) $nombre = "Inicio";
+  else $nombre = $i;
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
+}
+if($total_pages<=9){
+}else{
+  if($_REQUEST['page'] == ($total_pages-5)) $nombre = ($total_pages-2);
+  else $nombre = '... '.($total_pages-2);
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($_REQUEST['page'] >= ($total_pages-4)) echo '';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+}
+if($_REQUEST['page'] == $max ||  $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+background: #70707026;
+color: black;"';
+else $hidden2 = '';
+echo '<li class="page-item">
+  <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
+    <span aria-hidden="true">Sig &raquo;</span>
+    <span class="sr-only">Siguiente</span>
+  </a>
+</li>
+</ul>
+</div>';
+}else {
+  if(!isset($_REQUEST['page'])){
+    $_REQUEST['page'] = 1;
+  }
+  if($_REQUEST['page'] == 1){
+    $hidden = 'style="pointer-events: none;
+    background: #70707026;
+    color: black;"';
+  }else $hidden = "";
+
+  echo '<div class="col-md-12 text-xs-center">
+    <div class="mb-3">
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+          <li class="page-item">
+            <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+              <span aria-hidden="true">&laquo; Ant</span>
+              <span class="sr-only">Anterior</span>
+            </a>
+          </li>';
+
+          echo '
+          <script>
+            function mandar(id){
+              window.location.href= "shop.php?page=" +id+"";
+            }
+          </script>';
+$sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+FROM articulosw
+INNER JOIN imagenes on  aw_cb = i_idproducto
+INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+INNER JOIN articulos on a_cb = aw_cb  GROUP BY p ";
+$total_items = mysqli_num_rows(setq($sql));
+$total_pages = ceil($total_items / $items_per_page);
+
+if($total_pages >=10){
+  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($min <= 1) $min = 1;
+
+  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  else $max = $_REQUEST['page']+3;
+  if($max >= ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== 0 ) $active = "active";
+  else $active ="";
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+
+}else if ($total_pages <=9){
+  $max = $total_pages;
+  $min = 0;
+}
+for($i=$min;$i<=$max;$i++){
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($i == 0) $nombre = "Inicio";
+  else $nombre = $i;
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
+}
+if($total_pages<=9){
+}else{
+  if($_REQUEST['page'] == ($total_pages-5)) $nombre = ($total_pages-2);
+  else $nombre = '... '.($total_pages-2);
+  if($_REQUEST['page'] == $i) $active = "active";
+  else $active = "";
+  if($_REQUEST['page'] >= ($total_pages-4)) echo '';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+}
+if($_REQUEST['page'] == $max || $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+background: #70707026;
+color: black;"';
+else $hidden2 = '';
+echo '<li class="page-item">
+  <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']+1).')" aria-label="Next" '.$hidden2.'>
+    <span aria-hidden="true">Sig &raquo;</span>
+    <span class="sr-only">Siguiente</span>
+  </a>
+</li>
+</ul>
+</div>';
+}
+
+
+
+  
+?>
 
 
 
@@ -259,7 +490,7 @@ include ('nav_shop.php');
 <!--PARTE DE WHATS-->
 <div class="msgwh">
   <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-    <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+    <img src="<?php echo SERVERURL?>../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
   </a>
 </div>
 

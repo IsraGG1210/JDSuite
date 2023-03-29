@@ -1,4 +1,5 @@
 <?php 
+include "config/ruta.php";
 require_once './Conexion/funciones.php';
 session_start();
 if (!isset($_SESSION['id'])) {
@@ -62,7 +63,7 @@ else
 
     <nav class="navbar navbar-expand-xl" id="navbar" style="background-color:<?php echo $bg ?>;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.php">
+            <a class="navbar-brand" href="index.php">
                 <img src="../public/imagenes/logoJD.png" alt="">
             </a>
             <div class=" mb-2" style="display: flex; justify-content: space-between;">
@@ -101,7 +102,7 @@ else
                     <button class="btn btn-link" onclick="window.location.href='#'" id="linksnb">
                         JD CEO
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='shop.php'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='shop.php?page=1'" id="linksnb">
                         Tienda
                     </button>
 

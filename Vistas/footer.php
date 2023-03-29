@@ -25,11 +25,11 @@
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>Tienda</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="shop.php?busqueda=kit"><i class="fa fa-angle-double-right"></i>Kits Equipos</a></li>
-					<li><a href="shop.php?busqueda=impresora"><i class="fa fa-angle-double-right"></i>Impresoras</a>
+					<li><a href="shop.php?page=1&busqueda=kit"><i class="fa fa-angle-double-right"></i>Kits Equipos</a></li>
+					<li><a href="shop.php?page=1&busqueda=impresora"><i class="fa fa-angle-double-right"></i>Impresoras</a>
 					</li>
-					<li><a href="shop.php?busqueda=cajon"><i class="fa fa-angle-double-right"></i>Cajon Dinero</a></li>
-					<li><a href="shop.php?busqueda=lector"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
+					<li><a href="shop.php?page=1&busqueda=cajon"><i class="fa fa-angle-double-right"></i>Cajon Dinero</a></li>
+					<li><a href="shop.php?page=1&busqueda=lector"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">

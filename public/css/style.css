@@ -1133,6 +1133,6 @@ section .section-title {
 }
 
 
-.pagination {
+#pagination {
   justify-content: center;
 }
