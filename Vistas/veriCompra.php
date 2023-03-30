@@ -131,12 +131,12 @@ require './Conexion/config.php';
             </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary me-md-2" type="button" href="verif_Tienda.php"
+        <a class="btn btn-primary me-md-2" type="button" href="verif_Tienda"
         style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
         data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
         Atrás   
         </a>
-        <a class="btn btn-primary me-md-2" type="button" href="datosenvio.php"
+        <a class="btn btn-primary me-md-2" type="button" href="datosenvio"
         style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
         data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
         Siguiente   

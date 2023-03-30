@@ -207,7 +207,7 @@ require_once './Conexion/funciones.php';
               </div>
               <div class="box-footer row">
                 <div class="col-12 col-md-8 tal desk">
-                  <a href="./shop.php" class="btn btn-default"><i class="fas fa-chevron-left"></i> Seguir Comprando</a>
+                  <a href="<?php echo SERVERURL?>1" class="btn btn-default"><i class="fas fa-chevron-left"></i> Seguir Comprando</a>
                 </div>
               </div>
             </form>
@@ -313,9 +313,9 @@ require_once './Conexion/funciones.php';
               </div>
               <?php
               if(isset($_SESSION['username'])){
-                $accion = 'href="veriCompra.php"';
+                $accion = 'href="veriCompra"';
               }else{
-                $accion = 'href="login.php"';
+                $accion = 'href="login"';
               }
               ?>
               <button>

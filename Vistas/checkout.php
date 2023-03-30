@@ -70,7 +70,7 @@ $datos = Array();
                                 <br>
 
                                 <center>
-                                    <a href="checkoutstripe.php">
+                                    <a href="checkoutstripe">
                                         <button class="btn btn-primary rounded-pill" style="background-color:#29A8B0;">
                                             <i class="fa-brands fa-stripe-s fa-lg me-2 opacity-70"></i>Pagar Con Stripe
                                         </button>
@@ -374,7 +374,7 @@ $datos = Array();
         </div>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary me-md-2" type="button" href="datosenvio.php" style="background-color:#29A8B0;"
+        <a class="btn btn-primary me-md-2" type="button" href="datosenvio" style="background-color:#29A8B0;"
             id="siguiente" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
             data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
             Atrás

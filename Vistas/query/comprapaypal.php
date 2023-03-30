@@ -42,6 +42,6 @@ setq($sql);
 setq($sql1);
  */
 echo '<script>
-       window.location.href= "../checkoutpaypal.php";
+       window.location.href= "../checkoutpaypal";
 </script>'; 
 ?>

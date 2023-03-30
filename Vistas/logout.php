@@ -10,7 +10,7 @@ foreach($_COOKIE['cart'] as $clave=>$item){
     setcookie('cart['.$clave.'][5]', '', time()-24*60*60, '/');
   }
 session_destroy();
-header ("location: index.php");
+header ("location: index");
 exit();
 
 

@@ -1,2 +1,13 @@
 RewriteEngine On
 
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]
+
+
+RewriteRule ^([0-9]+)/busqueda([a-zA-Z0-9]+)/?$ shop.php?page=$1&busqueda=$2 [L,QSA]
+RewriteRule ^([0-9]+)/dep/([0-9]+)$ shop.php?page=$1&dep=$2 [L,QSA]
+RewriteRule ^([0-9]+)/con/([0-9]+)$ shop.php?page=$1&con=$2 [L,QSA]
+RewriteRule ^([0-9]+)/?$ shop.php?page=$1 [L,QSA]

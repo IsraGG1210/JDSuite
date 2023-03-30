@@ -6,12 +6,12 @@
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>JD Suite</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="JD_Store.php"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
-					<li><a href="JDRest.php"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
-					<li><a href="JD_Invoice.php"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
-					<li><a href="JD_tae.php"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
-					<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
-					<li><a href="JDEcomm.php"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
+					<li><a href="JD_Store"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
+					<li><a href="JDRest"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
+					<li><a href="JD_Invoice"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
+					<li><a href="JD_tae"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
+					<li><a href="JDEcomm"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
+					<li><a href="JDEcomm"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">
@@ -36,7 +36,7 @@
 				<h5>Soporte</h5>
 				<ul class="list-unstyled quick-links">
 					<?php if(!isset($_SESSION['username'])){ ?>
-					<li><a href="login.php"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para contactar con soporte</a> </li>
+					<li><a href="login"><i class="fa fa-angle-double-right"></i>Ingresa a tu cuenta para contactar con soporte</a> </li>
 					<?php }else {?>
 					<li><a href="#"><i class="fa fa-angle-double-right"></i>Contacta con soporte tecnico</a> </li>
 					<?php }?>
@@ -58,7 +58,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 text-center">
 
-			<a href="registro.php">
+			<a href="registro">
 				<h3 style="color:white;">¿No tienes cuenta? <button
 						class="btn btn-primary rounded-pill">Registrate</button></h3>
 			</a>

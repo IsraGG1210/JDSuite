@@ -54,7 +54,7 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 		timerProgressBar: true,
 		icon: 'success'
 	});
-	window.location.href = "index.php";
+	window.location.href = "index";
 </script>
 <?php
 			$_SESSION['username'] = $correo;
@@ -71,7 +71,7 @@ if(!empty($_POST['email']) && !empty($_POST['contrasena'])){
 if(isset($_SESSION['username'])){
 	?>
 <script>
-	window.location.href = "index.php"
+	window.location.href = "index"
 </script>
 <?php
 }
@@ -84,7 +84,7 @@ if(isset($_SESSION['username'])){
 		<div class="main-login main-center" style="height: auto;">
 
 			<h2 class="text-center"><i class="far fa-user fa-sm"> &nbsp </i>Inicia Sesión </h2>
-			<form class="iniciosesion" method="POST" action="login.php">
+			<form class="iniciosesion" method="POST" action="login">
 				<div class="form-group">
 					<label for="email" class="cols-sm-2 control-label"><b>Correo*</b></label>
 					<div class="cols-sm-10">
@@ -106,8 +106,8 @@ if(isset($_SESSION['username'])){
 					</div>
 				</div>
 				<div class="registro d-flex justify-content-around">
-					<a href="registro.php" class="btnRegistro" style="color:white;">Registrate</a>
-					<a href="recuperarcontra.php" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu
+					<a href="registro" class="btnRegistro" style="color:white;">Registrate</a>
+					<a href="recuperarcontra" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu
 						contraseña?</a>
 				</div>
 

@@ -22,9 +22,9 @@ $domicilioc = $calle.','.$numeroe.',interior: '.$numeroi.','.$colonia.','.$munic
 $sql = "UPDATE pedidoscl SET p_direccion = '$domicilioc' WHERE p_id = p_id";
 
 if(setq($sql)){
-    header('location: ../checkout.php');
+    header('location: ../checkout');
 }else{
-    header('location: datosenvio.php');
+    header('location: datosenvio');
 }
 
 ?>

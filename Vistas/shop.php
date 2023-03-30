@@ -5,17 +5,20 @@ require './Conexion/Database.php';
 require_once './Conexion/funciones.php';
 include ('nav_shop.php');
 
-/* $views = explode("/",$_REQUEST['page']); */
-/* echo var_dump($views); */
-/* $busca = explode("/",$_REQUEST['busqueda']); */
-echo $_REQUEST['page'];
+$page = $_GET['page'];
+$dep = isset($_GET['dep']) ? $_GET['dep'] : null;
+$con = isset($_GET['con']) ? $_GET['con'] : null;
+$busqueda = $_GET['busqueda'];
+/* echo $page .'---'. $dep . '---'. $con. '<br>'; */
+$url = $_SERVER['REQUEST_URI'];
+$par = explode('/',$url);
       $items_per_page = 24; 
       $current_page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1; // Página actual
       
       
       $offset = ($current_page - 1) * $items_per_page; // Cálculo del desplazamiento (offset)
       
-    $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+    /* $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
       INNER JOIN imagenes on  aw_cb = i_idproducto
       INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
@@ -23,9 +26,11 @@ echo $_REQUEST['page'];
       LIMIT $items_per_page OFFSET $offset";
     $total_items = 240;
     $total_pages = ceil($total_items / $items_per_page);
-    $resultado = setq($sql);   
-    if(isset($_GET['con'])){
-      $concepto = $_GET['con'];
+    $resultado = setq($sql);   */
+     
+    if(isset($con)){
+      $concepto = $_REQUEST['con'];
+      
       $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
       INNER JOIN imagenes on  aw_cb = i_idproducto
@@ -33,6 +38,7 @@ echo $_REQUEST['page'];
       INNER JOIN articulos on a_cb = aw_cb  
       WHERE aw_concepto = $concepto GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
+      /* echo $sql; */
       $sql2 = "SELECT aw_cb
       FROM articulosw
       WHERE aw_concepto = $concepto";
@@ -40,8 +46,9 @@ echo $_REQUEST['page'];
     
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql);   
-    }else if(isset($_GET['dep'])){
-      $concepto = $_GET['dep'];
+    }else if(isset($dep)){
+      $concepto = $_REQUEST['dep'];
+      
       $sql = "SELECT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
       INNER JOIN imagenes on  aw_cb = i_idproducto
@@ -49,6 +56,7 @@ echo $_REQUEST['page'];
       INNER JOIN articulos on a_cb = aw_cb 
       WHERE aw_departamento = $concepto GROUP BY p
       LIMIT $items_per_page OFFSET $offset";
+      /* echo $sql; */
       $sql2 = "SELECT aw_cb 
       FROM articulosw 
       WHERE aw_departamento = $concepto";
@@ -56,9 +64,8 @@ echo $_REQUEST['page'];
   
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql); 
-    } 
-    if(!empty($views[1])){
-      $buscar = $views[1];
+    } else if(isset($busqueda)){
+      $buscar = $_REQUEST['busqueda'];
       //$page = $_REQUEST['page'];
       $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
       FROM articulosw
@@ -81,10 +88,20 @@ echo $_REQUEST['page'];
       ?>
 <script>
   window.alert("No se encontraron articulos relacionados a su busqueda");
-  window.location.href = "<?php echo SERVERURL?>1";
+  window.location.href = "<?php echo SERVERURL?>"+"1";
 </script>
 <?php
     }
+    }else{
+      $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      FROM articulosw
+      INNER JOIN imagenes on  aw_cb = i_idproducto
+      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
+      INNER JOIN articulos on a_cb = aw_cb  GROUP BY p 
+      LIMIT $items_per_page OFFSET $offset";
+    $total_items = 240;
+    $total_pages = ceil($total_items / $items_per_page);
+    $resultado = setq($sql);  
     }
 ?>
 
@@ -180,10 +197,10 @@ if(!empty($_GET['busqueda'])){
           echo '
           <script>
             function mandar(id){
-              window.location.href= "'.SERVERURL.'"+id ;
+              window.location.href= "'.SERVERURL.'"+id+"/'.$_REQUEST['busqueda'].'" ;
             }
           </script>';
-          $buscar = $views[1];
+          $buscar = $_REQUEST['busqueda'];
           $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
           FROM articulosw
           INNER JOIN imagenes on  aw_cb = i_idproducto
@@ -194,25 +211,25 @@ $total_items = mysqli_num_rows(setq($sql));
 $total_pages = ceil($total_items / $items_per_page);
 
 if($total_pages >=10){
-  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
-  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']; $nombre = "Inicio...";}
   if($min <= 1) $min = 1;
 
-  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== ($total_pages)) $max = ($total_pages-1);
   else $max = $_REQUEST['page']+3;
-  if($max >= ($total_pages-1)) $max = ($total_pages-1);
-  if($_REQUEST['page']== 1 ) $active = "active";
-  else $active ="";
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+  if($max >= ($total_pages)) $max = ($total_pages);
+  if($_REQUEST['page']== 1 ) $active = "active". $hidden3 = "hidden";
+  else $active ="". $hidden3 ="";
+  echo '<li class="page-item '.$active.'"'.$hidden3.' ><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
 
 }else if ($total_pages <=9){
   $max = $total_pages;
-  $min = 0;
+  $min = 1;
 }
 for($i=$min;$i<=$max;$i++){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
-  if($i == 0) $nombre = "Inicio";
+  if($i == 1) $nombre = "Inicio";
   else $nombre = $i;
   echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
 }
@@ -223,10 +240,10 @@ if($total_pages<=9){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
   if($_REQUEST['page'] >= ($total_pages-4)) echo '';
-  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages).')">'.($total_pages).'</a></li>';
 }
-if($_REQUEST['page'] == $max  ||  $total_pages <= 1 ) $hidden2 = 'style="pointer-events: none;
+if($_REQUEST['page'] == ($max+1) ||  $total_pages <= 2) $hidden2 = 'style="pointer-events: none;
 background: #70707026;
 color: black;"';
 else $hidden2 = '';
@@ -262,7 +279,7 @@ echo '<li class="page-item">
           echo '
           <script>
             function mandar(id){
-              window.location.href="shop.php?page="+id+"con='.$_REQUEST['con'].'";
+              window.location.href="'. SERVERURL.'"+id+"/con/'.$_REQUEST['con'].'";
               
             }
           </script>';
@@ -274,25 +291,25 @@ $total_items = mysqli_num_rows(setq($sql));
 $total_pages = ceil($total_items / $items_per_page);
 
 if($total_pages >=10){
-  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
-  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']; $nombre = "Inicio...";}
   if($min <= 1) $min = 1;
 
-  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== ($total_pages)) $max = ($total_pages-1);
   else $max = $_REQUEST['page']+3;
-  if($max >= ($total_pages-1)) $max = ($total_pages-1);
-  if($_REQUEST['page']== 1 ) $active = "active";
-  else $active ="";
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+  if($max >= ($total_pages)) $max = ($total_pages);
+  if($_REQUEST['page']== 1 ) $active = "active". $hidden3 = "hidden";
+  else $active ="". $hidden3 ="";
+  echo '<li class="page-item '.$active.'"'.$hidden3.' ><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
 
 }else if ($total_pages <=9){
   $max = $total_pages;
-  $min = 0;
+  $min = 1;
 }
 for($i=$min;$i<=$max;$i++){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
-  if($i == 0) $nombre = "Inicio";
+  if($i == 1) $nombre = "Inicio";
   else $nombre = $i;
   echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
 }
@@ -303,10 +320,10 @@ if($total_pages<=9){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
   if($_REQUEST['page'] >= ($total_pages-4)) echo '';
-  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages).')">'.($total_pages).'</a></li>';
 }
-if($_REQUEST['page'] == $max  ||  $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+if($_REQUEST['page'] == ($max+1) ||  $total_pages <= 2) $hidden2 = 'style="pointer-events: none;
 background: #70707026;
 color: black;"';
 else $hidden2 = '';
@@ -342,7 +359,8 @@ echo '<li class="page-item">
           echo '
           <script>
             function mandar(id){
-              window.location.href="shop.php?page="+id+"&dep='.$_REQUEST['dep'].'";
+              window.location.href="'. SERVERURL.'"+id+"/dep/'.$_REQUEST['dep'].'";
+              
             }
           </script>';
           $concepto = $_REQUEST['dep'];
@@ -353,25 +371,25 @@ $total_items = mysqli_num_rows(setq($sql));
 $total_pages = ceil($total_items / $items_per_page);
 
 if($total_pages >=10){
-  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
-  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']; $nombre = "Inicio...";}
   if($min <= 1) $min = 1;
 
-  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== ($total_pages)) $max = ($total_pages-1);
   else $max = $_REQUEST['page']+3;
-  if($max >= ($total_pages-1)) $max = ($total_pages-1);
-  if($_REQUEST['page']== 0 ) $active = "active";
-  else $active ="";
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+  if($max >= ($total_pages)) $max = ($total_pages);
+  if($_REQUEST['page']== 1 ) $active = "active". $hidden3 = "hidden";
+  else $active ="". $hidden3 ="";
+  echo '<li class="page-item '.$active.'"'.$hidden3.' ><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
 
 }else if ($total_pages <=9){
   $max = $total_pages;
-  $min = 0;
+  $min = 1;
 }
 for($i=$min;$i<=$max;$i++){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
-  if($i == 0) $nombre = "Inicio";
+  if($i == 1) $nombre = "Inicio";
   else $nombre = $i;
   echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
 }
@@ -382,10 +400,10 @@ if($total_pages<=9){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
   if($_REQUEST['page'] >= ($total_pages-4)) echo '';
-  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages).')">'.($total_pages).'</a></li>';
 }
-if($_REQUEST['page'] == $max ||  $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+if($_REQUEST['page'] == ($max+1) ||  $total_pages <= 2) $hidden2 = 'style="pointer-events: none;
 background: #70707026;
 color: black;"';
 else $hidden2 = '';
@@ -421,7 +439,7 @@ echo '<li class="page-item">
           echo '
           <script>
             function mandar(id){
-              window.location.href= "shop.php?page=" +id+"";
+              window.location.href= "'.SERVERURL.'" +id+"";
             }
           </script>';
 $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
@@ -433,25 +451,25 @@ $total_items = mysqli_num_rows(setq($sql));
 $total_pages = ceil($total_items / $items_per_page);
 
 if($total_pages >=10){
-  if($_REQUEST['page']==0){$min = 1; $nombre="Inicio";}
-  else{$min = $_REQUEST['page']-1; $nombre = "Inicio...";}
+  if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
+  else{$min = $_REQUEST['page']; $nombre = "Inicio...";}
   if($min <= 1) $min = 1;
 
-  if($_REQUEST['page']== ($total_pages-1)) $max = ($total_pages-1);
+  if($_REQUEST['page']== ($total_pages)) $max = ($total_pages-1);
   else $max = $_REQUEST['page']+3;
-  if($max >= ($total_pages-1)) $max = ($total_pages-1);
-  if($_REQUEST['page']== 0 ) $active = "active";
-  else $active ="";
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
+  if($max >= ($total_pages)) $max = ($total_pages);
+  if($_REQUEST['page']== 1 ) $active = "active". $hidden3 = "hidden";
+  else $active ="". $hidden3 ="";
+  echo '<li class="page-item '.$active.'"'.$hidden3.' ><a class="page-link" onclick="mandar(1)">'.$nombre.'</a></li>';
 
 }else if ($total_pages <=9){
   $max = $total_pages;
-  $min = 0;
+  $min = 1;
 }
 for($i=$min;$i<=$max;$i++){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
-  if($i == 0) $nombre = "Inicio";
+  if($i == 1) $nombre = "Inicio";
   else $nombre = $i;
   echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.$i.')">'.$nombre.'</a></li>';
 }
@@ -462,10 +480,10 @@ if($total_pages<=9){
   if($_REQUEST['page'] == $i) $active = "active";
   else $active = "";
   if($_REQUEST['page'] >= ($total_pages-4)) echo '';
-  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-2).')">'.$nombre.'</a></li>';
-  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.($total_pages-1).'</a></li>';
+  else echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages-1).')">'.$nombre.'</a></li>';
+  echo '<li class="page-item '.$active.'"><a class="page-link" onclick="mandar('.($total_pages).')">'.($total_pages).'</a></li>';
 }
-if($_REQUEST['page'] == $max || $total_pages <= 1) $hidden2 = 'style="pointer-events: none;
+if($_REQUEST['page'] == ($max+1) ||  $total_pages <= 2) $hidden2 = 'style="pointer-events: none;
 background: #70707026;
 color: black;"';
 else $hidden2 = '';
@@ -490,7 +508,7 @@ echo '<li class="page-item">
 <!--PARTE DE WHATS-->
 <div class="msgwh">
   <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-    <img src="<?php echo SERVERURL?>../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+    <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
   </a>
 </div>
 

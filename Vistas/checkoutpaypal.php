@@ -200,7 +200,7 @@ include 'footer.php';
                 });
                 window.location.href= "index.php";
             }); */
-            window.location.href ="query/verificapagopp.php";
+            window.location.href ="query/verificapagopp";
         },
         onCancel: function (data) {
             alert("Pago Cancelado");

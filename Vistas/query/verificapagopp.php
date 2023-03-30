@@ -16,7 +16,7 @@ $sql1="UPDATE pedidoscl SET p_estatus ='A', p_fpago ='5'WHERE p_cliente = '$resu
     
         if(setq($sql2)){
             echo '<script> 
-            window.location.href ="../index.php"
+            window.location.href ="../index"
             alert("pedido confirmado");
             </script>';
             /* $sql3 ="UPDATE pedidoscl SET p_fpago ='5' WHERE p_cliente ='$result'";
