@@ -6,12 +6,12 @@
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>JD Suite</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="JD_Store"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
-					<li><a href="JDRest"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
-					<li><a href="JD_Invoice"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
-					<li><a href="JD_tae"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
-					<li><a href="JDEcomm"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
-					<li><a href="JDEcomm"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
+					<li><a href="<?php echo SERVERURL?>JD_Store"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
+					<li><a href="<?php echo SERVERURL?>JDRest"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
+					<li><a href="<?php echo SERVERURL?>JD_Invoice"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
+					<li><a href="<?php echo SERVERURL?>JD_tae"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
+					<li><a href="<?php echo SERVERURL?>JDEcomm"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
+					<li><a href="<?php echo SERVERURL?>JDEcomm"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">
@@ -25,11 +25,11 @@
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>Tienda</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="shop.php?page=1&busqueda=kit"><i class="fa fa-angle-double-right"></i>Kits Equipos</a></li>
-					<li><a href="shop.php?page=1&busqueda=impresora"><i class="fa fa-angle-double-right"></i>Impresoras</a>
+					<li><a href="<?php echo SERVERURL?>1/busqueda/kit"><i class="fa fa-angle-double-right"></i>Kits Equipos</a></li>
+					<li><a href="<?php echo SERVERURL?>1/busqueda/impresora"><i class="fa fa-angle-double-right"></i>Impresoras</a>
 					</li>
-					<li><a href="shop.php?page=1&busqueda=cajon"><i class="fa fa-angle-double-right"></i>Cajon Dinero</a></li>
-					<li><a href="shop.php?page=1&busqueda=lector"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
+					<li><a href="<?php echo SERVERURL?>1/busqueda/cajon"><i class="fa fa-angle-double-right"></i>Cajon Dinero</a></li>
+					<li><a href="<?php echo SERVERURL?>1/busqueda/lector"><i class="fa fa-angle-double-right"></i>Lectores</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">

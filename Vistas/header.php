@@ -63,7 +63,7 @@ else
 
     <nav class="navbar navbar-expand-xl" id="navbar" style="background-color:<?php echo $bg ?>;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index">
+            <a class="navbar-brand" href="<?php echo SERVERURL?>index">
                 <img src="<?php echo SERVERURL?>../public/imagenes/logoJD.png" alt="">
             </a>
             <div class=" mb-2" style="display: flex; justify-content: space-between;">
@@ -83,20 +83,20 @@ else
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <button class="btn btn-link" onclick="window.location.href='JD_Store'" class="white-space: pre;"
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JD_Store'" class="white-space: pre;"
                         id="linksnb">
                         JD Store
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='JDRest'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JDRest'" id="linksnb">
                         JD Rest
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='JD_Invoice'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JD_Invoice'" id="linksnb">
                         JD Invoice
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='JDEcomm'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JDEcomm'" id="linksnb">
                         JD Ecomm
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='JD_tae'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JD_tae'" id="linksnb">
                         JD TAE
                     </button>
                     <button class="btn btn-link" onclick="window.location.href='#'" id="linksnb">
