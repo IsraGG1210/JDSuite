@@ -1,6 +1,8 @@
 <?php
 include 'header.php';
 require './Conexion/config.php';
+require_once './Conexion/funciones.php';
+
 
 if(isset($_SESSION['username'])){
     // Consulta para obtener los datos del pedido del usuario logueado
@@ -44,117 +46,188 @@ if(isset($_SESSION['username'])){
     <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
-    <div class="container-fluid p-5">
-    <form action="CreateChargeCard.php" method="post" id="payment-form">
-    <input type="hidden" name="subtotal" value="<?php echo $total;?>">
-    <input type="hidden" name="envio" value="<?php echo $envio;?>">
-    <input type="hidden" name="total" value="<?php echo $totalen;?>">
-      <div class="form-row">
-        <h4 for="card-element">
-          Tarjeta de Credito o Debito
-        </h4>
-        <div id="card-element">
-          <!-- A Stripe Element will be inserted here. -->
-        </div>
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
-        <div class="mt-3">
-            <h4>Terminos y condiciones</h4>
-            <span>T&E</span>
-            <div class="form-check">
-                <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
-                    Acepto los terminos y condiciones
-                </label>
+    <!-- Display a payment form -->
+    <form id="payment-form">
+    <span> Mandaremos una notificacion de pago al siguiente correo</span>
+          <div class="form-row">
+            <label for="email"><?php echo $sesion?></label>
+            <input type="hidden"id="email" name="email" value="<?php echo $sesion?>" >
+            <input type="hidden" id="amount" name="amount" value="<?php echo $totalen;?>">
+          </div>
+            <div id="card-element"><!-- placeholder for Elements --></div>
+            <div class="card-errors">
+
             </div>
-        </div>
-      </div>
-      <div class="mt-3">
-        <button class="btn btn-warning">
-        <a class="btn btn-warning" href="#" role="button">
-            Ir a verificacion
-        </a>
-        </button>
-        <button type="submit" class="btn btn-primary float-right">
-        <a type="submit" class="btn btn-primary float-right" id="compraf" data-user="<?php echo $sesion;?>" 
-            data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
-            Pagar <?php echo MONEDA. number_format($totalen,2,'.',',');?>
-        </a>
-        </button>
-       </div>
+            <button id="card-button" class="btn btn-primary float-right">Pagar ahora</button>
+            <p id="payment-result"> 
+                <!-- Pago realzado exitosamente! -->
+                    <a href="" target="_blank">Stripe dashboard</a>
+            </p>
     </form>
+
+    <!-- MODAL -->
+    <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">PAGO EXITOSO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Su pago aha sido exitoso</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
     </div>
+    </div>
+  </body>
+  </head>
+  
+</html>
     
     <script>
-      
+    function confirmar(){
+        Swal.fire({
+            title: 'Su pago ha sido exitoso',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a la página de contacto del sitio web
+                window.location.href = "index.php";
+            }
+        })
+    }
+    
+    const stripe = Stripe('pk_test_51MmJTOGuTfIl032MCUof5RcMfmNgKRVGS3NMWUQOd7TAjJfJupvI2cNBgynNNAsQQnsdTRGppzS9itlVfLR45D4a00GxaW2FWq');
 
-      // Create a Stripe client.
-      var stripe = Stripe('pk_test_51MmJTOGuTfIl032MCUof5RcMfmNgKRVGS3NMWUQOd7TAjJfJupvI2cNBgynNNAsQQnsdTRGppzS9itlVfLR45D4a00GxaW2FWq');
-      // Create an instance of Elements.
-      var elements = stripe.elements();
-      // Custom styling can be passed to options when creating an Element.
-      // (Note that this demo uses a wider set of styles than the guide below.)
-      var style = {
-        base: {
-          color: '#32325d',
-          lineHeight: '18px',
-          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-          fontSmoothing: 'antialiased',
-          fontSize: '16px',
-          '::placeholder': {
-            color: '#aab7c4'
-          }
-        },
-        invalid: {
-          color: '#fa755a',
-          iconColor: '#fa755a'
-        }
-      };
-      // Create an instance of the card Element.
-      var card = elements.create('card', {style: style});
-      // Add an instance of the card Element into the `card-element` <div>.
-      card.mount('#card-element');
-      // Handle real-time validation errors from the card Element.
-      card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-          displayError.textContent = event.error.message;
-        } else {
-          displayError.textContent = '';
-        }
-      });
-      // Handle form submission.
-      var form = document.getElementById('payment-form');
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        stripe.createToken(card).then(function(result) {
-          if (result.error) {
-            // Inform the user if there was an error.
-            var errorElement = document.getElementById('card-errors');
+    let elements = stripe.elements();
+    //console.log(elements);
+    const card = elements.create('card');
+    //var paymentElement = elements.getElement('card');
+    //console.log(cardElement);
+    card.mount('#card-element');
+    const form = document.getElementById("payment-form");
+
+    var resultContainer = document.getElementById('payment-result');
+    card.addEventListener('change', function(event) {
+    
+    if (event.error) {
+        resultContainer.textContent = event.error.message;
+    } else {
+        resultContainer.textContent = '';
+    }
+    });
+
+    form.addEventListener('submit', async event => {
+    event.preventDefault();
+    resultContainer.textContent = '';
+
+    const pago = document.getElementById("amount").value;
+    const email = document.getElementById("email").value;
+
+    const { id, clientSecret } = await fetch("CreateChargeCard.php",{
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        /* request_type: 'create_payment_oxxo', */
+        pago:pago,
+        email:email
+      }),
+    }).then((r) => r.json());
+
+    stripe.createPaymentMethod({
+        type :'card',
+        card : card,
+    }).then(function(result){
+        if(result.error){
+            var errorElement = document.getElementById('payment-result');
             errorElement.textContent = result.error.message;
-          } else {
-            // Send the token to your server.
-            stripeTokenHandler(result.token);
-          }
+        }else{
+            var paymentMethodId = result.paymentMethod.id;
+            // Use paymentMethodId to confirm PaymentIntent
+            confirmCardPayment(paymentMethodId);
+        }
+    });
+    //elements = stripe.elements(clientSecret);
+    let cli_sec_card = clientSecret;
+    let payment_intent_id = id;
+
+    async function retrieve() {
+        const {paymentIntent} = await stripe.retrievePaymentIntent(cli_sec_card);
+        if(paymentIntent){
+            switch(paymentIntent.status){
+                case "succeeded":
+                    fetch("Retriev.php",{
+                    method: "POST",
+                    headers: {"Content-Type" : "application/json"},
+                    body: JSON.stringify({
+                        id: id
+                    })
+                    }).then((r) => r.json());
+                    confirmar();
+                break;
+                case "Error":
+                    Swal.fire({
+                        title: 'Su pago no ha sido procesado',
+                        icon: 'error',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Intentar nuevamente'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirigir a la página de contacto del sitio web
+                            window.location.href = "checkoutstripeCard.php";
+                        }
+                    })
+                break;
+                }
+        }
+    }
+
+    function confirmCardPayment(paymentMethodId) {
+         stripe.confirmCardPayment(
+            cli_sec_card,
+        {
+            payment_method:paymentMethodId,
+        }).then (function(result){
+            if (result.error) {
+            // Handle error
+            } else {
+            // PaymentIntent confirmed successfully
+
+            fetch('query/enviarcorreoCard.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                pago:pago,
+                email: email
+            })
+            })
+            .then(function(resul){
+                if(resul.error){
+                    var errorElement = document.getElementById('payment-result');
+                    errorElement.textContent = resul.error.message;
+                }else{
+                    retrieve();
+                }
+            })
+            }
         });
-      });
-      function stripeTokenHandler(token) {
-        // Insert the token ID into the form so it gets submitted to the server
-        var form = document.getElementById('payment-form');
-        var hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'stripeToken');
-        hiddenInput.setAttribute('value', token.id);
-        form.appendChild(hiddenInput);
-        // Submit the form
-        form.submit();
-      }
+    }
+    });
     </script>
-<script src="https://js.stripe.com/v3/"></script>
-<script src="../vendor/stripe.js"></script>
 <?php
 include 'footer.php';
 ?>
-
-
- 
