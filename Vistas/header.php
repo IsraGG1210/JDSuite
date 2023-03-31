@@ -7,15 +7,15 @@ if (!isset($_SESSION['id'])) {
 }
 $sesion = $_SESSION['id'];
   //ECHO $_SERVER['REQUEST_URI'];
-  if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Store')
+  if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/punto-de-venta')
   $bg = '#2B4B6B';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDRest')
+else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/punto-de-venta-restaurantes')
   $bg = '#F46606';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_Invoice')
+else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/facturacion-electronica')
   $bg = '#27A8AF';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JDEcomm')
+else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/ecommerce')
   $bg = '#29A8B0';
-else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/JD_tae')
+else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/venta-tiempo-aire-electronico')
   $bg = '#1F8187';
 else
   $bg = '#29A8B0';
@@ -83,20 +83,20 @@ else
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JD_Store'" class="white-space: pre;"
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>punto-de-venta'" class="white-space: pre;"
                         id="linksnb">
                         JD Store
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JDRest'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>punto-de-venta-restaurantes'" id="linksnb">
                         JD Rest
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JD_Invoice'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>facturacion-electronica'" id="linksnb">
                         JD Invoice
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JDEcomm'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>ecommerce'" id="linksnb">
                         JD Ecomm
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>JD_tae'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>venta-tiempo-aire-electronico'" id="linksnb">
                         JD TAE
                     </button>
                     <button class="btn btn-link" onclick="window.location.href='#'" id="linksnb">

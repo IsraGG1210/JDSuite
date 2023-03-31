@@ -6,12 +6,12 @@
 			<div class="col-xs-12 col-sm-3 col-md-3">
 				<h5>JD Suite</h5>
 				<ul class="list-unstyled quick-links">
-					<li><a href="<?php echo SERVERURL?>JD_Store"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
-					<li><a href="<?php echo SERVERURL?>JDRest"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
-					<li><a href="<?php echo SERVERURL?>JD_Invoice"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
-					<li><a href="<?php echo SERVERURL?>JD_tae"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
-					<li><a href="<?php echo SERVERURL?>JDEcomm"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
-					<li><a href="<?php echo SERVERURL?>JDEcomm"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
+					<li><a href="<?php echo SERVERURL?>punto-de-venta"><i class="fa fa-angle-double-right"></i>JD Store</a></li>
+					<li><a href="<?php echo SERVERURL?>punto-de-venta-restaurantes"><i class="fa fa-angle-double-right"></i>JD Rest</a></li>
+					<li><a href="<?php echo SERVERURL?>facturacion-electronica"><i class="fa fa-angle-double-right"></i>JD Invoice</a></li>
+					<li><a href="<?php echo SERVERURL?>venta-tiempo-aire-electronico"><i class="fa fa-angle-double-right"></i>JD TAE</a></li>
+					<li><a href="<?php echo SERVERURL?>ecommerce"><i class="fa fa-angle-double-right"></i>JD Ecomm</a></li>
+					<li><a href="<?php echo SERVERURL?>#"><i class="fa fa-angle-double-right"></i>JD CEO</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3">
