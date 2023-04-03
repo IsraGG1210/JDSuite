@@ -121,13 +121,13 @@ require 'Conexion/Database.php';
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="5000">
-        <img src="../public/imagenes/rest1.jpg" alt="rest1" class="d-block">
+        <img src="../public/imagenes/rest1.jpg" alt="Jd Rest punto de venta para restaurantes" class="d-block">
       </div>
       <div class="carousel-item" data-bs-interval="5000">
-        <img src="../public/imagenes/rest2.gif" alt="rest2" class="d-block">
+        <img src="../public/imagenes/rest2.gif" alt="Funciona para cualquier giro" class="d-block">
       </div>
       <div class="carousel-item" data-bs-interval="5000">
-        <img src="../public/imagenes/rstore.png" alt="rstore" class="d-block">
+        <img src="../public/imagenes/rstore.png" alt="Requisitos del sistema" class="d-block">
       </div>
     </div>
   </div>
@@ -140,7 +140,7 @@ require 'Conexion/Database.php';
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
-            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="<?php echo $row['a_nmb']; ?>"></a>
         <div class="card-body">
           <span id="descpro">
             <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp

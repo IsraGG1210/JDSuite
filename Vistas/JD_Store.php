@@ -21,7 +21,7 @@ require 'Conexion/Database.php';
 <div class="col-12 imgbgst">
   <div class="row mb-2 container">
     <div class="col-md-8 ">
-      <img src="../public/imagenes/jd-store.png" style="width:200px; heidht=150px;" alt="" />
+      <img src="../public/imagenes/jd-store.png" style="width:200px; heidht=150px;" alt="Punto de venta JD store" />
     </div>
     <div class="col-md-4">
       <div class=" form-servicioslS" style="background-color: #2B4B6B;">
@@ -66,7 +66,7 @@ require 'Conexion/Database.php';
     </div>
     <div class="col-md-4 blo">
       <div class="">
-        <img src="../public/imagenes/rstore.png" class="d-block " width="90%" height="90%" alt="...">
+        <img src="../public/imagenes/rstore.png" class="d-block " width="90%" height="90%" alt="Especificaciones minimas">
       </div>
     </div>
     <div class="col-md-4 blo">
@@ -79,12 +79,12 @@ require 'Conexion/Database.php';
     </div>
     <div class="col-md-4 blo">
       <div class="w-100">
-        <img src="../public/imagenes/store2.gif" width="100%" alt="">
+        <img src="../public/imagenes/store2.gif" width="100%" alt="Funciona para cualquier giro">
       </div>
     </div>
     <div class="col-md-6 " >
       <div class="">
-        <img src="../public/imagenes/cloud.png" class="d-block " height="250" alt="...">
+        <img src="../public/imagenes/cloud.png" class="d-block " height="250" alt="Funciona mediante el cloud">
       </div>
     </div>
     <br>
@@ -106,7 +106,7 @@ require 'Conexion/Database.php';
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
-            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="<?php echo $row['a_nmb']; ?>"></a>
         <div class="card-body">
           <span id="descpro">
             <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
@@ -352,13 +352,7 @@ require 'Conexion/Database.php';
     </div>
   </div>
 
-  <!--PARTE DE WHATS-->
-  <div class="msgwh">
-    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-    </a>
-  </div>
-  
+
 
 
 <?php

@@ -118,7 +118,7 @@ $sesion = $_SESSION['id'];
               </a>
             </div>
             <div class="col-auto d-none d-lg-block">
-              <Img src="../public/imagenes/storei.jpg"></Img>
+              <Img src="../public/imagenes/storei.jpg" alt="Punto de venta"></Img>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ $sesion = $_SESSION['id'];
                 </center>
               </a>
             </div>
-            <div class="col-auto d-none d-lg-block">
+            <div class="col-auto d-none d-lg-block" alt="Punto de venta para restaurantes">
               <Img src="../public/imagenes/resti.jpg"></Img>
             </div>
           </div>
@@ -152,7 +152,7 @@ $sesion = $_SESSION['id'];
                 </center>
               </a>
             </div>
-            <div class="col-auto d-none d-lg-block">
+            <div class="col-auto d-none d-lg-block" alt="Facturacion electronica">
               <Img src="../public/imagenes/invoicei.jpg"></Img>
             </div>
           </div>
@@ -170,7 +170,7 @@ $sesion = $_SESSION['id'];
                 </center>
               </a>
             </div>
-            <div class="col-auto d-none d-lg-block">
+            <div class="col-auto d-none d-lg-block" alt="Ecommerce">
               <Img src="../public/imagenes/ecommi.jpg"></Img>
             </div>
           </div>
@@ -188,7 +188,7 @@ $sesion = $_SESSION['id'];
                 </center>
               </a>
             </div>
-            <div class="col-auto d-none d-lg-block">
+            <div class="col-auto d-none d-lg-block" alt="Venta de tiempo aire electronico">
               <Img src="../public/imagenes/taei.jpg"></Img>
             </div>
           </div>
@@ -226,7 +226,7 @@ $sesion = $_SESSION['id'];
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href="descrpro?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
-            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="<?php echo $row['a_nmb']; ?>"></a>
         <div class="card-body">
           <span id="descpro">
             <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
@@ -273,16 +273,7 @@ $sesion = $_SESSION['id'];
       }
   </script>
 
-  
-  
 
-
-  <!--PARTE DE WHATS-->
-  <div class="msgwh">
-    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-    </a>
-  </div>
 
 
 <?php

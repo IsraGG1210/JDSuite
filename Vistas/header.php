@@ -28,7 +28,22 @@ else
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JD_Suite</title>
+    <meta name="description"
+        content="Los mejores software puntos de venta de Latinoamérica somos tú mejor aliado JD Suite">
+    <!-- <link rel="canonical" href="https://www.jdsuite.mx/punto-de-venta" /> -->
+    <meta name="robots" content="index, follow, noodp" />
+    <meta name="keywords" content="punto de venta, puntos de venta, sistema punto de venta, terminal punto de venta" />
+    <meta name="author" content="JD Suite" />
+    <meta property="og:title" content="Puntos de Venta para tu Empresa">
+    <meta property="og:description"
+        content="El Adminstrador de Negocios Ventas, Compras, Inventarios, Clientes, Facturación y Mucho Más.">
+    <!-- <meta property="og:image" content="https://www.jdsuite.mx/punto%20de%20venta.png"> -->
+    <meta property="og:url" content="https://www.jdsuite.mx/">
+    <meta property="og:site_name" content="JD Suite">
+    <meta property="article:publisher" content="https://www.facebook.com/suiteJD/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:type" content="website" />
+    <title>Puntos de Venta para tu Empresa | JD Suite</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
         integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
@@ -55,7 +70,7 @@ else
     <script
         src="https://www.paypal.com/sdk/js?client-id=AejdaszU3nIIo25iBNLIw8Zof-SYCshM0nzcwyVWyYUeF7hzxxwn1wBQ_MMjpaJRCluW7MhAS3TSvuj7&currency=MXN&locale=es_MX">
     </script>
-    
+
 </head>
 
 
@@ -67,36 +82,36 @@ else
                 <img src="<?php echo SERVERURL?>../public/imagenes/logoJD.png" alt="">
             </a>
             <div class=" mb-2" style="display: flex; justify-content: space-between;">
-
                 <div class="" id="tiendas" style="white-space: nowrap; display: flex;">
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
                     </button>
-
-
                 </div>
-
-
             </div>
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>punto-de-venta'" class="white-space: pre;"
-                        id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>punto-de-venta'"
+                        class="white-space: pre;" id="linksnb">
                         JD Store
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>punto-de-venta-restaurantes'" id="linksnb">
+                    <button class="btn btn-link"
+                        onclick="window.location.href='<?php echo SERVERURL?>punto-de-venta-restaurantes'" id="linksnb">
                         JD Rest
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>facturacion-electronica'" id="linksnb">
+                    <button class="btn btn-link"
+                        onclick="window.location.href='<?php echo SERVERURL?>facturacion-electronica'" id="linksnb">
                         JD Invoice
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>ecommerce'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>ecommerce'"
+                        id="linksnb">
                         JD Ecomm
                     </button>
-                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>venta-tiempo-aire-electronico'" id="linksnb">
+                    <button class="btn btn-link"
+                        onclick="window.location.href='<?php echo SERVERURL?>venta-tiempo-aire-electronico'"
+                        id="linksnb">
                         JD TAE
                     </button>
                     <button class="btn btn-link" onclick="window.location.href='#'" id="linksnb">
@@ -105,7 +120,6 @@ else
                     <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>1'" id="linksnb">
                         Tienda
                     </button>
-
 
                     <li class="nav-item dropdown">
                         <button class="btn btn-link dropdown-toggle" id="linksnb" data-bs-toggle="dropdown"
@@ -127,10 +141,10 @@ else
                             <?php
                                     }
                                     ?>
-
                         </ul>
                     </li>
-                    <button class="btn btn-link" onclick="window.location.href='verif_Tienda'" id="linksnb">
+                    <button class="btn btn-link" onclick="window.location.href='<?php echo SERVERURL?>verif_Tienda'"
+                        id="linksnb">
 
                         <div id="carrito-cantidad">
                             <i class="fas fa-shopping-cart fa-xl"></i>
@@ -149,7 +163,7 @@ else
                                 $cantidad_tota = mysqli_fetch_assoc($result);
                                 $cantidad_total = $cantidad_tota['cantidad'];
                             //echo $cantidad_total;
-                            
+                        
 
                             }else{
                                 if(isset($_COOKIE['cart'])) {

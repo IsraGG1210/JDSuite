@@ -117,7 +117,7 @@ $par = explode('/',$url);
             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" -mdb-ripple-color="light">
               <a
                 href="<?php echo SERVERURL?>descrpro?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
-                <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
+                <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" alt="<?php $row['a_nmb']?>"/>
                 <div class="mask">
                 </div>
                 <div class="hover-overlay">
@@ -509,12 +509,6 @@ echo '<li class="page-item">
 
 
 
-<!--PARTE DE WHATS-->
-<div class="msgwh">
-  <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-    <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-  </a>
-</div>
 
 
 

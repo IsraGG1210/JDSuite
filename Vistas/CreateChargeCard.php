@@ -26,11 +26,17 @@ $jsonStr = file_get_contents('php://input');
     'payment_method_types' => ['card'],
     'receipt_email' => $email
   ]); 
+
+  $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$email'";
+  $resultado = setq($sql1);
+  $idusuario = mysqli_fetch_array($resultado);
+  $idusu = $idusuario['c_id'];
+
   if($total<5000){
     $envio = 150;
     $subtotal = $total - $envio;
     $sql = 'INSERT INTO pedidoscl SET
-        p_cliente = "'.$email.'",
+        p_cliente = "'.$idusu.'",
         p_estatus = "0",
         p_factura = "'.$intent['id'].'",
         p_fechagen = "'.date('Y-m-d H:i:s').'",
@@ -42,7 +48,7 @@ $jsonStr = file_get_contents('php://input');
     $envio = 0;
     $subtotal = $envio;
     $sql = 'INSERT INTO pedidoscl SET
-        p_cliente = "'.$email.'",
+        p_cliente = "'.$idusu.'",
         p_estatus = "0",
         p_factura = "'.$intent['id'].'",
         p_fechagen = "'.date('Y-m-d H:i:s').'",

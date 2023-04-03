@@ -16,7 +16,7 @@ include ('header.php');
 		<div class="col-md-4 mb-4 d-flex ">
 			<div class="card">
 				<div class="view col-auto d-none d-lg-block">
-					<img src="../public/imagenes/ecomm1.png" class="card-img-top" alt="">
+					<img src="../public/imagenes/ecomm1.png" class="card-img-top" alt="JD Ecomm sistema de comercio electronico">
 				</div>
 				<div class="card-body">
 					<h3 class="card-title">¿Que es JD Ecomm?</h3>
@@ -32,7 +32,7 @@ include ('header.php');
 		<div class="col-md-4 mb-4 d-flex ">
 			<div class="card">
 				<div class="view col-auto d-none d-lg-block">
-					<img src="../public/imagenes/ecomm2.gif" class="card-img-top" alt="">
+					<img src="../public/imagenes/ecomm2.gif" class="card-img-top" alt="Funciona para cualquier giro">
 				</div>
 				<div class="card-body">
 					<h3 class="card-title">Funciona para cualquier giro</h3>
@@ -55,7 +55,7 @@ include ('header.php');
 			<div class="row main d-flex mb-4" style="margin: 0px;">
 				<div class="main-login main-center" style="height: auto;">
 					<center>
-						<img src="../public/imagenes/lecomm.png" alt="" class="imgEcomm col-sm-12"
+						<img src="../public/imagenes/lecomm.png" alt="Pagina web perzonalizada para tu empresa" class="imgEcomm col-sm-12"
 							style="background-color:white;border-radius: 50px;">
 					</center>
 					<form class="" method="post" action="#">

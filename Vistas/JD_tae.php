@@ -5,7 +5,7 @@ include('header.php');
 <div class="col-12 imgbgtae">
     <div class="row mb-2 container-fluid">
         <div class="col-md-8">
-          <img src="../public/imagenes/jd-tae.png" width="200px" height="150px" alt="">
+          <img src="../public/imagenes/jd-tae.png" width="200px" height="150px" alt="JD TAE sistema de venta de tiempo aire electronico">
         </div>
         <div class="col-md-4 ">
             <div class=" form-servicioslT">
@@ -182,14 +182,6 @@ include('header.php');
   </div>
  </div>
 </div>
-
-  <!--PARTE DE WHATS-->
-  <div class="msgwh">
-    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-      <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
-    </a>
-  </div>
-
 
 
     

@@ -23,7 +23,7 @@ $con = $db->conectar();
  <div class="col-12 imgbgst">
     <div class="row mb-2 container">
       <div class="col-md-8 ">
-      <img src="../public/imagenes/jd-invoice.png" height="150px"width="200px" alt=""/>
+      <img src="../public/imagenes/jd-invoice.png" height="150px"width="200px" alt="Jd Invoice, sistema de facturacion electronica"/>
       </div>
       <div class="col-md-4">
         <div class=" form-servicioslS">
@@ -58,7 +58,7 @@ $con = $db->conectar();
             <div class="col-md-6">
                 <div class="righ w-100">
                 <div class="">
-                    <img src="../public/imagenes/invoice2.gif" width="65%"  alt="">
+                    <img src="../public/imagenes/invoice2.gif" width="65%"  alt="Funciona para cualquier giro">
                 </div> 
                 </div>
                 <div class="center">
@@ -88,7 +88,7 @@ $con = $db->conectar();
     ?>
     <div class="item">
       <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
-            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt=""></a>
+            src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="<?php echo $row['a_nmb']; ?>"></a>
         <div class="card-body">
           <span id="descpro">
             <?php echo $row['a_nmb']; ?> &nbsp &nbsp &nbsp &nbsp
@@ -168,12 +168,7 @@ $con = $db->conectar();
     </div>
   </div>
 
-  <!--PARTE DE WHATS-->
-  <div class="msgwh">
-      <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-        <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
-      </a>
-  </div>
+
 
 
  <!--Preguntas--> 

@@ -67,6 +67,11 @@
 	</div>
 </section>
 <!-- ./Footer -->
+<div class="msgwh">
+    <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
+      <img src="<?php echo SERVERURL?>../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
+    </a>
+  </div>
 
 <!-- End Footer -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"

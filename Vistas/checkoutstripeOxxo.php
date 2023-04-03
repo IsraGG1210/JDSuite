@@ -85,16 +85,7 @@ if(isset($_SESSION['username'])){
         
         
       </form>
-      <div class="container-fluid p-5">
-        <div class="row" id="cupondescuento">
-              <div class="col-9 text-success">
-                <button class="btn btn-blue">
-                  <a class="btn btn-warning" href="#" role="button">
-                      Ver instrucciones de pago
-                  </a>
-                </button>
-              </div>
-        </div>
+      
       </div>
     </div>
     

@@ -32,11 +32,17 @@ $jsonStr = file_get_contents('php://input');
   ]);
 
   //$oxxoVoucherUrl = $paymentIntent->charges->data[0]->payment_method_details->oxxo_voucher->url; 
+  
+  $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$email'";
+  $resultado = setq($sql1);
+  $idusuario = mysqli_fetch_array($resultado);
+  $idusu = $idusuario['c_id'];
+
   if($total<5000){
     $envio = 150;
     $subtotal = $total - $envio;
     $sql = 'INSERT INTO pedidoscl SET
-        p_cliente = "'.$email.'",
+        p_cliente = "'.$idusu.'",
         p_estatus = "0",
         p_factura = "'.$intent['id'].'",
         p_fechagen = "'.date('Y-m-d H:i:s').'",
@@ -48,7 +54,7 @@ $jsonStr = file_get_contents('php://input');
     $envio = 0;
     $subtotal = $envio;
     $sql = 'INSERT INTO pedidoscl SET
-        p_cliente = "'.$email.'",
+        p_cliente = "'.$idusu.'",
         p_estatus = "0",
         p_factura = "'.$intent['id'].'",
         p_fechagen = "'.date('Y-m-d H:i:s').'",
@@ -62,7 +68,26 @@ $jsonStr = file_get_contents('php://input');
     'clientSecret' => $intent->client_secret
   ];
   echo json_encode($output);
+/* }elseif($jsonObj->request_type == 'retrieve_payment_intent'){
+  $payment_id=$intent->id;
 
+  $payment = \Stripe\PaymentIntent::retrieve($payment_id);
+
+// Verificar el estado del pago
+if ($payment->status == 'succeeded') {
+  // El pago ha sido exitoso
+  $sql = 'UPDATE pedidoscl SET
+        p_estatus = "1"';
+  setq($sql);
+  $output = [
+    'payment_txn_id' => base64_encode($transaction_id)
+  ];
+  echo json_encode($output);
+} else {
+  http_response_code(500);
+      echo json_encode(['error' => 'La transacción ha tenido un error!']);
+}
+} */
 ?>
 
 
