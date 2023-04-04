@@ -19,7 +19,7 @@ require './Conexion/config.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                    <?php 
                         if(isset($_SESSION['username'])){
                             // Consulta para obtener los datos del pedido del usuario logueado
                             $sesion = $_SESSION['username'];
@@ -53,7 +53,7 @@ require './Conexion/config.php';
                                 $descuento = $producto['pd_descuento'];
                                 $subtotal = $cantidad * $precio;
                                 $total += $subtotal;
-                        ?>  
+                        ?> 
                     <tr>
                     <td>
                         <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
@@ -131,12 +131,12 @@ require './Conexion/config.php';
             </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary me-md-2" type="button" href="verif_Tienda"
+        <a class="btn btn-primary me-md-2" type="button" href="verif_Tienda.php"
         style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
         data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
         Atrás   
         </a>
-        <a class="btn btn-primary me-md-2" type="button" href="datosenvio"
+        <a class="btn btn-primary me-md-2" type="button" href="datosenvio.php"
         style="background-color:#29A8B0;" id="siguiente" data-user="<?php echo $sesion;?>" 
         data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
         Siguiente   

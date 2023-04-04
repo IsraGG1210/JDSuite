@@ -17,7 +17,8 @@ $jsonStr = file_get_contents('php://input');
   $total = !empty($jsonObj->pago) ? $jsonObj->pago : '';
   $name = !empty($jsonObj->name) ? $jsonObj->name : '';
   $email = !empty($jsonObj->email) ? $jsonObj->email : '';
-//echo "BIEN". $jsonObj->pago;
+/* echo "BIEN". $jsonObj->pago;
+echo "TOTAL ".$total; */
   $intent  =  \Stripe\PaymentIntent::create([
     "amount" => ($total*100),
     "currency" => "mxn",
@@ -57,37 +58,34 @@ $jsonStr = file_get_contents('php://input');
         p_cliente = "'.$idusu.'",
         p_estatus = "0",
         p_factura = "'.$intent['id'].'",
-        p_fechagen = "'.date('Y-m-d H:i:s').'",
+        p_fechagen = "'.date('Y-m-d').'",
         p_subtotal = "'.$subtotal.'",
         p_envio = "'.$envio.'",
         p_total = "'.$total.'"';
     setq($sql);
   }
+  $sql = 'SELECT p_id FROM pedidoscl
+        WHERE p_cliente = "'.$idusu.'" 
+        ORDER BY p_id DESC
+        LIMIT 1';
+    $ID_PEDIDOSCL= setq($sql);
+    $ID = mysqli_fetch_all($ID_PEDIDOSCL, MYSQLI_ASSOC);
+                 
+      foreach ($ID as $idp) {
+        $idpcl = $idp['p_id'];
+        //echo $idpcl;
+  $sql = 'UPDATE pedidoscld SET
+        pd_conf = "1",
+        pd_confirm = "'.$idpcl.'",
+        pd_fechaconf = "'.date('Y-m-d').'"
+        WHERE pd_pedido = "'.$idusu.'" AND 
+        pd_conf = "0"';
+    setq($sql);}
   $output = [
     'id' => $intent->id,
     'clientSecret' => $intent->client_secret
   ];
   echo json_encode($output);
-/* }elseif($jsonObj->request_type == 'retrieve_payment_intent'){
-  $payment_id=$intent->id;
-
-  $payment = \Stripe\PaymentIntent::retrieve($payment_id);
-
-// Verificar el estado del pago
-if ($payment->status == 'succeeded') {
-  // El pago ha sido exitoso
-  $sql = 'UPDATE pedidoscl SET
-        p_estatus = "1"';
-  setq($sql);
-  $output = [
-    'payment_txn_id' => base64_encode($transaction_id)
-  ];
-  echo json_encode($output);
-} else {
-  http_response_code(500);
-      echo json_encode(['error' => 'La transacción ha tenido un error!']);
-}
-} */
 ?>
 
 

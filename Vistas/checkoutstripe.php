@@ -3,14 +3,20 @@ include 'header.php';
 require './Conexion/config.php';
 
 if(isset($_SESSION['username'])){
-    // Consulta para obtener los datos del pedido del usuario logueado
-    $sesion = $_SESSION['username'];
-    $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
-        FROM pedidoscld
-        INNER JOIN articulos ON a_cb = pd_producto
-        INNER JOIN imagenes ON a_cb = i_idproducto
-        WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
-    $result = setq($sql);
+     // Consulta para obtener los datos del pedido del usuario logueado
+     $usuario = $_SESSION['username'];
+     $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+     $resultado = setq($sql1);
+     $idusuario = mysqli_fetch_array($resultado);
+     $idusu = $idusuario['c_id'];
+     // Consulta para obtener los datos del pedido del usuario logueado
+     $sesion = $_SESSION['username'];
+     $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+         FROM pedidoscld
+         INNER JOIN articulos ON a_cb = pd_producto
+         INNER JOIN imagenes ON a_cb = i_idproducto
+         WHERE pd_pedido="'.$idusu.'" AND pd_conf = 0';
+     $result = setq($sql);
 
     $datos = Array();
     while($row = mysqli_fetch_array($result)){
@@ -64,7 +70,7 @@ if(isset($_SESSION['username'])){
                                 <br>
 
                                 <center>
-                                    <a href="checkoutstripeCard.php">
+                                    <a href="checkoutstripecaard.php">
                                         <button class="btn btn-primary rounded-pill" style="background-color:#29A8B0;">
                                         <i class="fa-regular fa-credit-card"></i></i>Pagar Con tarjeta
                                         </button>
@@ -88,7 +94,7 @@ if(isset($_SESSION['username'])){
                                 <br>
 
                                 <center>
-                                <form action="CreateChargeOxxo.php" method="post" id="payment-form">
+                                <form action="checkoutstripeOxxo.php" method="post" id="payment-form">
                                     <input type="hidden" name="subtotal" value="<?php echo $total;?>">
                                     <input type="hidden" name="envio" value="<?php echo $envio;?>">
                                     <input type="hidden" name="total" value="<?php echo $totalen;?>">

@@ -12,12 +12,18 @@ $nameuser = $nameuse['c_nmb'];
    
 if(isset($_SESSION['username'])){
     // Consulta para obtener los datos del pedido del usuario logueado
+    $usuario = $_SESSION['username'];
+    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+    $resultado = setq($sql1);
+    $idusuario = mysqli_fetch_array($resultado);
+    $idusu = $idusuario['c_id'];
+    // Consulta para obtener los datos del pedido del usuario logueado
     $sesion = $_SESSION['username'];
     $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
         FROM pedidoscld
         INNER JOIN articulos ON a_cb = pd_producto
         INNER JOIN imagenes ON a_cb = i_idproducto
-        WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+        WHERE pd_pedido="'.$idusu.'" AND pd_conf = 0';
     $result = setq($sql);
 
     $datos = Array();
@@ -68,7 +74,7 @@ if(isset($_SESSION['username'])){
         </div>
         <div>
           <label for="amount">Monto a pagar es de <?php echo MONEDA. number_format($totalen,2,'.',',');?></label>
-          <input type="hidden" id="amount" name="amount" value="<?php echo number_format($totalen,2,'.',',');?>" >
+          <input type="hidden" id="amount" name="amount" value="<?php echo $totalen;?>"
           
         </div>
         
@@ -91,6 +97,21 @@ if(isset($_SESSION['username'])){
     
     
 <script>
+  function confirmar(){
+        Swal.fire({
+            title: 'Esperaremos su pago para concluir con su compra',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a la página de contacto del sitio web
+                window.location.href = "index.php";
+            }
+        })
+    }
   var stripe = Stripe('pk_test_51MmJTOGuTfIl032MCUof5RcMfmNgKRVGS3NMWUQOd7TAjJfJupvI2cNBgynNNAsQQnsdTRGppzS9itlVfLR45D4a00GxaW2FWq');
   const form = document.getElementById('payment-form');
 
@@ -114,6 +135,7 @@ if(isset($_SESSION['username'])){
 
     client_secret_oxxo = clientSecret;
     payment_intent_id = id;
+
   
    const {error, paymentIntent} = await stripe.confirmOxxoPayment(
     client_secret_oxxo,
@@ -145,13 +167,17 @@ if(isset($_SESSION['username'])){
       })
     })
     .then(response => {
-      
+        stripe.retrievePaymentIntent(client_secret_oxxo);
+        confirmar();
     })
     .catch(error => {
   // Manejar errores
 });
   }
 });
+
+  
+
 </script>
 
 
