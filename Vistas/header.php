@@ -32,7 +32,7 @@ else
         content="Los mejores software puntos de venta de Latinoamérica somos tú mejor aliado JD Suite">
     <!-- <link rel="canonical" href="https://www.jdsuite.mx/punto-de-venta" /> -->
     <meta name="robots" content="index, follow, noodp" />
-    <meta name="keywords" content="punto de venta, puntos de venta, sistema punto de venta, terminal punto de venta" />
+    <meta name="keywords" content="punto de venta, puntos de venta, sistema punto de venta, terminal punto de venta, venta" />
     <meta name="author" content="JD Suite" />
     <meta property="og:title" content="Puntos de Venta para tu Empresa">
     <meta property="og:description"
@@ -79,7 +79,7 @@ else
     <nav class="navbar navbar-expand-xl" id="navbar" style="background-color:<?php echo $bg ?>;">
         <div class="container-fluid">
             <a class="navbar-brand" href="<?php echo SERVERURL?>index">
-                <img src="<?php echo SERVERURL?>../public/imagenes/logoJD.png" alt="">
+                <img src="<?php echo SERVERURL?>../public/imagenes/logoJD.png" alt="Logo JDSuite">
             </a>
             <div class=" mb-2" style="display: flex; justify-content: space-between;">
                 <div class="" id="tiendas" style="white-space: nowrap; display: flex;">

@@ -56,7 +56,7 @@ require './Conexion/config.php';
                         ?> 
                     <tr>
                     <td>
-                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
+                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="<?php echo $row['a_nmb']?>" style="width:50px;"></img>
                     </td>
                     <td style="padding: 0rem">
                         <?php echo $nombre;?>

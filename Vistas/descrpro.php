@@ -68,10 +68,10 @@ if($idp == '' || $token ==''){
               
               <div class="carousel-item active">
                 <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100"
-                  alt="...">
+                  alt="<?php echo $row['a_nmb']?>">
               </div>
               <div class="carousel-item">
-                <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="...">
+                <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="<?php echo $row['a_nmb']?>">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -161,7 +161,7 @@ if($idp == '' || $token ==''){
                       -mdb-ripple-color="light">
                       <a
                         href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
-                        <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
+                        <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" alt="<?php echo $row['a_nmb']?>" />
                         <div class="mask">
                         </div>
                         <div class="hover-overlay">

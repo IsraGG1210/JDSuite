@@ -96,7 +96,7 @@ require_once './Conexion/funciones.php';
                       ?>  
                     <tr>
                       <td>
-                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
+                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="<?php echo $nombre;?>" style="width:50px;"></img>
                       </td>
                       <td>
                         <?php echo $nombre;?>
@@ -165,7 +165,7 @@ require_once './Conexion/funciones.php';
                       ?>  
                     <tr>
                       <td>
-                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
+                        <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="<?php echo $nombre;?>" style="width:50px;"></img>
                       </td>
                       <td>
                         <?php echo $nombre;?>

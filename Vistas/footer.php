@@ -48,10 +48,10 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
 				<ul class="list-unstyled list-inline social text-center">
-					<li class="list-inline-item"><a href="#"><i class="fab fa-youtube fa-xl"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-twitter-square fa-xl"></i></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-xl"></i></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-square fa-xl"></i></a></li>
+					<li class="list-inline-item"><a href="https://www.youtube.com/channel/UCt9ZVvOvsXnMpk_g7X1boNg"><i class="fab fa-youtube fa-xl"></i></a></li>
+					<li class="list-inline-item"><a href="https://twitter.com/SuiteJd"><i class="fab fa-twitter-square fa-xl"></i></li>
+					<li class="list-inline-item"><a href="https://www.instagram.com/jd_suite"><i class="fab fa-instagram fa-xl"></i></li>
+					<li class="list-inline-item"><a href="https://www.facebook.com/suiteJD"><i class="fab fa-facebook-square fa-xl"></i></a></li>
 				</ul>
 			</div>
 			<hr>
@@ -69,7 +69,7 @@
 <!-- ./Footer -->
 <div class="msgwh">
     <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
-      <img src="<?php echo SERVERURL?>../public/imagenes/whatsapp.png" alt="" style="width: 100%;"/>
+      <img src="<?php echo SERVERURL?>../public/imagenes/whatsapp.png" alt="WhatsApp" style="width: 100%;"/>
     </a>
   </div>
 

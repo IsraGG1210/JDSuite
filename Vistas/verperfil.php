@@ -128,7 +128,7 @@ if(isset($_POST['submit-btn'])){
                 <?php
                     if($imagen){
                         ?>
-                        <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
+                        <img src=<?php echo $imagen?> alt="Imagen perfil" width="32" height="32" class="rounded-circle me-2">
                         <?php
                     }else{
 

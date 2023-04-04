@@ -53,7 +53,7 @@ $sesion = $_SESSION['id'];
     <div class="container">
       <div class="row">
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <a href="punto-de-venta"><img src="https://www.jdsuite.mx/images/store.png" class="img-fluid" alt=""></a>
+          <a href="punto-de-venta"><img src="https://www.jdsuite.mx/images/store.png" class="img-fluid" alt="Logo punto de venta"></a>
           <div>
             <h5>JD Store</h5>
           </div>
@@ -61,35 +61,35 @@ $sesion = $_SESSION['id'];
 
 
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <a href="punto-de-venta-restaurantes"><img src="https://www.jdsuite.mx/images/rest.png" class="img-fluid" alt=""></a>
+          <a href="punto-de-venta-restaurantes"><img src="https://www.jdsuite.mx/images/rest.png" class="img-fluid" alt="Logo punto de venta restaurantes"></a>
           <div>
             <h5>JD Rest</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <a href="facturacion-electronica"> <img src="https://www.jdsuite.mx/images/invoice.png" class="img-fluid" alt=""></a>
+          <a href="facturacion-electronica"> <img src="https://www.jdsuite.mx/images/invoice.png" class="img-fluid" alt="Logo facturacion electronica"></a>
           <div>
             <h5>JD Invoice</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 align-items-center justify-content-center">
-          <a href="ecommerce"> <img src="https://www.jdsuite.mx/images/ecomm.png" class="img-fluid" alt=""></a>
+          <a href="ecommerce"> <img src="https://www.jdsuite.mx/images/ecomm.png" class="img-fluid" alt="Logo ecommerce"></a>
           <div>
             <h5>JD Ecomm</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 align-items-center justify-content-center">
-          <a href="venta-tiempo-aire-electronico"> <img src="https://www.jdsuite.mx/images/tae.png" class="img-fluid" alt=""></a>
+          <a href="venta-tiempo-aire-electronico"> <img src="https://www.jdsuite.mx/images/tae.png" class="img-fluid" alt="Logo tiempo aire electronico"></a>
           <div>
             <h5>JD TAE</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <img src="https://www.jdsuite.mx/images/ceo.png" class="img-fluid" alt="">
+          <img src="https://www.jdsuite.mx/images/ceo.png" class="img-fluid" alt="Logo sistema CEO">
           <div>
             <h5>JD CEO</h5>
           </div>
