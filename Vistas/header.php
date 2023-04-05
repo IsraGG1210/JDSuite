@@ -131,13 +131,13 @@ else
                             <?php 
                                     if (!isset($_SESSION['username'])) {
                                         ?>
-                            <li><a class="dropdown-item" href="login">Iniciar Sesion</a></li>
-                            <li><a class="dropdown-item" href="registro">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SERVERURL;?>login">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SERVERURL;?>registro">Registrarse</a></li>
                             <?php
                                     } else {
                                         ?>
-                            <li><a class="dropdown-item" href="verperfil">Ver Perfil</a></li>
-                            <li><a class="dropdown-item" href="logout">Cerrar Sesion</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SERVERURL;?>verperfil">Ver Perfil</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SERVERURL;?>logout">Cerrar Sesion</a></li>
                             <?php
                                     }
                                     ?>

@@ -70,7 +70,7 @@ if(isset($_SESSION['username'])){
                                 <br>
 
                                 <center>
-                                    <a href="checkoutstripecaard.php">
+                                    <a href="<?php echo SERVERURL;?>checkoutstripecaard">
                                         <button class="btn btn-primary rounded-pill" style="background-color:#29A8B0;">
                                         <i class="fa-regular fa-credit-card"></i></i>Pagar Con tarjeta
                                         </button>

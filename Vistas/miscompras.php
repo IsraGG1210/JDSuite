@@ -54,7 +54,7 @@ $nameuser = $nameuse['c_nmb'];
                     </li> -->
 
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="verperfil.php">
+                        <a class="nav-link" href="<?php echo SERVERURL;?>verperfil">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class="fa-solid fa-user" style="font-size:30px"></i>
@@ -67,7 +67,7 @@ $nameuser = $nameuse['c_nmb'];
                     </li>
 
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="verperfil.php">
+                        <a class="nav-link" href="<?php echo SERVERURL;?>verperfil">
                         <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class='fas fa-landmark' style="font-size:30px"></i>
@@ -79,7 +79,7 @@ $nameuser = $nameuse['c_nmb'];
                         </a>
                     </li>
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="verperfil.php">
+                        <a class="nav-link" href="<?php echo SERVERURL;?>verperfil">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class="fa fa-map-marker" style="font-size:28px"></i>
@@ -91,7 +91,7 @@ $nameuser = $nameuse['c_nmb'];
                         </a>
                     </li>
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="misCompras.php">
+                        <a class="nav-link" href="<?php echo SERVERURL;?>misCompras">
                         <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class="fa-brands fa-shopify" style="font-size:34px"></i>

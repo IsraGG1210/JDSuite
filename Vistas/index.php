@@ -53,7 +53,7 @@ $sesion = $_SESSION['id'];
     <div class="container">
       <div class="row">
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <a href="punto-de-venta"><img src="https://www.jdsuite.mx/images/store.png" class="img-fluid" alt="Logo punto de venta"></a>
+          <a href="<?php echo SERVERURL;?>punto-de-venta"><img src="https://www.jdsuite.mx/images/store.png" class="img-fluid" alt="Logo punto de venta"></a>
           <div>
             <h5>JD Store</h5>
           </div>
@@ -61,28 +61,28 @@ $sesion = $_SESSION['id'];
 
 
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <a href="punto-de-venta-restaurantes"><img src="https://www.jdsuite.mx/images/rest.png" class="img-fluid" alt="Logo punto de venta restaurantes"></a>
+          <a href="<?php echo SERVERURL;?>punto-de-venta-restaurantes"><img src="https://www.jdsuite.mx/images/rest.png" class="img-fluid" alt="Logo punto de venta restaurantes"></a>
           <div>
             <h5>JD Rest</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6  align-items-center justify-content-center">
-          <a href="facturacion-electronica"> <img src="https://www.jdsuite.mx/images/invoice.png" class="img-fluid" alt="Logo facturacion electronica"></a>
+          <a href="<?php echo SERVERURL;?>facturacion-electronica"> <img src="https://www.jdsuite.mx/images/invoice.png" class="img-fluid" alt="Logo facturacion electronica"></a>
           <div>
             <h5>JD Invoice</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 align-items-center justify-content-center">
-          <a href="ecommerce"> <img src="https://www.jdsuite.mx/images/ecomm.png" class="img-fluid" alt="Logo ecommerce"></a>
+          <a href="<?php echo SERVERURL;?>ecommerce"> <img src="https://www.jdsuite.mx/images/ecomm.png" class="img-fluid" alt="Logo ecommerce"></a>
           <div>
             <h5>JD Ecomm</h5>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 align-items-center justify-content-center">
-          <a href="venta-tiempo-aire-electronico"> <img src="https://www.jdsuite.mx/images/tae.png" class="img-fluid" alt="Logo tiempo aire electronico"></a>
+          <a href="<?php echo SERVERURL;?>venta-tiempo-aire-electronico"> <img src="https://www.jdsuite.mx/images/tae.png" class="img-fluid" alt="Logo tiempo aire electronico"></a>
           <div>
             <h5>JD TAE</h5>
           </div>
@@ -111,7 +111,7 @@ $sesion = $_SESSION['id'];
               <h6 class="mb-0">¡Con JD Store obtienes lo que tú negocio necesita para crecer!</h6>
               <p class="card-text mb-auto">¡Tú Punto de Venta! Administra tus Ventas, inventarios y mucho más de manera
                 rápida, fácil y segura.</p>
-              <a href="punto-de-venta" class="stretched-link">
+              <a href="<?php echo SERVERURL;?>punto-de-venta" class="stretched-link">
                 <center>
                   <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
@@ -128,7 +128,7 @@ $sesion = $_SESSION['id'];
               <strong class="d-inline-block mb-2 text-primary">JD Rest</strong>
               <h6 class="mb-0">¡Con JD Store obtienes lo que tú negocio necesita para crecer!</h6>
               <p class="card-text mb-auto">¡Con JD Rest agiliza y mejora la atención de tus clientes! Y no solo eso.</p>
-              <a href="punto-de-venta-restaurantes" class="stretched-link">
+              <a href="<?php echo SERVERURL;?>punto-de-venta-restaurantes" class="stretched-link">
                 <center>
                   <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
@@ -146,7 +146,7 @@ $sesion = $_SESSION['id'];
               <h6 class="mb-0">¡Con JD Invoice gana clientes al emitir Facturas!</h6>
               <p class="card-text mb-auto">¡Tú facturador electrónico! Comienza a facturar con nuestros paquetes de
                 folios digitales.</p>
-              <a href="facturacion-electronica" class="stretched-link">
+              <a href="<?php echo SERVERURL;?>facturacion-electronica" class="stretched-link">
                 <center>
                   <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
@@ -164,7 +164,7 @@ $sesion = $_SESSION['id'];
               <h6 class="mb-0">¡JD Ecomm es tu propia tienda virtual!</h6>
               <p class="card-text mb-auto">¡Tú Punto de venta virtual! Entra al mundo digital y vende por internet
                 mientras tu disfrutas de tu tiempo libre.</p>
-              <a href="ecommerce" class="stretched-link">
+              <a href="<?php echo SERVERURL;?>ecommerce" class="stretched-link">
                 <center>
                   <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
@@ -182,7 +182,7 @@ $sesion = $_SESSION['id'];
               <h6 class="mb-0">¡JD TAE venta de tiempo aire y pago de servicios!</h6>
               <p class="card-text mb-auto">Gana dinero sin esfuerzo, vende recargas de tiempo aire y pago de servicios
                 desde tu celular, no importa donde te encuentres..</p>
-              <a href="venta-tiempo-aire-electronico" class="stretched-link">
+              <a href="<?php echo SERVERURL;?>venta-tiempo-aire-electronico" class="stretched-link">
                 <center>
                   <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
@@ -200,7 +200,7 @@ $sesion = $_SESSION['id'];
               <h6 class="mb-0">¡Con JD CEO administra cada área y proceso que se lleva a cabo en tu empresa!</h6>
               <p class="card-text mb-auto">Es un poderoso ERP Vertical, escalable y adaptable que permite gestionar las
                 operaciones de tu empresa.</p>
-              <a href="JDCeo" class="stretched-link">
+              <a href="<?php echo SERVERURL;?>JDCeo" class="stretched-link">
                 <center>
                   <button class="btn btn-primary" style="background-color:#29A8B0;">Conocer más</button>
                 </center>
@@ -225,7 +225,7 @@ $sesion = $_SESSION['id'];
 <div class="owl-carousel owl-theme">
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href="descrpro?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
+      <div class="py-4 text-center justify-content-center card"><a href="<?php echo SERVERURL;?>descrpro?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="<?php echo $row['a_nmb']; ?>"></a>
         <div class="card-body">
           <span id="descpro">

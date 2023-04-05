@@ -62,11 +62,10 @@ if(isset($_POST['submit-btn'])){
                     $resultado = setq($sql);
                     if(move_uploaded_file($imagen,$destino)){
                         ?>
-                        <script>
-                            
-                            window.location.href = "verperfil.php";
-                        </script>
-                        <?php
+<script>
+    window.location.href = "verperfil.php";
+</script>
+<?php
                     }
                    
             }
@@ -90,11 +89,11 @@ if(isset($_POST['submit-btn'])){
             if (result.isConfirmed) {
                 document.getElementById("actualizar").removeAttribute("type");
                 document.getElementById("actualizar").removeAttribute("onclick");
-                document.getElementById("actualizar").setAttribute("type","submit");
+                document.getElementById("actualizar").setAttribute("type", "submit");
                 document.getElementById("actualizar").click();
                 document.getElementById("actualizar").removeAttribute("type");
-                document.getElementById("actualizar").setAttribute("type","button");
-                document.getElementById("actualizar").setAttribute("onclick","confirmacion()");
+                document.getElementById("actualizar").setAttribute("type", "button");
+                document.getElementById("actualizar").setAttribute("onclick", "confirmacion()");
                 /* document.getElementById("perfile").submit(); */
             }
         })
@@ -108,7 +107,7 @@ if(isset($_POST['submit-btn'])){
 <div class="container-fluid">
     <div class="row">
         <div class="col-4">
-        <?php
+            <?php
             require_once 'Conexion/funciones.php';
             if(isset($_SESSION['username'])){
                 $sesion = $_SESSION['username'];
@@ -124,107 +123,127 @@ if(isset($_POST['submit-btn'])){
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg" id="navbar" style="background-color:<?php echo $bg ?>;">
                 <div class="col">
-                <a href="#" class="d-flex align-items-center link-dark text-decoration-none" >
-                <?php
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none">
+                        <?php
                     if($imagen){
                         ?>
-                        <img src=<?php echo $imagen?> alt="Imagen perfil" width="32" height="32" class="rounded-circle me-2">
+                        <img src=<?php echo $imagen?> alt="Imagen perfil" width="32" height="32"
+                            class="rounded-circle me-2">
                         <?php
                     }else{
 
                     }?>
-                    <strong class="col-md-8 col-sm-0 col-xs-0 d-none d-md-block d-sm-block"><?php echo $nameuser;?></strong>
-                </a>
+                        <strong
+                            class="col-md-8 col-sm-0 col-xs-0 d-none d-md-block d-sm-block"><?php echo $nameuser;?></strong>
+                    </a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarPerfil" aria-controls="navbarPerfil" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPerfil"
+                    aria-controls="navbarPerfil" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-sharp fa-solid fa-bars" style="color:white;"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarPerfil">
                     <div class="container">
-                    
+
                         <ul class="navbar-nav flex-column">
-                        <!-- <li class="nav-item active d-none d-md-flex align-items-center">
+                            <!-- <li class="nav-item active d-none d-md-flex align-items-center">
                             <strong class="col-sm-12 col-md-12 d-none d-lg-block d-xl-block"><?php echo $nameuser;?></strong>
                         </li> -->
 
-                        <li class="nav-item active d-flex align-items-center">
-                            <a class="nav-link" href="#seccion1">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-12 col-xs-12">
-                                        <i class="fa-solid fa-user" style="font-size:30px"></i>
+                            <li class="nav-item active d-flex align-items-center">
+                                <a class="nav-link" href="#seccion1">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <i class="fa-solid fa-user" style="font-size:30px"></i>
+                                        </div>
+                                        <div class="col-md-8 col-sm-0  d-none d-md-block d-sm-block">
+                                            Datos Personales
+                                        </div>
                                     </div>
-                                    <div class="col-md-8 col-sm-0  d-none d-md-block d-sm-block">
-                                        Datos Personales
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
 
-                        <li class="nav-item active d-flex align-items-center">
-                            <a class="nav-link" href="#seccion2">
-                            <div class="row">
-                                    <div class="col-md-4 col-sm-12 col-xs-12">
-                                        <i class='fas fa-landmark' style="font-size:30px"></i>
+                            <li class="nav-item active d-flex align-items-center">
+                                <a class="nav-link" href="#seccion2">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <i class='fas fa-landmark' style="font-size:30px"></i>
+                                        </div>
+                                        <div class="col-md-8 col-sm-0  d-none d-md-block d-sm-block">
+                                            Datos Fiscales
+                                        </div>
                                     </div>
-                                    <div class="col-md-8 col-sm-0  d-none d-md-block d-sm-block">
-                                        Datos Fiscales
+                                </a>
+                            </li>
+                            <li class="nav-item active d-flex align-items-center">
+                                <a class="nav-link" href="#seccion3">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <i class="fa fa-map-marker" style="font-size:28px"></i>
+                                        </div>
+                                        <div class="col-md-8 col-sm-0 d-none d-md-block d-sm-block">
+                                            Datos Domiciliarios
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item active d-flex align-items-center">
-                            <a class="nav-link" href="#seccion3">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-12 col-xs-12">
-                                        <i class="fa fa-map-marker" style="font-size:28px"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item active d-flex align-items-center">
+                                <a class="nav-link" href="<?php echo SERVERURL;?>miscompras">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <i class="fa-brands fa-shopify" style="font-size:34px"></i>
+                                        </div>
+                                        <div class="col-md-8 col-sm-0 d-none d-md-block d-sm-block">
+                                            Mis Compras
+                                        </div>
                                     </div>
-                                    <div class="col-md-8 col-sm-0 d-none d-md-block d-sm-block">
-                                        Datos Domiciliarios
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item active d-flex align-items-center">
-                            <a class="nav-link" href="miscompras.php">
-                            <div class="row">
-                                    <div class="col-md-4 col-sm-12 col-xs-12">
-                                        <i class="fa-brands fa-shopify" style="font-size:34px"></i>
-                                    </div>
-                                    <div class="col-md-8 col-sm-0 d-none d-md-block d-sm-block">
-                                      Mis Compras
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
         <div class="col-8">
-        <div class="row">
-            <h2 id="seccion4">Foto de Perfil</h2>
-            <div class="col-md-6">
-            <form action="" method="post" enctype="multipart/form-data">
-                <label for="perfil">Subir foto de perfil:</label>
-                <input type="file" name="perfil" id="perfil">
-                <button type="submit" name="submit-btn"  id="submit-btn" style="display:none">Guardar</button>
-            </form>
+            <div class="row">
+                <h2 id="seccion4">Foto de Perfil</h2>
+                <div class="col-md-6">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <label for="perfil">Subir foto de perfil:</label>
+                        <!-- <input type="file" name="perfil" id="perfil"> -->
+                        <style>
+                            input[type="file"] {
+                                display: none;
+                            }
 
-            <script>
-                const perfilInput = document.getElementById('perfil');
-                const submitBtn = document.getElementById('submit-btn');
+                            .custom-file-upload {
+                                border: 1px solid #ccc;
+                                border-radius: 10px;
+                                display: inline-block;
+                                padding: 6px 12px;
+                                cursor: pointer;
+                                background-color: #C8C8C8;
+                            }
+                        </style>
+                        <label class="custom-file-upload">
+                            <input type="file" name="perfil" id="perfil"/>
 
-                perfilInput.addEventListener('change', () => {
-                    submitBtn.style.display = 'block';
-                });
-            </script>
+                            Subir archivo
+                        </label>
+                        <button type="submit" name="submit-btn" id="submit-btn" style="display:none">Guardar</button>
+                    </form>
+
+                    <script>
+                        const perfilInput = document.getElementById('perfil');
+                        const submitBtn = document.getElementById('submit-btn');
+
+                        perfilInput.addEventListener('change', () => {
+                            submitBtn.style.display = 'block';
+                        });
+                    </script>
 
 
+                </div>
             </div>
-        </div>
 
             <form action="perfil.php" name="perfile" id="perfile" method="post">
                 <h2 id="seccion1">Datos Personales</h2>
@@ -386,10 +405,11 @@ if(isset($_POST['submit-btn'])){
                     </div>
                 </div>
                 <div style="text-align:center;"><br>
-                    <button class="btn btn-success"  type="button" id="actualizar" onclick="confirmacion()">
+                    <button class="btn btn-success" type="button" id="actualizar" onclick="confirmacion()">
                         Actualizar
                     </button>
-                    <button class="btn btn-danger" name="cancelar" id="cancelar" type="button" onclick="reload()">
+                    &nbsp
+                    <button class="btn btn-danger" style="margin-top: 10px;"name="cancelar" id="cancelar" type="button" onclick="reload()">
                         Descartar cambios
                     </button>
                 </div>

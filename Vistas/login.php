@@ -106,8 +106,8 @@ if(isset($_SESSION['username'])){
 					</div>
 				</div>
 				<div class="registro d-flex justify-content-around">
-					<a href="registro" class="btnRegistro" style="color:white;">Registrate</a>
-					<a href="recuperarcontra" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu
+					<a href="<?php echo SERVERURL;?>registro" class="btnRegistro" style="color:white;">Registrate</a>
+					<a href="<?php echo SERVERURL;?>recuperarcontra" class="btnRegistro" style="color:white; text-align:end;">¿Olvidaste tu
 						contraseña?</a>
 				</div>
 

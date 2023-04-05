@@ -139,7 +139,7 @@ require 'Conexion/Database.php';
 <div class="owl-carousel owl-theme">
     <?php foreach ($resultado as $row) { ?>
     <div class="item">
-      <div class="py-4 text-center justify-content-center card"><a href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
+      <div class="py-4 text-center justify-content-center card"><a href="<?php echo SERVERURL;?>descrpro?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>"><img
             src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" alt="<?php echo $row['a_nmb']; ?>"></a>
         <div class="card-body">
           <span id="descpro">

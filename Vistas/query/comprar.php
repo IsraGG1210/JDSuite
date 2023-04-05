@@ -11,8 +11,10 @@ $sql = 'INSERT INTO pedidoscl SET
        p_subtotal = "'.$subtotal.'",
        p_envio = "'.$envio.'",
        p_total = "'.$total.'"';
-setq($sql); 
-$sql1= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$user.'"';
-setq($sql1); 
 
+$sql1= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$user.'"';
+
+if(setq($sql) && setq($sql1)){
+       header('Location: '. '../checkoutpaypal.php');
+}
 ?>

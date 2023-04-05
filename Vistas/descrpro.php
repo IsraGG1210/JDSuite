@@ -60,7 +60,7 @@ if($idp == '' || $token ==''){
 <!--FORMULARIO/VERIFICACION-->
 <div class="bloques" style="background: white; border-radius: 5px;">
   <div class="col-12">
-    <div class="row">
+    <div class="row container-fluid">
       <div class="col-md-5">
         <div class="box">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -147,7 +147,7 @@ if($idp == '' || $token ==''){
 <!--COMENTARIOS-->
 <div class="bloques">
   <div class="col-12">
-    <div class="row mb-2">
+    <div class="row mb-2 container-fluid">
       <div class="col-md-8">
         <div class="box">
           <div class="row mb-5 estrellas p-4">
@@ -160,7 +160,7 @@ if($idp == '' || $token ==''){
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       -mdb-ripple-color="light">
                       <a
-                        href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                        href="<?php echo SERVERURL;?>descrpro?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
                         <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" alt="<?php echo $row['a_nmb']?>" />
                         <div class="mask">
                         </div>

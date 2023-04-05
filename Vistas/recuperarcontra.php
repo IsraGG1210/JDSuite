@@ -38,7 +38,7 @@ if(isset($_SESSION['username'])){
                     <div class="form-group btningresar" id="buttonsrc">
                         <button class="btn btn-secondary btn-lg" type="submit">Enviar</button>
                         &nbsp
-                        <a href="login.php" class="btn btn-secondary btn-lg">Cancelar</a>
+                        <a href="<?php echo SERVERURL;?>login" class="btn btn-secondary btn-lg">Cancelar</a>
                     </div>
                 </center>
             </form>

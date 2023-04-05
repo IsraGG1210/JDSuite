@@ -69,7 +69,7 @@ $datos = Array();
                                 <br>
 
                                 <center>
-                                    <a href="checkoutstripe.php">
+                                    <a href="<?php echo SERVERURL;?>checkoutstripe">
                                         <button class="btn btn-primary rounded-pill" style="background-color:#29A8B0;">
                                             <i class="fa-brands fa-stripe-s fa-lg me-2 opacity-70"></i>Pagar Con Stripe
                                         </button>
@@ -98,10 +98,10 @@ $datos = Array();
                                 </script>
                                 
                                     <form action="query/comprar.php" name="paypal" id="paypal" method="post">
-                                        <input type="text" name="subtotal" value="<?php echo $total; ?>">
-                                        <input type="text" name="envio" value="<?php echo $envio; ?>">
-                                        <input type="text" name="total" value="<?php echo $totalen= $total+$envio; ?>">
-                                        <input type="text" name="user" value="<?php echo $_SESSION['username']; ?>">
+                                        <input type="text" hidden  name="subtotal" value="<?php echo $total; ?>">
+                                        <input type="text" hidden name="envio" value="<?php echo $envio; ?>">
+                                        <input type="text" hidden name="total" value="<?php echo $totalen= $total+$envio; ?>">
+                                        <input type="text" hidden name="user" value="<?php echo $idusu; ?>">
                                     
                                 <center>
                                     <button type="button" onclick="enviar()"class="btn btn-primary rounded-pill">
@@ -128,7 +128,7 @@ $datos = Array();
                                     <br>
 
                                     <center>
-                                        <a href="checkoutstripe.php"><button class="btn btn-primary rounded-pill">
+                                        <a href="<?php echo SERVERURL;?>checkoutstripe"><button class="btn btn-primary rounded-pill">
                                                 <i
                                                     class="fa-solid fa-money-bill-transfer fa-lg me-2 opacity-70"></i>Pagar
                                                 Con Transferencia
@@ -154,7 +154,7 @@ $datos = Array();
                                     <br>
 
                                     <center>
-                                        <a href="checkoutstripe.php"><button class="btn btn-primary rounded-pill">
+                                        <a href="<?php echo SERVERURL;?>checkoutstripe"><button class="btn btn-primary rounded-pill">
                                                 <i
                                                     class="fa-solid fa-money-bill-transfer fa-lg me-2 opacity-70"></i>Pagar
                                                 Con Transferencia

@@ -433,7 +433,7 @@ echo '<li class="page-item">
       <nav aria-label="Page navigation">
         <ul class="pagination" id="pagination">
           <li class="page-item">
-            <a class="page-link d-none d-sm-block" onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
+            <a class="page-link " onclick="mandar('.($_REQUEST['page']-1).')" aria-label="Previous" '.$hidden.'>
               <span aria-hidden="true">&laquo; Ant</span>
               <span class="sr-only">Anterior</span>
             </a>
