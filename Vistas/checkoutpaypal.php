@@ -144,7 +144,7 @@ require_once './Conexion/funciones.php';
                                                 <?php 
                                                 $totalen = $total+$envio+$comision;
                                                 
-                                         echo  MONEDA. number_format($totalen,2,',','.');?>
+                                         echo  MONEDA. number_format($totalen,2,'.',',');?>
                                             </b></h5>
                                     </span>
                                 </div>

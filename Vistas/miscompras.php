@@ -160,7 +160,10 @@ $nameuser = $nameuse['c_nmb'];
                     <tbody>
                  <?php
                  $fecha_actual = $fecha['fecha'];
-                 
+                 $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                 $resultado = setq($sql1);
+                 $idusuario = mysqli_fetch_array($resultado);
+                 $idusu = $idusuario['c_id'];
                  $sql_pedidos = "SELECT DISTINCT CONCAT(i_nmb, '.', i_ext) AS rutaimagen,
                             pd_producto,
                             p_estatus,
@@ -170,7 +173,7 @@ $nameuser = $nameuse['c_nmb'];
                     INNER JOIN pedidoscld ON pd_fechaconf=p_fechagen AND pd_pedido = p_cliente
                     INNER JOIN articulos ON pedidoscld.pd_producto = articulos.a_cb
                     INNER JOIN imagenes ON articulos.a_cb = imagenes.i_idproducto
-                    WHERE p_id=pd_confirm AND p_cliente='22' AND p_fechagen='$fecha_actual'";
+                    WHERE p_id=pd_confirm AND p_cliente='".$idusu."' AND p_fechagen='$fecha_actual'";
                  $result_pedidos = setq($sql_pedidos);
                  $pedidos = mysqli_fetch_all($result_pedidos, MYSQLI_ASSOC);
                  

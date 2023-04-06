@@ -90,26 +90,62 @@ $datos = Array();
                             <div id="collapseTwoY" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
                                 data-mdb-parent="#accordionExampleY">
                                 <br>
-                                <script>
-                                    function enviar(){
-                                        document.getElementById("paypal").submit();
-                                        /* window.location.href = 'checkoutpaypal.php'; */
-                                    }
-                                </script>
+                                <?php 
+                                if(isset($_SESSION['username'])){
+                                    // Consulta para obtener los datos del pedido del usuario logueado
+                                    $sesion = $_SESSION['username'];
+                                    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                                    $resultado = setq($sql1);
+                                    $idusuario = mysqli_fetch_array($resultado);
+                                    $idusu = $idusuario['c_id'];
+                                    
+                                    $sql ="SELECT concat(i_nmb,'.',i_ext) AS rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                                    FROM pedidoscld
+                                    INNER JOIN articulos ON a_cb = pd_producto
+                                    INNER JOIN imagenes ON a_cb = i_idproducto
+                                    WHERE pd_pedido='$idusu' AND pd_conf = '0' GROUP BY a_cb ";
+                                $result = setq($sql);
+                            
+                                $datos = Array();
+                                while($row = mysqli_fetch_array($result)){
+                                    $datos[]=$row;
+                                }
+                                  $total=0;
+                                  foreach($datos as $producto){
+                                    $ruta = $producto['rutaimagen'];
+                                    $id = $producto['a_cb'];
+                                    $nombre = $producto['a_nmb'];
+                                    $cantidad = $producto['pd_cantidad'];
+                                    $precio = $producto['pd_precio'];
+                                    $descuento = $producto['pd_descuento'];
+                                    $subtotal = $cantidad * $precio;
+                                    $total += $subtotal;
+                                  }}?>
+
                                 
-                                    <form action="query/comprar.php" name="paypal" id="paypal" method="post">
-                                        <input type="text" hidden  name="subtotal" value="<?php echo $total; ?>">
-                                        <input type="text" hidden name="envio" value="<?php echo $envio; ?>">
-                                        <input type="text" hidden name="total" value="<?php echo $totalen= $total+$envio; ?>">
-                                        <input type="text" hidden name="user" value="<?php echo $idusu; ?>">
-                                    
-                                <center>
-                                    <button type="button" onclick="enviar()"class="btn btn-primary rounded-pill">
+                                    <form action="query/comprapaypal.php" name="paypal" id="paypal" method="post">
+                                    <input type="text" value="<?php echo $total?>" name="subtotal" hidden>
+                                    <input type="text" value=" <?php 
+                                                                $envio = 0;
+                                                                if($total>5000){
+                                                                    echo $envio;
+                                                                } elseif($total==0){
+                                                                    echo $envio;
+                                                                }else{
+                                                                    $envio = 150;
+                                                                    echo $envio;
+                                                                }
+                                                                ?>" name="envio" hidden>
+                                    <input type="text" value="<?php echo $totale= $envio+$total;?>" name="total" hidden>
+                                    <input type="text" value="<?php echo $idusuario['c_id']?>" name="user" hidden>
+                                    <center>
+                                        <button class="btn btn-primary rounded-pill" type="submit">
                                             <i class="fa-brands fa-paypal fa-lg me-2 opacity-70"></i>Pagar Con PayPal
+                                            (mas comisiones)
                                         </button>
-                                    
-                                </center>
-                                     </form>
+
+                                    </center>
+                                </form>
                                 <br>
                             </div>
                         </div>
@@ -184,11 +220,13 @@ $datos = Array();
                         $idusu = $idusuario['c_id'];
                         // Consulta para obtener los datos del pedido del usuario logueado
                         $sesion = $_SESSION['username'];
-                        $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                        /* $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$idusu.'" AND pd_conf = 0';
+                            WHERE pd_pedido="'.$idusu.'" AND pd_conf = 0'; */
+                           $sql="SELECT pd_cantidad, pd_precio, pd_descuento FROM pedidoscld WHERE pd_pedido='".$idusu."' AND pd_conf = 0";
+                            /* die($sql); */
                         $result = setq($sql);
                     
                         $datos = Array();
@@ -197,9 +235,7 @@ $datos = Array();
                         }
                           $total=0;
                           foreach($datos as $producto){
-                            $ruta = $producto['rutaimagen'];
-                            $id = $producto['a_cb'];
-                            $nombre = $producto['a_nmb'];
+            
                             $cantidad = $producto['pd_cantidad'];
                             $precio = $producto['pd_precio'];
                             $descuento = $producto['pd_descuento'];
@@ -220,13 +256,18 @@ $datos = Array();
                           $cantidad_total = 0;
 
                           if(isset($_SESSION['username'])){ 
-                              $sesion = $_SESSION['username'];
-                              //echo $sesion;
-                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              
+                              $usuario = $_SESSION['username'];
+                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+                        $resultado = setq($sql1);
+                        $idusuario = mysqli_fetch_array($resultado);
+                        $idusu = $idusuario['c_id'];
+                              
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusu.'"AND pd_conf = 0';
+                              
                               $result = setq($sql);
                               $cantidad_tota = mysqli_fetch_assoc($result);
                               $cantidad_total = $cantidad_tota['cantidad'];
-                          //echo $cantidad_total;
                           
 
                           }else{
@@ -294,7 +335,15 @@ $datos = Array();
         </div>
     </div>
 </div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-primary me-md-2" type="button" href="<?php echo SERVERURL;?>datosenvio" style="background-color:#29A8B0;"
+                id="atras" data-user="<?php echo $sesion;?>" data-subtotal="<?php echo $total;?>"
+                data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
+                Atrás
+            </a>
 
+        </div>
+        <br>    
 <?php
 $pdf_file = $sesion.'pago.pdf';
  if (file_exists($pdf_file)) {

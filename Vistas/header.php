@@ -30,14 +30,14 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Los mejores software puntos de venta de Latinoamérica somos tú mejor aliado JD Suite">
-    <!-- <link rel="canonical" href="https://www.jdsuite.mx/punto-de-venta" /> -->
+    <!-- <link rel="canonical" href="" /> -->
     <meta name="robots" content="index, follow, noodp" />
     <meta name="keywords" content="punto de venta, puntos de venta, sistema punto de venta, terminal punto de venta, venta" />
     <meta name="author" content="JD Suite" />
     <meta property="og:title" content="Puntos de Venta para tu Empresa">
     <meta property="og:description"
         content="El Adminstrador de Negocios Ventas, Compras, Inventarios, Clientes, Facturación y Mucho Más.">
-    <!-- <meta property="og:image" content="https://www.jdsuite.mx/punto%20de%20venta.png"> -->
+    <!-- <meta property="og:image" content=""> -->
     <meta property="og:url" content="https://www.jdsuite.mx/">
     <meta property="og:site_name" content="JD Suite">
     <meta property="article:publisher" content="https://www.facebook.com/suiteJD/" />

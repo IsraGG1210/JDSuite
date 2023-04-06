@@ -1,6 +1,7 @@
 <?php
 require 'Conexion/config.php';
 require 'Conexion/Database.php';
+require 'Conexion/funciones.php';
 include('header.php');
 
 $db = new Database();
@@ -60,7 +61,7 @@ if($idp == '' || $token ==''){
 <!--FORMULARIO/VERIFICACION-->
 <div class="bloques" style="background: white; border-radius: 5px;">
   <div class="col-12">
-    <div class="row container-fluid">
+    <div class="row">
       <div class="col-md-5">
         <div class="box">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -68,10 +69,10 @@ if($idp == '' || $token ==''){
               
               <div class="carousel-item active">
                 <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100"
-                  alt="<?php echo $row['a_nmb']?>">
+                  alt="...">
               </div>
               <div class="carousel-item">
-                <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="<?php echo $row['a_nmb']?>">
+                <img src="https://www.jdshop.mx/productos/<?php echo $imagen ?>" class="d-block w-100" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -96,7 +97,7 @@ if($idp == '' || $token ==''){
           <h5><?php echo $nombre; ?></h5>
           <input type="hidden" id="nombre" value="<?php echo ($nombre);?>">
 
-          <div class="logo">
+          <!-- <div class="logo">
             <div class="estrellas">
               <i class="fa fa-star estrellasdis"></i>
               <i class="fa fa-star estrellasdis"></i>
@@ -104,7 +105,7 @@ if($idp == '' || $token ==''){
               <i class="fa fa-star estrellasdis"></i>
               <i class="fa fa-star-half-full estrellasdis"></i>
             </div>
-          </div>
+          </div> -->
           <div class="centradoprecio flex justify-between mb-3 text-sm">
             <span>
               <h5 class="precio"> <?php echo MONEDA. number_format($precio,2,'.',','); ?><h5>
@@ -147,7 +148,7 @@ if($idp == '' || $token ==''){
 <!--COMENTARIOS-->
 <div class="bloques">
   <div class="col-12">
-    <div class="row mb-2 container-fluid">
+    <div class="row mb-2">
       <div class="col-md-8">
         <div class="box">
           <div class="row mb-5 estrellas p-4">
@@ -160,8 +161,8 @@ if($idp == '' || $token ==''){
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       -mdb-ripple-color="light">
                       <a
-                        href="<?php echo SERVERURL;?>descrpro?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
-                        <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" alt="<?php echo $row['a_nmb']?>" />
+                        href="descrpro.php?p=<?php echo $row['a_cb']; ?>&token=<?php echo hash_hmac('sha1',$row['a_cb'],KEY_TOKEN); ?>">
+                        <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" />
                         <div class="mask">
                         </div>
                         <div class="hover-overlay">
@@ -189,42 +190,167 @@ if($idp == '' || $token ==''){
             <span>
               <h4>Opiniones</h4>
             </span>
-            <div class="box p-4">
-              <form action="">
-                <div class="parse text-pform mb-2">
-                  <input class="form-control entradatexto" type="text" name="nombre" id="nombre" onblur="checkf();"
-                    placeholder="Nombre" required />
-                </div>
-                <div class="parse text-pform mb-2">
-                  <textarea class="form-control" name="" id="" cols="30" rows="2" placeholder="Mensaje"
-                    required></textarea>
-                </div>
-                <div class="col-12 centrado">
-                  <button style="background-color: #a6d0fc;border-color: #a6d0fc;" class="btn btn-primary text-dark"
-                    id="enviarc" type="submit">Enviar</button>
+            <div class="box p-1">
+              <?php
+
+              if(isset($_SESSION['username'])) {
+                $usuario=$_SESSION['username'];
+                $sql = "SELECT c_id FROM clientes WHERE c_mail='$usuario'";
+                $consutla= setq($sql);
+                $nameuse = mysqli_fetch_assoc($consutla);
+                $idCl = $nameuse['c_id'];
+
+                $sql = "SELECT p_id, p_cliente, pd_producto FROM  pedidoscl
+                        INNER JOIN  pedidoscld ON p_id = pd_confirm 
+                        WHERE pd_producto = '$idp' AND p_cliente = '$idCl'";
+                $com = setq($sql);
+
+              if ($com && mysqli_num_rows($com) > 0) {
+
+              $sql = "SELECT*FROM comentarios_suite 
+              WHERE cs_user = '$idCl' 
+              AND cs_producto = '$idp'";
+              $clprc= setq($sql);
+
+              if ($com && mysqli_num_rows($com) == 0) {
+              $sql = "SELECT c_id,c_nmb,photo FROM clientes WHERE c_mail='$usuario'";
+              $consutla= setq($sql);
+              $nameuse = mysqli_fetch_assoc($consutla);
+              $idC = $nameuse['c_id'];
+              $nameuser = $nameuse['c_nmb'];
+              $imagen = $nameuse['photo'];
+
+              ?>
+              <form action="" id="formulario" method="POST">
+                <div class="col-mb-2">
+                  <div class="row mb-3">
+                      <div class="col-2" style="padding: 1%;margin: 1%;">
+                        <div class="container-fluid">
+                            <?php
+                            if($imagen){
+                                ?>
+                                <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
+                                <?php
+                            }else{
+
+                            }?>
+                            <span><?php echo $nameuser;?></span>
+                            <input class="hippen" type="hidden" name="nombreU" id="nombreU"
+                              value="<?php echo $idC;?>" />
+                            <input type="hidden" name="idp" id="idp" value="<?php echo ($idp);?>">
+                        </div>
+                      </div>
+                      <div class="col-7" style="padding: 1%;margin: 1%;">
+                        <textarea class="form-control" name="" id="comentario" cols="30" rows="2" placeholder="Mensaje"
+                          required></textarea>
+                      </div>
+                      <div class="col-2" style="padding: 1%;margin: 1%;">
+                        <a class="btn btn-primary text-dark"
+                          id="enviarc" type="submit" onclick="comentario()">
+                          <i class="fa-sharp fa-paper-plane-top"style="color: #050e1f;"></i><i class="fa-sharp fa-regular fa-paper-plane-top" style="color: #050e1f;"></i>
+                        </a>
+                      </div>
+                  </div>
                 </div>
               </form>
             </div>
           </div>
+          <?php
+              }}}
+              $sql = "SELECT c_nmb,photo,cs_coment,cs_fecha
+                      FROM comentarios_suite 
+                      INNER JOIN clientes ON c_id = cs_user
+                      WHERE cs_producto = '$idp'";
+              $result = setq($sql);
+              $datos = Array();
+              while($row = mysqli_fetch_array($result)){
+                $datos[]=$row;
+              }
+              foreach($datos as $comentario){
+                $imagen = $comentario['photo'];
+                $nombre = $comentario['c_nmb'];
+                $coment = $comentario['cs_coment'];
+                $fecha = $comentario['cs_fecha'];
+              
+              ?>
           <div class="col-mb-2 p-2">
             <div class="row mb-2">
-              <div class="col-mb-3 centrado ">
-                <img src="#" width="15%" height="40%" alt="">
+              <div class="col-3" id="comentario">
+                  <div class="container-fluid">
+                    <?php
+                    if($imagen){
+                        ?>
+                        <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
+                        <?php
+                    }?>
+                  </div>
+                  <div class="name">
+                      <strong><?php echo $nombre;?></strong>
+                  </div>
               </div>
-              <div class="col-mb-4">
-                <h6>Ana Karen</h6>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem dolores suscipit hic non nobis
-                  necessitatibus doloribus veniam nihil maxime numquam quisquam eligendi aliquid saepe atque
-                  exercitationem totam esse, vel ipsa.</p>
+              <div class="col-9">
+                  <div class="fecha">
+                      <?php echo $fecha;?>
+                  </div>
+                  <div class="coment">
+                      <p><?php echo $coment;?></p>
+                  </div>
               </div>
             </div>
           </div>
+          <?php
+              }
+          ?>
         </div>
       </div>
     </div>
   </div>
 </div>
   <script>
+    function confirmar(){
+        Swal.fire({
+            title: 'Gracias por dejarnos un comentario',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a la página de contacto del sitio web
+                // Reload the current webpage
+              location.reload();
+            }
+        })
+    }
+function comentario(){
+  document.getElementById("enviarc").disable=true;
+
+  nombre = $("#nombreU").val();
+  comentario =  $("#comentario").val();
+  idp = $("#idp").val();
+
+  // Validar si el comentario está vacío
+  if (comentario.trim() == '') {
+    Swal.fire({
+      title: 'Error',
+      text: 'El comentario no puede estar vacío',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    });
+    return;
+  }
+
+  $.post("query/enviarcomentario.php",{
+    nombre:nombre,
+    idp : idp,
+    comentario:comentario
+  },function(com){
+    confirmar();
+  }
+  );
+}
+     
 function addc() {
   var cantidad = $("#cantidad").val();
   cantidad++;
@@ -285,7 +411,12 @@ function addToCartCarousel(idp){
       }
 </Script>
 
-
+<!--PARTE DE WHATSAPP-->
+<div class="msgwh">
+  <a href="https://wa.me/5215539488047?text=Hola, necesito información sobre " target="_blank">
+    <img src="../public/imagenes/whatsapp.png" alt="" style="width: 100%;" />
+  </a>
+</div>
 
 
 
