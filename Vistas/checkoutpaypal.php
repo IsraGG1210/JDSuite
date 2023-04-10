@@ -61,21 +61,26 @@ require_once './Conexion/funciones.php';
                  <div class="flex justify-between mb-3 text-sm">
                     <div class="row">
                         <div class="col-9">
-                            <span>Subtotal</span>
-                            <span id="cantcart">(
-                                <?php
+                        <span>Subtotal</span>
+                                <span id="cantcart">(
+                                    <?php
                           
                           $newitem = 0;
                           $cantidad_total = 0;
 
                           if(isset($_SESSION['username'])){ 
-                              $sesion = $_SESSION['username'];
-                              //echo $sesion;
-                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$sesion.'"AND pd_conf = 0';
+                              
+                              $usuario = $_SESSION['username'];
+                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+                        $resultado = setq($sql1);
+                        $idusuario = mysqli_fetch_array($resultado);
+                        $idusu = $idusuario['c_id'];
+                              
+                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusu.'"AND pd_conf = 0';
+                              
                               $result = setq($sql);
                               $cantidad_tota = mysqli_fetch_assoc($result);
                               $cantidad_total = $cantidad_tota['cantidad'];
-                          //echo $cantidad_total;
                           
 
                           }else{
