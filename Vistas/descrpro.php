@@ -66,7 +66,7 @@ if($idp == '' || $token ==''){
         <div class="box">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-              
+
               <div class="carousel-item active">
                 <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'] ?>" class="d-block w-100"
                   alt="...">
@@ -134,7 +134,8 @@ if($idp == '' || $token ==''){
           <div class="centrado">
             <p class="text-center buttons ">
               <a class="btn btn-success" style="color:white;"><i class="fa fa-shopping-cart"></i> Comprar</a>
-              <a id="cart" class="btn btn-primary" style="color:white;" onclick="addToCart('<?php echo ($idp);?>')"><i class="fa fa-shopping-cart"></i> Añadir a
+              <a id="cart" class="btn btn-primary" style="color:white;" onclick="addToCart('<?php echo ($idp);?>')"><i
+                  class="fa fa-shopping-cart"></i> Añadir a
                 carrito</a>
             </p>
           </div>
@@ -173,7 +174,8 @@ if($idp == '' || $token ==''){
                         </div>
                       </a>
                       <h4><?php echo MONEDA.  number_format($row['ap_precio'],2,'.',','); ?></h4>
-                      <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['a_cb'];?>')"><i class="fas fa-shopping-cart"></i>Agregar</a>
+                      <a id="cart" class="btn btn-primary" onclick="addToCartCarousel('<?php echo $row['a_cb'];?>')"><i
+                          class="fas fa-shopping-cart"></i>Agregar</a>
                     </div>
                   </div>
                 </div>
@@ -224,32 +226,31 @@ if($idp == '' || $token ==''){
               <form action="" id="formulario" method="POST">
                 <div class="col-mb-2">
                   <div class="row mb-3">
-                      <div class="col-2" style="padding: 1%;margin: 1%;">
-                        <div class="container-fluid">
-                            <?php
+                    <div class="col-2" style="padding: 1%;margin: 1%;">
+                      <div class="container-fluid">
+                        <?php
                             if($imagen){
                                 ?>
-                                <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
-                                <?php
+                        <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
+                        <?php
                             }else{
 
                             }?>
-                            <span><?php echo $nameuser;?></span>
-                            <input class="hippen" type="hidden" name="nombreU" id="nombreU"
-                              value="<?php echo $idC;?>" />
-                            <input type="hidden" name="idp" id="idp" value="<?php echo ($idp);?>">
-                        </div>
+                        <span><?php echo $nameuser;?></span>
+                        <input class="hippen" type="hidden" name="nombreU" id="nombreU" value="<?php echo $idC;?>" />
+                        <input type="hidden" name="idp" id="idp" value="<?php echo ($idp);?>">
                       </div>
-                      <div class="col-7" style="padding: 1%;margin: 1%;">
-                        <textarea class="form-control" name="" id="comentario" cols="30" rows="2" placeholder="Mensaje"
-                          required></textarea>
-                      </div>
-                      <div class="col-2" style="padding: 1%;margin: 1%;">
-                        <a class="btn btn-primary text-dark"
-                          id="enviarc" type="submit" onclick="comentario()">
-                          <i class="fa-sharp fa-paper-plane-top"style="color: #050e1f;"></i><i class="fa-sharp fa-regular fa-paper-plane-top" style="color: #050e1f;"></i>
-                        </a>
-                      </div>
+                    </div>
+                    <div class="col-7" style="padding: 1%;margin: 1%;">
+                      <textarea class="form-control" name="" id="comentario" cols="30" rows="2" placeholder="Mensaje"
+                        required></textarea>
+                    </div>
+                    <div class="col-2" style="padding: 1%;margin: 1%;">
+                      <a class="btn btn-primary text-dark" id="enviarc" type="submit" onclick="comentario()">
+                        <i class="fa-sharp fa-paper-plane-top" style="color: #050e1f;"></i><i
+                          class="fa-sharp fa-regular fa-paper-plane-top" style="color: #050e1f;"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -276,25 +277,25 @@ if($idp == '' || $token ==''){
           <div class="col-mb-2 p-2">
             <div class="row mb-2">
               <div class="col-3" id="comentario">
-                  <div class="container-fluid">
-                    <?php
+                <div class="container-fluid">
+                  <?php
                     if($imagen){
                         ?>
-                        <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
-                        <?php
+                  <img src=<?php echo $imagen?> alt="" width="32" height="32" class="rounded-circle me-2">
+                  <?php
                     }?>
-                  </div>
-                  <div class="name">
-                      <strong><?php echo $nombre;?></strong>
-                  </div>
+                </div>
+                <div class="name">
+                  <strong><?php echo $nombre;?></strong>
+                </div>
               </div>
               <div class="col-9">
-                  <div class="fecha">
-                      <?php echo $fecha;?>
-                  </div>
-                  <div class="coment">
-                      <p><?php echo $coment;?></p>
-                  </div>
+                <div class="fecha">
+                  <?php echo $fecha;?>
+                </div>
+                <div class="coment">
+                  <p><?php echo $coment;?></p>
+                </div>
               </div>
             </div>
           </div>
@@ -306,109 +307,113 @@ if($idp == '' || $token ==''){
     </div>
   </div>
 </div>
-  <script>
-    function confirmar(){
-        Swal.fire({
-            title: 'Gracias por dejarnos un comentario',
-            icon: 'success',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirmar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Redirigir a la página de contacto del sitio web
-                // Reload the current webpage
-              location.reload();
-            }
-        })
-    }
-function comentario(){
-  document.getElementById("enviarc").disable=true;
-
-  nombre = $("#nombreU").val();
-  comentario =  $("#comentario").val();
-  idp = $("#idp").val();
-
-  // Validar si el comentario está vacío
-  if (comentario.trim() == '') {
+</div>
+</div>
+<script>
+  function confirmar() {
     Swal.fire({
-      title: 'Error',
-      text: 'El comentario no puede estar vacío',
-      icon: 'error',
-      confirmButtonText: 'Ok'
+      title: 'Gracias por dejarnos un comentario',
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirigir a la página de contacto del sitio web
+        // Reload the current webpage
+        location.reload();
+      }
+    })
+  }
+
+  function comentario() {
+    document.getElementById("enviarc").disable = true;
+
+    nombre = $("#nombreU").val();
+    comentario = $("#comentario").val();
+    idp = $("#idp").val();
+
+    // Validar si el comentario está vacío
+    if (comentario.trim() == '') {
+      Swal.fire({
+        title: 'Error',
+        text: 'El comentario no puede estar vacío',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+      return;
+    }
+
+    $.post("query/enviarcomentario.php", {
+      nombre: nombre,
+      idp: idp,
+      comentario: comentario
+    }, function (com) {
+      confirmar();
     });
-    return;
   }
 
-  $.post("query/enviarcomentario.php",{
-    nombre:nombre,
-    idp : idp,
-    comentario:comentario
-  },function(com){
-    confirmar();
-  }
-  );
-}
-     
-function addc() {
-  var cantidad = $("#cantidad").val();
-  cantidad++;
-  $("#cantidad").val(cantidad);
+  function addc() {
+    var cantidad = $("#cantidad").val();
+    cantidad++;
+    $("#cantidad").val(cantidad);
   }
 
-function subc() {
-  var cantidad = $("#cantidad").val();
-  if (cantidad > 1)
-  cantidad--;
-  $("#cantidad").val(cantidad);
+  function subc() {
+    var cantidad = $("#cantidad").val();
+    if (cantidad > 1)
+      cantidad--;
+    $("#cantidad").val(cantidad);
   }
-function addToCart(idp){
-  document.getElementById("cart").disabled = true;
-  precio = $("#precio").val();
-  descuento = $("#descuento").val();
-  talla = 0;
-  color = 0;
-  cantidad = $("#cantidad").val();
-  p = idp;
-  $.post("query/cookieadd.php",{
-  precio: precio,
-  descuento: descuento,
-  talla: talla,
-  colorsel: color,
-  cantidad: cantidad,
-  p: p
-  },function(htmle){
-  $.post("query/cantidadCart.php",{},
-  function(htmlec){
-  $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
-  //alert ("Cantidad" + htmlec);
-  });
-  }); 
-}
-function addToCartCarousel(idp){
-      document.getElementById("cart").disabled = true;
-      precio = $("#precio"+idp).val();
-      descuento = 0;
-      talla = 0;
-      color = 0;
-      cantidad = 1;
-      p = idp;
-      $.post("query/cookieadd.php",{
+
+  function addToCart(idp) {
+    document.getElementById("cart").disabled = true;
+    precio = $("#precio").val();
+    descuento = $("#descuento").val();
+    talla = 0;
+    color = 0;
+    cantidad = $("#cantidad").val();
+    p = idp;
+    $.post("query/cookieadd.php", {
       precio: precio,
       descuento: descuento,
       talla: talla,
       colorsel: color,
       cantidad: cantidad,
       p: p
-      },function(htmle){
-      $.post("query/cantidadCart.php",{},
-      function(htmlec){
-      $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> '+htmlec);
-      //alert ("Cantidad" + htmlec);
-      });
-      }); 
-      }
+    }, function (htmle) {
+      $.post("query/cantidadCart.php", {},
+        function (htmlec) {
+          $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> ' + htmlec);
+          //alert ("Cantidad" + htmlec);
+        });
+    });
+  }
+
+  function addToCartCarousel(idp) {
+    document.getElementById("cart").disabled = true;
+    precio = $("#precio" + idp).val();
+    descuento = 0;
+    talla = 0;
+    color = 0;
+    cantidad = 1;
+    p = idp;
+    $.post("query/cookieadd.php", {
+      precio: precio,
+      descuento: descuento,
+      talla: talla,
+      colorsel: color,
+      cantidad: cantidad,
+      p: p
+    }, function (htmle) {
+      $.post("query/cantidadCart.php", {},
+        function (htmlec) {
+          $("#carrito-cantidad").html('<i class="fas fa-shopping-cart"></i> ' + htmlec);
+          //alert ("Cantidad" + htmlec);
+        });
+    });
+  }
 </Script>
 
 <!--PARTE DE WHATSAPP-->
