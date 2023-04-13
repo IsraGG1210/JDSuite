@@ -1,8 +1,7 @@
 <?php
 require './Conexion/config.php';
 
-require './Conexion/Database.php';
-require_once './Conexion/funciones.php';
+include_once './Conexion/funciones.php';
 include ('nav_shop.php');
 
 $page = $_GET['page'];
@@ -18,90 +17,74 @@ $par = explode('/',$url);
       
       $offset = ($current_page - 1) * $items_per_page; // Cálculo del desplazamiento (offset)
       
-    /* $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-      FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb  GROUP BY p 
-      LIMIT $items_per_page OFFSET $offset";
-    $total_items = 240;
-    $total_pages = ceil($total_items / $items_per_page);
-    $resultado = setq($sql);   */
+ 
      
     if(isset($con)){
       $concepto = $_REQUEST['con'];
       
-      $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-      FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb  
-      WHERE aw_concepto = $concepto GROUP BY p
-      LIMIT $items_per_page OFFSET $offset";
-      /* echo $sql; */
-      $sql2 = "SELECT aw_cb
-      FROM articulosw
-      WHERE aw_concepto = $concepto";
-    $total_items = mysqli_num_rows(setq($sql2));
     
-    $total_pages = ceil($total_items / $items_per_page);
+      $sql='SELECT a_cb AS p, a_nmb, concat(i_nmb,".",i_ext) AS rutaimagen, ap_precio
+       FROM articulosw 
+       INNER JOIN imagenes ON aw_cb = i_idproducto
+        INNER JOIN articulos_precios ON aw_id = ap_articulo 
+        INNER JOIN articulos ON a_cb = aw_cb 
+        WHERE articulos_precios.ap_esquema = 1
+         AND ap_activo = 1 
+         AND a_estatus = "A" 
+         AND aw_tienda IN (3,2) AND aw_concepto = '.$concepto.' GROUP BY p LIMIT 24  OFFSET '.$offset.'';
+    
     $resultado = setq($sql);   
     }else if(isset($dep)){
       $concepto = $_REQUEST['dep'];
       
-      $sql = "SELECT a_cb AS p ,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-      FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb 
-      WHERE aw_departamento = $concepto GROUP BY p
-      LIMIT $items_per_page OFFSET $offset";
-      /* echo $sql; */
-      $sql2 = "SELECT aw_cb 
-      FROM articulosw 
-      WHERE aw_departamento = $concepto";
-    $total_items = mysqli_num_rows(setq($sql2));
-  
-    $total_pages = ceil($total_items / $items_per_page);
+   
+
+       $sql='SELECT a_cb AS p, a_nmb, concat(i_nmb,".",i_ext) AS rutaimagen, ap_precio
+       FROM articulosw 
+       INNER JOIN imagenes ON aw_cb = i_idproducto
+        INNER JOIN articulos_precios ON aw_id = ap_articulo 
+        INNER JOIN articulos ON a_cb = aw_cb 
+        WHERE articulos_precios.ap_esquema = 1
+         AND ap_activo = 1 
+         AND a_estatus = "A" 
+         AND aw_tienda IN (3,2) AND aw_departamento = '.$concepto.' GROUP BY p LIMIT 24  OFFSET '.$offset.'';
+        
     $resultado = setq($sql); 
     } else if(isset($busqueda)){
       $buscar = $_REQUEST['busqueda'];
-      //$page = $_REQUEST['page'];
-      $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-      FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb  
-      WHERE a_nmb LIKE '%$buscar%' GROUP BY p
-      LIMIT $items_per_page OFFSET $offset";
-      $sql2 = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-      FROM articulosw
-      INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb  
-      WHERE a_nmb LIKE '%$buscar%' GROUP BY p";
-    $total_items = mysqli_num_rows(setq($sql2));
+     
+    
+      $sql='SELECT a_cb AS p, a_nmb, concat(i_nmb,".",i_ext) AS rutaimagen, ap_precio
+       FROM articulosw 
+       INNER JOIN imagenes ON aw_cb = i_idproducto
+        INNER JOIN articulos_precios ON aw_id = ap_articulo 
+        INNER JOIN articulos ON a_cb = aw_cb 
+        WHERE articulos_precios.ap_esquema = 1
+         AND ap_activo = 1 
+         AND a_estatus = "A" 
+         AND aw_tienda IN (3,2) AND a_nmb LIKE '."'%".$buscar."%'".' GROUP BY p LIMIT 24  OFFSET '.$offset.'';
+     
+    $sql2="SELECT a_nmb FROM articulos WHERE a_nmb LIKE '%$buscar%' AND a_estatus = 'A'";
+    $res1= setq($sql2);
+
+    $total_items =  $res1->num_rows;
     $total_pages = ceil($total_items / $items_per_page);
     $resultado = setq($sql);
-    $array = mysqli_num_rows($resultado);
-    if($array == "0" || $array == null){
-      ?>
-<script>
-  window.alert("No se encontraron articulos relacionados a su busqueda");
-  window.location.href = "<?php echo SERVERURL?>"+"1";
-</script>
-<?php
-    }
+   
+    
     }else{
-      $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
+      $sql = 'SELECT a_cb AS p,a_nmb, concat(i_nmb,".",i_ext)as rutaimagen , ap_precio
       FROM articulosw
       INNER JOIN imagenes on  aw_cb = i_idproducto
-      INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-      INNER JOIN articulos on a_cb = aw_cb  GROUP BY p 
-      LIMIT $items_per_page OFFSET $offset";
-    $total_items = 240;
-    $total_pages = ceil($total_items / $items_per_page);
-    $resultado = setq($sql);  
+      INNER JOIN articulos_precios on aw_id = ap_articulo 
+      INNER JOIN articulos on a_cb = aw_cb  
+      WHERE ap_esquema= 1 AND ap_activo = 1
+      AND a_estatus = "A" AND aw_tienda IN (3,2)
+      GROUP BY p
+      LIMIT 24 OFFSET '.$offset.'';
+     
+      $resultado = setq($sql);
+     
     }
 ?>
 
@@ -117,7 +100,8 @@ $par = explode('/',$url);
             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" -mdb-ripple-color="light">
               <a
                 href="<?php echo SERVERURL?>descrpro?p=<?php echo $row['p']; ?>&token=<?php echo hash_hmac('sha1',$row['p'],KEY_TOKEN); ?>">
-                <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100" alt="<?php $row['a_nmb']?>"/>
+                <img src="https://www.jdshop.mx/productos/<?php echo $row['rutaimagen'];?>" class="w-100"
+                  alt="<?php $row['a_nmb']?>" />
                 <div class="mask">
                 </div>
                 <div class="hover-overlay">
@@ -182,7 +166,20 @@ if(!empty($_GET['busqueda'])){
     background: #70707026;
     color: black;"';
   }else $hidden = "";
+  $buscar = $_REQUEST['busqueda'];
+  $sql2="SELECT a_nmb FROM articulos WHERE a_nmb LIKE '%$buscar%' AND a_estatus = 'A'";
+$res1= setq($sql2);
 
+$total_items =  $res1->num_rows;
+if($total_items <=0){
+?>
+<div class="alert alert-danger" style="text-align: center;" role="alert">
+  No se encontraron productos relacionados con tu busqueda
+</div>
+
+<?php
+}
+$total_pages = ceil($total_items / $items_per_page);
   echo '<div class="col-md-12 text-xs-center">
     <div class="mb-3">
       <nav aria-label="Page navigation">
@@ -200,15 +197,9 @@ if(!empty($_GET['busqueda'])){
               window.location.href= "'.SERVERURL.'"+id+"/busqueda/'.$_REQUEST['busqueda'].'" ;
             }
           </script>';
-          $buscar = $_REQUEST['busqueda'];
-          $sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-          FROM articulosw
-          INNER JOIN imagenes on  aw_cb = i_idproducto
-          INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-          INNER JOIN articulos on a_cb = aw_cb  
-          WHERE a_nmb LIKE '%$buscar%' GROUP BY p";
-$total_items = mysqli_num_rows(setq($sql));
-$total_pages = ceil($total_items / $items_per_page);
+          
+   
+   
 
 if($total_pages >=10){
   if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
@@ -265,7 +256,24 @@ echo '<li class="page-item">
     background: #70707026;
     color: black;"';
   }else $hidden = "";
+  $concepto = $_REQUEST['con'];
+  $sql1="SELECT a_cb AS p, a_nmb 
+FROM articulosw 
+INNER JOIN articulos ON a_cb = aw_cb 
+WHERE a_estatus = 'A' AND aw_tienda IN (3,2) 
+AND aw_concepto = $concepto GROUP BY p ";
+$res1 = setq($sql1);
 
+$total_items = $res1->num_rows;
+if($total_items <=0){
+?>
+<div class="alert alert-danger" style="text-align: center;" role="alert">
+  No se encontraron productos relacionados con tu busqueda
+</div>
+
+<?php
+}
+$total_pages = ceil($total_items / $items_per_page);
   echo '<div class="col-md-12 text-xs-center">
     <div class="mb-3">
       <nav aria-label="Page navigation">
@@ -284,12 +292,7 @@ echo '<li class="page-item">
               
             }
           </script>';
-          $concepto = $_REQUEST['con'];
-          $sql = "SELECT aw_cb
-          FROM articulosw
-          WHERE aw_concepto = $concepto";
-$total_items = mysqli_num_rows(setq($sql));
-$total_pages = ceil($total_items / $items_per_page);
+          
 
 if($total_pages >=10){
   if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
@@ -346,7 +349,25 @@ echo '<li class="page-item">
     background: #70707026;
     color: black;"';
   }else $hidden = "";
+  $concepto = $_REQUEST['dep'];
+  $sql1 = "SELECT a_cb AS p, a_nmb 
+ FROM articulosw 
+ INNER JOIN articulos ON a_cb = aw_cb 
+ WHERE a_estatus = 'A'
+ AND aw_tienda IN (3,2) AND aw_departamento = '$concepto' GROUP BY p";
+ $res1= setq($sql1);
 
+
+$total_items = $res1->num_rows;
+if($total_items <=0){
+?>
+<div class="alert alert-danger" style="text-align: center;" role="alert">
+  No se encontraron productos relacionados con tu busqueda
+</div>
+
+<?php
+}
+$total_pages = ceil($total_items / $items_per_page);
   echo '<div class="col-md-12 text-xs-center">
     <div class="mb-3">
       <nav aria-label="Page navigation">
@@ -365,12 +386,7 @@ echo '<li class="page-item">
               
             }
           </script>';
-          $concepto = $_REQUEST['dep'];
-          $sql = "SELECT aw_cb 
-          FROM articulosw 
-          WHERE aw_departamento = $concepto";
-$total_items = mysqli_num_rows(setq($sql));
-$total_pages = ceil($total_items / $items_per_page);
+          
 
 if($total_pages >=10){
   if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
@@ -427,6 +443,29 @@ echo '<li class="page-item">
     background: #70707026;
     color: black;"';
   }else $hidden = "";
+  $sql1 = 'SELECT a_cb AS p,a_nmb, concat(i_nmb,".",i_ext)as rutaimagen , ap_precio
+  FROM articulosw
+  INNER JOIN imagenes on  aw_cb = i_idproducto
+  INNER JOIN articulos_precios on aw_id = ap_articulo 
+  INNER JOIN articulos on a_cb = aw_cb  
+  WHERE ap_esquema= 1 AND ap_activo = 1
+  AND a_estatus = "A" AND aw_tienda IN (3,2)
+  GROUP BY p';
+ 
+ $res1 = setq($sql1);     
+ 
+ $total_items = $res1->num_rows;
+ 
+ if($total_items <=0){
+  ?>
+<div class="alert alert-danger" style="text-align: center;" role="alert">
+  No se encontraron productos relacionados con tu busqueda
+</div>
+
+<?php
+  }
+ $total_pages = ceil($total_items / $items_per_page);
+ $resultado = setq($sql);
 
   echo '<div class="col-md-12 text-xs-center">
     <div class="mb-3">
@@ -445,14 +484,7 @@ echo '<li class="page-item">
               window.location.href= "'.SERVERURL.'" +id+"";
             }
           </script>';
-$sql = "SELECT a_cb AS p,a_nmb, concat(i_nmb,'.',i_ext)as rutaimagen , ap_precio, aw_detallesp, aw_detallesmc
-FROM articulosw
-INNER JOIN imagenes on  aw_cb = i_idproducto
-INNER JOIN articulos_precios on aw_id = ap_articulo and ap_esquema = 1 and ap_activo=1
-INNER JOIN articulos on a_cb = aw_cb  GROUP BY p ";
-$total_items = mysqli_num_rows(setq($sql));
-$total_pages = ceil($total_items / $items_per_page);
-
+          
 if($total_pages >=10){
   if($_REQUEST['page']==1){$min = 1; $nombre="Inicio";}
   else{$min = $_REQUEST['page']; $nombre = "Inicio...";}
@@ -501,16 +533,8 @@ echo '<li class="page-item">
 </div>';
 }
 
-
-
   
 ?>
-
-
-
-
-
-
 
 <?php
   include ('footer.php');
