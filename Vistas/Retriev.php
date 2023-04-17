@@ -17,6 +17,7 @@ $jsonStr = file_get_contents('php://input');
   $jsonObj = json_decode($jsonStr);
   header('Contetn-Type: application/json');
   $ID = !empty($jsonObj->id) ? $jsonObj->id : '';
+  $email = !empty($jsonObj->email) ? $jsonObj->email : '';
   
 $paymentIntentId = $ID;
 
@@ -24,9 +25,15 @@ $paymentIntentId = $ID;
 $paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
 
   if ($paymentIntent->status === 'succeeded') {
-    $sql = 'UPDATE pedidoscl SET
-          p_estatus = "1"
-          WHERE p_factura = "'.$paymentIntentId.'"';
+    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$email'";
+    $resultado = setq($sql1);
+    $idusuario = mysqli_fetch_array($resultado);
+    $idusu = $idusuario['c_id'];
+
+    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+    $sql = "UPDATE pedidoscl SET
+          p_estatus = 'A'
+          WHERE p_id ='$pedido' AND p_estatus ='N'";
       setq($sql);
 /*   $output = [
     'status' => $paymentIntent->status

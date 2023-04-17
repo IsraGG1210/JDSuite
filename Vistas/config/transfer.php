@@ -46,7 +46,7 @@ try {
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients' ;
 
     $mail->send();
-    $sql = "UPDATE pedidoscl SET p_fpago = '1' WHERE p_cliente ='".$resultado['c_id']."' AND p_estatus='N'";
+    $sql = "UPDATE pedidoscl SET p_fpago = '1', p_estatus='P' WHERE p_cliente ='".$resultado['c_id']."' AND p_estatus='N'";
     setq($sql);
     $sql2= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$result.'"';
     setq($sql2);

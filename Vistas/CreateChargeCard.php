@@ -39,8 +39,8 @@ if($total<5000){
         p_subtotal = '$subtotal',
         p_envio = '$envio',
         p_total = '$total'
-        WHERE p_cliente ='$pedido' AND p_estatus ='N'";
-    setq($sql);
+        WHERE p_id ='$pedido' AND p_estatus ='N'";
+    setq($sql );
 }else{
     $envio = 0;
     $subtotal = $envio;
@@ -51,27 +51,10 @@ if($total<5000){
     p_subtotal = '$subtotal',
     p_envio = '$envio',
     p_total = '$total'
-    WHERE p_cliente ='$pedido' AND p_estatus ='N'";
+    WHERE p_id ='$pedido' AND p_estatus ='N'";
     setq($sql);
     
 }
-/* $sql = 'SELECT p_id FROM pedidoscl
-        WHERE p_cliente = "'.$idusu.'" 
-        ORDER BY p_id DESC
-        LIMIT 1';
-    $ID_PEDIDOSCL= setq($sql);
-    $ID = mysqli_fetch_all($ID_PEDIDOSCL, MYSQLI_ASSOC);
-    foreach ($ID as $idp) {
-        $idpcl = $idp['p_id'];
-        //echo $idpcl;
-  $sql = 'UPDATE pedidoscld SET
-        pd_conf = "1",
-        pd_confirm = "'.$idpcl.'",
-        pd_fechaconf = "'.date('Y-m-d').'"
-        WHERE pd_pedido = "'.$idusu.'" AND 
-        pd_conf = "0"';
-    setq($sql1);
-    } */
 $output = [
     'id' => $intent->id,
     'clientSecret' => $intent->client_secret

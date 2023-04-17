@@ -44,24 +44,26 @@ echo "TOTAL ".$total; */
     $subtotal = $total - $envio;
     $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
     $sql = "UPDATE pedidoscl SET
+      p_estatus = 'P',
       p_fpago = 6,
       p_fechagen = NOW(),
       p_subtotal = '$subtotal',
       p_envio = '$envio',
       p_total = '$total'
-      WHERE p_cliente ='$pedido' AND p_estatus ='N'";
+      WHERE p_id ='$pedido' AND p_estatus ='N'";
   setq($sql);
   }else{
     $envio = 0;
     $subtotal = $envio;
     $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
     $sql = "UPDATE pedidoscl SET
+      p_estatus = 'P',
       p_fpago = 6,
       p_fechagen = NOW(),
       p_subtotal = '$subtotal',
       p_envio = '$envio',
       p_total = '$total'
-      WHERE p_cliente ='$pedido' AND p_estatus ='N'";
+      WHERE p_id ='$pedido' AND p_estatus ='N'";
   setq($sql);
   }
   /* $sql = 'SELECT p_id FROM pedidoscl

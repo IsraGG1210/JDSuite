@@ -26,16 +26,19 @@ require_once './Conexion/funciones.php';
                         $resultado = setq($sql1);
                         $idusuario = mysqli_fetch_array($resultado);
                         $idusu = $idusuario['c_id'];
-                             /* $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
+                        
+                           /*  $sql ="SELECT concat(i_nmb,'.',i_ext) AS rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$idusuario['c_id'].'" AND pd_conf = 0'; */
+                            WHERE pd_pedido='$pedi' AND pd_conf = '0' GROUP BY a_cb "; */
+                            $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
                             $sql ="SELECT concat(i_nmb,'.',i_ext) AS rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
                             FROM pedidoscld
                             INNER JOIN articulos ON a_cb = pd_producto
                             INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido='$idusu' AND pd_conf = '0' GROUP BY a_cb ";
+                            WHERE pd_pedido='$pedido' AND pd_conf = '0' GROUP BY a_cb ";
+                        $result = setq($sql);
                         $result = setq($sql);
                     
                         $datos = Array();
