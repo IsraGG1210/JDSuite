@@ -4,8 +4,8 @@ date_default_timezone_set("America/Mexico_City");
 require '../vendor/autoload.php';
 require_once("../stripe/init.php");
 require 'Conexion/funciones.php';
-require_once('../vendor/phpmailer/phpmailer/src/PHPMailer.php');
-require_once('../vendor/phpmailer/phpmailer/src/SMTP.php');
+require_once('phpmailer/phpmailer/src/PHPMailer.php');
+require_once('phpmailer/phpmailer/src/SMTP.php');
 
 $jsonStr = file_get_contents('php://input');
 $jsonObj = json_decode($jsonStr);
