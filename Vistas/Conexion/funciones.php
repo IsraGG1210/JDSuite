@@ -16,6 +16,15 @@ function setq($sql,$die = false){  //Realizar una consulta a BD en primer nivel
   return($result);
  
  }
+ function getmax($key,$table,$cond=false,$sumar=true){
+  $sql = 'SELECT MAX('.$key.') FROM '.$table.' ';
+  if($cond) $sql.=' WHERE '.$cond;
+  $result = setq($sql);
+  list($id) = $result->fetch_array();
+  if($sumar) $id++;
+
+  return($id);
+}
 
  function busca($target, $tabla, $id, $nmb) {
   $sql = "SELECT $nmb FROM $tabla WHERE $id=\"$target\"";

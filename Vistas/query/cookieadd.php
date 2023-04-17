@@ -34,7 +34,7 @@ if($existepedido){
           p_empresa = "1",
           p_fechagen = "'.date('Y-m-d H:i:s').'",
           p_ugen = "E-COMMERCE"';
-  setq($sql,true);
+  setq($sql);
 
   //$existepedido = busca($idusu,'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
 
