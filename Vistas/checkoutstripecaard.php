@@ -5,14 +5,21 @@ require_once './Conexion/funciones.php';
 
 
 if(isset($_SESSION['username'])){
+    $usuario = $_SESSION['username'];
+    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+    $resultado = setq($sql1);
+    $idusuario = mysqli_fetch_array($resultado);
+    $idusu = $idusuario['c_id'];
     // Consulta para obtener los datos del pedido del usuario logueado
     $sesion = $_SESSION['username'];
+    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
     $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
         FROM pedidoscld
         INNER JOIN articulos ON a_cb = pd_producto
         INNER JOIN imagenes ON a_cb = i_idproducto
-        WHERE pd_pedido="'.$sesion.'" AND pd_conf = 0';
+        WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
     $result = setq($sql);
+
 
     $datos = Array();
     while($row = mysqli_fetch_array($result)){
@@ -133,9 +140,10 @@ if(isset($_SESSION['username'])){
 
     const pago = document.getElementById("amount").value;
     const email = document.getElementById("email").value;
+    console.log(pago);
 
     const { id, clientSecret } = await fetch("CreateChargeCard.php",{
-      method: "POST",
+        method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         /* request_type: 'create_payment_oxxo', */
@@ -143,7 +151,8 @@ if(isset($_SESSION['username'])){
         email:email
       }),
     }).then((r) => r.json());
-
+    let cli_sec_card = clientSecret;
+    let payment_intent_id = id;
     stripe.createPaymentMethod({
         type :'card',
         card : card,
@@ -158,8 +167,7 @@ if(isset($_SESSION['username'])){
         }
     });
     //elements = stripe.elements(clientSecret);
-    let cli_sec_card = clientSecret;
-    let payment_intent_id = id;
+    
 
     async function retrieve() {
         const {paymentIntent} = await stripe.retrievePaymentIntent(cli_sec_card);

@@ -11,11 +11,12 @@ if(isset($_SESSION['username'])){
      $idusu = $idusuario['c_id'];
      // Consulta para obtener los datos del pedido del usuario logueado
      $sesion = $_SESSION['username'];
+     $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
      $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
          FROM pedidoscld
          INNER JOIN articulos ON a_cb = pd_producto
          INNER JOIN imagenes ON a_cb = i_idproducto
-         WHERE pd_pedido="'.$idusu.'" AND pd_conf = 0';
+         WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
      $result = setq($sql);
 
     $datos = Array();

@@ -32,30 +32,30 @@ $idusu = $idusuario['c_id'];
 if($total<5000){
     $envio = 150;
     $subtotal = $total - $envio;
-    $sql = 'INSERT INTO pedidoscl SET
-        p_cliente = "'.$idusu.'",
-        p_estatus = "0",
-        p_factura = "'.$intent->id.'",
-        p_fechagen = "'.date('Y-m-d H:i:s').'",
-        p_subtotal = "'.$subtotal.'",
-        p_envio = "'.$envio.'",
-        p_total = "'.$total.'"';
+    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+    $sql = "UPDATE pedidoscl SET
+        p_fpago = 6,
+        p_fechagen = NOW(),
+        p_subtotal = '$subtotal',
+        p_envio = '$envio',
+        p_total = '$total'
+        WHERE p_cliente ='$pedido' AND p_estatus ='N'";
     setq($sql);
 }else{
     $envio = 0;
     $subtotal = $envio;
-    $sql = 'INSERT INTO pedidoscl SET
-        p_cliente = "'.$idusu.'",
-        p_estatus = "0",
-        p_factura = "'.$intent->id.'",
-        p_fechagen = "'.date('Y-m-d H:i:s').'",
-        p_subtotal = "'.$subtotal.'",
-        p_envio = "'.$envio.'",
-        p_total = "'.$total.'"';
+    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+    $sql = "UPDATE pedidoscl SET
+    p_fpago = 6,
+    p_fechagen = NOW(),
+    p_subtotal = '$subtotal',
+    p_envio = '$envio',
+    p_total = '$total'
+    WHERE p_cliente ='$pedido' AND p_estatus ='N'";
     setq($sql);
     
 }
-$sql = 'SELECT p_id FROM pedidoscl
+/* $sql = 'SELECT p_id FROM pedidoscl
         WHERE p_cliente = "'.$idusu.'" 
         ORDER BY p_id DESC
         LIMIT 1';
@@ -71,7 +71,7 @@ $sql = 'SELECT p_id FROM pedidoscl
         WHERE pd_pedido = "'.$idusu.'" AND 
         pd_conf = "0"';
     setq($sql1);
-    }
+    } */
 $output = [
     'id' => $intent->id,
     'clientSecret' => $intent->client_secret
