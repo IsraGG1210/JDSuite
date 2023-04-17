@@ -188,7 +188,7 @@ $datos = Array();
                                     <br>
 
                                     <center>
-                                        <a href="<?php echo SERVERURL;?>transferencia"><button class="btn btn-primary rounded-pill">
+                                        <a href="<?php echo SERVERURL;?>checkoutstripe"><button class="btn btn-primary rounded-pill">
                                                 <i
                                                     class="fa-solid fa-money-bill-transfer fa-lg me-2 opacity-70"></i>Pagar
                                                 Con Transferencia

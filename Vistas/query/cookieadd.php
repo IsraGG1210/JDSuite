@@ -17,8 +17,38 @@ $idusuario = mysqli_fetch_array($resultado);
 $idusu = $idusuario['c_id'];
 if(isset($_SESSION['username'])){
 $sesion = $_SESSION['username'];
-  $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$idusu.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
+$existepedido = busca($idusu,'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+if($existepedido){
+  $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$existepedido.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
   $result = setq($sql);
+  
+}else{
+
+  $getpedido = getmax('p_id','pedidoscl',false,true);
+  
+  $sql = 'INSERT INTO pedidoscl SET
+          p_web = "2",
+          p_id = "'.$getpedido.'",
+          p_cliente = "'.$idusu.'",
+          p_estatus = "N",
+          p_empresa = "1",
+          p_fechagen = "'.date('Y-m-d H:i:s').'",
+          p_ugen = "E-COMMERCE"';
+  setq($sql,true);
+
+  //$existepedido = busca($idusu,'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+
+  $sql = 'INSERT INTO pedidoscld SET
+        pd_pedido = "'.$getpedido.'",
+        pd_producto = "'.$id.'",
+        pd_cantidad = "'.$cantidad.'",
+        pd_talla = "'.$talla.'",
+        pd_color = "'.$color.'",
+        pd_precio = "'.$precio.'",
+        pd_descuento = "'.$descuento.'"';
+  steq($sql);
+}
+
 
 if ($result->num_rows > 0) {
    $row = $result->fetch_array();
@@ -31,7 +61,7 @@ if ($result->num_rows > 0) {
 }else{
   $sesion = $_SESSION['username'];
    $sql = 'INSERT INTO pedidoscld SET
-       pd_pedido = "'.$idusuario['c_id'].'",
+       pd_pedido = "'.$existepedido.'",
        pd_producto = "'.$id.'",
        pd_cantidad = "'.$cantidad.'",
        pd_talla = "'.$talla.'",

@@ -10,8 +10,10 @@ if(isset($_SESSION['username'])){
 $resultado = setq($sql1);
 $idusuario = mysqli_fetch_array($resultado);
 $idusu = $idusuario['c_id'];
-    $sql1 = 'UPDATE pedidoscld SET pd_cantidad = "'.$cantidad.'" 
-            WHERE pd_producto = "'.$id.'" AND pd_pedido = "'.$idusu.'" AND pd_conf = 0';
+
+$pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');    
+$sql1 = 'UPDATE pedidoscld SET pd_cantidad = "'.$cantidad.'" 
+            WHERE pd_producto = "'.$id.'" AND pd_pedido = "'.$pedido.'" AND pd_conf = 0';
     setq($sql1);
 
 }else{
