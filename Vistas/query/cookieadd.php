@@ -46,7 +46,7 @@ if($existepedido){
         pd_color = "'.$color.'",
         pd_precio = "'.$precio.'",
         pd_descuento = "'.$descuento.'"';
-  steq($sql);
+        setq($sql);
 }
 
 

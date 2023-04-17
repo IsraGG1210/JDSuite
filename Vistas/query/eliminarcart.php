@@ -1,11 +1,16 @@
 <?php
 require_once '../Conexion/funciones.php';
 session_start();
-
 $id = $_POST['id'];
 if(isset($_SESSION['username'])){
     $sesion = $_SESSION['username'];
-    $sql = 'DELETE FROM pedidoscld WHERE pd_pedido="'.$sesion.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
+    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+    $resultado = setq($sql1);
+    $idusuario = mysqli_fetch_array($resultado);
+    $idusu = $idusuario['c_id'];
+
+    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+    $sql = 'DELETE FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
     $result = setq($sql);
 
 }else{
@@ -22,4 +27,6 @@ if(isset($_SESSION['username'])){
         }
     }
 }
+
 ?>
+                          
