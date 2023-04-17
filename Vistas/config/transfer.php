@@ -11,7 +11,7 @@ require '../PHPMailer/SMTP.php';
 
 session_start();
 $usuario = $_SESSION['username'];
-
+$total = $_POST['precio'];
 $sql = "SELECT * FROM clientes WHERE c_mail ='$usuario'";
 $idusuario=setq($sql);
 $resultado = mysqli_fetch_array($idusuario);
@@ -39,13 +39,14 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Datos Bancarios ';
-    $mail->Body    = 'Los datos para poder realizar la tranferencia bancaria son : 12135464654654564';
+    $mail->Body    = 'Los datos para poder realizar la tranferencia bancaria son : 12135464654654564 <br> 
+                        por un total de '. $total;
 
    
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients' ;
 
     $mail->send();
-    $sql = "UPDATE pedidoscl SET p_fpago = '3' WHERE p_cliente ='".$resultado['c_id']."' AND p_estatus='N'";
+    $sql = "UPDATE pedidoscl SET p_fpago = '1' WHERE p_cliente ='".$resultado['c_id']."' AND p_estatus='N'";
     setq($sql);
     $sql2= 'UPDATE pedidoscld SET pd_conf = 1 WHERE pd_pedido = "'.$result.'"';
     setq($sql2);

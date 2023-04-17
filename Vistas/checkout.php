@@ -92,35 +92,33 @@ $datos = Array();
                                 <br>
                                 <?php 
                                 if(isset($_SESSION['username'])){
-                                    // Consulta para obtener los datos del pedido del usuario logueado
-                                    $sesion = $_SESSION['username'];
-                                    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
+                                    $usuario = $_SESSION['username'];
+                                    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
                                     $resultado = setq($sql1);
                                     $idusuario = mysqli_fetch_array($resultado);
                                     $idusu = $idusuario['c_id'];
+                                    // Consulta para obtener los datos del pedido del usuario logueado
+                                    $sesion = $_SESSION['username'];
                                     
-                                    $sql ="SELECT concat(i_nmb,'.',i_ext) AS rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
-                                    FROM pedidoscld
-                                    INNER JOIN articulos ON a_cb = pd_producto
-                                    INNER JOIN imagenes ON a_cb = i_idproducto
-                                    WHERE pd_pedido='$idusu' AND pd_conf = '0' GROUP BY a_cb ";
-                                $result = setq($sql);
-                            
-                                $datos = Array();
-                                while($row = mysqli_fetch_array($result)){
-                                    $datos[]=$row;
-                                }
-                                  $total=0;
-                                  foreach($datos as $producto){
-                                    $ruta = $producto['rutaimagen'];
-                                    $id = $producto['a_cb'];
-                                    $nombre = $producto['a_nmb'];
-                                    $cantidad = $producto['pd_cantidad'];
-                                    $precio = $producto['pd_precio'];
-                                    $descuento = $producto['pd_descuento'];
-                                    $subtotal = $cantidad * $precio;
-                                    $total += $subtotal;
-                                  }}?>
+                                        $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                                       
+                                       $sql="SELECT pd_cantidad, pd_precio, pd_descuento FROM pedidoscld WHERE pd_pedido='".$pedido."' AND pd_conf = 0";
+                                        /* die($sql); */
+                                    $result = setq($sql);
+                                
+                                    $datos = Array();
+                                    while($row = mysqli_fetch_array($result)){
+                                        $datos[]=$row;
+                                    }
+                                      $total=0;
+                                      foreach($datos as $producto){
+                        
+                                        $cantidad = $producto['pd_cantidad'];
+                                        $precio = $producto['pd_precio'];
+                                        $descuento = $producto['pd_descuento'];
+                                        $subtotal = $cantidad * $precio;
+                                        $total += $subtotal;
+                                      }}?>
 
                                 
                                     <form action="query/comprapaypal.php" name="paypal" id="paypal" method="post">
@@ -136,8 +134,8 @@ $datos = Array();
                                                                     echo $envio;
                                                                 }
                                                                 ?>" name="envio" hidden>
-                                    <input type="text" value="<?php echo $totale= $envio+$total;?>" name="total" hidden>
-                                    <input type="text" value="<?php echo $idusuario['c_id']?>" name="user" hidden>
+                                    <input type="text" value="<?php echo $totale= $envio+$total;?>" name="total" hidden >
+                                    <input type="text" value="<?php echo $pedido; ?>" name="user" hidden>
                                     <center>
                                         <button class="btn btn-primary rounded-pill" type="submit">
                                             <i class="fa-brands fa-paypal fa-lg me-2 opacity-70"></i>Pagar Con PayPal
@@ -190,7 +188,7 @@ $datos = Array();
                                     <br>
 
                                     <center>
-                                        <a href="<?php echo SERVERURL;?>checkoutstripe"><button class="btn btn-primary rounded-pill">
+                                        <a href="<?php echo SERVERURL;?>transferencia"><button class="btn btn-primary rounded-pill">
                                                 <i
                                                     class="fa-solid fa-money-bill-transfer fa-lg me-2 opacity-70"></i>Pagar
                                                 Con Transferencia
@@ -220,12 +218,10 @@ $datos = Array();
                         $idusu = $idusuario['c_id'];
                         // Consulta para obtener los datos del pedido del usuario logueado
                         $sesion = $_SESSION['username'];
-                        /* $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
-                            FROM pedidoscld
-                            INNER JOIN articulos ON a_cb = pd_producto
-                            INNER JOIN imagenes ON a_cb = i_idproducto
-                            WHERE pd_pedido="'.$idusu.'" AND pd_conf = 0'; */
-                           $sql="SELECT pd_cantidad, pd_precio, pd_descuento FROM pedidoscld WHERE pd_pedido='".$idusu."' AND pd_conf = 0";
+                        
+                            $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                           
+                           $sql="SELECT pd_cantidad, pd_precio, pd_descuento FROM pedidoscld WHERE pd_pedido='".$pedido."' AND pd_conf = 0";
                             /* die($sql); */
                         $result = setq($sql);
                     
@@ -263,11 +259,12 @@ $datos = Array();
                         $idusuario = mysqli_fetch_array($resultado);
                         $idusu = $idusuario['c_id'];
                               
-                              $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$idusu.'"AND pd_conf = 0';
-                              
-                              $result = setq($sql);
-                              $cantidad_tota = mysqli_fetch_assoc($result);
-                              $cantidad_total = $cantidad_tota['cantidad'];
+                             
+                        $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                        $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+                        $result = setq($sql);
+                        $cantidad_tota = mysqli_fetch_assoc($result);
+                        $cantidad_total = $cantidad_tota['cantidad'];
                           
 
                           }else{
@@ -332,6 +329,7 @@ $datos = Array();
                     </div>
                 </div>
             </div>
+      </div>
         </div>
     </div>
 </div>

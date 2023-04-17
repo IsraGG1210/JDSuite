@@ -16,6 +16,13 @@ function setq($sql,$die = false){  //Realizar una consulta a BD en primer nivel
   return($result);
  
  }
+
+ function busca($target, $tabla, $id, $nmb) {
+  $sql = "SELECT $nmb FROM $tabla WHERE $id=\"$target\"";
+  $result = setq($sql) or die($sql.' <br>'.mysql_error());
+  list($busca) = $result->fetch_row();
+  return $busca;
+}
  
  /* function setq($sql,$die = false){  //Realizar una consulta a BD en primer nivel
    $dbuser = "tyesolut_root"; // El usuario
