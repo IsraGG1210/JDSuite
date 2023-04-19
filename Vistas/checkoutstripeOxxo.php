@@ -11,36 +11,32 @@ $nameuse = mysqli_fetch_assoc($consutlan);
 $nameuser = $nameuse['c_nmb'];
    
 if(isset($_SESSION['username'])){
-    // Consulta para obtener los datos del pedido del usuario logueado
-    $usuario = $_SESSION['username'];
-    $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
-    $resultado = setq($sql1);
-    $idusuario = mysqli_fetch_array($resultado);
-    $idusu = $idusuario['c_id'];
-    // Consulta para obtener los datos del pedido del usuario logueado
-    $sesion = $_SESSION['username'];
-    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
-    $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
-        FROM pedidoscld
-        INNER JOIN articulos ON a_cb = pd_producto
-        INNER JOIN imagenes ON a_cb = i_idproducto
-        WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
-    $result = setq($sql);
+  $usuario = $_SESSION['username'];
+  $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+  $resultado = setq($sql1);
+  $idusuario = mysqli_fetch_array($resultado);
+  $idusu = $idusuario['c_id'];
+  // Consulta para obtener los datos del pedido del usuario logueado
+  $sesion = $_SESSION['username'];
+  
+      $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+     
+     $sql="SELECT pd_cantidad, pd_precio, pd_descuento FROM pedidoscld WHERE pd_pedido='".$pedido."' AND pd_conf = 0";
+      /* die($sql); */
+  $result = setq($sql);
 
-    $datos = Array();
-    while($row = mysqli_fetch_array($result)){
-        $datos[]=$row;
-    }
-      $total=0;
-      foreach($datos as $producto){
-        $ruta = $producto['rutaimagen'];
-        $id = $producto['a_cb'];
-        $nombre = $producto['a_nmb'];
-        $cantidad = $producto['pd_cantidad'];
-        $precio = $producto['pd_precio'];
-        $descuento = $producto['pd_descuento'];
-        $subtotal = ($cantidad * $precio);
-        $total += $subtotal;
+  $datos = Array();
+  while($row = mysqli_fetch_array($result)){
+      $datos[]=$row;
+  }
+    $total=0;
+    foreach($datos as $producto){
+
+      $cantidad = $producto['pd_cantidad'];
+      $precio = $producto['pd_precio'];
+      $descuento = $producto['pd_descuento'];
+      $subtotal = $cantidad * $precio;
+      $total += $subtotal;
     }}
     $envio = 0;
     if($total>5000){
@@ -52,6 +48,14 @@ if(isset($_SESSION['username'])){
          MONEDA.$envio;
     }
     $totalen = $total+$envio;
+    if (isset($descuento) && $descuento != '') {
+      $totalen = $total-$descuento;
+      $totalen = $totalen + $envio;
+    } else {
+      // No discount, use full price
+      $totalen = $total+$envio;
+    }
+    
 ?>
 <html>
 <html>
@@ -109,7 +113,7 @@ if(isset($_SESSION['username'])){
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirigir a la página de contacto del sitio web
-                window.location.href = "index.php";
+                window.location.href = "miscompras.php";
             }
         })
     }

@@ -16,15 +16,33 @@ $resultado = setq($sql1);
 $idusuario = mysqli_fetch_array($resultado);
 $idusu = $idusuario['c_id'];
 if(isset($_SESSION['username'])){
-$sesion = $_SESSION['username'];
-$existepedido = busca($idusu,'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+  $existepedido = busca($idusu,'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
 
-if($existepedido){
+if ($existepedido) {
+  // Check if the product is already in the order
   $sql = 'SELECT * FROM pedidoscld WHERE pd_pedido="'.$existepedido.'" AND pd_producto="'.$id.'" AND pd_conf = 0';
   $result = setq($sql);
-  
-}else{
 
+  if (mysqli_num_rows($result) > 0) {
+    // The product is already in the order, so update the quantity
+    $row = mysqli_fetch_array($result);
+    $new_quantity = $row['pd_cantidad'] + $cantidad;
+    $sql = 'UPDATE pedidoscld SET pd_cantidad="'.$new_quantity.'" WHERE pd_id="'.$row['pd_id'].'"';
+    setq($sql);
+  } else {
+    // The product is not in the order, so add it as a new row
+    $sql = 'INSERT INTO pedidoscld SET
+            pd_pedido = "'.$existepedido.'",
+            pd_producto = "'.$id.'",
+            pd_cantidad = "'.$cantidad.'",
+            pd_talla = "'.$talla.'",
+            pd_color = "'.$color.'",
+            pd_precio = "'.$precio.'",
+            pd_descuento = "'.$descuento.'"';
+    setq($sql);
+  }
+} else {
+  // Create a new order and add the product as a new row
   $getpedido = getmax('p_id','pedidoscl',false,true);
 
   $sql = 'INSERT INTO pedidoscl SET
@@ -37,20 +55,16 @@ if($existepedido){
           p_ugen = "E-COMMERCE"';
   setq($sql);
 
-  //$existepedido = busca($idusu,'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
-
   $sql = 'INSERT INTO pedidoscld SET
-        pd_pedido = "'.$getpedido.'",
-        pd_producto = "'.$id.'",
-        pd_cantidad = "'.$cantidad.'",
-        pd_talla = "'.$talla.'",
-        pd_color = "'.$color.'",
-        pd_precio = "'.$precio.'",
-        pd_descuento = "'.$descuento.'"';
-        setq($sql);
+          pd_pedido = "'.$getpedido.'",
+          pd_producto = "'.$id.'",
+          pd_cantidad = "'.$cantidad.'",
+          pd_talla = "'.$talla.'",
+          pd_color = "'.$color.'",
+          pd_precio = "'.$precio.'",
+          pd_descuento = "'.$descuento.'"';
+  setq($sql);
 }
-
-
 
 }
 else{

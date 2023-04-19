@@ -12,41 +12,45 @@ if(isset($_SESSION['username'])){
     $idusu = $idusuario['c_id'];
     // Consulta para obtener los datos del pedido del usuario logueado
     $sesion = $_SESSION['username'];
-    $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
-    $sql = 'SELECT concat(i_nmb,".",i_ext)as rutaimagen,pd_producto,a_cb,a_nmb, pd_cantidad, pd_precio, pd_descuento 
-        FROM pedidoscld
-        INNER JOIN articulos ON a_cb = pd_producto
-        INNER JOIN imagenes ON a_cb = i_idproducto
-        WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+    
+        $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+       
+       $sql="SELECT pd_cantidad, pd_precio, pd_descuento FROM pedidoscld WHERE pd_pedido='".$pedido."' AND pd_conf = 0";
+        /* die($sql); */
     $result = setq($sql);
-
-
+  
     $datos = Array();
     while($row = mysqli_fetch_array($result)){
         $datos[]=$row;
     }
       $total=0;
       foreach($datos as $producto){
-        $ruta = $producto['rutaimagen'];
-        $id = $producto['a_cb'];
-        $nombre = $producto['a_nmb'];
+  
         $cantidad = $producto['pd_cantidad'];
         $precio = $producto['pd_precio'];
         $descuento = $producto['pd_descuento'];
-        $subtotal = ($cantidad * $precio);
+        $subtotal = $cantidad * $precio;
         $total += $subtotal;
-    }}
-    $envio = 0;
-    if($total>5000){
-         MONEDA.$envio;
-    } elseif($total==0){
-         MONEDA.$envio;
-    }else{
-        $envio = 150;
-         MONEDA.$envio;
-    }
-    $totalen = $total+$envio;
-?>
+      }}
+      $envio = 0;
+      if($total>5000){
+           MONEDA.$envio;
+      } elseif($total==0){
+           MONEDA.$envio;
+      }else{
+          $envio = 150;
+           MONEDA.$envio;
+      }
+      $totalen = $total+$envio;
+      if (isset($descuento) && $descuento != '') {
+        $totalen = $total-$descuento;
+        $totalen = $totalen + $envio;
+      } else {
+        // No discount, use full price
+        $totalen = $total+$envio;
+      }
+      
+  ?>
 <html>
 <html>
   <head>
@@ -109,7 +113,7 @@ if(isset($_SESSION['username'])){
         }).then((result) => {
             if (result.isConfirmed) {
                 // Redirigir a la página de contacto del sitio web
-                window.location.href = "index.php";
+                window.location.href = "miscompras.php";
             }
         })
     }

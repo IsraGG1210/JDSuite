@@ -170,7 +170,7 @@ $nameuser = $nameuse['c_nmb'];
                     INNER JOIN pedidoscld ON pd_pedido = p_id
                     INNER JOIN articulos ON pedidoscld.pd_producto = articulos.a_cb
                     INNER JOIN imagenes ON articulos.a_cb = imagenes.i_idproducto
-                    WHERE p_id=$idC";
+                    WHERE p_id=$idC GROUP BY a_cb";
                  $result_pedidos = setq($sql_pedidos);
                  $pedidos = mysqli_fetch_all($result_pedidos, MYSQLI_ASSOC);
                  
@@ -183,7 +183,7 @@ $nameuser = $nameuse['c_nmb'];
                     ?>
                         <tr>
                             <td>
-                                <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="" style="width:50px;"></img>
+                                <img src="https://www.jdshop.mx/productos/<?php echo $ruta;?>" alt="<?php echo $nombre;?>" style="width:50px;"></img>
                             </td>
                             <td style="padding: 0rem">
                                 <?php echo $nombre;?>

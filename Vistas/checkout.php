@@ -247,37 +247,37 @@ $datos = Array();
                                 <span>Subtotal</span>
                                 <span id="cantcart">(
                                     <?php
-                          
-                          $newitem = 0;
-                          $cantidad_total = 0;
+                                        
+                                        $newitem = 0;
+                                        $cantidad_total = 0;
 
-                          if(isset($_SESSION['username'])){ 
-                              
-                              $usuario = $_SESSION['username'];
-                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
-                        $resultado = setq($sql1);
-                        $idusuario = mysqli_fetch_array($resultado);
-                        $idusu = $idusuario['c_id'];
-                              
-                             
-                        $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
-                        $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
-                        $result = setq($sql);
-                        $cantidad_tota = mysqli_fetch_assoc($result);
-                        $cantidad_total = $cantidad_tota['cantidad'];
-                          
+                                        if(isset($_SESSION['username'])){ 
+                                            
+                                            $usuario = $_SESSION['username'];
+                                        $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$usuario'";
+                                        $resultado = setq($sql1);
+                                        $idusuario = mysqli_fetch_array($resultado);
+                                        $idusu = $idusuario['c_id'];
+                                            
+                                            
+                                        $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                                        $sql = 'SELECT COUNT(pd_cantidad) AS cantidad FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+                                        $result = setq($sql);
+                                        $cantidad_tota = mysqli_fetch_assoc($result);
+                                        $cantidad_total = $cantidad_tota['cantidad'];
+                                        
 
-                          }else{
-                              if(isset($_COOKIE['cart'])) {
-                              
-                                  foreach($_COOKIE['cart'] as $clave=>$item) {
-                                      $cantidad_total += $item[1];
-                                  }
-                                  //echo $cantidad_total;
-                              }
-                          } 
-                          echo $cantidad_total;
-                          ?>)
+                                        }else{
+                                            if(isset($_COOKIE['cart'])) {
+                                            
+                                                foreach($_COOKIE['cart'] as $clave=>$item) {
+                                                    $cantidad_total += $item[1];
+                                                }
+                                                //echo $cantidad_total;
+                                            }
+                                        } 
+                                        echo $cantidad_total;
+                                        ?>)
                                 </span>
                                 <span>productos</span>
                             </div>
@@ -293,35 +293,71 @@ $datos = Array();
                                 <div class="col-3">
                                     <h5>
                                         <?php 
-                      $envio = 0;
-                      if($total>5000){
-                        echo MONEDA.$envio;
-                      } elseif($total==0){
-                        echo MONEDA.$envio;
-                      }else{
-                        $envio = 150;
-                        echo MONEDA.$envio;
-                      }
-                      ?>
+                                        $envio = 0;
+                                        if($total>5000){
+                                            echo MONEDA.$envio;
+                                        } elseif($total==0){
+                                            echo MONEDA.$envio;
+                                        }else{
+                                            $envio = 150;
+                                            echo MONEDA.$envio;
+                                        }
+                                        ?>
                                     </h5>
                                 </div>
                             </div>
+
+                            <?php
+                                $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                                $sql = 'SELECT pd_descuento FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+                                $result = setq($sql);
+                                if (mysqli_num_rows($result) > 0) {
+
+                                        $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                                        $sql = 'SELECT pd_descuento FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+                                        $result = setq($sql);
+                                        $idusuario = mysqli_fetch_array($result);
+                                        $descuento = $idusuario['pd_descuento'];
+                                        if ($descuento != '0.00') {
+                                        
+                                        ?>
+                                        <div class="sep"> </div>
+                                <div class="row" id="descuentoP">
+                                    <div class="col-9 text-success">
+                                        Monto a descontar por cupon
+                                    </div>
+                                    <div class="col-3">
+                                        
+                                        <h5><?php echo MONEDA. $descuento ?></h5>
+                                    </div>
+                                    </div>
+                                    <div class="sep"></div>
+                                <?php
+                                    }}   
+                                    ?>
                             <div class="flex justify-between font-bold pt-4  border-t border-gray-500"
                                 id="totaldespues">
                                 <div class="row">
                                     <div class="col-9">
                                         <span>
-                                            <h4 id="totalf"><b>Total a pagar por el momento</b></h4>
+                                            <h4 id="totalf"><b>Total a pagar</b></h4>
                                         </span>
                                     </div>
                                     <div class="col-3">
-                                        <?php $totalen = $total+$envio;?>
-                                        <span>
-                                            <h5 id="idtotalFinal" data-total=""><b>
-                                                    <?php 
-                      echo MONEDA. number_format($totalen,2,'.',',');?>
-                                                </b></h5>
-                                        </span>
+                                        <?php
+                                            if (isset($descuento) && $descuento != '') {
+                                            $totalen = $total-$descuento;
+                                            $totalen = $totalen + $envio;
+                                            } else {
+                                            // No discount, use full price
+                                            $totalen = $total+$envio;
+                                            }
+                                        ?>
+                                            <span>
+                                            <h5 id="idtotalFinal" data-total="<?php echo $totalen;?>"><b>
+                                            <?php 
+                                            echo MONEDA. number_format($totalen,2,'.',',');?>
+                                            </b></h5></span>
                                     </div>
                                 </div>
                             </div>

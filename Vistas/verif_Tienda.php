@@ -287,8 +287,40 @@ require_once './Conexion/funciones.php';
                 </div>
               
               </div>
+
+              <?php
+              $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+              $sql = 'SELECT pd_descuento FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+              $result = setq($sql);
+              if (mysqli_num_rows($result) > 0) {
+
+                      $pedido = busca($idusuario['c_id'],'pedidoscl','p_estatus = "N" AND p_cliente','p_id');
+                      $sql = 'SELECT pd_descuento FROM pedidoscld WHERE pd_pedido="'.$pedido.'" AND pd_conf = 0';
+                      $result = setq($sql);
+                      $idusuario = mysqli_fetch_array($result);
+                      $descuento = $idusuario['pd_descuento'];
+                      if ($descuento != '0.00') {
+                      
+                    ?>
+                    <div class="sep"> </div>
+              <div class="row" id="descuentoP">
+                  <div class="col-9 text-success">
+                    Monto a descontar por cupon
+                  </div>
+                  <div class="col-3">
+                    
+                    <h5><?php echo MONEDA. $descuento ?></h5>
+                  </div>
+                </div>
+                <div class="sep"></div>
+              <?php
+                }}   
+                ?>
+
+
               <div class="relative flex items-center" id="datosControl" style="display:none">
-              <div class="sep">  
+              <div class="sep"> 
+
               <div class="row" id="cupondescuento">
                   <div class="col-9 text-success">
                     Monto a descontar por cupon
@@ -304,14 +336,22 @@ require_once './Conexion/funciones.php';
                 <div class="row">
                   <div class="col-9">
                     <span ><h4 id="totalf"><b>Total a pagar por el momento</b></h4></span>
-                  </div>
+                    </div>
                   <div class="col-3">
-                  <?php $totalen = $total+$envio;?>
-                    <span>
-                      <h5 id="idtotalFinal" data-total="<?php echo $totalen;?>"><b>
-                      <?php 
-                      echo MONEDA. number_format($totalen,2,'.',',');?>
-                    </b></h5></span>
+                      <?php
+                        if (isset($descuento) && $descuento != '') {
+                          $totalen = $total-$descuento;
+                          $totalen = $totalen + $envio;
+                        } else {
+                          // No discount, use full price
+                          $totalen = $total+$envio;
+                        }
+                      ?>
+                        <span>
+                          <h5 id="idtotalFinal" data-total="<?php echo $totalen;?>"><b>
+                          <?php 
+                          echo MONEDA. number_format($totalen,2,'.',',');?>
+                        </b></h5></span>
                   </div>
                 </div>
                     </div>
