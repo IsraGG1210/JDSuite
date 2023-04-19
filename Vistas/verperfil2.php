@@ -417,23 +417,20 @@ if(isset($_POST['submit-btn'])){
                             type="button" onclick="reload()">
                             Descartar cambios
                         </button>
-            </form>
-            
-        
+                    </div>
                 </div>
-                    <hr width="50%" size="8px" color="#29A8B0" style="margin-top:20px;">
-                    <h2>Direcciones De Envio</h2>
-            
-             <div class="col-sm-10">
-                <div class="input-group">
-                    <?php
+            </form>
+            <hr width="50%" size="8px" color="#29A8B0" style="margin-top:20px;">
+<h2>Direcciones De Envio</h2>
+
+<?php
                                 $idusu = busca($usuario, 'clientes','c_mail','c_id');
                                 $sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusu'";
                                 $resultado2 = setq($sql2);
                                 ?>
-                    <select name="direnvio" id="direnvio" class="col-12">
-                        <!-- <option value="default">Nueva Direccion</option> -->
-                        <?php while($row2 = $resultado2->fetch_array()){
+<select name="direnvio" id="direnvio" class="col-12">
+    <!-- <option value="default">Nueva Direccion</option> -->
+    <?php while($row2 = $resultado2->fetch_array()){
                                     if( $row2['d_predeterminado'] == '1')
                                         $select = 'selected';
                                     else 
@@ -444,16 +441,15 @@ if(isset($_POST['submit-btn'])){
                                     ','.$row2['d_pais'].'</option>';
             
                                     }?>
-                    </select>
-                </div>
-                </div>
-                <br>
+</select>
 
-            <form action="" id="direccionn" name="direccionn" method="post">
 
-                <input type="hidden" name="direcc" id="direcc" value="<?php echo $result2['d_id']?>"/>
-                
-                                <?php 
+<br>
+
+<form action="" id="direccionn" name="direccionn" method="post">
+    <input type="hidden" name="direcc" id="direcc" value="<?php echo $result2['d_id']?>" />
+
+    <?php 
                                 $idusu = busca($usuario, 'clientes','c_mail','c_id');
                                 echo '<input type="hidden" name="idu" id="idu" value="'.$idusu.'"/>'; 
                                 if($result2['d_predeterminado']=='1'){
@@ -462,114 +458,108 @@ if(isset($_POST['submit-btn'])){
                                     $preder = '';
                                 }
                                 ?>
-                    <input type="checkbox" name="predet" id="predet" <?php echo $preder;?>> Direccion Predeterminada
-                    <div class="col-md-6">
-                        <label for="calle1" class="cols-sm-10 control-label"><b>Calle</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_calle']?>" class="form-control"
-                                    name="calle1" id="calle1" required placeholder="Calle" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="colonia1" class="cols-sm-10 control-label"><b>Colonia</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_colonia']?>" class="form-control"
-                                    name="colonia1" id="colonia1" required placeholder="Colonia" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="numeroe1" class="cols-sm-10 control-label"><b>Numero Exterior</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_nume']?>"
-                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                                    class="form-control" name="numeroe1" id="numeroe1" required
-                                    placeholder="Numero Exterior" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="numeroi1" class="cols-sm-10 control-label"><b>Numero Interior</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_numi']?>" class="form-control"
-                                    name="numeroi1" id="numeroi1" placeholder="Numero interior(Opcional)" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="municipio1" class="cols-sm-10 control-label"><b>Municipio</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_municipio']?>" class="form-control"
-                                    name="municipio1" id="municipio1" required placeholder="Municipio" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="codigop1" class="cols-sm-10 control-label"><b>Codigo Postal</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_cp']?>"
-                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="5"
-                                    class="form-control" name="codigop1" id="codigop1" required
-                                    placeholder="Codigo Postal" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="estado1" class="cols-sm-10 control-label"><b>Estado</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_estado']?>" class="form-control"
-                                    name="estado1" id="estado1" required placeholder="Estado" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="pais1" class="cols-sm-10 control-label"><b>Pais</b></label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" value="<?php echo $result2['d_pais']?>" class="form-control"
-                                    name="pais1" id="pais1" required placeholder="Pais" />
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                
+    <input type="checkbox" name="predet" id="predet" <?php echo $preder;?>> Direccion Predeterminada
+    <div class="col-md-6">
+        <label for="calle1" class="cols-sm-10 control-label"><b>Calle</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_calle']?>" class="form-control" name="calle1"
+                    id="calle1" required placeholder="Calle" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="colonia1" class="cols-sm-10 control-label"><b>Colonia</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_colonia']?>" class="form-control" name="colonia1"
+                    id="colonia1" required placeholder="Colonia" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="numeroe1" class="cols-sm-10 control-label"><b>Numero Exterior</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_nume']?>"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control"
+                    name="numeroe1" id="numeroe1" required placeholder="Numero Exterior" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="numeroi1" class="cols-sm-10 control-label"><b>Numero Interior</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_numi']?>" class="form-control" name="numeroi1"
+                    id="numeroi1" placeholder="Numero interior(Opcional)" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="municipio1" class="cols-sm-10 control-label"><b>Municipio</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_municipio']?>" class="form-control" name="municipio1"
+                    id="municipio1" required placeholder="Municipio" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="codigop1" class="cols-sm-10 control-label"><b>Codigo Postal</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_cp']?>"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="5" class="form-control"
+                    name="codigop1" id="codigop1" required placeholder="Codigo Postal" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="estado1" class="cols-sm-10 control-label"><b>Estado</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_estado']?>" class="form-control" name="estado1"
+                    id="estado1" required placeholder="Estado" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="pais1" class="cols-sm-10 control-label"><b>Pais</b></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" value="<?php echo $result2['d_pais']?>" class="form-control" name="pais1" id="pais1"
+                    required placeholder="Pais" />
+            </div>
+        </div>
+    </div>
+    <br>
+    <div style="text-align:center;">
+        <button class="btn btn-success" type="button" id="nuevadir" onclick="direccion()">
+            Nueva Direccion
+        </button>
+        <button class="btn btn-warning" type="button" id="actudir" onclick="actualiza()">
+            Actualizar Direccion
+        </button>
+        <button class="btn btn-success" type="button" id="guardadir" hidden onclick="guardadireccion()">
+            Guardar Direccion
+        </button>
+        <button class="btn btn-danger" type="button" id="canceladir" hidden onclick="cancela()">
+            Cancelar
+        </button>
 
-                <div style="text-align:center;">
-                    <button class="btn btn-success" type="button" id="nuevadir" onclick="direccion()">
-                        Nueva Direccion
-                    </button>
-                    <button class="btn btn-warning" type="button" id="actudir" onclick="actualiza()">
-                        Actualizar Direccion
-                    </button>
-                    <button class="btn btn-success" type="button" id="guardadir" hidden onclick="guardadireccion()">
-                        Guardar Direccion
-                    </button>
-                    <button class="btn btn-danger" type="button" id="canceladir" hidden onclick="cancela()">
-                        Cancelar
-                    </button>
+    </div>
 
-                </div>
-            </form>
-                            
+</form>
 
-
-
+        </div>
 
     </div>
 </div>
-</div>
-</div>
 
-</div>
+
 <br>
+
 <?php 
 include 'footer.php';
 ?>

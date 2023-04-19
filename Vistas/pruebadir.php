@@ -3,7 +3,7 @@ require 'Conexion/funciones.php';
 include 'header.php';
 $usuario=$_SESSION['username'];
 $idusuario= busca($usuario,'clientes','c_mail','c_id');
-$sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusuario'";
+$sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusuario' AND d_predeterminado = '1'";
 $cons = setq($sql2);
 $result2 = mysqli_fetch_array($cons);
 ?>
@@ -17,7 +17,7 @@ $result2 = mysqli_fetch_array($cons);
                                 $resultado2 = setq($sql2);
                                 ?>
             <select name="direnvio" id="direnvio" class="col-12">
-                <option value="default">Nueva Direccion</option>
+                <!-- <option value="default">Nueva Direccion</option> -->
                 <?php while($row2 = $resultado2->fetch_array()){
                                     if( $row2['d_predeterminado'] == '1')
                                         $select = 'selected';
@@ -33,13 +33,27 @@ $result2 = mysqli_fetch_array($cons);
         </div>
     </div>
     <br>
-    <form action="direccion.php" id="direccionn" method="post">
+    <form action="" id="direccionn" method="post">
+        <script>
+             
+    
+
+        </script>
+        <input type="hidden" name="direcc" id="direcc" value="<?php echo $result2['d_id']?>">
     <div name="direccion" id="direccion">
        <?php 
        $idusu = busca($usuario, 'clientes','c_mail','c_id');?>
         <input type="hidden" name="idu" id="idu" value="<?php echo $idusu?>">
         
-        <input type="checkbox" name="predet" id="predet"> Direccion Predeterminada
+        <?php 
+        if($result2['d_predeterminado']=='1'){
+            $preder = 'checked';
+        }else {
+            $preder = '';
+        }
+       
+        ?>
+        <input type="checkbox" name="predet" id="predet" <?php echo $preder;?>> Direccion Predeterminada
         <div class="col-md-6">
             <label for="calle" class="cols-sm-10 control-label"><b>Calle</b></label>
             <div class="col-sm-10">
@@ -73,7 +87,7 @@ $result2 = mysqli_fetch_array($cons);
             <div class="col-sm-10">
                 <div class="input-group">
                     <input type="text" value="<?php echo $result2['d_numi']?>" class="form-control" name="numeroi"
-                        id="numeroi" required placeholder="Numero interior(Opcional)" />
+                        id="numeroi"  placeholder="Numero interior(Opcional)" />
                 </div>
             </div>
         </div>
@@ -121,46 +135,16 @@ $result2 = mysqli_fetch_array($cons);
         <button class="btn btn-success" type="button" id="nuevadir" onclick="direccion()">
             Nueva Direccion
         </button>
+        <button class="btn btn-warning" type="button" id="actudir" onclick="actualiza()">
+            Actualizar Direccion
+        </button>
         <button class="btn btn-success" type="button" id="guardadir" hidden onclick="guardadireccion()">
             Guardar Direccion
         </button>
         <button class="btn btn-danger" type="button" id="canceladir" hidden onclick="cancela()">
             Cancelar
         </button>
-        <script>
-            function direccion() {
-                document.getElementById("guardadir").removeAttribute("hidden");
-                document.getElementById("canceladir").removeAttribute("hidden");
-                document.getElementById("nuevadir").hidden = true;
-                document.getElementById("direnvio").hidden = true;
-                document.getElementById("calle").value="";
-                document.getElementById("colonia").value="";
-                document.getElementById("numeroe").value="";
-                document.getElementById("numeroi").value="";
-                document.getElementById("municipio").value="";
-                document.getElementById("codigop").value="";
-                document.getElementById("estado").value="";
-                document.getElementById("pais").value="";
-            }
-
-            function guardadireccion() {
-                document.getElementById("guardadir").removeAttribute("type");
-                document.getElementById("guardadir").removeAttribute("onclick");
-                document.getElementById("guardadir").setAttribute("type", "submit");
-                document.getElementById("guardadir").click();
-                document.getElementById("guardadir").removeAttribute("type");
-                document.getElementById("guardadir").setAttribute("type", "button");
-                document.getElementById("guardadir").setAttribute("onclick", "guardadireccion()");
-            }
-
-            function cancela() {
-                document.getElementById("nuevadir").removeAttribute("hidden");
-                document.getElementById("guardadir").hidden = true;
-                document.getElementById("canceladir").hidden = true;
-                document.getElementById("direnvio").removeAttribute("hidden");
-                location.reload();
-            }
-        </script>
+        
     </div>
     </form>
 </div>
@@ -205,8 +189,78 @@ include 'footer.php'
                     $("#municipio").val(result.d_municipio);
                     $("#estado").val(result.d_estado);
                     $("#pais").val(result.d_pais);
+                  if(result.d_predeterminado == '0'){
+                    $("#predet").prop("checked", false);
+                  }else {
+                    $("#predet").prop("checked", true);
+                  }
                 }
             });
         });
     });
+
+    $("#direnvio").change(function () {
+
+var optionSelected = $(this).find("option:selected");
+var valueSelected = optionSelected.val();
+$("#direcc").val(valueSelected);
+});
+
+function direccion() {
+                document.getElementById("guardadir").removeAttribute("hidden");
+                document.getElementById("canceladir").removeAttribute("hidden");
+                document.getElementById("nuevadir").hidden = true;
+                document.getElementById("direnvio").hidden = true;
+                document.getElementById("actudir").hidden = true;
+                document.getElementById("calle").value="";
+                document.getElementById("colonia").value="";
+                document.getElementById("numeroe").value="";
+                document.getElementById("numeroi").value="";
+                document.getElementById("municipio").value="";
+                document.getElementById("codigop").value="";
+                document.getElementById("estado").value="";
+                document.getElementById("pais").value="";
+            }
+            function actualiza(){
+                Swal.fire({
+            title: '¿Seguro que deseas actualizar tus datos?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+                document.getElementById("direccionn").action ="update_predet.php";
+                document.getElementById("actudir").removeAttribute("type");
+                document.getElementById("actudir").removeAttribute("onclick");
+                document.getElementById("actudir").setAttribute("type", "submit");
+                document.getElementById("actudir").click();
+                document.getElementById("actudir").removeAttribute("type");
+                document.getElementById("actudir").setAttribute("type", "button");
+                document.getElementById("actudir").setAttribute("onclick", "actualiza()");
+               
+            }
+        })
+            }
+            function guardadireccion() {
+                document.getElementById("direccionn").action ="direccion.php";
+                document.getElementById("guardadir").removeAttribute("type");
+                document.getElementById("guardadir").removeAttribute("onclick");
+                document.getElementById("guardadir").setAttribute("type", "submit");
+                document.getElementById("guardadir").click();
+                document.getElementById("guardadir").removeAttribute("type");
+                document.getElementById("guardadir").setAttribute("type", "button");
+                document.getElementById("guardadir").setAttribute("onclick", "guardadireccion()");
+            }
+
+            function cancela() {
+                document.getElementById("nuevadir").removeAttribute("hidden");
+                document.getElementById("guardadir").hidden = true;
+                document.getElementById("canceladir").hidden = true;
+                document.getElementById("direnvio").removeAttribute("hidden");
+                document.getElementById("actudir").removeAttribute("hidden");
+                location.reload();
+            }
 </script>
