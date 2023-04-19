@@ -16,6 +16,11 @@ $sql="SELECT * FROM clientes WHERE c_mail = '$usuario'";
 $consutla= setq($sql);
 $result = mysqli_fetch_array($consutla);
 
+$idusuario= busca($usuario,'clientes','c_mail','c_id');
+$sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusuario'";
+$cons = setq($sql2);
+$result2 = mysqli_fetch_array($cons);
+
 $sqln="SELECT c_nmb FROM clientes WHERE c_mail = '$usuario'";
 $consutlan= setq($sqln);
 $nameuse = mysqli_fetch_assoc($consutlan);
@@ -403,14 +408,131 @@ if(isset($_POST['submit-btn'])){
                             </div>
                         </div>
                     </div>
-                </div>
-                <div style="text-align:center;"><br>
+                    <div style="text-align:center;"><br>
                     <button class="btn btn-success" type="button" id="actualizar" onclick="confirmacion()">
                         Actualizar
                     </button>
                     &nbsp
                     <button class="btn btn-danger" style="margin-top: 10px;"name="cancelar" id="cancelar" type="button" onclick="reload()">
                         Descartar cambios
+                    </button>
+                </div>
+                    <hr width="50%" size="8px" color="#29A8B0" style="margin-top:20px;">
+                    <h2 id="seccion3">Datos De Envio</h2>
+                    
+                    <?php
+                  ?>
+                    <div class="col-md-12">
+                        <label for="regimen" class="cols-sm-10 control-label"><b>Direcciones de envio</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <?php
+                                $idusu = busca($usuario, 'clientes','c_mail','c_id');
+                                $sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusu'";
+                                $resultado2 = setq($sql2);
+                                
+                                ?>
+                                <select name="direnvio" id="direnvio" class="col-12">
+                                    <option value="default">NINGUNO</option>
+                                    <?php while($row2 = $resultado2->fetch_array()){
+                                    if($result2['d_id'] == $row2['d_id'])
+                                        $select = 'selected';
+                                    else 
+                                        $select = '';
+                                    echo '<option value="'.$row2['d_id'].'" '.$select.'>'.$row2['d_calle'].', #'.$row2['d_nume'].', '.
+                                    $row2['d_numi'].', Colonia '.$row2['d_colonia'].', Municipio '.$row2['d_municipio'].', C.P '.
+                                    $row2['d_cp'].', Estado '.$row2['d_estado'].
+                                    ','.$row2['d_pais'].'</option>';
+            
+                                    }?>
+                                </select>
+
+                                
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-6">
+                        <label for="calle" class="cols-sm-10 control-label"><b>Calle</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="calle" id="calle"
+                                    value="<?php echo $result2['d_calle']?>" placeholder="Calle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="colonia" class="cols-sm-10 control-label"><b>Colonia</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" value="<?php echo $result2['d_colonia']?>" class="form-control"
+                                    name="colonia" id="colonia" placeholder="Colonia" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numeroe" class="cols-sm-10 control-label"><b>Numero Exterior</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                    value="<?php echo $result2['d_nume']?>" class="form-control" name="numeroe"
+                                    id="numeroe" placeholder="Numero Exterior" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numeroi" class="cols-sm-10 control-label"><b>Numero Interior</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" value="<?php echo $result2['d_numi']?>" class="form-control"
+                                    name="numeroi" id="numeroi" placeholder="Numero interior(Opcional)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="municipio" class="cols-sm-10 control-label"><b>Municipio</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" value="<?php echo $result2['d_municipio']?>" class="form-control"
+                                    name="municipio" id="municipio" placeholder="Municipio" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="codigop" class="cols-sm-10 control-label"><b>Codigo Postal</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                    maxlength="5" value="<?php echo $result2['d_cp']?>" class="form-control"
+                                    name="codigop" id="codigop" placeholder="Codigo Postal" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="estado" class="cols-sm-10 control-label"><b>Estado</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" value="<?php echo $result2['d_estado']?>" class="form-control"
+                                    name="estado" id="estado" placeholder="Estado" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="pais" class="cols-sm-10 control-label"><b>Pais</b></label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" value="<?php echo $result2['d_pais']?>" class="form-control"
+                                    name="pais" id="pais" placeholder="Pais" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;"><br>
+                    <button class="btn btn-success" type="button" id="actualizar" onclick="confirmacion()">
+                        Actualizar Datos De Envio
+                    </button>
+                    &nbsp
+                    <button class="btn btn-danger" style="margin-top: 10px;"name="cancelar" id="cancelar" type="button" onclick="reload()">
+                        Descartar Cambios En Datos De Envio
                     </button>
                 </div>
             </form>

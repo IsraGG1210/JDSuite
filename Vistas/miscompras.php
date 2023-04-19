@@ -54,7 +54,7 @@ $nameuser = $nameuse['c_nmb'];
                     </li> -->
 
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="<?php echo SERVERURL;?>verperfil">
+                        <a class="nav-link" href="verperfil.php">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class="fa-solid fa-user" style="font-size:30px"></i>
@@ -67,7 +67,7 @@ $nameuser = $nameuse['c_nmb'];
                     </li>
 
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="<?php echo SERVERURL;?>verperfil">
+                        <a class="nav-link" href="verperfil.php">
                         <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class='fas fa-landmark' style="font-size:30px"></i>
@@ -79,7 +79,7 @@ $nameuser = $nameuse['c_nmb'];
                         </a>
                     </li>
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="<?php echo SERVERURL;?>verperfil">
+                        <a class="nav-link" href="verperfil.php">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class="fa fa-map-marker" style="font-size:28px"></i>
@@ -91,7 +91,7 @@ $nameuser = $nameuse['c_nmb'];
                         </a>
                     </li>
                     <li class="nav-item active d-flex align-items-center">
-                        <a class="nav-link" href="<?php echo SERVERURL;?>misCompras">
+                        <a class="nav-link" href="misCompras.php">
                         <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <i class="fa-brands fa-shopify" style="font-size:34px"></i>
@@ -115,39 +115,40 @@ $nameuser = $nameuse['c_nmb'];
             $idusuario = mysqli_fetch_array($resultado);
             $idusu = $idusuario['c_id'];
 
-               $sql_fechas = "SELECT DISTINCT DATE(p_fechagen) AS fecha FROM pedidoscl WHERE p_cliente='$idusu' ORDER BY fecha DESC";
-               $result_fechas = setq($sql_fechas);
-               $fechas = mysqli_fetch_all($result_fechas, MYSQLI_ASSOC);   
+               $sql_idPs = "SELECT DISTINCT p_id AS idP, p_fechagen AS fecha FROM pedidoscl WHERE p_cliente='$idusu' ORDER BY idP DESC";
+               $result_idPs = setq($sql_idPs);
+               $idPs = mysqli_fetch_all($result_idPs, MYSQLI_ASSOC);   
             ?>
             <div class="accordion col-md-8 col-sm-12" id="accordionExampleY">
-    <?php foreach ($fechas as $fecha) : ?>
+    <?php foreach ($idPs as $idP) { ?>
         <div class="accordion-item">
-            <h2 class="accordion-header" id="heading-<?php echo $fecha['fecha']; ?>">
+            <h2 class="accordion-header" id="heading-<?php echo $idP['idP']; ?>">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
                         style="color:black"
-                        data-mdb-target="#collapse-<?php echo $fecha['fecha']; ?>"
+                        data-mdb-target="#collapse-<?php echo $idP['idP']; ?>"
                         aria-expanded="false"
-                        aria-controls="collapse-<?php echo $fecha['fecha']; ?>">
+                        aria-controls="collapse-<?php echo $idP['idP']; ?>">
                         <div class="row">
                                     <div class="col-9">
                                         <span>
-                                            <h6><b>Fecha de la compra:</b></h6>
+                                            <h6><b>N°/Fecha de compra</b></h6>
                                         </span>
                                     </div>
-                                    <div class="col-5">
+                                    <div class="col-9">
                                         <span>
-                                            <p data-total=""><b>
-                                            <?php echo $fecha['fecha']; ?>
-                                            </b></p>
+                                            <p data-total="">
+                                            <?php echo $idP['idP']. " /"; ?>
+                                            <?php echo $idP['fecha']; ?>
+                                            </p>
                                         </span>
                                     </div>
                                 </div>
                     
                 </button>
             </h2>
-            <div id="collapse-<?php echo $fecha['fecha']; ?>"
+            <div id="collapse-<?php echo $idP['idP']; ?>"
                  class="accordion-collapse collapse"
-                 aria-labelledby="heading-<?php echo $fecha['fecha']; ?>"
+                 aria-labelledby="heading-<?php echo $idP['idP']; ?>"
                  data-mdb-parent="#accordionExampleY">
                  <table class="table p-0" id="tblistado">
                     <thead>
@@ -159,21 +160,17 @@ $nameuser = $nameuse['c_nmb'];
                     </thead>
                     <tbody>
                  <?php
-                 $fecha_actual = $fecha['fecha'];
-                 $sql1 ="SELECT c_id FROM clientes WHERE c_mail ='$sesion'";
-                 $resultado = setq($sql1);
-                 $idusuario = mysqli_fetch_array($resultado);
-                 $idusu = $idusuario['c_id'];
+                 $idC= $idP['idP'];
                  $sql_pedidos = "SELECT DISTINCT CONCAT(i_nmb, '.', i_ext) AS rutaimagen,
                             pd_producto,
                             p_estatus,
                             a_cb,
                             a_nmb
                     FROM pedidoscl
-                    INNER JOIN pedidoscld ON pd_fechaconf=p_fechagen AND pd_pedido = p_cliente
+                    INNER JOIN pedidoscld ON pd_pedido = p_id
                     INNER JOIN articulos ON pedidoscld.pd_producto = articulos.a_cb
                     INNER JOIN imagenes ON articulos.a_cb = imagenes.i_idproducto
-                    WHERE p_id=pd_confirm AND p_cliente='".$idusu."' AND p_fechagen='$fecha_actual'";
+                    WHERE p_id=$idC";
                  $result_pedidos = setq($sql_pedidos);
                  $pedidos = mysqli_fetch_all($result_pedidos, MYSQLI_ASSOC);
                  
@@ -193,7 +190,7 @@ $nameuser = $nameuse['c_nmb'];
                                 <input type="hidden" id="producto" value="<?php echo ($id); ?>"/>
                             </td>
                             <td>
-                                <?php if ($estatus == 1) {
+                                <?php if ($estatus == 'A') {
                                     echo '<span style="color:green;">PAGO REALIZADO</span>';
                                 } else {
                                     echo '<span style="color:orange;">PAGO PENDIENTE</span>';
@@ -206,14 +203,13 @@ $nameuser = $nameuse['c_nmb'];
                     ?>
 
                  </table>
-                <!-- Aquí colocas el código que muestra los datos de los pedidos para la fecha actual -->
+                <!-- Aquí colocas el código que muestra los datos de los pedidos para la idP actual -->
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php } ?>
 </div>
 
         </div></div></div>
 <?php
 include 'footer.php';
 ?>
-<!-- jonydominguez0713@gmail.com -->

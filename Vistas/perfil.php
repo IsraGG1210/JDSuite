@@ -37,18 +37,7 @@ if (setq($sql)) {
             icon: 'success'
         }
     );
-    /* Swal.fire({
-  title: 'Datos Actualizados',
-  icon: 'success',
-  timer: 900,
-  target: '#custom-target',
-  customClass: {
-    container: 'position-absolute'
-  },
-  toast: true,
-  position: 'top-right'
-
-}) */
+   
 setTimeout(function () {
    window.location.href = "verperfil.php";
 }, 900);
@@ -125,7 +114,7 @@ if (setq($sql)) {
                 title: 'Hubo un error en la actualizacion de los datos',
                 timer: 900,
                 timerProgressBar: true,
-                icon: 'eror'
+                icon: 'error'
             }
         );
        
