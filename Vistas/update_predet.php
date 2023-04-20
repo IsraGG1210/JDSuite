@@ -13,7 +13,7 @@ $pais = $_REQUEST['pais1'];
 $dirpre = $_REQUEST['predet'];
 $telefono = $_REQUEST['telefono1'];
 $referencias = $_REQUEST['referencia1'];
-
+$verper = $_REQUEST['verper'];
 if(isset($dirpre)){
     $sql = "UPDATE direnvio SET d_predeterminado = '0'
      WHERE d_cliente = '$idusu'";
@@ -27,7 +27,7 @@ if(isset($dirpre)){
         d_municipio = '$municipio',
         d_estado = '$estado'
         WHERE d_cliente = '$idusu' AND d_id = '$id_dir'"; */
-        $sql1='UPDATE direnvio SET d_predeterminado = "1",
+        $sql2='UPDATE direnvio SET d_predeterminado = "1",
         d_calle = "'.clearvmayus($calle).'",
         d_nume = "'.clearvmayus($numeroe).'",
         d_numi = "'.clearvmayus($numeroi).'",
@@ -39,9 +39,9 @@ if(isset($dirpre)){
         d_telefono = "'.$telefono.'",
         d_referencia = "'.clearvmayus($referencias).'"
         WHERE d_cliente = "'.$idusu.'" AND d_id = "'.$id_dir.'"';
-        if(setq($sql1)){
-            
-            if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+        if(setq($sql2)){
+           
+            if($verper == "verperfil"){
                 header("Location: verperfil");
             }else {
                 header("Location: datosenvio");
@@ -60,7 +60,7 @@ if(isset($dirpre)){
     d_estado = '$estado'
      WHERE d_id = '$id_dir'"; */
 
-    $sql1='UPDATE direnvio SET 
+    $sql3='UPDATE direnvio SET 
     d_calle = "'.clearvmayus($calle).'",
     d_nume = "'.clearvmayus($numeroe).'",
     d_numi = "'.clearvmayus($numeroi).'",
@@ -72,8 +72,9 @@ if(isset($dirpre)){
     d_telefono = "'.$telefono.'",
     d_referencia = "'.clearvmayus($referencias).'"
     WHERE d_id = "'.$id_dir.'"';
-     if(setq($sql)){
-        if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+     if(setq($sql3)){
+        
+        if($verper == "verperfil"){
             header("Location: verperfil");
         }else {
             header("Location: datosenvio");

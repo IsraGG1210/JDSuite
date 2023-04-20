@@ -555,7 +555,7 @@ if(isset($_POST['submit-btn'])){
                         </div>
                     </div>
                 </div>
-               
+               <input type="hidden" name="verper" value="verperfil">
                 <div style="text-align:center;">
                 <br>
                     <button class="btn btn-success" type="button" id="nuevadir" onclick="direccion()">

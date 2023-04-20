@@ -19,7 +19,7 @@ else if ($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/venta-tiempo-aire-electroni
   $bg = '#1F8187';
 else
   $bg = '#29A8B0';
-
+echo $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

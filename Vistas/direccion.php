@@ -13,7 +13,7 @@ $pais = $_REQUEST['pais1'];
 $telefono = $_REQUEST['telefono1'];
 $referencias = $_REQUEST['referencia1'];
 $dirpre = $_REQUEST['predet'];
-
+$verper = $_REQUEST['verper'];
 
 $id_dir = getmax('d_id', 'direnvio',false,true);
 
@@ -39,7 +39,7 @@ if(isset($dirpre)){
         
     
     if(setq($sql)){
-        if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+        if($verper == "verperfil"){
             header("Location: verperfil");
         }else {
             header("Location: datosenvio");
@@ -70,14 +70,14 @@ if(isset($dirpre)){
         d_predeterminado = "0" ';
 
 if(setq($sql)){
-    if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+    if($verper == "verperfil"){
         header("Location: verperfil");
     }else {
         header("Location: datosenvio");
     }
     
 }else {
-    window.alert("Ocurrio un error");
+    alert("Ocurrio un error");
 }
 }
 
