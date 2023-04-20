@@ -37,7 +37,7 @@ if(isset($dirpre)){
         d_estado = "'.clearvmayus($estado).'",
         d_pais = "'.clearvmayus($pais).'",
         d_telefono = "'.$telefono.'",
-        d_referencias = "'.clearvmayus($referencias).'"
+        d_referencia = "'.clearvmayus($referencias).'"
         WHERE d_cliente = "'.$idusu.'" AND d_id = "'.$id_dir.'"';
         if(setq($sql1)){
             
@@ -70,7 +70,7 @@ if(isset($dirpre)){
     d_estado = "'.clearvmayus($estado).'",
     d_pais = "'.clearvmayus($pais).'",
     d_telefono = "'.$telefono.'",
-    d_referencias = "'.clearvmayus($referencias).'"
+    d_referencia = "'.clearvmayus($referencias).'"
     WHERE d_id = "'.$id_dir.'"';
      if(setq($sql)){
         if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){

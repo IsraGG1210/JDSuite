@@ -34,7 +34,7 @@ if(isset($dirpre)){
         d_estado = "'.clearvmayus($estado).'",
         d_pais ="'.clearvmayus($pais).'",
         d_telefono ="'.$telefono.'",
-        d_referencias ="'.$referencias.'",
+        d_referencia ="'.$referencias.'",
         d_predeterminado = "1" ';
         
     
@@ -66,7 +66,7 @@ if(isset($dirpre)){
         d_estado = "'.clearvmayus($estado).'",
         d_pais ="'.clearvmayus($pais).'",
         d_telefono ="'.$telefono.'",
-        d_referencias ="'.$referencias.'",
+        d_referencia ="'.$referencias.'",
         d_predeterminado = "0" ';
 
 if(setq($sql)){
