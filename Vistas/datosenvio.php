@@ -63,12 +63,14 @@ $result2 = mysqli_fetch_array($cons);
 
         <?php 
                     $idusu = busca($usuario, 'clientes','c_mail','c_id');
+                    $buspe=busca($idusu,'direnvio','d_cliente','d_id');
                     echo '<input type="hidden" name="idu" id="idu" value="'.$idusu.'"/>'; 
-                    if(@$result2['d_predeterminado']=='1'){
+                    if(@$result2['d_predeterminado']=='1' || $buspe == null){
                         $preder = 'checked';
                     }else {
                         $preder = '';
                     }
+    
                     ?>
         <input type="checkbox" name="predet" id="predet" <?php echo $preder;?>> Direccion Predeterminada
 
@@ -147,6 +149,26 @@ $result2 = mysqli_fetch_array($cons);
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <label for="pais1" class="cols-sm-10 control-label"><b>Número Telefónico</b></label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                        maxlength="10" value="<?php echo @$result2['d_telefono']?>" class="form-control" name="telefono1"
+                            id="telefono1" required placeholder="Telefono" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="pais1" class="cols-sm-10 control-label"><b>Referencias</b></label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" value="<?php echo @$result2['d_referencia']?>" class="form-control" name="referencia1"
+                            id="referencia1" required placeholder="Referencias" />
+                    </div>
+                </div>
+            </div>
+            
 
             <div style="text-align:center;">
                 <br>
@@ -176,10 +198,13 @@ $result2 = mysqli_fetch_array($cons);
         Atrás
     </a>
         <?php
-        if($row2 == null){
-            $hidden = 'hidden';
+        
+        $buspe=busca($idusu,'direnvio','d_cliente','d_id');
+       
+        if($buspe == null || $buspe =''){
+            $hidden ='hidden';
         }else{
-            $hidden = '';
+            $hidden ='';
         }
         ?>
     <button class="btn btn-primary me-md-2"<?php echo $hidden;?> type="button" id="siguiente" name="siguiente"
@@ -236,6 +261,8 @@ include 'footer.php'
                     $("#municipio1").val(result.d_municipio);
                     $("#estado1").val(result.d_estado);
                     $("#pais1").val(result.d_pais);
+                    $("#telefono1").val(result.d_telefono);
+                    $("#referencia1").val(result.d_referencia);
                     if (result.d_predeterminado == '0') {
                         $("#predet").prop("checked", false);
                     } else {
@@ -267,6 +294,8 @@ include 'footer.php'
         document.getElementById("codigop1").value = "";
         document.getElementById("estado1").value = "";
         document.getElementById("pais1").value = "";
+        document.getElementById("telefono1").value = "";
+        document.getElementById("referencia1").value = "";
     }
 
     function actualiza() {

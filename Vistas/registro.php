@@ -15,7 +15,11 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['contras
 			$nombre=$_POST['nombre'];
 			$correo=$_POST['email'];
 			$contra=$_POST['contrasena'];
-			$sql  ="INSERT INTO clientes(c_nmb,c_mail,c_password) VALUES('$nombre', '$email', PASSWORD('$contra'))";
+			/* $sql  ="INSERT INTO clientes(c_nmb,c_mail,c_password) VALUES('$nombre', '$email', PASSWORD('$contra'))"; */
+			$sql = 'INSERT INTO clientes SET 
+			c_nmb = "'.clearvmayus($nombre).'",
+			c_mail ="'.$email.'",
+			c_password = "PASSWORD('.$contra.')"';
 			if(setq($sql)){
 				$mensaje="Usuario Nuevo Creado";
 				$sql="UPDATE clientes SET c_falta = NOW() WHERE c_mail= '$correo'";

@@ -22,10 +22,27 @@ if ($_POST['password']==$result['c_password']) {
     $estado=$_POST['estado'];
     $pais=$_POST['pais'];
 
-    $sql="UPDATE clientes SET c_nmb = TRIM('$nombre'), c_apellidos =TRIM('$apellido'), c_telefono=TRIM('$telefono'), c_rfc = TRIM('$rfc'),
+    /* $sql="UPDATE clientes SET c_nmb = TRIM('$nombre'), c_apellidos =TRIM('$apellido'), c_telefono=TRIM('$telefono'), c_rfc = TRIM('$rfc'),
     c_razon=TRIM('$razonsoc'), c_regimenfis=TRIM('$regimen'), c_calle=TRIM('$calle'), c_colonia=TRIM('$colonia'), c_nume=TRIM('$numeroe'),
     c_numi=TRIM('$numeroi'), c_municipio=TRIM('$municipio'), c_cp=TRIM('$cp'), c_estado=TRIM('$estado'), c_pais=TRIM('$pais'), c_fmod=NOW()
-    WHERE c_mail='$usuario'";
+    WHERE c_mail='$usuario'"; */
+    $sql ='UPDATE clientes SET
+    c_nmb = "TRIM('.clearvmayus($nombre).')",
+    c_apellidos = "TRIM('.clearvmayus($apellido).')",
+    c_telefono = "TRIM('.$telefono.')",
+    c_rfc = "TRIM('.clearvmayus($rfc).')",
+    c_razon = "TRIM('.clearvmayus($razonsoc).')",
+    c_regimenfis = "TRIM('.clearvmayus($regimen).')",
+    c_calle = "TRIM('.clearvmayus($calle).')",
+    c_colonia = "TRIM('.clearvmayus($colonia).')",
+    c_nume = "TRIM('.clearvmayus($numeroe).')",
+    c_numi = "TRIM('.clearvmayus($numeroi).')",
+    c_municipio = "TRIM('.clearvmayus($municipio).')",
+    c_cp = "TRIM('.$cp.')",
+    c_estado = "TRIM('.clearvmayus($estado).')",
+    c_pais = "TRIM('.clearvmayus($pais).')",
+    c_fmod = NOW()
+    WHERE c_mail="'.$usuario.'"';
 if (setq($sql)) {
         ?>
         <script>
@@ -84,11 +101,29 @@ else if($_POST['password'] !=$result['c_password']) {
     $pais=$_POST['pais'];
     $contrasena=$_POST['password'];
 
-    $sql="UPDATE clientes SET c_nmb = TRIM('$nombre'), c_apellidos =TRIM('$apellido'), c_telefono=TRIM('$telefono'), c_rfc = TRIM('$rfc'),
+   /*  $sql="UPDATE clientes SET c_nmb = TRIM('$nombre'), c_apellidos =TRIM('$apellido'), c_telefono=TRIM('$telefono'), c_rfc = TRIM('$rfc'),
     c_razon=TRIM('$razonsoc'), c_regimenfis=TRIM('$regimen'), c_calle=TRIM('$calle'), c_colonia=TRIM('$colonia'), c_nume=TRIM('$numeroe'),
     c_numi=TRIM('$numeroi'), c_municipio=TRIM('$municipio'), c_cp=TRIM('$cp'), c_estado=TRIM('$estado'), c_pais=TRIM('$pais'),
-    c_password=PASSWORD('$contrasena')
-     WHERE c_mail='$usuario'";
+    c_password=PASSWORD('$contrasena'), c_fmod =NOW()
+     WHERE c_mail='$usuario'"; */
+     $sql ='UPDATE clientes SET
+     c_nmb = "TRIM('.clearvmayus($nombre).')",
+     c_apellidos = "TRIM('.clearvmayus($apellido).')",
+     c_telefono = "TRIM('.$telefono.')",
+     c_rfc = "TRIM('.clearvmayus($rfc).')",
+     c_razon = "TRIM('.clearvmayus($razonsoc).')",
+     c_regimenfis = "TRIM('.clearvmayus($regimen).')",
+     c_calle = "TRIM('.clearvmayus($calle).')",
+     c_colonia = "TRIM('.clearvmayus($colonia).')",
+     c_nume = "TRIM('.clearvmayus($numeroe).')",
+     c_numi = "TRIM('.clearvmayus($numeroi).')",
+     c_municipio = "TRIM('.clearvmayus($municipio).')",
+     c_cp = "TRIM('.$cp.')",
+     c_estado = "TRIM('.clearvmayus($estado).')",
+     c_pais = "TRIM('.clearvmayus($pais).')",
+     c_password = "PASSWORD('.$contrasena.')",
+     c_fmod = NOW()
+     WHERE c_mail="'.$usuario.'"';
 if (setq($sql)) {
         ?>
         <script>

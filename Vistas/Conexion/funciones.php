@@ -26,6 +26,18 @@ function setq($sql,$die = false){  //Realizar una consulta a BD en primer nivel
   return($id);
 }
 
+function clearvmayus($var,$mayus=true,$comp=false){
+  mb_internal_encoding("UTF-8");
+  if($comp) $simbol = array('"',"'","#","$","%", "&","/","(",")","=","?","¡","*","+","~","^","[","°","|","{","}","[","]");
+  else $simbol = array('"',"'");
+  $cambio = "";
+
+  $newvar = str_replace($simbol,$cambio,trim($var));
+  if($mayus) $newvar = mb_strtoupper($newvar);
+
+  return($newvar);
+}
+
  function busca($target, $tabla, $id, $nmb) {
   $sql = "SELECT $nmb FROM $tabla WHERE $id=\"$target\"";
   $result = setq($sql) or die($sql.' <br>'.mysql_error());

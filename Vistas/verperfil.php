@@ -536,6 +536,25 @@ if(isset($_POST['submit-btn'])){
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <label for="pais1" class="cols-sm-10 control-label"><b>Número Telefónico</b></label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                            maxlength="10" value="<?php echo @$result2['d_telefono']?>" class="form-control" name="telefono1"
+                                id="telefono1" required placeholder="Telefono" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="pais1" class="cols-sm-10 control-label"><b>Referencias</b></label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" value="<?php echo @$result2['d_referencia']?>" class="form-control" name="referencia1"
+                                id="referencia1" required placeholder="Referencias" />
+                        </div>
+                    </div>
+                </div>
                
                 <div style="text-align:center;">
                 <br>
@@ -606,6 +625,8 @@ include 'footer.php';
                     $("#municipio1").val(result.d_municipio);
                     $("#estado1").val(result.d_estado);
                     $("#pais1").val(result.d_pais);
+                    $("#telefono1").val(result.d_telefono);
+                    $("#referencia1").val(result.d_referencia);
                     if (result.d_predeterminado == '0') {
                         $("#predet").prop("checked", false);
                     } else {
@@ -637,6 +658,8 @@ include 'footer.php';
         document.getElementById("codigop1").value = "";
         document.getElementById("estado1").value = "";
         document.getElementById("pais1").value = "";
+        document.getElementById("telefono1").value = "";
+        document.getElementById("referencia1").value = "";
     }
 
     function actualiza() {
