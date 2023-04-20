@@ -166,9 +166,6 @@ $result2 = mysqli_fetch_array($cons);
             </div>
 
         </div>
-
-    </form>
-    <form action="idenvio.php" method="post">
         <input type="hidden" name="pid" id="pid" value="<?php echo $result2['d_id']?>" />
 
 </div>
@@ -178,13 +175,22 @@ $result2 = mysqli_fetch_array($cons);
         data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>" data-total="<?php echo $totalen?>">
         Atrás
     </a>
-
-    <button class="btn btn-primary me-md-2" type="button" id="siguiente" name="siguiente"
+        <?php
+        if($row2 == null){
+            $hidden = 'hidden';
+        }else{
+            $hidden = '';
+        }
+        ?>
+    <button class="btn btn-primary me-md-2"<?php echo $hidden;?> type="button" id="siguiente" name="siguiente"
         style="background-color:#29A8B0; " data-subtotal="<?php echo $total;?>" data-envio="<?php echo $envio;?>"
         data-total="<?php echo $totalen?>" onclick="siguiente2()">
         Siguiente
     </button>
 </div>
+    </form>
+    <form action="idenvio.php" method="post">
+
 </form>
 <br>
 
@@ -297,13 +303,14 @@ include 'footer.php'
             confirmButtonText: 'Confirmar'
         }).then((result) => {
             if (result.isConfirmed) {
+                document.getElementById("direccionn").action = "idenvio.php";
                 document.getElementById("siguiente").removeAttribute("type");
                 document.getElementById("siguiente").removeAttribute("onclick");
                 document.getElementById("siguiente").setAttribute("type", "submit");
                 document.getElementById("siguiente").click();
                 document.getElementById("siguiente").removeAttribute("type");
                 document.getElementById("siguiente").setAttribute("type", "button");
-                document.getElementById("siguiente").setAttribute("onclick", "siguiente()");
+                document.getElementById("siguiente").setAttribute("onclick", "siguiente2()");
 
             }
         })
