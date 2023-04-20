@@ -17,7 +17,7 @@ $consutla= setq($sql);
 $result = mysqli_fetch_array($consutla);
 
 $idusuario= busca($usuario,'clientes','c_mail','c_id');
-$sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusuario'";
+$sql2="SELECT * FROM direnvio WHERE d_cliente = '$idusuario' AND d_predeterminado = '1'";
 $cons = setq($sql2);
 $result2 = mysqli_fetch_array($cons);
 
@@ -459,6 +459,8 @@ if(isset($_POST['submit-btn'])){
                                 }
                                 ?>
                 <input type="checkbox" name="predet" id="predet" <?php echo $preder;?>> Direccion Predeterminada
+                
+                <div class="row">
                 <div class="col-md-6">
                     <label for="calle1" class="cols-sm-10 control-label"><b>Calle</b></label>
                     <div class="col-sm-10">
@@ -534,8 +536,9 @@ if(isset($_POST['submit-btn'])){
                         </div>
                     </div>
                 </div>
-                <br>
+               
                 <div style="text-align:center;">
+                <br>
                     <button class="btn btn-success" type="button" id="nuevadir" onclick="direccion()">
                         Nueva Direccion
                     </button>
@@ -551,6 +554,8 @@ if(isset($_POST['submit-btn'])){
 
                 </div>
 
+                </div>
+                
             </form>
 
         </div>

@@ -2,14 +2,14 @@
 include 'Conexion/funciones.php';
 
 $idusu = $_REQUEST['idu'];
-$calle = $_REQUEST['calle'];
-$colonia = $_REQUEST['colonia'];
-$numeroe = $_REQUEST['numeroe'];
-$numeroi = $_REQUEST['numeroi'];
-$cp = $_REQUEST['codigop'];
-$municipio = $_REQUEST['municipio'];
-$estado = $_REQUEST['estado'];
-$pais = $_REQUEST['pais'];
+$calle = $_REQUEST['calle1'];
+$colonia = $_REQUEST['colonia1'];
+$numeroe = $_REQUEST['numeroe1'];
+$numeroi = $_REQUEST['numeroi1'];
+$cp = $_REQUEST['codigop1'];
+$municipio = $_REQUEST['municipio1'];
+$estado = $_REQUEST['estado1'];
+$pais = $_REQUEST['pais1'];
 $dirpre = $_REQUEST['predet'];
 
 
@@ -33,7 +33,12 @@ if(isset($dirpre)){
         d_predeterminado = '1'";
     
     if(setq($sql)){
-        header("Location: pruebadir");
+        if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+            header("Location: verperfil");
+        }else {
+            header("Location: datosenvio");
+        }
+        
         
     }else {
         alert("Ocurrio un error");
@@ -57,7 +62,11 @@ if(isset($dirpre)){
     d_predeterminado = '0'";
 
 if(setq($sql)){
-    header("Location: pruebadir");
+    if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+        header("Location: verperfil");
+    }else {
+        header("Location: datosenvio");
+    }
     
 }else {
     window.alert("Ocurrio un error");

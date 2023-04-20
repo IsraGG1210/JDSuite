@@ -2,14 +2,14 @@
 include 'Conexion/funciones.php';
 $id_dir = $_POST['direcc'];
 $idusu = $_REQUEST['idu'];
-$calle = $_REQUEST['calle'];
-$colonia = $_REQUEST['colonia'];
-$numeroe = $_REQUEST['numeroe'];
-$numeroi = $_REQUEST['numeroi'];
-$cp = $_REQUEST['codigop'];
-$municipio = $_REQUEST['municipio'];
-$estado = $_REQUEST['estado'];
-$pais = $_REQUEST['pais'];
+$calle = $_REQUEST['calle1'];
+$colonia = $_REQUEST['colonia1'];
+$numeroe = $_REQUEST['numeroe1'];
+$numeroi = $_REQUEST['numeroi1'];
+$cp = $_REQUEST['codigop1'];
+$municipio = $_REQUEST['municipio1'];
+$estado = $_REQUEST['estado1'];
+$pais = $_REQUEST['pais1'];
 $dirpre = $_REQUEST['predet'];
 
 
@@ -28,7 +28,11 @@ if(isset($dirpre)){
         WHERE d_cliente = '$idusu' AND d_id = '$id_dir'";
         if(setq($sql1)){
             
-            header("Location: pruebadir");
+            if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+                header("Location: verperfil");
+            }else {
+                header("Location: datosenvio");
+            }
             
         }
     }
@@ -43,7 +47,11 @@ if(isset($dirpre)){
     d_estado = '$estado'
      WHERE d_id = '$id_dir'";
      if(setq($sql)){
-        header("Location: pruebadir");
+        if($_SERVER['REQUEST_URI'] == '/JDSuite/Vistas/verperfil'){
+            header("Location: verperfil");
+        }else {
+            header("Location: datosenvio");
+        }
      } else{
         ?>
         <script>
